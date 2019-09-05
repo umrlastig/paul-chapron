@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Paul Chapron - STRUDEL Team - Homepage</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+  <link href="css/resume.css" rel="stylesheet">
+
+  <!-- scripts on load -->
+  <script src="vendor/d3/d3.min.js"></script>
+  <script src="js/reviewing.js" charset="utf-8"></script>
+  <script src="js/hal.js" charset="utf-8"></script>
+
+</head>
+
+<body id="page-top" onload="reviewingVis('reviewing.json'); getJournalPublicationsAuthor('paul-chapron');getConfPublicationsAuthor('paul-chapron');getBookPublicationsAuthor('paul-chapron');getWorkshopPublicationsAuthor('paul-chapron');getOtherPublicationsAuthor('paul-chapron');getInvitedTalksAuthor('paul-chapron');">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <select class="selectpicker" data-width="fit">
+      <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+      <option  data-content='<span class="flag-icon flag-icon-fr"></span> Français'>Français</option>
+    </select>
+    <a class="nav-link  subheading lang-en" href="https://umrlastig.github.io/strudel">STRUDEL Team</a>
+    <a class="nav-link  subheading lang-fr" href="https://umrlastig.github.io/geovis">Equipe</a>
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">Paul Chapron</span>
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/photo_paulchapron.jpg" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#about">About</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#about">À propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#interest">Research Interests</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#interest">Sujets de recherche</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#publications">Publications</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#publications">Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#cv">Resume</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#cv">CV</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#projects">Projects</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#projects">Projets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#cours">Courses & training</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#cours">Cours & formations</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+      <div class="w-100">
+        <h3 class="mb-0">Paul
+          <span class="text-primary">Chapron</span>
+        </h3>
+        <div class="subheading mb-5">IGN<br>73 avenue de Paris · 94165 Saint-Mandé CEDEX <br> Bureau K 301 <br>(+33)1 43 98 80 00 <br><br>
+          <a>pa<!--anti@spam.fr!-->ul.chapron@{ign.fr,gmail.com}</a><br>
+          <div itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" content="https://orcid.org/0000-0002-3054-0759" href="https://orcid.org/0000-0002-3054-0759" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">https://orcid.org/0000-0002-3054-0759</a></div>
+        </div>
+        <p class="lead mb-5 lang-en">Computer Sciences Researcher<br>Simulation & Modeling of socio-spatial dynamics, Simulation model analysis</p>
+        <p class="lead mb-5 lang-en">Member of the <a href="https://umrlastig.github.io/strudel">STRUDEL</a> research team</p>
+        <p class="lead mb-5 lang-fr">Chargé de recherche</p>
+        <p class="lead mb-5 lang-fr"> Modelisation et simulation socio-spatiale. Analyse de modèles de simulation.</p>
+        <p class="lead mb-5 lang-fr">Membre de l'équipe <a href="https://umrlastig.github.io/strudel">STRUDEL</a></p>
+        <div class="social-icons">
+          <a href="https://www.researchgate.net/profile/Paul_Chapron2">
+            <i class="fab fa-researchgate"></i>
+          </a>
+          <a href="https://github.com/chapinux">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://twitter.com/chapinux">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="interest">
+      <div class="w-100">
+        <h2 class="mb-5 lang-en">Research Interests</h2>
+        <h2 class="mb-5 lang-fr">Sujets de recherche</h2>
+        <hr class="star-dark mb-5">
+
+        <img src="img/wordcloud.png">
+
+
+    </section>
+
+    <hr class="m-0">
+
+    
+    <hr class="m-0">
+
+    <hr class="m-0">
+
+    
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="publications">
+      <div class="w-100">
+        <h2 class="mb-5">Publications</h2>
+
+        
+        <h4 class="mb-5">Extracted from HAL repository ⭝ </h4>
+        <div   style="text-align:center ; color:orange; border:dashed 1px; padding: 3px; "> WIP : Upload on HAL is incomplete. Check my <a href="https://www.researchgate.net/profile/Paul_Chapron2">Research Gate profile</a> or on  <a href="https://hal.archives-ouvertes.fr/search/index/?q=Paul+Chapron&docType_s=ART+OR+COMM+OR+OUV+OR+COUV+OR+DOUV+OR+OTHER+OR+UNDEFINED+OR+REPORT+OR+THESE+OR+HDR+OR+LECTURE&submitType_s=file+OR+notice&authIdHal_s=paul-chapron">HAL</a>, contact me for preprints </div>
+
+
+        <div class="subheading mb-3 mt-3">Journals</div>
+        <ol id="pubJ" class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Conferences</div>
+        <ol id="pubC" class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Books and Chapters</div>
+        <ol id="pubB" class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Workshops and Posters</div>
+        <ol id="pubW" class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Other Publications (Technical Reports, Dissertations)</div>
+        <ol id="pubO" class="sub">
+        </ol>
+
+        <h4 class="mb-5">Static List of publications ⭝</h4>
+ <div   style="text-align:center ; color:orange; border:dashed 1px; padding: 3px; ">Also  WIP </div>
+        <div class="subheading mb-3 mt-3">Journals</div>
+        <ol class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Conferences</div>
+        <ol id="pubC" class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Books and Chapters</div>
+        <ol id="pubB" class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Workshops and Posters</div>
+        <ol id="pubW" class="sub">
+        </ol>
+
+        <div class="subheading mb-3 mt-3">Other Publications (Technical Reports, Dissertations)</div>
+        <ol id="pubO" class="sub">
+        </ol>
+
+
+      </div>
+    </section>
+
+    <!--
+    <section class="section appear clearfix p-3 p-lg-5">
+      <div class="w-100">
+        <h2 class="mb-5 mt-5">Invited Talks</h2>
+        <ol id="talks" class="sub">
+        </ol>
+      </div>
+    </section>
+    -->
+    <hr class="m-0">
+
+    
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="cv">
+      <div class="w-100">
+        <h2 class="mb-5 lang-en">Resume</h2>
+        <h2 class="mb-5 lang-fr">CV</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0"><a href="resources/cv_recherche_en.pdf">Curriculum vitae <img width="8%" src="img/icons/pdf_icon.png"></a></h3>(Click to open/download)
+            <div class="lang-fr">mis à jour le 17 septembre 2018</div>
+            <div class="lang-en">update on september 17<sup>th</sup>, 2018</div>
+            
+          </div>          
+        </div>        
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="projects">
+      <div class="container">
+        <div class="row text-center title">
+          <h2>Projects</h2>
+        </div>
+        <div class="subheading mb-3">Nothing for now, so I put some Motörhead lyrics of <a href="https://www.youtube.com/watch?v=T9ndbPUSYDQ">one of their best song</a> </div>
+        <div class="row">
+          <article class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/oldpunk.jpg" alt="" />
+                  <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                    <div class="folio-info my-auto w-100 ">
+                     <h6>Well here, babe, look at you, and you with someone else,<br>
+Turned out like all the others, leave me by myself,<br>
+That's how it works I guess, and you like all the rest<br>
+Guess I can handle it, if that's the way it is <br><br>
+'Cause I'm in love with rock 'n' roll, satisfies my soul<br>
+If that's how it has to be, I won't get mad<br>
+I got rock 'n' roll, to save me from the cold<br>
+And if that's all there is, it ain't so bad<br>
+Rock 'n' roll</h6>
+                    </div>
+                  </div>
+                </div>
+          </article>
+        </div>
+    </section>
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="cours">
+      <div class="container">
+        <div class="row text-center title">
+          <h2 class>Courses and Trainings</h2>
+        </div>
+        <div class="subheading mb-3"> When I am the sole author of it, materials and code are open-source and Creative Commons-ish, you can do whatever you want.<br>
+        When I'm not, you should check with the other author(s), they should be ok with it too. </div>
+        <div class="row projects">
+          <div class="col-md-3">
+            <div class="project">
+              <div class="icon-holder">
+                <img src="img/ensg.png" alt="" class="icon">
+              </div>
+              <h4 class="heading">Master2 IGAST</h4>
+              <p class="description">Statistique <a href="https://github.com/chapinux/AnalyseUnivariee">univariée</a>, <a href="https://github.com/chapinux/AnalyseBivariee">bivariée</a> , introduction à R</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="project">
+              <div class="icon-holder">
+                <img src="img/rstudio.jpeg" alt="" class="icon">
+              </div>
+              <h4 class="heading">Geospatial data and Research : the Delhi R school</h4>
+              <p class="description"><a href="https://github.com/Geographie-cites/delhiR/tree/master/">Courses material and tutorial</a> of the <a href="http://www.csh-delhi.com/events/event/geospatial-data-and-research-the-delhi-r-school/">Delhi-GIS-R Summer School</a> 2019</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="project">
+              <div class="icon-holder">
+                <img src="img/iconOM.png" alt="" class="icon">
+              </div>
+              <h4 class="heading">eX Modelo Summer School</h4>
+              <p class="description">Courses and Practice materials of the <a href="https://exmodelo.org/">eX Modelo Summer School</a> </p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="project">
+              <div class="icon-holder">
+                <img src="img/logo_labex_dynamite.png" alt="" class="icon">
+              </div>
+              <h4 class="heading">Florence Summer School</h4>
+              <p class="description"><a href="https://slides.com/clementinecottineau/dsm_2018#/">Slides</a> and <a href="https://github.com/DynamiteStaff/R-workshops/tree/master/Modeling/syllabus">R/Rmd source code</a> of the Dynamic system modeling workshop, with <a href="http://clementinecttn.github.io/">Clémentine Cottineau</a> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cut cut-bottom"></div>
+    </section>
+
+    <hr class="m-0">
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/jquery.isotope.min.js"></script>
+  <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="js/resume.js"></script>
+
+</body>
+
+</html>
