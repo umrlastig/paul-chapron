@@ -111,7 +111,7 @@ var getBookPublicationsAuthor = function(halId){
 
   // Open a new connection, using the GET request on the URL endpoint
   var url = "https://api.archives-ouvertes.fr/search/?q=authIdHal_s:%22"+halId
-    +"%22&wt=json&fl=citationFull_s&fq=docType_s:\"COUV\"&fl=producedDateY_i,halId_s,fileMain_s&sort=producedDateY_i desc";
+    +"%22&wt=json&fl=citationFull_s&fq=docType_s:(\"COUV\" OR \"OUV\")&fl=producedDateY_i,halId_s,fileMain_s&sort=producedDateY_i desc";
   request.open('GET', url, true);
   //console.log(url);
 
@@ -142,7 +142,7 @@ var getWorkshopPublicationsAuthor = function(halId){
   request.open('GET', url, true);
   //console.log(url);
 
-  var parentB = document.getElementById("pubW");
+  var parentW = document.getElementById("pubW");
 
   request.onload = function () {
     // Begin accessing JSON data here
@@ -151,7 +151,7 @@ var getWorkshopPublicationsAuthor = function(halId){
     //console.log(data.response.docs);
     data.response.docs.forEach(docs => {
       // first create the list element with the citation
-      createPubHTML(docs, parentB);
+      createPubHTML(docs, parentW);
     })
   };
 
