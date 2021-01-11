@@ -1,0 +1,1105 @@
+# Analyse Univariée {#univariee}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,fig.width =6,fig.align="center", fig.height = 3)
+library(revealjs)
+library(tidyverse)
+library(palmerpenguins)
+library(knitr)
+library(xtable)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+library(sf)
+quartiers <-  st_read("quartier_paris.shp")
+
+```
+
+
+
+
+## Analyse univariée {.flexbox .vcenter}
+
+**Décrire**  et **mesurer** la **répartition** des valeurs que peut prendre une variable : sa  **distribution** ($\approx$ "histogramme en continu")
+
+Parfois certaines distributions ressemblent à des distributions bien connues : on parle de **lois**
+
+
+e.g. loi normale/gaussienne, loi de Poisson, géométrique, exponentielle, ...
+
+<div class="col2">
+```{r , expledistrib, cache=TRUE, fig.height=2, echo=FALSE}
+xx <- data.frame(value=rnorm(8000))
+plot1 <- ggplot(xx)+
+        geom_density(aes(x = value), color="#aaaaaa", fill="#44DD99" )+
+        theme_light()
+plot1
+yy <- data.frame(value=rexp(8000,rate = 4))
+plot2 <- ggplot(yy)+
+        geom_density(aes(x = value), color="#aaaaaa", fill="#44DD99" )+
+        theme_light()
+plot2
+```
+</div>
+
+## Histogramme d'une variable suivant une loi normale $\mathscr{N}(0,1)$ 
+
+```{r gaussienne1, cache=TRUE, fig.width=8, fig.height=3.5}
+xx <- data.frame(value=rnorm(2600))
+plot1 <- ggplot(xx)+
+        geom_histogram(aes(x = value),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+        theme_light()
+plot1
+```
+
+## Histogramme d'une distribution réelle
+
+```{r arbres1, cache=TRUE, fig.width=10, fig.height=3.5, echo=FALSE, message=FALSE,warning=FALSE}
+library(sf)
+xx <- read_sf("./les-arbres.geojson") 
+plot1 <- ggplot(xx)+
+        geom_histogram(aes(x = hauteurenm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Hauteur en mètres")+ ylab("Nombre")+
+        theme_light()
+plot2 <- ggplot(xx)+
+        geom_histogram(aes(x = circonferenceencm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Circonférences en centimètres")+ylab("Nombre")+
+        theme_light()
+grid.arrange(plot1, plot2,  ncol=2, nrow =1)
+```
+
+<small> Données : arbres de la Ville de Paris [https://opendata.paris.fr/]</small>
+
+
+
+## Histogramme d'une distribution réelle filtrée
+
+```{r arbres2, cache=TRUE, fig.width=10, fig.height=3.5, echo=FALSE, message=FALSE,warning=FALSE}
+library(sf)
+xx <- read_sf("./les-arbres.geojson") %>%  filter(hauteurenm < 60 & hauteurenm > 1 & circonferenceencm < 2500  )
+
+plot1 <- ggplot(xx)+
+        geom_histogram(aes(x = hauteurenm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Hauteur en mètres")+ ylab("Nombre")+
+        theme_light()
+plot2 <- ggplot(xx)+
+        geom_histogram(aes(x = circonferenceencm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Circonférences en centimètres")+ylab("Nombre")+
+        theme_light()
+grid.arrange(plot1, plot2,  ncol=2, nrow =1)
+```
+
+
+<small> Données : arbres de la Ville de Paris [https://opendata.paris.fr/]</small>
+
+
+### La densité de probabilité {#interpret_dens}
+
+La représentation d'une distribution est légèrement plus délicate à comprendre mathématiquement.
+En première approximation , vous pouvez l'interpréter comme un histogramme dont les barres seraient infiniement fines, et dont l'axe des $y$ représenteraient une probabilité au lieu d'un effectif.
+
+La densité de probabilité comme son nom l'indique, représente des probabilités: celles d'obtenir, pour un iondividu dans la population, une certaine valeur de la variable. 
+
+Le point délicat est qu'une variable continue (i.e. définie sur un intervalle de $\mathbb{R}$), peut prendre une **infinité** de valeurs possibles, et que la probabilité d'obtenir **exactement**, c'est à dire avec une précision infinie, une valeur est infinitésimale, en fait carrément nulle. 
+
+
+Il faut alors considérer la probabilité d'obtenir une valeur, non pas de façon exacte , mais dans un **intervalle** de valeur. Par exemple, dans le graphique ci-dessous, de s'intérroger sur la probabilité , pour un individu tiré au haasard dans la population , d'avoir une valeur de Variable 1 dans l'intervalle [25;30].
+
+Cela pourrait s'écrire $P( 25  \leq   V_1  \leq 30)$ et serait égal à l'intégrale de la fonction de densité notée $f_{V_1}$ entre les bornes 25 et 30 de l'intervalle de $V_1$ : \int
+
+$$P( 25  \leq   V_1  \leq 30) = \int_{25}^{30} f_{V_1}(x)dx$$
+
+
+En pratique , le graphique d'une densité  s'interprête en observant la **quantité d'aire sous la courbe** 
+
+L'aire totale sous la courbe vaut 1 (cela revient à considérer la somme de toutes les probabilités d'avoir une valeur particulière $X$  dans l'intervale de valeur de $V_1$) et par approximation , la valeur de la probabilité d'obtenir une certaine valeur se lit comme la **proportion d'aire** sous la courbe comprise entre deux bornes proche de la valeur.  
+
+
+
+```{r exple_dist, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+dens <- density(mpg$hwy)
+idxborne25 <- which(dens$x > 25  )[1]
+idxborne30 <- which(dens$x > 30  )[1]
+dens$y[idxborne25:idxborne30] %>% sum
+ggplot(data = mpg) +
+  geom_density(aes(x=hwy), color="white", fill="darkcyan", alpha=0.7) +
+  geom_vline(xintercept = 25)+
+  geom_vline(xintercept = 30)+
+  labs(title = "Distribution",
+       subtitle = "",
+       x = "Variable 1",
+       y = "Densité"
+       ) +
+  theme_minimal()
+```
+
+
+
+## Analyse univariée : plan 
+
+Objectif : **Décrire la répartition des valeurs** d'une variable
+
+### Mesures de **tendance centrale**
+
+mode, moyenne, médiane
+
+### Mesures de **dispersion**
+
+étendue, écart-type, variance, quantiles, coefficient de variation
+
+### Mesures de **forme**
+
+symétrie (Skewness) et aplatissement (Kurtosis) 
+ 
+
+
+
+
+
+
+
+# Statistique descriptive univariée : la tendance
+<br><br><br>
+Moyenne(s), mode , médiane 
+
+
+## Moyenne
+
+$\displaystyle \bar{x} = \frac{1}{n}\sum_{i=0}^{n} x_i$
+
+
+## Moyenne pondérée
+
+Lors que les valeurs n'ont pas le même poids <br>
+<br>
+par exemple  : poids = effectif de la valeur dans la population.
+<br>
+
+$\displaystyle \bar{x} = \frac{1}{\sum_{i=0}^n pi}\sum_{i=0}^{n} p_i x_i$
+
+
+## Avantages et inconvénients de la moyenne
+
+### Avantage
+  Chaque valeur compte
+
+### Inconvénients 
+
+* sensibilité aux valeurs extrèmes 
+* pas de signification sur les valeurs discrètes (e.g. 2.5 enfants par femme)
+
+
+$\rightarrow$ exclure les outliers<br>
+$\rightarrow$ utiliser un autre estimateur<br>
+$\rightarrow$ étudier la distribution des valeurs (e.g. cas bimodal) et opérer une classification
+
+
+
+
+## Autres Moyennes
+
+
+## Moyenne geométrique:
+<br>
+
+$\displaystyle \bar{x} = \sqrt[n]{\prod _{i=0}^{n} x_i}$  
+
+Moins sensible à la présence de valeurs extrèmes
+
+## Moyenne quadratique (RMS) 
+<br>
+
+$\displaystyle \bar{x} = \sqrt{\frac{1}{n}\sum _{i=0}^{n} x_i^2}$
+
+
+## Cas particulier : Moyenne glissante
+
+Moyenne calculée sur une fenètre de $n$ valeurs consécutives.
+
+e.g. on reçoit une mesure chaque seconde, très bruitée, et on désire afficher 10 minutes de signal lissé dans le temps
+
+ $\rightarrow$ on calcule pour chaque point du signal, la moyenne sur 10 valeurs consécutives (5 en avant , 5 en arrière)
+
+
+## le Mode {.flexbox .vcenter}
+
+**Mode** :  valeur la plus fréquente (effectif max.) de la série de valeurs que prend une variable.
+<br>
+<br>
+<span style="color:red">&#9888;</span> si variable quantitative continue : faire une classification .
+Dans ce cas, le mode est la moyenne des valeurs min et max des bornes de la classe de plus grand effectif.
+
+## Avantages et inconvénients du mode
+
+### Avantages 
+Peu sensible aux valeurs extrêmes (moins sensible que la moyenne)
+
+Signification concrète : la situation la plus fréquente
+
+### Inconvénients 
+Ne dépends pas de toutes les observations : la modification d'une seule valeur n’entraîne pas une modification du mode
+
+## la Médiane 
+
+**Médiane** : valeur qui partage une série de valeurs en d**eux sous-ensembles d’égal effectif**
+
+Comme en géométrie, la médiane est la valeur de la variable qui est la plus proche de toutes les autres.
+
+## Etapes de calcul 
+Ordonner les valeurs selon un ordre croissant
+
+Calculer le rang $i=\frac{n+1}{2}$
+
+si $n$ impair, la valeur médiane existe dans la série statistique
+
+si $n$ pair, la valeur médiane est entre deux valeurs et est égale à la moyenne de ces deux valeurs
+
+
+## Avantages et inconvénients de la médiane 
+
+### Avantages 
+Plus pertinente que la moyenne
+
+Peu sensible aux valeurs extrêmes 
+
+A une signification concrète : divise en deux la distribution : un individu sur deux a une valeur inférieure ou supérieure à celle-ci
+
+### Inconvénient 
+Ne dépend pas de toutes les observations : la modification d'une seule valeur n’entraine pas une modification de la médiane 
+
+
+## Quelle mesure choisir ?
+
+Tout dépend de la distribution ! 
+
+$\rightarrow$ **Toujours** afficher l'histogramme ou la distribution de densité
+<br><br>
+
+Le **mode** est privilégié pour les valeurs **nominales** et si on désire considérer «le cas le plus fréquent»
+
+Distribution sans longue traîne ? <br>
+$\rightarrow$ moyenne et médiane
+
+Plusieurs modes dans la distribution ?<br>
+$\rightarrow$ classification puis médiane / moyenne par classe
+
+
+## Distribution bimodale 
+
+```{r bimod1, cache=TRUE, echo=FALSE,fig.width=8, fig.height=3.5}
+xx <- data.frame(value=rnorm(1600,mean = 5, sd = 1))
+yy <- data.frame(value= rnorm(1400, mean = 10, sd=2) )
+xx <-  rbind(xx, yy)
+plot1 <- ggplot(xx)+
+        geom_line(aes(x = value),stat = "density", color="#44DD99", lwd= 1.3)+
+        geom_vline(xintercept = mean(xx$value), color="red")+
+        geom_vline(xintercept = median(xx$value),color="blue")+
+        annotate("text", x=c(8,5.5), y=c(0.2,0.2), colour=c("red","blue"),label=c("mean", "median"))+
+        theme_light()
+plot1
+```
+
+Que choisir : moyenne ou médiane ? 
+
+
+## Distribution unimodale symétrique 
+
+```{r gaussienne2, cache=TRUE, fig.width=8, fig.height=3.5}
+xx <- data.frame(value=rnorm(2900,mean = 5, sd = 1))
+plot1 <- ggplot(xx)+
+        geom_line(aes(x = value),stat = "density", color="#44DD99", lwd= 1.3)+
+        geom_vline(xintercept = mean(xx$value), color="red")+
+        geom_vline(xintercept = median(xx$value) + 0.02,color="blue")+
+        annotate("text", x=c(4.5,5.5), y=c(0.2,0.2), colour=c("red","blue"),label=c("mean", "median"))+
+        theme_light()
+plot1
+```
+
+
+## Histogramme et distribution en R
+
+
+la fonction `hist` affiche un histogramme d'un vecteur **numerique**:
+
+```{r histoR}
+x <-  rnorm(2500) #init
+hist(x)
+```
+
+## Histogramme et distribution en R
+
+un histogramme n'a pas de sens  pour une variable **qualitative**. 
+
+On peut utiliser `barplot`,<span style="color:red; font-size:1;">&#9888;</span> mais ce n'est plus une distribution ! 
+
+```{r histoR2,fig.width=8 }
+x <-  sample(month.name, 2500, replace=T)
+tx <- table(x)
+barplot(tx , las=2)
+```
+
+
+
+# Statistique descriptive univariée : la dispersion
+<br><br><br>
+Variance, écart-type, Coeff. de variation.
+
+
+
+## La **dispersion** statistique 
+
+Tendance des valeurs d'une variable à se disperser autour des valeurs des tendances centrales.
+```{r gaussienne2D, cache=TRUE, fig.width=10}
+mydataset <- data.frame(X=rnorm(900), Y=rnorm(900))
+plot1 <- ggplot(mydataset)+
+        geom_point(aes(x=X, y=Y), fill="#44DD99", color="#666666", shape=21)+
+        coord_equal()+theme_light()
+plot1
+```
+
+
+## Variance et Écart-type
+
+La **variance** est la somme des écarts carrés à la moyenne rapporté à l'effectif
+
+$\displaystyle var_X= \frac{1}{n}\sum_{i=1}^{n}(x_i -\bar{x})^2$
+
+Avec :
+  * $X$ une variable
+  * $x_i$ les valeurs de la variables
+  * $\bar{x}$ la moyenne de $X$ 
+  * $n$ l'effectif
+
+$\sigma_X = \sqrt{var_X}$  : l'**écart type** est la racine carrée de la variance
+
+## Variance et Écart-type
+
+Variance et écart-type rendent compte de la **dispersion** de la variable autour de sa moyenne.
+
+Ils sont **sensibles** aux valeurs extrèmes et toujours **positifs**.
+
+Si $var_X = 0$ ou $\sigma_X = 0$ , alors $X$ est **constante**.
+
+Un écart-type faible indique que les valeurs sont réparties de façon **homogène** autour de la moyenne.
+
+## Précaution {.flexbox .vcenter}
+
+<span style="color:red; font-size:1.5em;">&#9888;</span>Variance et écart type n'ont d'intérêt que pour qualifier des distributions **unimodales**, et (à peu près) **symétriques**
+
+
+(i.e. proche de la Gaussienne)
+
+
+## Lorsque $X\sim \mathscr{N}(\mu,\sigma)$
+
+```{r stddev1, cache=TRUE, echo=FALSE}
+library(latex2exp)
+X <- data.frame(value=rnorm(1900))
+plot1 <- ggplot(X)+
+        geom_line(aes(x = value),stat="density", color="#44DD99", lwd=1.2)+
+        geom_vline(xintercept = c(-sd(X$value), sd(X$value)), color="red")+
+        geom_vline(xintercept = c(-2*sd(X$value), 2*sd(X$value)), color="blue")+
+        annotate("text", x=c(1.5,2.5), y=c(0.3,0.12), colour=c("red","blue"),label=c("68,27% de l'effectif ", "95,45% de l'effectif "))+
+        theme_light()
+plot1
+```
+
+
+<br>
+$[-\sigma;\sigma] \approx \frac{2}{3}$  de l'effectif
+<br>
+<br>
+$[-2\sigma;2\sigma] \approx$ 95% de l'effectif
+
+## Quantiles
+
+La **médiane** sépare une population en **deux** classes d'égal effectif selon la valeur d'une variable (quantitative).
+
+Les **quantiles**  séparent une population en **$n$** classes d'égal effectif 
+
+Les **quartiles** d'une population selon une variable $X$ sont trois valeurs, $Q_1,Q_2,Q_3$ qui séparent la population en **quatre** classes d'égal effectif.
+<small>
+
+  * 25% des valeurs de $X$ sont strictement inférieures à $Q_1$
+  * 50% des valeurs de $X$ sont strictement inférieures à $Q_2$ (médiane)
+  * 75% des valeurs de $X$ sont strictement inférieures à $Q_3$
+  
+</small>
+
+## Déciles
+
+Les déciles sont les **9** quantiles $Q_1,Q_2,\dots,Q_9$ qui séparent une population  selon la valeur d'une variable quantitative en **10** classes d'égal effectif.
+
+## Ecarts inter-quartiles et inter-déciles
+
+Deux mesures de la **dispersion** d'une distribution : 
+
+<br><br>
+**Écart inter-quartile**: $Q_3-Q_1$ , capture 50% des valeurs de la population les plus proches de la médiane
+
+<br><br>
+**Écart inter-déciile**: $Q_9-Q_1$ , capture 80% des valeurs de la population les plus proches de la médiane
+
+## Les boîtes à moustaches (boxplots)
+
+représentation courante de la dispersion d'une variable à l'aide de **quartiles**
+
+
+```{r boxplot1, cache=TRUE}
+plot1 <- ggplot(iris)+
+  geom_boxplot(aes(y=Sepal.Width,x= Species) ) + coord_flip()
+plot1
+```
+
+## Interprétation des boxplots
+
+* La marque centrale de la boîte est la médiane 
+* Les bords de la boîte sont les quartiles $Q_1$ et $Q_3$
+* Les extrémités des moustaches vont jusqu'à la plus grande (resp. la plus petite ) valeur inférieure (resp. supérieure)  à 1.5 fois l’écart interquartile 
+* Les valeurs qui dépassent les moustaches sont affichées sous formes de points
+
+```{r boxplot2, cache=TRUE, echo=FALSE}
+plot1 <- ggplot(iris)+
+  geom_boxplot(aes(y=Sepal.Width,x= Species) ) + coord_flip()
+plot1
+```
+
+
+
+## Avantages et inconvénient des quantiles
+
+### Avantages
+
+Peu sensibles aux distributions aplaties et aux valeurs extrèmes
+
+L'écart inter-quantile est plus robuste que l'écart-type
+
+### Inconvénients
+
+Parfois délicat pour les variables quantitatives discrètes
+
+Les écarts inter-quantiles négligent l'influence des valeurs extrèmes sur la distribution
+
+## Le coefficient de variation 
+
+Le **coefficient de variation** ($CV$) est une autre mesure de dispersion.
+
+C'est le ratio entre l'écart-type $\sigma_x$ et la moyenne $\bar{x}$ d'une variable quantitative $X$.
+
+$\displaystyle CV(X)=\frac{\sigma_x}{\bar{x}}$
+
+Plus il est important , plus la dispersion est grande.
+
+Plus il est proche de 0, plus les données sont homogènes.
+
+
+Il souffre des mêmes inconvénients que la moyenne et l'écart-type : sensibilité aux valeurs extrèmes.
+
+## Comparaison de dispersion de deux distributions de valeurs.
+
+
+
+Exemple : deux communes  versent des aides aux entreprises locales. 
+
+Commune A :  moyenne = 390 euros, $\sigma$ = 30 euros 
+
+Commune B :  moyenne = 152 euros, $\sigma$ = 8 euros
+
+Pour quelle commune les aides sont les plus homogènes?
+
+<br><br>
+<small>On pourrait aussi comparer des distribution de valeurs exprimées dans des unités différentes !</small>
+
+## **(Mauvaise)** Comparaison visuelle de deux distributions
+
+<span style="font-size:60%; margin-top:-50px">Pour échantilloner dans une loi normale : fonction `rnorm`</span>
+
+```{r compDistNorm1, fig.height=2.8}
+A <-  rnorm(n = 10000, mean = 390, sd = 30)
+B <-  rnorm(n = 10000, mean = 152, sd = 8)
+par(mfrow=c(1, 2)) #2 graphes en colonnes
+hist(A, probability = T)
+lines(density(A), col="red")
+hist(B, probability = T)
+lines(density(B), col="red")
+```
+Qu'est ce qui ne va pas ?
+
+
+##  Comparaison visuelle de dispersion de deux distributions
+
+
+Il faut une **échelle commune** !
+
+```{r compDistNorm2}
+A <-  rnorm(n = 10000, mean = 390, sd = 30)
+B <-  rnorm(n = 10000, mean = 152, sd = 8)
+par(mfrow=c(1, 2))
+hist(A, probability = T, xlim = c(50,600), ylim = c(0,0.05))
+lines(density(A), col="red")
+hist(B, probability = T,xlim = c(50,600), ylim = c(0,0.05))
+lines(density(B), col="red")
+```
+
+
+
+# Statistique descriptive univariée : la forme
+ 
+ <br>
+ <br> <br> 
+ Symétrie , applatissement
+ 
+  
+## **Asymétrie** des distributions.
+
+
+```{r asym1, echo=FALSE, fig.width=8, fig.height=4, cache=TRUE}
+
+xx <- seq(-5,5, length.out = 100)
+normale <-  dnorm(xx,mean = 0, sd=1)
+xxx <- seq(0,10, length.out = 100)
+droite <-  dgamma(xxx,2,1)
+
+droiteValues <-  rgamma(1000,2,1)
+droiteValues <-  rgamma(1000,2,1)
+
+xxxx <-seq(10,0, length.out = 100) 
+gauche <- dgamma(xxxx, 2,1)
+mydata <- data.frame(value=xx, dens=normale, type="Normale", moy=0, med=0, mod=0)
+droitedata <- data.frame(value=xxx, dens=droite, type="Asymétrique positive", moy=mean(droiteValues), med=median(droiteValues), mod = 1)
+gauchedata <- data.frame(value=xxx, dens=gauche, type="Asymétrique négative", moy=10-mean(droiteValues), med=10-median(droiteValues), mod=9)
+
+gauchedata <- rbind( gauchedata, mydata)
+gauchedata <- rbind(gauchedata, droitedata)
+
+ggplot(gauchedata, aes(x=value, y=dens))+geom_line(color="#44DD99", lwd=1.2)+
+  geom_vline(aes(xintercept = moy), col="red")+
+  geom_vline(aes(xintercept = med), col="blue")+
+  geom_vline(aes(xintercept = mod), col="orange")+
+  facet_grid(cols=vars(type), scales="free")+
+  ylab(label = "density")+
+  theme_light()+
+  annotate("text", x=3.5, y=0.4, colour=c("red"),label="moyennne")+
+  annotate("text", x=3.5, y=0.37, colour=c("blue"),label="médiane")+
+annotate("text", x=3.5, y=0.34, colour=c("orange"),label="mode")
+```
+
+
+## les Coefficients de Pearson
+<br><br>
+
+Deux moyens simples d'estimer l'asymétrie 
+<br><br>
+$\displaystyle C_1 = \frac{\bar{x} - mode(X)}{\sigma_x}$
+<br><br>
+$\displaystyle C_2 = \frac{3(\bar{x} - mediane(X))}{\sigma_x}$
+
+## Interprétation des coefficients d'asymétrie
+<br><br>
+
+  * si le coefficient **nul**, la distribution est **symétrique**
+  * si le coefficient est **négatif**, la distribution est **déformée à gauche** de la médiane (sur-représentation de valeurs faibles, à gauche)
+  * si le coefficient est **positif**, la distribution est **déformée à droite** de la médiane (sur-représentation de valeurs fortes, à droite)
+
+## Le coefficient de Fischer
+<br><br>
+
+Ce coefficient est le moment  d'ordre 3  de la variable $X$ ( de moyenne $\mu$ et d'écart-type $\sigma$) **centrée réduite**
+
+$\displaystyle skewness'=\mathbb{E}\bigg[\bigg(\frac{X-\mu}{\sigma}\bigg)^3\bigg]=\frac{\sum_{i=0}^{n} (x_i - \bar{x})^3}{n\sigma^3}$
+
+
+
+## L'aplatissement des distributions (kurtosis)
+
+
+```{r kurtos1, echo=FALSE, fig.width=10, fig.height=2, cache=TRUE}
+
+normaleC <- 1 
+picC <- 0.6
+plateC <- 3
+
+
+xx <- seq(-5,5, length.out = 100)
+normale <-  dnorm(xx,mean = 0, sd=normaleC)
+pic <-  dnorm(xx, mean = , sd=picC)
+plate <- dnorm(xx, mean=, sd=plateC)
+
+mydata <- data.frame(value=xx, dens=normale, type="Normale")
+piquee <- data.frame(value=xx, dens=pic, type="Leptokurtique")
+applatie <-  data.frame(value=xx, dens=plate, type="Platokurtique")
+
+
+mydata <- rbind(mydata, piquee)
+mydata <- rbind(mydata, applatie)
+
+ggplot(mydata, aes(x=value, y=dens))+geom_line(color="#44DD99", lwd=1.2)+
+  facet_grid(cols=vars(type), scales="free")+
+  ylab(label = "density")+
+  theme_light()
+```
+
+Courbe piquée: Peu de variation, distribution relativement homogène, beaucoup de valeurs égales ou proches de la moyenne.
+
+Courbe applatie: Variations importantes, distribution relativement hétérogène, beaucoup de valeurs s'éloignent de la moyenne.
+
+
+## Coefficient d'applatissement : kurtosis 
+
+Coefficient non normalisé :
+
+
+$\displaystyle K=\frac{\sum_{i=1}^{n}(x_i -\bar{x})^4}{n\sigma^4}$
+
+Si la distribution est normale , $K= 3$
+
+Si $K>3$, la distribution est **plus applatie** 
+
+Si $K<3$, la distribution est **moins applatie** 
+
+On normalise parfois en considérant $K'=K-3$ (excès d'applatissement)
+
+
+# Représentation d'une distribution et Échelle de couleurs
+
+
+## Distribution et Échelle de couleurs
+
+Pour une variable quanti. continue qu'on souhaite colorer, il n'est pas toujours possible de graduer une échelle de couleur continue. 
+<br>
+Il faut (souvent) classer les valeurs en catégories.
+Le **nombre** de classes et les **méthodes** de classification varient. 
+
+En général 
+
+- 5,7 ou 9 classes :
+  - $<5$ trop peu de détails  
+  - $>9$ difficile de distinguer les classes proches
+
+## Distribution et Échelle de couleurs
+
+Méthodes de classifications de Qgis
+
+- Ruptures Naturelles (Jenks) : Minimisation des variances intra-classe et maximisation des variances inter-classe
+- Effectifs égaux (quantiles)
+- Intervalles égaux 
+- Ecart-type  :  intervales de 1 ou 0.5 $\sigma$
+- Jolies ruptures :  intervalle égaux "décalés" pour faire joli : nombre ronds, puissances de 10, ... 
+
+
+
+## Exemple avec la surface des quartiers de Paris 
+
+
+```{r quartierparis, echo=TRUE,eval=FALSE}
+quartiers <-  st_read("quartier_paris.shp")
+plot(quartiers$geometry)
+```
+
+
+```{r quartierparis2, eval=TRUE, echo=FALSE, cache=TRUE, fig.width=8, fig.height=5}
+par(mar=c(0,0,0,0))
+plot(quartiers$geometry)
+```
+
+
+## Allure de la distribution
+
+
+```{r quartierparis3, eval=TRUE, echo=TRUE, cache=TRUE, fig.width=8, fig.height=5}
+hist(quartiers$surface,breaks = 15)
+```
+
+## Affichage par défaut : 
+
+```{r quartierparis4, eval=TRUE, cache=TRUE, fig.width=8, fig.height=4}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"])
+```
+
+par defaut la fonction `plot`  de sf utilise la méthode "pretty" avec 10 ruptures ($9\pm1$ classes) => ce sont des intervalles égaux. 
+
+
+## Jenks à 5 , 7 et 9 classes
+
+<div class="col3">
+```{r quartierparis6, eval=TRUE, cache=TRUE, echo=FALSE, fig.width=12, fig.height=3}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="jenks", nbreaks = 5, main = "5 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 7, main="7 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 9, main= "9 breaks")
+```
+</div>
+
+
+
+## Jenks à 5 , 7 et 9 classes
+Code R correspondant :
+
+<div class="col3">
+```{r quartierparis6bis, eval=FALSE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=3}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="jenks", nbreaks = 5, main = "5 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 7, main="7 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 9, main= "9 breaks")
+```
+</div>
+
+
+
+## Effectifs égaux
+
+```{r quartierparis7, eval=TRUE, cache=TRUE, echo=FALSE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="quantile",main = "Effectifs égaux")
+```
+
+
+
+## Intervalles égaux (7)
+
+```{r quartierparis8, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="equal", nbreaks = 7, main = "Intervalles égaux")
+```
+
+
+## Ecart types
+
+```{r quartierparis9, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="sd",main = "Écart-type")
+```
+
+$\approx$ méthode des jolies ruptures sur variable centrée réduite
+
+
+## Guides de choix de la méthode de classification 
+
+
+Pour les classification manuelles : 
+<br><br>
+
+- les classes **doivent** contenir toutes les valeurs, être sans recouvrement, contigües et distinctes.
+- Procéder par essai-erreur
+- attention aux décimales et aux extrémités
+<br><br>
+
+
+- si distribution uniforme $\rightarrow$ Intervalles égaux
+- si distribution asymétrique $\rightarrow$ Effectifs égaux, Jenks , progression géométrique (rare).
+- si distribution symétrique $\rightarrow$ Écart-type, intervalle égaux
+
+
+
+## Autres classifications 
+
+consultez la doc de la fonction `classInt` du package du même nom
+
+## Transformations des données 
+
+
+- $x \mapsto log(x)$ pour une distribution asymétrique à droite ou  $x \mapsto \sqrt x$ si moins asymétrique
+
+- $x \mapsto x^2$ pour une distribution asymétrique à gauche ou $x \mapsto x^3$ si très asymétrique 
+
+(<span style="color:red">&#9888;</span> toujours vérifier l'allure de la distribution transformée)
+
+## Variables centrées-réduites 
+
+<span style="color:red">&#9888; </span> En principe, uniquement lorsque la distribution d'une variable est proche d'une gaussienne <span style="color:red">&#9888;</span> 
+
+
+Centrer : soustraire la moyenne
+
+Réduire : diviser par l'écart-type
+
+
+une variable **centrée réduite** est exprimée en «écarts-types à la moyenne»
+
+$\rightarrow$ permet de repérer les valeurs extrèmes ($<2\sigma$ ou $>2\sigma$)
+
+$\rightarrow$ utile pour comparer des individus selon un grand nombre de variables (tableaux de synthèse)
+
+
+# Visualiser une distribution
+
+- Histogramme 
+- Distribution
+- BoxPlot
+- Violin plot
+- Pyramides (histogrammes jusxtaposés)
+- Polygones de fréquences
+- Distribution cumulée , Fonction de répartition , CDF
+- Dot strip plot
+
+
+## Histogramme : Code R + ggplot
+
+```{r histo_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+histo_mass <- ggplot(mydata)+
+  geom_histogram(aes(x=body_mass_g), fill="darkorchid4", color="darkgray", bins=50)+
+  labs(title = "Penguins Body Mass", subtitle = "Histogram")+
+  ylab("Count")+theme_light()
+histo_mass
+```
+
+
+## Distribution : Code R + ggplot
+
+<span style="color:red">&#9888;</span>  ce n'est pas exactement une probabilité, mais une **densité** de probabilité.
+Pour obtenir la probabilité , il faut intégrer sur un petit $dx$.
+
+
+```{r distrib_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+distrib_mass <- ggplot(mydata)+
+  geom_density(aes(x=body_mass_g), fill="darkorchid4", color="darkgray")+
+  geom_vline(aes(xintercept=mean(body_mass_g, na.rm = T)), color="black", size=0.4, linetype="dashed" )+
+  labs(title = "Penguins Body Mass", subtitle = "Probability density and mean")+
+  ylab("Count")+theme_light()
+distrib_mass
+```
+
+
+
+## BoxPlot : Code R + ggplot
+
+
+```{r boxplot_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+boxplot_mass <- ggplot(mydata)+
+  geom_boxplot(aes(x=body_mass_g, y=species, color=species))+
+  labs(title = "Penguins Body Mass", subtitle = "BoxPlot by Species")+
+  ylab("Count")+theme_light()
+boxplot_mass
+```
+
+## Violin plot
+
+Dsitribution+miroir
+Utile pour des distributions complexes, e.g.  mal résumées par la moyenne et la dispersion.
+
+```{r violin_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+violin_mass <- ggplot(mydata)+
+  geom_violin(aes(y=body_mass_g, x=species, fill=species), color="gray", trim=F)+
+  labs(title = "Penguins Body Mass", subtitle = "ViolinPlot by Species")+
+  ylab("Count")+theme_light()
+violin_mass
+```
+
+
+## Violin plot et Boxplot  : Code R + ggplot 2
+
+
+
+```{r violin_code_2, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+violin_mass <- ggplot(mydata)+
+  geom_violin(aes(y=body_mass_g, x=species, fill=species), color="lightgray", trim=F)+
+  geom_boxplot(aes(y=body_mass_g, x=species, fill=species), color="black", fill="#eeeeee" ,width=0.1)+
+  labs(title = "Penguins Body Mass", subtitle = "ViolinPlot and Boxplot by Species")+
+  ylab("Count")+theme_light()
+violin_mass
+```
+
+
+## Pyramides (histogrammes juxtaposés) 
+
+lorsqu'une des variables est qualitatives à deux modalités :
+
+```{r pyramide_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3, message=F}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+pyramide_mass <-  ggplot(mydata, aes(fill = sex)) + 
+  geom_bar(data = subset(mydata, sex == "female"), stat = "bin", aes(x=body_mass_g, y=..count..*(-1)), color="grey") +
+  geom_bar(data = subset(mydata, sex == "male"), stat = "bin", aes(x=body_mass_g), color="grey") + 
+  scale_y_continuous(labels = paste0(as.character(c(seq(20, 0, -10), seq(10, 20, 10))))) +
+  ylab("count")+  coord_flip()+
+  labs(title = "Penguins Body Mass", subtitle = "Pyramid Plot by sex")+
+  theme_light()
+  
+pyramide_mass
+```
+
+## Polygones de fréquences
+
+"Histogramme en courbe"
+<br>
+Utile pour comparer plusieurs distributions
+
+
+```{r frequpoly_code1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+freqpoly_mass <- ggplot(mydata)+
+  geom_freqpoly(aes(x=body_mass_g, color=species), bins=50)+
+  labs(title = "Penguins Body Mass", subtitle = "Frequence Polygons")+
+  ylab("Count")+theme_light()
+freqpoly_mass
+```
+
+
+
+
+## Distribution cumulée , Fonction de répartition , CDF
+
+Courbe $x,y$,
+<br>
+en $x$ la valeur de la variable $V$, en $y$ la probabilité empririque d'avoir dans la population, un individu pour lequel $V\leq x$
+
+i.e. c'est la fonction  <br>
+$F_{V}(x)=\mathbb {P} (V\leq x)$
+
+
+```{r CDF1 , cache = TRUE, fig.width=8, fig.height=3, echo=F, warning=F}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+plot_mass <- ggplot(mydata, aes(x= body_mass_g))+
+  stat_ecdf(color="darkorchid4")+
+  labs(title = "Penguins Body Mass", subtitle = "Cumulative Distribution Function")+
+  ylab("Probability")+theme_light()
+plot_mass
+```
+
+
+## Distribution cumulée , Fonction de répartition , CDF
+<br><br>
+Permet de superposer les CDF de sous groupes de la population. 
+ici : la race des penguins
+
+```{r CDF_groupe , cache = TRUE, fig.width=8, fig.height=3, echo=F, warning=F}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+plot_mass <- ggplot(mydata)+
+  stat_ecdf(aes(x= body_mass_g, color=species))+
+  labs(title = "Penguins Body Mass by Species", subtitle = "Cumulative Distribution Function")+
+  ylab("Probability")+theme_light()
+plot_mass
+```
+
+
+
+## Distribution cumulée simple : Code R + ggplot
+
+```{r CDF_code , cache = TRUE, fig.width=8, fig.height=3, echo=T, warning=F}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+plot_mass <- ggplot(mydata)+
+  stat_ecdf(aes(x= body_mass_g),color="darkorchid4")+
+  labs(title = "Penguins Body Mass", subtitle = "Cumulative Distribution Function")+
+  ylab("Probability")+theme_light()
+plot_mass
+```
+
+
+## Distribution cumulée par groupe : Code R + ggplot
+
+```{r CDF_code_groupe , cache = TRUE, fig.width=8, fig.height=3, echo=T, warning=F}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+plot_mass <- ggplot(mydata)+
+  stat_ecdf(aes(x= body_mass_g,color=species))+    #on affecte la couleur à la variable modale  
+  labs(title = "Penguins Body Mass", subtitle = "Cumulative Distribution Function")+
+  ylab("Probability")+theme_light()
+plot_mass
+```
+
+
+## Dot Strip Plot
+
+
+
+
+
+
+# Bonus
+
+
+## Fat-tail distributions
+
+
+Les distributions très asymétriques et très étendues sont délicates à résumer.
+
+Les indicateurs traditionnels sont plus efficaces lorsque la variabilité des valeurs est moindre, et leur distribution plus symétrique.
+
+e.g. Considérer la population moyenne des villes de France a-t'elle du sens ? 
+```{r histoVillesPop, cache=TRUE, echo=FALSE, fig.width=8, fig.height=2.5}
+mydata <-  read.csv("pop_communes.csv")
+plot_PopVilles <- ggplot(mydata)+
+  geom_histogram(aes(x=Population.totale), bins=60 , color="#aaaaaa",fill="#44DD99" )+
+  geom_vline(xintercept = mean(mydata$Population.totale), color = "red")+
+  annotate("text", x=15000, y=400, colour=c("red"),label="moyennne = 7517.37 ")+
+  theme_light()
+plot_PopVilles
+```
+
+
+## Distribution rang-taille des villes de france 
+
+
+Pour mieux voir la distribution et les écarts, on trace la **taille** des villes en fonction de leur **rang** 
+
+```{r popVilles1 , cache = TRUE, fig.width=8, fig.height=4, echo=FALSE}
+mydata <-  read.csv("pop_communes.csv")
+plot_PopVilles <- ggplot(mydata)+
+  geom_point(aes(x=rank(-Population.totale), y=Population.totale), color="#44DD99")+
+  xlab(label = "rang")+ylab("Population")+ggtitle("Distribution rang-taille des villes de France")+
+  theme_light()
+plot_PopVilles
+```
+
+## Transformation logarithmique
+
+Appliquer une transformation **monotone**, **bijective** et **inversible** qui "applatisse" la distribution.
+
+  * réduit les écarts entre les valeurs
+  * resserre  l'essentiel des valeurs 
+
+$\implies$ mesure de façon plus robuste  tendance, dispersion et forme
+
+Ici : le logarithme décimal
+
+
+## Distribution rang-log(taille) 
+
+```{r loglin1 , cache = TRUE, fig.width=8, fig.height=4, echo=FALSE}
+mydata <-  read.csv("pop_communes.csv")
+plot_PopVilles <- ggplot(mydata)+
+  geom_point(aes(x=rank(-Population.totale), y=Population.totale), color="#44DD99")+
+  xlab(label = "rang")+ylab("Population")+ggtitle("Distribution rang-taille des villes de France")+
+  scale_y_log10()+
+  theme_light()
+plot_PopVilles
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
