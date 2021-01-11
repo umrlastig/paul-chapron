@@ -1,0 +1,5 @@
+book_filename: "bookdown_cours_stats"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapitre "
