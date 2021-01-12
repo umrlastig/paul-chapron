@@ -31,10 +31,12 @@ Dans cette introduction, on parle beaucoup d'analyse spatiale, parce que c'est d
 Le programme stricto-sensu  est le suivant :
 
 Analyse Univariée: 
+
  - Vocabulaire
  - Description de distribution : indicateurs de tendance centrale, quantiles, dispersion , symétrie , applatissement 
 
 Analyse Bivariée: 
+
  - regression linéaire : R2, p-value 
  - corrélation : r de Pearson , rho de Spearman, hypothèse nulle
  - Test du Chi 2 : Construction du tableau d'effectif théorique, calcul du Chi 2 , hypothèse nulle
