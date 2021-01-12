@@ -11,108 +11,79 @@ library(ggplot2)
 library(gridExtra)
 library(dplyr)
 library(sf)
-quartiers <-  st_read("quartier_paris.shp")
+quartiers <-  st_read("data/quartier_paris.shp")
 
 ```
 
 
 
 
-## Analyse univariée {.flexbox .vcenter}
+## Le concept de distribution
 
-**Décrire**  et **mesurer** la **répartition** des valeurs que peut prendre une variable : sa  **distribution** ($\approx$ "histogramme en continu")
+L'analyse univariée a pour but de **décrire**  et **mesurer** la **répartition** des valeurs que peut prendre une variable.
 
-Parfois certaines distributions ressemblent à des distributions bien connues : on parle de **lois**
+On appelle la répartition des valeurs d'un variable sa  **distribution** , que l'on peut approximativement voir comme son «histogramme en continu».
 
+Voilà une distribution d'une variable réelle (courbe noire), superposée à son histogramme :  
 
-e.g. loi normale/gaussienne, loi de Poisson, géométrique, exponentielle, ...
-
-<div class="col2">
-```{r , expledistrib, cache=TRUE, fig.height=2, echo=FALSE}
-xx <- data.frame(value=rnorm(8000))
-plot1 <- ggplot(xx)+
-        geom_density(aes(x = value), color="#aaaaaa", fill="#44DD99" )+
-        theme_light()
-plot1
-yy <- data.frame(value=rexp(8000,rate = 4))
-plot2 <- ggplot(yy)+
-        geom_density(aes(x = value), color="#aaaaaa", fill="#44DD99" )+
-        theme_light()
-plot2
-```
-</div>
-
-## Histogramme d'une variable suivant une loi normale $\mathscr{N}(0,1)$ 
-
-```{r gaussienne1, cache=TRUE, fig.width=8, fig.height=3.5}
-xx <- data.frame(value=rnorm(2600))
-plot1 <- ggplot(xx)+
-        geom_histogram(aes(x = value),bins = 50, color="#aaaaaa", fill="#44DD99" )+
-        theme_light()
-plot1
+```{r , expledistribhist, cache=TRUE, fig.height=2, echo=FALSE, warning=FALSE, message=FALSE}
+library(palmerpenguins)
+ggplot(penguins, aes(flipper_length_mm))+
+   geom_histogram(aes(y=..density..), alpha=0.9, fill="darkcyan", color="darkgrey" ,
+                position="identity")+
+ geom_density(alpha=.5, fill="darkcyan")+
+   labs(title= "Flipper length density of penguins population", x="Flipper length in mm")
 ```
 
-## Histogramme d'une distribution réelle
-
-```{r arbres1, cache=TRUE, fig.width=10, fig.height=3.5, echo=FALSE, message=FALSE,warning=FALSE}
-library(sf)
-xx <- read_sf("./les-arbres.geojson") 
-plot1 <- ggplot(xx)+
-        geom_histogram(aes(x = hauteurenm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
-  xlab("Hauteur en mètres")+ ylab("Nombre")+
-        theme_light()
-plot2 <- ggplot(xx)+
-        geom_histogram(aes(x = circonferenceencm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
-  xlab("Circonférences en centimètres")+ylab("Nombre")+
-        theme_light()
-grid.arrange(plot1, plot2,  ncol=2, nrow =1)
-```
-
-<small> Données : arbres de la Ville de Paris [https://opendata.paris.fr/]</small>
+Vous pouvez voir avec cet exemple, que la courbe suit les variations de hauteur des colonnes de l'histogramme, tout en lissant les aspérités.
 
 
 
-## Histogramme d'une distribution réelle filtrée
+ C'est de cette courbe que l'on parle lorsqu'on évoque la  **distribution** de la variable.
 
-```{r arbres2, cache=TRUE, fig.width=10, fig.height=3.5, echo=FALSE, message=FALSE,warning=FALSE}
-library(sf)
-xx <- read_sf("./les-arbres.geojson") %>%  filter(hauteurenm < 60 & hauteurenm > 1 & circonferenceencm < 2500  )
-
-plot1 <- ggplot(xx)+
-        geom_histogram(aes(x = hauteurenm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
-  xlab("Hauteur en mètres")+ ylab("Nombre")+
-        theme_light()
-plot2 <- ggplot(xx)+
-        geom_histogram(aes(x = circonferenceencm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
-  xlab("Circonférences en centimètres")+ylab("Nombre")+
-        theme_light()
-grid.arrange(plot1, plot2,  ncol=2, nrow =1)
-```
+> Plus formellement, pour une population donnée,  la distribution d'une variable $V$ est définie comme une fonction qui donne la probabilité qu'un individu $x$ pris au hasard dans la population ait la valeur $V_x$  pour la variable $V$ : 
+$$distribution(V) \equiv P(V=V_x), \forall V_x \in \Omega_V$$
+> avec $\Omega_V$ l'ensemble des valeurs que peut prendre $V$ : l'univers de $V$. 
+>Lorsque la variable prend des valeurs réelles, on parle de **densité** de probabilité, c'est pourquoi on retrouve ce terme "density" sur les axes des ordonnées dans les graphiques de distribution.   
 
 
-<small> Données : arbres de la Ville de Paris [https://opendata.paris.fr/]</small>
+La forme d'une distribution donne beaucoup d'informations sur les valeurs d'une variable dans une population  : 
+
+ - valeurs les plus représentées dans la population : les "pics"
+ - présence de valeurs extrêmes : la courbe de la distribution est tirées à gauche ou à droite du graphique
+ - caractéristiques de sa forme : symétrie, aplatissement etc...
 
 
-### La densité de probabilité {#interpret_dens}
+ Dans notre exemple de distribution de longueur de nageoires en millimètres, on observe deux pics assez  doux : l'un aux alentours de 190mm, l'autre de 215mm. On peut l'interpréter ainsi : «la valeurs la plus représentée dans les longueurs de nageoires de cette population de pingouins est de 190mm, suivie de 215mm»
+
+
+
+
+
+
+### Interpréter la courbe de densité  {#interpret_dens}
+
+
+L'histogramme représente l'effectif de la population en fonction de la valeur d'une variable, son interprétation est directe et aisée puisque ce graphique donne une représentation du nombre d'individus par intervalles de valeurs. 
 
 La représentation d'une distribution est légèrement plus délicate à comprendre mathématiquement.
 En première approximation , vous pouvez l'interpréter comme un histogramme dont les barres seraient infiniement fines, et dont l'axe des $y$ représenteraient une probabilité au lieu d'un effectif.
 
-La densité de probabilité comme son nom l'indique, représente des probabilités: celles d'obtenir, pour un iondividu dans la population, une certaine valeur de la variable. 
+La densité de probabilité comme son nom l'indique, représente des probabilités: celles d'obtenir, pour un individu dans la population, une certaine valeur de la variable. 
 
 Le point délicat est qu'une variable continue (i.e. définie sur un intervalle de $\mathbb{R}$), peut prendre une **infinité** de valeurs possibles, et que la probabilité d'obtenir **exactement**, c'est à dire avec une précision infinie, une valeur est infinitésimale, en fait carrément nulle. 
 
 
-Il faut alors considérer la probabilité d'obtenir une valeur, non pas de façon exacte , mais dans un **intervalle** de valeur. Par exemple, dans le graphique ci-dessous, de s'intérroger sur la probabilité , pour un individu tiré au haasard dans la population , d'avoir une valeur de Variable 1 dans l'intervalle [25;30].
+Il faut alors considérer la probabilité d'obtenir une valeur, non pas de façon exacte , mais dans un **intervalle** de valeur. Par exemple, dans le graphique ci-dessous, de s'intérroger sur la probabilité , pour un individu tiré au hasard dans la population , d'avoir une valeur de Variable 1 dans l'intervalle [25;30].
 
 Cela pourrait s'écrire $P( 25  \leq   V_1  \leq 30)$ et serait égal à l'intégrale de la fonction de densité notée $f_{V_1}$ entre les bornes 25 et 30 de l'intervalle de $V_1$ : \int
 
 $$P( 25  \leq   V_1  \leq 30) = \int_{25}^{30} f_{V_1}(x)dx$$
 
 
-En pratique , le graphique d'une densité  s'interprête en observant la **quantité d'aire sous la courbe** 
+En pratique , le graphique d'une densité  s’interprète en observant la **quantité d'aire sous la courbe** 
 
-L'aire totale sous la courbe vaut 1 (cela revient à considérer la somme de toutes les probabilités d'avoir une valeur particulière $X$  dans l'intervale de valeur de $V_1$) et par approximation , la valeur de la probabilité d'obtenir une certaine valeur se lit comme la **proportion d'aire** sous la courbe comprise entre deux bornes proche de la valeur.  
+L'aire totale sous la courbe vaut 1 (cela revient à considérer la somme de toutes les probabilités d'avoir une valeur particulière $X$  dans l’intervalle de valeur de $V_1$) et par approximation , la valeur de la probabilité d'obtenir une certaine valeur se lit comme la **proportion d'aire** sous la courbe comprise entre deux bornes proche de la valeur.  
 
 
 
@@ -134,157 +105,353 @@ ggplot(data = mpg) +
 ```
 
 
+ici , la valeur de $P( 25  \leq   V_1  \leq 30)$ vaut XXX
 
-## Analyse univariée : plan 
 
-Objectif : **Décrire la répartition des valeurs** d'une variable
 
-### Mesures de **tendance centrale**
+## Exemples de distributions de lois  connues
 
-mode, moyenne, médiane
+Parfois certaines distributions ressemblent à des distributions bien connues : on appelle ces distributions des **lois**.
 
-### Mesures de **dispersion**
+Ce sont des distributions de probabilités que l'on peut formaliser par une équation et dont les statisticiens ont pu dériver des caractéristiques par le calcul.
 
-étendue, écart-type, variance, quantiles, coefficient de variation
 
-### Mesures de **forme**
 
-symétrie (Skewness) et aplatissement (Kurtosis) 
+### Loi Gaussienne 
+
+La plus connue est la **distribution Gaussienne**, on dit aussi **distribution normale** du nom de la loi de probabilité qu'elle suit : la loi dite **normale**. 
+
+Cette loi a deux paramètres : 
+
+ - $\mu$ la moyenne, i.e. la valeur moyenne qu'auront les valeurs tirées de cette distribution
+ - $\sigma$ l'écart type,  qui représente leur écartement par rapport à cette moyenne  
+
+Nous reviendrons plus loin sur ces deux caractéristiques
+
+
+Voici la distribution d'une population dont la variable $V1$ suit une loi normale de moyenne 0 et d'écart-type 1, qu'on note  $\mathscr{N}(0,1)$ 
+
+```{r , expledistrib, cache=TRUE, fig.height=3.5 }
+xx <- data.frame(value=rnorm(8000))
+plot1 <- ggplot(xx)+
+        geom_density(aes(x = value), color="#aaaaaa", fill="#44DD99" )+
+        theme_light()+
+        labs(title = "Loi Normale", x="Valeur de la variable V1 ", y="densité")
+plot1
+```
+
+Voici un histogramme de la même population
+
+```{r gaussienne1, cache=TRUE, fig.width=8, fig.height=3.5}
+plot1 <- ggplot(xx)+
+        geom_histogram(aes(x = value),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+        theme_light()+
+        labs(title = "Loi Normale", x="Valeur de la variable V1", y="Effectif")
+plot1
+```
+
+
+### Loi uniforme
+
+Comme son nom l'indique, la loi uniforme vaut partout la même valeur entre deux bornes $a$ et $b$, autrement dit , la probabilité d'obtenir une certaine valeur $v\in[a;b]$ est constante.
+
+La forme de sa distribution est théoriquement une fonction en créneau, qui vaut 1 partout   mais en pratique quand on échantillonne (i.e. génère) des valeurs suivant cette loi, même un grand nombre de fois, la distribution, qui devrait être plate, est courbée aux extrémités.
+
+```{r , distribunif1, cache=TRUE, fig.height=2, echo=FALSE}
+yy <- data.frame(value=runif(1000000))
+plot2 <- ggplot(yy)+
+        geom_density(aes(x = value), color="#aaaaaa", fill="#44DD99" )+
+        theme_light()+
+        labs(title = "Loi uniforme", x="Valeur de la variable", y="densité")
+plot2
+```
+
+
+La forme de sa distribution est théoriquement une fonction en créneau, qui vaut 1 partout sur $[a;b]$ mais en pratique quand on échantillonne (i.e. génère) des valeurs suivant cette loi, même un grand nombre de fois comme ici, la distribution, qui devrait être plate, est courbée aux extrémités. Cela est dû à la façon dont R estime la densité numériquement, biaisée aux extrémités de l'intervalle  
+
+### Loi log-normale 
+
+
+La loi log-normale  est comme son nom l'indique, le résultat d'un logarithme appliqué à une variable suivant une loi normale. 
+Notez comme la distribution est «tirée vers la droite». On parle de «queue de distribution». 
+
+
+Cette longue queue ("fat tail" in english) indique une grande inégalité dans la population: quelques individus, peu nombreux mais aux valeurs de variable très élevées, et une vaste majorité d'individus dont la valeur de la variable est faible  qui constitue le pic de la distribution.
+
+
+```{r , distribexp1, cache=TRUE, fig.height=2, echo=FALSE}
+yy <- data.frame(value=rlnorm(8000))
+plot2 <- ggplot(yy)+
+        geom_density(aes(x = value), color="#aaaaaa", fill="#44DD99" )+
+        theme_light()+
+        labs(title = "Loi log normale (0,1)", x="Valeur de la variable", y="densité")
+plot2
+```
+
+
+Cette loi modélise par exemple l'effet d'un «grand nombre de petits facteurs considérés comme indépendants».
+
+[Wikipedia](https://en.wikipedia.org/wiki/Log-normal_distribution#Occurrence_and_applications) nous apprend qu'elle modélise des phénomènes réels tels que la répartition de 97% des salaires du monde, celle de la la longueur et le poids de spécimen d'animaux, la durée des parties d'échecs, etc.
  
 
 
 
 
+## Histogramme d'une distribution réelle
+
+
+Les distribution de données empiriques ont rarement des formes aussi régulière et identifiable que celles des lois. Voici par exemple l'histogramme de la hauteur des arbres à Paris, selon les données disponibles sur  [https://opendata.paris.fr/]
+
+```{r arbres1, cache=TRUE, fig.width=10, fig.height=3.5, echo=FALSE, message=FALSE,warning=FALSE}
+library(sf)
+xx <- read_sf("data/les-arbres.geojson") 
+plot1 <- ggplot(xx)+
+        geom_histogram(aes(x = hauteurenm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Hauteur en mètres")+ ylab("Nombre")+
+        theme_light()
+plot2 <- ggplot(xx)+
+        geom_histogram(aes(x = circonferenceencm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Circonférences en centimètres")+ylab("Nombre")+
+        theme_light()
+grid.arrange(plot1, plot2,  ncol=2, nrow =1)
+```
+
+
+Cet histogramme n'est pas très informatif en l'état : si on le lit naïvement, il semblerait que tous les arbres aient une valeur nulle ou quasi-nulle pour leur hauteur en mètres et la circonférences de leur tronc en centimètres. 
+
+Pourquoi ? 
 
 
 
-# Statistique descriptive univariée : la tendance
-<br><br><br>
-Moyenne(s), mode , médiane 
+Parce que le logiciel qui trace l'histogramme (R) fait du mieux qu'il peut pour tracer les colonnes de l'histogramme correspondant aux valeurs : 
 
+- il ne doit pas en oublier,  
+- la hauteur des colonnes doit correspondre à l'effectif (le nombre) d'individus (ici des arbres) par valeur de la variable
+- l'échelle de l'axes $x$ doit «faire tenir» l'étendue des valeurs ($x_{max} - x_{min}$),sur une quantité de pixels limitée.
+
+
+Ce qui se produit ici est que certains individus ont des hauteurs ou des circonférences renseignées à des valeurs totalement irréalistes, comme nous l'indique les bornes du dernier décile (i.e. les 10% des valeurs les plus élevées ) : 
+
+```{r arbresQQ, cache=TRUE, fig.width=10, fig.height=3.5, echo=FALSE, message=FALSE,warning=FALSE}
+quantile(xx$hauteurenm,probs = seq(0,1,0.1) )
+```
+
+10% des arbres ont une hauteur comprise entre 12 et 881818 mètres: il y a donc quelques arbres, au moins un,  dont la hauteur est clairement defectueuse, on peut supposer qu'il s'agit d'une erreur de saisie ou d' encodage des données (les plus hauts arbres font autour de 120m). On constate aussi qu'au moins 10% des données ont une hauteur nulle.
+
+En affichant l'histogramme de cette variable, R a donc du afficher une colonne aux alentours de la valeur 881818, dont la hauteur est vraisemblablement très faible (1 ou 2 individus), en tout cas  si faible qu'on ne la distingue pas :  son épaisseur est dans le trait de l'axe des $x$  
+
+Nous allons donc filtrer les données, pour ne conserver que les arbres dont la hauteur est comprise entre 1 et 60 mètres, ce qui me semble correct comme intervalle pour des hauteurs d'arbres parisiens, mais qui pourrait être discuté. De même , on écarte les arbres dont le tronc excède 2500 cm : 
+
+
+```{r arbres2, cache=TRUE, fig.width=10, fig.height=3.5, echo=FALSE, message=FALSE,warning=FALSE}
+library(sf)
+xx <-xx %>%  filter(hauteurenm < 60 & hauteurenm > 1 & circonferenceencm < 2500  )
+
+plot1 <- ggplot(xx)+
+        geom_histogram(aes(x = hauteurenm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Hauteur en mètres")+ ylab("Nombre")+
+        theme_light()
+plot2 <- ggplot(xx)+
+        geom_histogram(aes(x = circonferenceencm),bins = 50, color="#aaaaaa", fill="#44DD99" )+
+  xlab("Circonférences en centimètres")+ylab("Nombre")+
+        theme_light()
+grid.arrange(plot1, plot2,  ncol=2, nrow =1)
+```
+
+
+
+
+On voit ici comme la représentation graphique des variables nous renseigne à deux niveaux : elle nous indique la présence de valeurs aberrantes lors de son affichage "brut", et une fois filtrée, elle nous montre comment la population varie dans les valeurs de ses variables.
+
+
+Nous allons maintenant voir comment décrire la forme de la répartition de ces valeurs avec des mesures statistiques.
+
+
+# Statistique descriptive univariée : la tendance {#tendance}
+
+
+
+Les distributions de variables dans les données du monde réel sont rarement constantes ou uniformes. Elles exhibent ce qu'on appelle une **tendance**, c'est-à-dire une valeur autour de laquelle se retrouvent la majorité des individus. 
+
+Si la forme de la distribution est suffisamment régulière, cette tendance peut servir de **résumé** statistique de la variable de la population.
+
+
+Les indicateurs de tendance centrale de la distribution d'une variable sont la 
+**moyenne** et ses variantes, la **médiane** et le **mode**.
 
 ## Moyenne
 
-$\displaystyle \bar{x} = \frac{1}{n}\sum_{i=0}^{n} x_i$
+
+La moyenne d'une variable $x$ , notée $\bar{x}$ , s'écrit :
+
+$$ \bar{x} = \frac{1}{n}\sum_{i=0}^{n} x_i $$
 
 
-## Moyenne pondérée
+### Moyenne pondérée
 
-Lors que les valeurs n'ont pas le même poids <br>
-<br>
-par exemple  : poids = effectif de la valeur dans la population.
-<br>
+Lorsque des poids $p_i$ sont affectés aux individus, la moyenne pondérée s'écrit :
 
-$\displaystyle \bar{x} = \frac{1}{\sum_{i=0}^n pi}\sum_{i=0}^{n} p_i x_i$
-
-
-## Avantages et inconvénients de la moyenne
-
-### Avantage
-  Chaque valeur compte
-
-### Inconvénients 
-
-* sensibilité aux valeurs extrèmes 
-* pas de signification sur les valeurs discrètes (e.g. 2.5 enfants par femme)
-
-
-$\rightarrow$ exclure les outliers<br>
-$\rightarrow$ utiliser un autre estimateur<br>
-$\rightarrow$ étudier la distribution des valeurs (e.g. cas bimodal) et opérer une classification
+$$ \bar{x} = \frac{1}{\sum_{i=0}^n pi}\sum_{i=0}^{n} p_i x_i $$
 
 
 
+### Avantages et inconvénients de la moyenne
 
-## Autres Moyennes
+**Avantage** : chaque valeur compte dans le calcul.
 
+**Inconvénients** : 
 
-## Moyenne geométrique:
-<br>
-
-$\displaystyle \bar{x} = \sqrt[n]{\prod _{i=0}^{n} x_i}$  
-
-Moins sensible à la présence de valeurs extrèmes
-
-## Moyenne quadratique (RMS) 
-<br>
-
-$\displaystyle \bar{x} = \sqrt{\frac{1}{n}\sum _{i=0}^{n} x_i^2}$
+* sensibilité aux valeurs extrêmes 
+* pas de signification directe sur les variables quantitatives discrètes (e.g. «2.5 enfants/femme» )
 
 
-## Cas particulier : Moyenne glissante
 
-Moyenne calculée sur une fenètre de $n$ valeurs consécutives.
+Pour y remédier : 
 
-e.g. on reçoit une mesure chaque seconde, très bruitée, et on désire afficher 10 minutes de signal lissé dans le temps
+- exclure les outliers, ou restreindre les valeurs considérées par filtrage
+- utiliser un autre estimateur, par exemple la médiane
+- étudier la distribution des valeurs et en cas de multi-modalités, opérer une classification
 
- $\rightarrow$ on calcule pour chaque point du signal, la moyenne sur 10 valeurs consécutives (5 en avant , 5 en arrière)
 
 
-## le Mode {.flexbox .vcenter}
 
-**Mode** :  valeur la plus fréquente (effectif max.) de la série de valeurs que prend une variable.
-<br>
-<br>
-<span style="color:red">&#9888;</span> si variable quantitative continue : faire une classification .
+### Autres Moyennes
+
+
+#### Moyenne geométrique:
+
+Elle s'écrit ainsi : 
+
+$$ \bar{x} = \sqrt[n]{\prod _{i=0}^{n} x_i}$$  
+
+
+
+Elle a l'avantage d'être moins sensible à la présence de valeurs extrêmes que la moyenne algébrique. 
+
+
+#### Moyenne quadratique (RMS) 
+
+Elle s'écrit : 
+
+
+$$\bar{x} = \sqrt{\frac{1}{n}\sum _{i=0}^{n} x_i^2} $$
+
+
+#### Hors sujet : Moyenne glissante
+
+Ce n'est pas une moyenne comme les autres, au sens où elle ne résume pas toute une série de valeurs 
+
+Dans le cas de séries temporelles (i.e. valeurs successives de la même variable), la moyenne glissante est calculée sur une «fenêtre» de $n$ valeurs consécutives.
+La fenêtre est centrée sur l'instant auquel on calcule la valeur de la moyenne. 
+
+Par exemple, pour une moyenne glissante sur une fenêtre de taille 10, la valeur en chaque points $x_i$ à la position $i$ dans la série temporelle (on suppose que $i>5$)  vaut la moyenne des de $x_i$ et des 10 valeurs environnantes, 5 en avant , 5 en arrière :   
+
+ 
+
+$$\bar{x} = \frac{1}{11}\sum _{j=i-5}^{j=i+5} x_j$$
+
+
+
+
+## Mode {#mode}
+
+Le **mode** d'une variable est **la valeur la plus fréquente** ( d'effectif maximum) d'une variable.
+
+
+Si la variable est quantitative et continue, il faut découper l'étendue de la variable (la différence entre la valeur maximum et minimum) en intervalle égaux , puis réaliser une classification des individus dans ces intervalles et un comptage des effectifs de chaque classe. 
 Dans ce cas, le mode est la moyenne des valeurs min et max des bornes de la classe de plus grand effectif.
 
-## Avantages et inconvénients du mode
 
-### Avantages 
-Peu sensible aux valeurs extrêmes (moins sensible que la moyenne)
+C'est exactement ce que fait un histogramme graphiquement ! 
 
-Signification concrète : la situation la plus fréquente
 
-### Inconvénients 
-Ne dépends pas de toutes les observations : la modification d'une seule valeur n’entraîne pas une modification du mode
 
-## la Médiane 
+### Avantages et inconvénients du mode
 
-**Médiane** : valeur qui partage une série de valeurs en d**eux sous-ensembles d’égal effectif**
+**Avantages** : 
+
+- Peu sensible aux valeurs extrêmes (moins sensible que la moyenne)
+- il s'interprète facilement : c'est la situation la plus fréquente dans la population
+
+**Inconvénients** : 
+
+le mode ne dépends pas de toutes les observations : la modification d'une seule valeur n’entraîne pas une modification du mode. Cet inconvénient explique sa robustesse aux valeurs extrêmes
+
+
+
+## Médiane {#mediane}
+
+La **médiane** est la valeur qui partage une série de valeurs en **deux sous-ensembles d’égal effectif**
 
 Comme en géométrie, la médiane est la valeur de la variable qui est la plus proche de toutes les autres.
 
-## Etapes de calcul 
-Ordonner les valeurs selon un ordre croissant
 
-Calculer le rang $i=\frac{n+1}{2}$
+### Étapes de calcul 
 
-si $n$ impair, la valeur médiane existe dans la série statistique
+Déterminer la médiane d'un ensemble de valeurs est très simple : 
 
-si $n$ pair, la valeur médiane est entre deux valeurs et est égale à la moyenne de ces deux valeurs
+  1.  Ordonner les $n$ valeurs de $V$ selon un ordre croissant
+  2. Calculer le rang $rg=\frac{n+1}{2}$
+  3. si $n$ impair, la valeur médiane est $V[rg]$. Si $n$ est pair, la valeur médiane est entre deux valeurs et est égale à la moyenne de $V[\frac{n}{2}]$ et $V[\frac{n}{2}-1]$ 
 
-
-## Avantages et inconvénients de la médiane 
-
-### Avantages 
-Plus pertinente que la moyenne
-
-Peu sensible aux valeurs extrêmes 
-
-A une signification concrète : divise en deux la distribution : un individu sur deux a une valeur inférieure ou supérieure à celle-ci
-
-### Inconvénient 
-Ne dépend pas de toutes les observations : la modification d'une seule valeur n’entraine pas une modification de la médiane 
+<small> Dans cet algo , on suppose qu'on compte les cellules d'un tableau à partir de 0, comme en python. En R, où on compte les cellules à partir de 1 , il faudrait ajouter 1 à tous les indices. </small>
 
 
-## Quelle mesure choisir ?
+### Avantages et inconvénients de la médiane 
+
+**Avantages** : 
+
+ - Souvent plus pertinente que la moyenne 
+ - Peu sensible aux valeurs extrêmes: quelques valeurs très fortes ou très faibles ne modifie pas sa valeur 
+ - elle s'interprète facilement : comme elle divise en deux la distribution, un individu sur deux a une valeur inférieure (respectivement supérieure) à  la médiane.
+
+**Inconvénient** :
+
+Comme le mode, la médiane ne dépend pas de toutes les observations : la modification d'une seule valeur n’entraine pas une modification de la médiane. 
+
+
+
+
+
+Notons que la robustesse de la médiane est bien utile dans le cas de distribution particulièrement asymétriques, où la moyenne est dégradée par les valeurs extrêmes, à droite (valeurs très élevées) ou à gauche (valeurs très faibles). 
+
+Par exemple , pour les revenus mensuels en équivalent temps plein en France en 2016 : 
+le revenu mensuel net moyen est de 2 238 €, le revenu mensuel net médian est de  1 789 € :
+selon l'[https://www.insee.fr/fr/statistiques/4277680?sommaire=4318291]
+
+Supposons qu'on cherche à évaluer si un salaire mensuel net équivalent temps plein de 2000€ est un *bon salaire* en France, sans définir trop rigoureusement ce qui signifie «bon».
+
+ - 2000€ est inférieur à la moyenne du pays, on peut le considérer comme trop bas pour être «bon».
+ - 2000€ est supérieur au salaire médian, il est supérieur à (au moins) la moitié des salaires du pays, et on peut le considérer comme un «bon» salaire.
+
+
+ Cette double interprétation est due au fait que certains salaires très élevés, mais d'effectifs peu nombreux, tirent la distribution du salaire vers la droite, et avec eux, la moyenne. 
+
+
+
+
+
+## Quelle mesure de tendance choisir ?
 
 Tout dépend de la distribution ! 
 
-$\rightarrow$ **Toujours** afficher l'histogramme ou la distribution de densité
-<br><br>
-
-Le **mode** est privilégié pour les valeurs **nominales** et si on désire considérer «le cas le plus fréquent»
-
-Distribution sans longue traîne ? <br>
-$\rightarrow$ moyenne et médiane
-
-Plusieurs modes dans la distribution ?<br>
-$\rightarrow$ classification puis médiane / moyenne par classe
+(cette réponse est malheureusement quasiment universelle, d'où l'importance de **toujours représenter visuellement les variables** pour décider en connaissance de cause )
 
 
-## Distribution bimodale 
+
+Si la distribution n'a pas de longue queue (on dit aussi **traîne**) , la moyenne et la médiane sont adaptées.
+
+
+Si la distribution exhibe plusieurs modes , il faut réaliser une classification puis calculer médiane et moyenne pour chaque classe.
+
+
+Le **mode** est privilégié pour les variables  **nominales** c'est-à-dire des variables qualitatives dont les modalités ne sont pas ordonnées, et si on désire considérer «le cas le plus fréquent»
+
+
+
+
+
+### Cas délicat : Distribution bimodale 
 
 ```{r bimod1, cache=TRUE, echo=FALSE,fig.width=8, fig.height=3.5}
 xx <- data.frame(value=rnorm(1600,mean = 5, sd = 1))
@@ -692,7 +859,7 @@ Méthodes de classifications de Qgis
 
 
 ```{r quartierparis, echo=TRUE,eval=FALSE}
-quartiers <-  st_read("quartier_paris.shp")
+quartiers <-  st_read("data/quartier_paris.shp")
 plot(quartiers$geometry)
 ```
 
@@ -1043,7 +1210,7 @@ Les indicateurs traditionnels sont plus efficaces lorsque la variabilité des va
 
 e.g. Considérer la population moyenne des villes de France a-t'elle du sens ? 
 ```{r histoVillesPop, cache=TRUE, echo=FALSE, fig.width=8, fig.height=2.5}
-mydata <-  read.csv("pop_communes.csv")
+mydata <-  read.csv("data/pop_communes.csv")
 plot_PopVilles <- ggplot(mydata)+
   geom_histogram(aes(x=Population.totale), bins=60 , color="#aaaaaa",fill="#44DD99" )+
   geom_vline(xintercept = mean(mydata$Population.totale), color = "red")+
@@ -1059,7 +1226,7 @@ plot_PopVilles
 Pour mieux voir la distribution et les écarts, on trace la **taille** des villes en fonction de leur **rang** 
 
 ```{r popVilles1 , cache = TRUE, fig.width=8, fig.height=4, echo=FALSE}
-mydata <-  read.csv("pop_communes.csv")
+mydata <-  read.csv("data/pop_communes.csv")
 plot_PopVilles <- ggplot(mydata)+
   geom_point(aes(x=rank(-Population.totale), y=Population.totale), color="#44DD99")+
   xlab(label = "rang")+ylab("Population")+ggtitle("Distribution rang-taille des villes de France")+
@@ -1082,7 +1249,7 @@ Ici : le logarithme décimal
 ## Distribution rang-log(taille) 
 
 ```{r loglin1 , cache = TRUE, fig.width=8, fig.height=4, echo=FALSE}
-mydata <-  read.csv("pop_communes.csv")
+mydata <-  read.csv("data/pop_communes.csv")
 plot_PopVilles <- ggplot(mydata)+
   geom_point(aes(x=rank(-Population.totale), y=Population.totale), color="#44DD99")+
   xlab(label = "rang")+ylab("Population")+ggtitle("Distribution rang-taille des villes de France")+

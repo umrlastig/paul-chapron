@@ -26,5 +26,15 @@ font: 1.2em ,"Arial", sans-serif;
 }
 
 
+h4 { 
+  font-size: 0.6em;
+  color: #acd341; /* vert IGN aussi*/
+  border-bottom: 1px dashed #acd341;
+  margin-top: -20px;
+  margin-left: -0px;
+  text-align: left;
+font: 1.0em ,"Arial", sans-serif;
+}
+
 
 

@@ -19,9 +19,40 @@ library(tufte)
 
 
 
-<big>Avant toute chose :</big>
 
-En présence de données, la première chose à faire est de les **visualiser**, avant de calculer quoique ce soit. 
+Commençons par le plus important : 
+
+<span style="color:red; font-size:1.5em">En présence de données, la première chose à faire est de les **visualiser**, avant d'entreprendre tout calcul.</span>
+
+
+Cette exploration visuelle permet: 
+
+- d'identifier les intervalles de valeurs des variables, ou leur modalités 
+- de se faire une idée de la répartition des valeurs des variables à l'intérieur de leurs intervalles
+- d'identifier des valeurs aberrantes 
+- d'observer pour les variables spatialisées , leur répartition dans l'espace 
+
+en R, pour tracer directement tout un dataframe (=jeu de données) , on utilise la commande `plot` 
+
+
+```{r plotplotplot, cache=TRUE}
+library(palmerpenguins) #charge un jeu de données nommé 'penguins'
+plot(penguins) #affiche une matrice de graphique 
+```
+
+
+Avec un peu d'expérience, on identifie rapidement des caractéristiques utiles :
+
+ - les  deux premières variables sont des variables qualitatives à trois modalités
+ - les variables suivantes sont quantitatives, les deux dernières semblent corrélées positivement 
+ - les deux dernières variables sont qualitatives, à deux et trois modalités
+
+
+**Ce cours a pour but de vous donner le vocabulaire et les outils nécessaires à préciser le sens de ces caractéristiques, et d'en chiffrer certaines propriétés.**
+
+L'analyse statistique ne se confond pas avec l'analyse spatiale, bien qu'elles soient parfois cousines. Nous allons commencer par préciser ce qu'on entend par analyse spatiale et statistique, sachant que ce support de cours se concentre sur les prémices  de l'analyse statistique : l'analyse **univariée**  \@ref(univariee) et l'analyse **bivariée** \@ref(bivariee)
+
+
 
 
 ## Analyse spatiale : définition 
@@ -138,7 +169,7 @@ Penguins data were collected and made available by Dr. Kristen Gorman and the Pa
 </small>
 
 
-Dans cet exemple, une régression linaire a été réalisée entre deux variables : la masse du corps de pingouins et la longueur de leurs nageoires. Pour autant que cette régression linaire soit  de bonne qualité (cf la section dédiée dans le chapitre \ref@{bivariee}),  la droite de régression, ici en bleu,  est un modèle **linéaire**  qui permet , à partir de la valeur d'une des deux variables, de déduire la valeur de l'autre. 
+Dans cet exemple, une régression linaire a été réalisée entre deux variables : la masse du corps de pingouins et la longueur de leurs nageoires. Pour autant que cette régression linaire soit  de bonne qualité (cf la section dédiée dans le chapitre \@ref(bivariee),  la droite de régression, ici en bleu,  est un modèle **linéaire**  qui permet , à partir de la valeur d'une des deux variables, de déduire la valeur de l'autre. 
 
 Par exemple, si on était en présence d'un pingouin  avec une règle graduée , mais sans balance, et qu'on mesurait sa nageoire à 197mm, on peut se servir de la droite de régression pour postuler que ce pingouin pèse 4000g. C'est ce calcul qui est appelé parfois **prédiction** : le modèle linéaire, s'il est bien ajusté au nuage de points , permet de prédire la valeur de la masse du pingouin.
 
@@ -510,7 +541,7 @@ Plus la boîte est grande (étirée), plus les valeurs de la variable qu'il repr
 
 Sur notre graphique, on constate que la médiane des moyenne est très stable et est toujours proche de 10, mais que les tailles des boxplot sont très petites pour les grandes tailles d'échantillons (indiquant que la moyenne des hauteurs varie peu), et qu'au contraire , pour des tailles d'échantillons faibles (moins de 100 individus), la moyenne des hauteurs varie plus fortement. 
 
-Nous aborderons l'interprétation des boxplots dans le chapitre \ref@{univariée} de façon plus précise.
+Nous aborderons l'interprétation des boxplots dans le chapitre \@ref(univariée) de façon plus précise.
 
 
 Pour finir de se convaincre de ces variations, voici la représentation des valeurs moyennes en fonction de la taille des échantillons sous la forme d'un nuage de point: 
@@ -672,17 +703,27 @@ Dans ce deuxième exemple, on voit la forme et la taille  des mailles changer.
 Là aussi, un effet de lissage, indissociable de l'agrégation, fait apparaitre certaines régions comme uniformes et cachent certains singularités: par exemple le fait que les zones les plus lointaines du littoral sont pauvres (teintes oranges à l'arrière du pays, Nord et Nord-Ouest) dans le découpage en mailles carrées de 30km n'apparait pas dans le découpage administratif(les deux vignettes de gauche), tout en longueur.
 
 
-# Rappel:  La première "chose à faire "
-
-Représenter/Tracer/Cartographier  les variables de la population !
-
-## De l'importance de tracer les données
+## Rappel:  La première "chose à faire "
 
 
+
+**Représenter/Tracer/Cartographier**  les variables de la population.
+
+Cette exploration visuelle permet: 
+
+- d'identifier les intervalles de valeurs des variables, ou leur modalités 
+- de se faire une idée de la répartition des valeurs des variables à l'intérieur de leurs intervalles
+- d'identifier des valeurs aberrantes 
+- d'observer pour les variables spatialisées , leur répartition dans l'espace 
+
+
+D'autre part, comme le montre l'exemple ci-dessous, les valeurs de statistiques peuvent être trompeuses, et discriminent beaucoup moins bien des situations qualitativement très différentes que notre œil : 
 
 
 <div style="text-align:center">
 <img src="./DinoSequentialSmaller.gif " width=100%>
 </div>
 
+
+Les valeurs chiffrées affichées sont la **moyenne**, l'**écart-type** et la **corrélation** des deux séries qui forment le nuage de points. Le chapitre suivant introduira ces notions.
 
