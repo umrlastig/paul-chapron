@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 3 Rappel: La première “chose à faire” | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 2 Difficultés de la statistique | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 3 Rappel: La première “chose à faire” | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 2 Difficultés de la statistique | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 3 Rappel: La première “chose à faire” | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 2 Difficultés de la statistique | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-01-11" />
+<meta name="date" content="2021-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="difficultés-de-la-statistique.html"/>
-<link rel="next" href="univariee.html"/>
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="rappel-la-première-chose-à-faire.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -363,15 +363,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rappel-la-première-chose-à-faire" class="section level1">
-<h1><span class="header-section-number">Chapitre 3</span> Rappel: La première “chose à faire”</h1>
-<p>Représenter/Tracer/Cartographier les variables de la population !</p>
-<div id="de-limportance-de-tracer-les-données" class="section level2">
-<h2><span class="header-section-number">3.1</span> De l’importance de tracer les données</h2>
-<div style="text-align:center">
-<p><img src="./DinoSequentialSmaller.gif " width=100%></p>
+<div id="difficultés-de-la-statistique" class="section level1">
+<h1><span class="header-section-number">Chapitre 2</span> Difficultés de la statistique</h1>
+<p>Nous donnons ci-dessous quelques exemples de difficultés inhérentes à l’analyse statistique.</p>
+<div id="plusieurs-discours-sont-possibles" class="section level2">
+<h2><span class="header-section-number">2.1</span> Plusieurs discours sont possibles</h2>
+<p>Les statistiques sont délicates parce qu’un.e statisticien.ne ne peut pas se limiter à des calculs et à la représentation graphique de ses données, mais doit également les décrire <strong>et</strong> les interpréter.</p>
+<p>Cette interprétation est elle-même difficile car des discours différents peuvent être produits sur la base de chiffres identiques.</p>
+<p>Considérons cet exemple, tiré du cours d’Ana-Maria Olteanu-Raimond :</p>
+<p>Voici les chiffres du bilan d’une entreprise en 2013 et 2014</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Ouvriers</th>
+<th align="right">Cadres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2013</td>
+<td align="right">effectif : 500</td>
+<td align="right">effectif : 100</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">salaire : 1300</td>
+<td align="right">salaire :2200</td>
+</tr>
+<tr class="odd">
+<td align="left">2014</td>
+<td align="right">effectif : 200</td>
+<td align="right">effectif : 400</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">salaire :1170</td>
+<td align="right">salaire : 1980</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Mme. AAA : «tous les salaires ont baissé de 10%»</li>
+<li>Mme. BBB : «le salaire moyen a augmenté d’environ 18%»</li>
+</ul>
+<p>Ces deux phrases sont justes, et il n’y a pas lieu d’en choisir une plus que l’autre. Un.e analyste consciencieux.se se devrait de mentionner les deux à la fois !</p>
 </div>
-
+<div id="taille-et-représentativité-de-léchantillon" class="section level2">
+<h2><span class="header-section-number">2.2</span> Taille et représentativité de l’échantillon</h2>
+<p>Les données ne sont jamais exhaustives: elles sont le résultats de mesures, d’enquête et ne captent qu’une partie, un <strong>échantillon</strong> de l’ensemble des objets qu’elles décrivent.</p>
+<p>La taille et la représentativité de cet échantillon sont critiques, et il est évident qu’on ne dit pas les mêmes choses à partir d’un petit échantillon partial qu’à partir d’un vaste échantillon représentatif.</p>
+<p>Quand on en a la possibilité, il faut toujours privilégier les données les plus nombreuses et les plus représentatives du phénomène étudié.</p>
+<p>Prenons un exemple avec des données “réelles” , on va calculer la hauteur moyenne des arbres de paris , dont le jeu de données est disponible <a href="https://opendata.paris.fr/explore/dataset/les-arbres/information/?disjunctive.typeemplacement&amp;disjunctive.arrondissement&amp;disjunctive.libellefrancais&amp;disjunctive.genre&amp;disjunctive.espece&amp;disjunctive.varieteoucultivar&amp;disjunctive.stadedeveloppement&amp;disjunctive.remarquable">ici</a></p>
+<p>Après filtrage des données pour ne considérer que les arbres entre 1 et 40 mètres de hauteur, on va calculer la hauteur moyennes des arbres du dataset:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="difficultés-de-la-statistique.html#cb3-1"></a><span class="kw">library</span>(geojsonsf)</span>
+<span id="cb3-2"><a href="difficultés-de-la-statistique.html#cb3-2"></a><span class="kw">library</span>(sf)</span>
+<span id="cb3-3"><a href="difficultés-de-la-statistique.html#cb3-3"></a>arbres &lt;-<span class="st"> </span><span class="kw">geojson_sf</span>(<span class="st">&quot;./data/les-arbres.geojson&quot;</span>)</span>
+<span id="cb3-4"><a href="difficultés-de-la-statistique.html#cb3-4"></a>arbres &lt;-<span class="st">  </span><span class="kw">filter</span>(arbres, hauteurenm <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>hauteurenm <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> )</span>
+<span id="cb3-5"><a href="difficultés-de-la-statistique.html#cb3-5"></a><span class="kw">mean</span>(arbres<span class="op">$</span>hauteurenm)</span></code></pre></div>
+<pre><code>## [1] 10.28588</code></pre>
+<p>On va maintenant opérer une selection sur les données et ne considérer que les arbres étiquettés comme “jeunes” (variable <code>statdedeveloppement</code>), et calculer leur hauteur moyenne :</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="difficultés-de-la-statistique.html#cb5-1"></a>arbresJeunes &lt;-<span class="st">   </span>arbres <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">filter</span>( stadedeveloppement <span class="op">==</span><span class="st">&quot;J&quot;</span>) </span>
+<span id="cb5-2"><a href="difficultés-de-la-statistique.html#cb5-2"></a><span class="kw">mean</span>(arbresJeunes<span class="op">$</span>hauteurenm)</span></code></pre></div>
+<pre><code>## [1] 5.691254</code></pre>
+<p>Évidemment , la hauteur moyenne des jeunes arbres n’est pas la même que la hauteur moyenne des arbres en général!</p>
+<p>Observons maintenant l’effet que peut avoir la taille de l’échantillon sur un calcul de moyenne :</p>
+<p>On va prendre des échantillons du dataset des arbres de Paris de plus en plus petits (on divise par deux la taille de l’échantillons à chaque fois) et on va observer la variation de la hauteur moyenne des arbres de cet échantillon en fonction de la taille de l’échantillon.</p>
+<p>Pour chaque taille d’échantillon , on réalise plusieurs tirages et on observe les valeurs moyennes de la hauteur en mètres sur ces échantillons</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="difficultés-de-la-statistique.html#cb7-1"></a>nbSpls &lt;-<span class="st">  </span><span class="kw">nrow</span>(arbres)</span>
+<span id="cb7-2"><a href="difficultés-de-la-statistique.html#cb7-2"></a>spls &lt;-<span class="st">  </span><span class="kw">c</span>()</span>
+<span id="cb7-3"><a href="difficultés-de-la-statistique.html#cb7-3"></a><span class="cf">while</span>(nbSpls <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>){</span>
+<span id="cb7-4"><a href="difficultés-de-la-statistique.html#cb7-4"></a>  nbSpls &lt;-<span class="st">  </span><span class="kw">floor</span>(nbSpls<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb7-5"><a href="difficultés-de-la-statistique.html#cb7-5"></a>  spls &lt;-<span class="st">  </span><span class="kw">c</span>(spls, nbSpls)</span>
+<span id="cb7-6"><a href="difficultés-de-la-statistique.html#cb7-6"></a>}</span>
+<span id="cb7-7"><a href="difficultés-de-la-statistique.html#cb7-7"></a></span>
+<span id="cb7-8"><a href="difficultés-de-la-statistique.html#cb7-8"></a>myfunc&lt;-<span class="st"> </span><span class="cf">function</span>(taille,data){</span>
+<span id="cb7-9"><a href="difficultés-de-la-statistique.html#cb7-9"></a>  <span class="kw">return</span>(<span class="kw">sample</span>(data,taille,<span class="dt">replace =</span> F))</span>
+<span id="cb7-10"><a href="difficultés-de-la-statistique.html#cb7-10"></a>}</span>
+<span id="cb7-11"><a href="difficultés-de-la-statistique.html#cb7-11"></a><span class="co"># tirage  simple</span></span>
+<span id="cb7-12"><a href="difficultés-de-la-statistique.html#cb7-12"></a>samples_hauteur &lt;-<span class="st"> </span><span class="kw">sapply</span>(spls, myfunc, arbres<span class="op">$</span>hauteurenm)</span>
+<span id="cb7-13"><a href="difficultés-de-la-statistique.html#cb7-13"></a>valeurs_moyennes &lt;-<span class="st">  </span><span class="kw">sapply</span>(samples_hauteur, mean)</span>
+<span id="cb7-14"><a href="difficultés-de-la-statistique.html#cb7-14"></a><span class="kw">names</span>(valeurs_moyennes) &lt;-<span class="st">  </span>spls <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>()</span>
+<span id="cb7-15"><a href="difficultés-de-la-statistique.html#cb7-15"></a></span>
+<span id="cb7-16"><a href="difficultés-de-la-statistique.html#cb7-16"></a><span class="co">#on répète  fois le tirage</span></span>
+<span id="cb7-17"><a href="difficultés-de-la-statistique.html#cb7-17"></a>spls_sizes &lt;-<span class="st"> </span><span class="kw">rep</span>(spls, <span class="dv">50</span>)</span>
+<span id="cb7-18"><a href="difficultés-de-la-statistique.html#cb7-18"></a>spl_h &lt;-<span class="st"> </span><span class="kw">sapply</span>(spls_sizes, myfunc, arbres<span class="op">$</span>hauteurenm )</span>
+<span id="cb7-19"><a href="difficultés-de-la-statistique.html#cb7-19"></a>spl_moy  &lt;-<span class="st">  </span><span class="kw">sapply</span>(spl_h, mean)</span>
+<span id="cb7-20"><a href="difficultés-de-la-statistique.html#cb7-20"></a></span>
+<span id="cb7-21"><a href="difficultés-de-la-statistique.html#cb7-21"></a><span class="co"># constitution du dataframe</span></span>
+<span id="cb7-22"><a href="difficultés-de-la-statistique.html#cb7-22"></a>dfhmoy &lt;-<span class="st">  </span><span class="kw">data.frame</span>(spl_moy, spls_sizes)</span>
+<span id="cb7-23"><a href="difficultés-de-la-statistique.html#cb7-23"></a>dfhmoy<span class="op">$</span>spls_sizes &lt;-<span class="st">  </span><span class="kw">factor</span>(dfhmoy<span class="op">$</span>spls_sizes, <span class="dt">levels=</span>spls)</span>
+<span id="cb7-24"><a href="difficultés-de-la-statistique.html#cb7-24"></a><span class="kw">names</span>(dfhmoy) &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;h_moy&quot;</span>, <span class="st">&quot;spl_size&quot;</span>)</span>
+<span id="cb7-25"><a href="difficultés-de-la-statistique.html#cb7-25"></a><span class="co">#graphique </span></span>
+<span id="cb7-26"><a href="difficultés-de-la-statistique.html#cb7-26"></a><span class="kw">ggplot</span>(dfhmoy ,<span class="kw">aes</span>(h_moy, spl_size))<span class="op">+</span></span>
+<span id="cb7-27"><a href="difficultés-de-la-statistique.html#cb7-27"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
+<span id="cb7-28"><a href="difficultés-de-la-statistique.html#cb7-28"></a><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></span>
+<span id="cb7-29"><a href="difficultés-de-la-statistique.html#cb7-29"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust=</span><span class="dv">1</span>))<span class="op">+</span></span>
+<span id="cb7-30"><a href="difficultés-de-la-statistique.html#cb7-30"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;hauteur moyenne en mètre&quot;</span>,</span>
+<span id="cb7-31"><a href="difficultés-de-la-statistique.html#cb7-31"></a>       <span class="dt">y=</span><span class="st">&quot;taille de l&#39;échantillon&quot;</span>,</span>
+<span id="cb7-32"><a href="difficultés-de-la-statistique.html#cb7-32"></a>       <span class="dt">title=</span><span class="st">&quot;Sensibilité de la moyenne à la taille de l&#39;échantillon&quot;</span>,</span>
+<span id="cb7-33"><a href="difficultés-de-la-statistique.html#cb7-33"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;chaque échantillon est tiré 50 fois dans la population&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/effetTailleSample%20-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Ce graphique présente sous la forme d’un boxplot (ou boîte à moustaches), la distribution de la valeur des moyennes des hauteurs, calculées sur des échantillons dont la taille varie de 84508 individus, soit la moitié du dataset des arbres filtrés, à 1 individu.</p>
+<p>Pour chaque taille d’échantillon, on réalise 50 tirages de cette même taille, pour éviter les “coups de chance”, et on calcule pour la moyenne pour chaque taille.
+On a donc calculé 50 valeurs de moyenne , pour chaque taille d’échantillon.</p>
+<p>Pour voir comment la valeurs des 50 moyennes varie, on représente la distributions des valeurs de moyenne obtenues sous la forme d’un boxplot. Le boxplot montre l’étendue de la variation d’une variable quantitative
+.
+Plus la boîte est grande (étirée), plus les valeurs de la variable qu’il représente varient. Le trait noir au milieu représente la médiance des valeurs.</p>
+<p>Sur notre graphique, on constate que la médiane des moyenne est très stable et est toujours proche de 10, mais que les tailles des boxplot sont très petites pour les grandes tailles d’échantillons (indiquant que la moyenne des hauteurs varie peu), et qu’au contraire , pour des tailles d’échantillons faibles (moins de 100 individus), la moyenne des hauteurs varie plus fortement.</p>
+<p>Nous aborderons l’interprétation des boxplots dans le chapitre  de façon plus précise.</p>
+<p>Pour finir de se convaincre de ces variations, voici la représentation des valeurs moyennes en fonction de la taille des échantillons sous la forme d’un nuage de point:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="difficultés-de-la-statistique.html#cb8-1"></a><span class="kw">ggplot</span>(dfhmoy ,<span class="kw">aes</span>(h_moy, spl_size))<span class="op">+</span></span>
+<span id="cb8-2"><a href="difficultés-de-la-statistique.html#cb8-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">size=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
+<span id="cb8-3"><a href="difficultés-de-la-statistique.html#cb8-3"></a><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></span>
+<span id="cb8-4"><a href="difficultés-de-la-statistique.html#cb8-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust=</span><span class="dv">1</span>))<span class="op">+</span></span>
+<span id="cb8-5"><a href="difficultés-de-la-statistique.html#cb8-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;hauteur moyenne en mètre&quot;</span>,</span>
+<span id="cb8-6"><a href="difficultés-de-la-statistique.html#cb8-6"></a>       <span class="dt">y=</span><span class="st">&quot;taille de l&#39;échantillon&quot;</span>,</span>
+<span id="cb8-7"><a href="difficultés-de-la-statistique.html#cb8-7"></a>       <span class="dt">title=</span><span class="st">&quot;Hauteur moyenne en fonction de la taille d&#39;échantillon&quot;</span>,</span>
+<span id="cb8-8"><a href="difficultés-de-la-statistique.html#cb8-8"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;chaque échantillon est tiré 50 fois dans la population&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/effetTailleSample2%20-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="le-paradoxe-de-simpsons" class="section level2">
+<h2><span class="header-section-number">2.3</span> Le paradoxe de Simpsons</h2>
+<p>Le paradoxe de Simpsons apparaît lorsqu’une population est structurée en groupes et que deux hypothèses contradictoires peuvent être formulées, suivant qu’on prenne en compte les appartenances des individus à ces groupes ou non.</p>
+<div style="text-align:center">
+<p><img src="Simpsons_paradox_-_animation.gif"></p>
+</div>
+<p><small>
+source: wikipedia
+</small></p>
+<p>Par exemple, le nuage de points animés ci-dessus, illustre comment on peut formuler deux hypothèses contradictoire concernant la même population :</p>
+<ul>
+<li><span class="math inline">\(H_A\)</span> : la variable <span class="math inline">\(x\)</span> est corrélée négativement avec la variable <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(H_B\)</span> : la variable <span class="math inline">\(x\)</span> est corrélée positivement avec la variable <span class="math inline">\(y\)</span></li>
+</ul>
+<p><span class="math inline">\(H_A\)</span> est valable si l’on considère les valeurs de la population dans son ensemble et <strong>sans</strong> tenir compte des groupes qui la structurent.</p>
+<p>À l’intérieur de chaque groupe, <span class="math inline">\(H_B\)</span> est valable et contredit <span class="math inline">\(H_A\)</span>.</p>
+</div>
+<div id="échelle-individuelle-vs.-échelle-agrégée" class="section level2">
+<h2><span class="header-section-number">2.4</span> Échelle individuelle vs. Échelle agrégée</h2>
+<p>Lorsqu’on manipule des données spatiales, le territoire sur lequel les données sont disponibles peut être découpé de plusieurs façons.</p>
+<p>Par exemple, la France se découpe en régions, elles-mêmes décomposées en départements, eux-mêmes décomposés en commune.</p>
+<p>Un jeu de données spatial est défini à un certain niveau de découpage spatial. Par exemple, on peut disposer du revenu mensuel moyen des foyers par commune, mais on ne dispose pas des données “brutes” qui y ont conduit: les revenus des personnes qui composent les foyer des communes.</p>
+<p>Si on désire considérer la même variable à un niveau de découpage plus grossier (ici, les régions) ou plus fin (ici, les communes), on devra agréger ou désagréger les données.</p>
+<p>L’agrégation est relativement directe , la désagrégation l’est beaucoup moins</p>
+<p><strong>Agrégation</strong></p>
+<p>On parle d’agrégation lorsqu’on désirer regrouper des données disponibles à un niveau de découpage donné Inférer des caractéristiques concernant les unités agrégées d’après les caractéristiques individuelles</p>
+<p><strong>Désagrégation</strong> ou <strong>Ventilation</strong></p>
+<p>On parle de désagrégation ou de ventilation de données lorsqu’à partir de données disponibles à un niveau de découpage donné, on cherche à simuler une répartition de données à un niveau de découpage <strong>plus fin</strong>, tout en restant cohérent avec la répartition des données au niveau de découpage originel.</p>
+<p>Solution triviale donc sans intérêt:</p>
+<p>Pour une variable de <strong>stock</strong> <span class="math inline">\(V_s\)</span> (on dit aussi variable d’effectif) , i.e. mesurant une quantité d’objets, et en l’absence de toute autre données ou contraintes,
+on peut affecter aux <span class="math inline">\(n\)</span> communes du département un nombre constant valant <span class="math inline">\(\frac{V_s}{n}\)</span>.</p>
+<p>Pour une variable de <strong>ratio</strong> <span class="math inline">\(V_r\)</span>, on peut affecter le même ratio <span class="math inline">\(V_r\)</span> à toutes les mailles qui composent la maille à désagréger.</p>
+<p>Si on écarte la solution triviale, la désagrégation de données est une opération complexe, pour lesquels il existe cependant plusieurs méthodes de <em>génération de population synthétique</em> respectant certaines contraintes, comme l’<a href="https://en.wikipedia.org/wiki/Iterative_proportional_fitting">Iterative Proportional Fitting</a></p>
+<p>Les choses se compliquent encore si les découpages ne sont pas imbriqués les uns dans les autres. Généralement, on agrège les valeurs par des sommes pondérées par la surface des entités spatiales concernées. Un bon aperçu des méthodes d’allocation spatiale est donné dans <a href="https://www.tse-fr.eu/sites/default/files/medias/doc/wp/etrie/wp_tse_446.pdf">ce document</a></p>
+</div>
+<div id="à-quelle-échelle-observer-le-maup" class="section level2">
+<h2><span class="header-section-number">2.5</span> À quelle échelle observer ? le MAUP</h2>
+<p>Puisqu’une même zone peut être découpée de différentes façons, avec des mailles de taille variable, susceptibles d’évoluer dans le temps (par exemple les limites adminsitratives des communes en France), toute question d’analyse spatiale (et donc d’analyse spatiale statistique) comporte une question spécifique à l’échelle d’observation : <strong>À quelle échelle observer nos données ?</strong></p>
+<p>Cette question peut se décomposer en deux sous-questions, liées :</p>
+<ul>
+<li>quel maillage utiliser ? Par exemple: une maille régulière carrée ou hexagonale, les contours adminsitratifs, les mailles <a href="https://www.insee.fr/fr/metadonnees/definition/c1523">IRIS</a> ?<br />
+</li>
+<li>quelle taille de maille choisir ?</li>
+</ul>
+<p>Il est très difficile de répondre à ces questions dans l’absolu, c’est même un problème «insoluble» appelé le <strong>MAUP</strong> (Modifiable Areal Unit Problem).</p>
+<p>Les raisons de cette impossibilité de déterminer le découpage idéal pour observer une donnée spatialisée sont nombreuses. En voici quelques unes, qui je pense sont les principales:</p>
+<ul>
+<li>La plupart des phénomènes d’intérêts sont multi-scalaires, c’est-à-dire qu’ils peuvent se produire et/ou s’observer à plusieurs niveaux d’échelle.</li>
+<li>L’agrégation peut faire disparaitre certains détails, certaines spécificités dans la cartographie des données.</li>
+<li>Des effets de la géométrie du découpage (appelés effets de zonage) modifie la représentation cartographique des données</li>
+</ul>
+<p>Voici quelques exemples qui montrent ces difficultés.</p>
+<div id="effet-de-zonage" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Effet de zonage</h3>
+<p>Cette image tiré de la page wikipedia <a href="https://fr.wikipedia.org/wiki/Gerrymandering">gerrymanding</a>, illustre bien comment un découpage d’une même zone peut amener à des résultats de vote différents.</p>
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/DifferingApportionment.svg" alt="Différentes manières de découper des circonscriptions électorales."  />
+<p class="caption">
+(#fig:img_gerryManding)Différentes manières de découper des circonscriptions électorales.
+</p>
+</div>
+</div>
+<div id="maup-exemples" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> MAUP : exemples</h3>
+<p>Ces exemples sont tirés du rapport ESPON :</p>
+<p><a href="https://www.espon.eu/sites/default/files/attachments/espon343_maup_final_version2_nov_2006.pdf">https://www.espon.eu/sites/default/files/attachments/espon343_maup_final_version2_nov_2006.pdf</a></p>
+<div style="text-align:center">
+<p><img src="Maup1.png" width=100% ></p>
+</div>
+<p>Vous pouvez noter comme les zones du Sud en découpage NUTS 2 , sont représentées uniformément rose (valeur max du GDP/hab) alors qu’avec un découpage plus fin (NUTS 3), la situation du sud est loin d’être aussi uniforme : on note par exemple que la moitié Est des mailles du Sud-Est a des teintes plus mélangées dans le découpage NUTS3, avec un mélanges de mailles jaunes et bleues, que dans le découpage NUTS2 .</p>
+<p>De même, les zones frontalières du Luxembourg et de la Belgique apparaissent plus pauvres (teintes jaunes et bleues) dans le découpage NUTS 3 que dans le découpage NUTS2.</p>
+<p>De manière générale : l’agrégation va “lisser” les aspérités des données, certains contrastes ne «survivent pas» à l’agrégation spatiale.</p>
+<div style="text-align:center">
+<p><img src="Maup2.png" width=100%></p>
+</div>
+<p>Dans ce deuxième exemple, on voit la forme et la taille des mailles changer.</p>
+<p>Là aussi, un effet de lissage, indissociable de l’agrégation, fait apparaitre certaines régions comme uniformes et cachent certains singularités: par exemple le fait que les zones les plus lointaines du littoral sont pauvres (teintes oranges à l’arrière du pays, Nord et Nord-Ouest) dans le découpage en mailles carrées de 30km n’apparait pas dans le découpage administratif(les deux vignettes de gauche), tout en longueur.</p>
+</div>
 </div>
 </div>
             </section>
@@ -379,8 +568,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="difficultés-de-la-statistique.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariee.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rappel-la-première-chose-à-faire.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
