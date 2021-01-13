@@ -1,23 +1,6 @@
 # Analyse Bivariée {#bivariee}
 
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,fig.width =6,fig.align="center", fig.height = 3)
-library(knitr)
-library(xtable)
-```
-
 # Introduction & Rappels  
-
-## Sources et Reférences
-
-- Ce cours reprend le cheminement du cours M2 IGAST 2017 d'Élodie Buard 
-- R et espace https://framabook.org/r-et-espace/
-- Probabilités, analyse de données et statistiques , Gilbert Saporta, Editions TECHNIP, 2011
-- Nombreuses ressources en ligne : 
-   http://www.foad-mooc.auf.org/IMG/pdf/424B_-Application_des_methodes_statistiques_d_analyse.pdf
-- et wikipedia !
 
 ## Rappel  : Deux familles statistiques
 

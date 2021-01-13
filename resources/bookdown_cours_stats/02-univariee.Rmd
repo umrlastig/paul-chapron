@@ -1,19 +1,5 @@
 # Analyse Univariée {#univariee}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,fig.width =6,fig.align="center", fig.height = 3)
-library(revealjs)
-library(tidyverse)
-library(palmerpenguins)
-library(knitr)
-library(xtable)
-library(ggplot2)
-library(gridExtra)
-library(dplyr)
-library(sf)
-quartiers <-  st_read("data/quartier_paris.shp")
-
-```
 
 
 
@@ -453,6 +439,9 @@ Le **mode** est privilégié pour les variables  **nominales** c'est-à-dire des
 
 ### Cas délicat : Distribution bimodale 
 
+
+Parfois une variable peut être **bimodale**, c'est à dire avoir deux  intervalles de valeurs majoritaires
+
 ```{r bimod1, cache=TRUE, echo=FALSE,fig.width=8, fig.height=3.5}
 xx <- data.frame(value=rnorm(1600,mean = 5, sd = 1))
 yy <- data.frame(value= rnorm(1400, mean = 10, sd=2) )
@@ -466,7 +455,7 @@ plot1 <- ggplot(xx)+
 plot1
 ```
 
-Que choisir : moyenne ou médiane ? 
+Que choisir dans un tel cas : moyenne ou médiane ? 
 
 
 ## Distribution unimodale symétrique 

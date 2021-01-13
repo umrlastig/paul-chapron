@@ -17,3 +17,6 @@ tufte
 geojsonsf
 sf
 latex2exp
+reshape2
+RColorBrewer
+cowplot
