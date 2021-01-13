@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 14 Régression linéaire avec R | Analyse Statistique M2 IGAST</title>
+  <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 14 Régression linéaire avec R | Analyse Statistique M2 IGAST" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 14 Régression linéaire avec R | Analyse Statistique M2 IGAST" />
+  
+  <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
+  
+
+<meta name="author" content="PC" />
+
+
+<meta name="date" content="2021-01-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="corrélation-de-deux-variables-quantitatives.html"/>
+<link rel="next" href="trucs-pour-linéariser-des-relations-non-linéaires.html"/>
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="book_assets/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="book_assets/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html">Analyse Statistique M2 IGAST </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préambule</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#programme-du-cours-et-contenu"><i class="fa fa-check"></i>Programme du cours et Contenu</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reférences"><i class="fa fa-check"></i>Reférences</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ressources-pour-lapprentissage-du-langage-r"><i class="fa fa-check"></i>Ressources pour l’apprentissage du langage R</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction générale</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#analyse-spatiale-définition"><i class="fa fa-check"></i><b>1.1</b> Analyse spatiale : définition</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#analyse-spatiale-analyse-statistique"><i class="fa fa-check"></i><b>1.2</b> Analyse spatiale &amp; Analyse Statistique</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#deux-approches-en-analyse-spatiale"><i class="fa fa-check"></i><b>1.3</b> Deux approches en analyse spatiale</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#deux-familles-statistiques"><i class="fa fa-check"></i><b>1.4</b> Deux familles statistiques</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#statistiques-inférentielles"><i class="fa fa-check"></i><b>1.4.1</b> Statistiques inférentielles</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#statistiques-inférentielles-lexemple-des-pingouins"><i class="fa fa-check"></i><b>1.4.2</b> Statistiques inférentielles : l’exemple des pingouins</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#statistiques-descriptives"><i class="fa fa-check"></i><b>1.4.3</b> Statistiques descriptives</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#les-formats-de-données-wide-et-long"><i class="fa fa-check"></i><b>1.4.4</b> Les formats de données <em>wide</em> et <em>long</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#vocabulaire"><i class="fa fa-check"></i><b>1.5</b> Vocabulaire</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#variables-quantitatives"><i class="fa fa-check"></i><b>1.5.1</b> Variables quantitatives</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#variables-qualitatives"><i class="fa fa-check"></i><b>1.5.2</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#valeur-et-nature-des-variables"><i class="fa fa-check"></i><b>1.5.3</b> Valeur et Nature des variables</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#types-de-variables-et-représentations"><i class="fa fa-check"></i><b>1.5.4</b> Types de variables et représentations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html"><i class="fa fa-check"></i><b>2</b> Difficultés de la statistique</a><ul>
+<li class="chapter" data-level="2.1" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#plusieurs-discours-sont-possibles"><i class="fa fa-check"></i><b>2.1</b> Plusieurs discours sont possibles</a></li>
+<li class="chapter" data-level="2.2" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#taille-et-représentativité-de-léchantillon"><i class="fa fa-check"></i><b>2.2</b> Taille et représentativité de l’échantillon</a></li>
+<li class="chapter" data-level="2.3" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#le-paradoxe-de-simpsons"><i class="fa fa-check"></i><b>2.3</b> Le paradoxe de Simpsons</a></li>
+<li class="chapter" data-level="2.4" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#échelle-individuelle-vs.-échelle-agrégée"><i class="fa fa-check"></i><b>2.4</b> Échelle individuelle vs. Échelle agrégée</a></li>
+<li class="chapter" data-level="2.5" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#à-quelle-échelle-observer-le-maup"><i class="fa fa-check"></i><b>2.5</b> À quelle échelle observer ? le MAUP</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#effet-de-zonage"><i class="fa fa-check"></i><b>2.5.1</b> Effet de zonage</a></li>
+<li class="chapter" data-level="2.5.2" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#maup-exemples"><i class="fa fa-check"></i><b>2.5.2</b> MAUP : exemples</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="difficultés-de-la-statistique.html"><a href="difficultés-de-la-statistique.html#rappel-la-première-chose-à-faire"><i class="fa fa-check"></i><b>2.6</b> Rappel: La première “chose à faire”</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="univariee.html"><a href="univariee.html"><i class="fa fa-check"></i><b>3</b> Analyse Univariée</a><ul>
+<li class="chapter" data-level="3.1" data-path="univariee.html"><a href="univariee.html#le-concept-de-distribution"><i class="fa fa-check"></i><b>3.1</b> Le concept de distribution</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="univariee.html"><a href="univariee.html#interpret_dens"><i class="fa fa-check"></i><b>3.1.1</b> Interpréter la courbe de densité</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="univariee.html"><a href="univariee.html#exemples-de-distributions-de-lois-connues"><i class="fa fa-check"></i><b>3.2</b> Exemples de distributions de lois connues</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="univariee.html"><a href="univariee.html#loi-gaussienne"><i class="fa fa-check"></i><b>3.2.1</b> Loi Gaussienne</a></li>
+<li class="chapter" data-level="3.2.2" data-path="univariee.html"><a href="univariee.html#loi-uniforme"><i class="fa fa-check"></i><b>3.2.2</b> Loi uniforme</a></li>
+<li class="chapter" data-level="3.2.3" data-path="univariee.html"><a href="univariee.html#loi-log-normale"><i class="fa fa-check"></i><b>3.2.3</b> Loi log-normale</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="univariee.html"><a href="univariee.html#histogramme-dune-distribution-réelle"><i class="fa fa-check"></i><b>3.3</b> Histogramme d’une distribution réelle</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tendance.html"><a href="tendance.html"><i class="fa fa-check"></i><b>4</b> Statistique descriptive univariée : la tendance</a><ul>
+<li class="chapter" data-level="4.1" data-path="tendance.html"><a href="tendance.html#moyenne"><i class="fa fa-check"></i><b>4.1</b> Moyenne</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="tendance.html"><a href="tendance.html#moyenne-pondérée"><i class="fa fa-check"></i><b>4.1.1</b> Moyenne pondérée</a></li>
+<li class="chapter" data-level="4.1.2" data-path="tendance.html"><a href="tendance.html#avantages-et-inconvénients-de-la-moyenne"><i class="fa fa-check"></i><b>4.1.2</b> Avantages et inconvénients de la moyenne</a></li>
+<li class="chapter" data-level="4.1.3" data-path="tendance.html"><a href="tendance.html#autres-moyennes"><i class="fa fa-check"></i><b>4.1.3</b> Autres Moyennes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="tendance.html"><a href="tendance.html#mode"><i class="fa fa-check"></i><b>4.2</b> Mode</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="tendance.html"><a href="tendance.html#avantages-et-inconvénients-du-mode"><i class="fa fa-check"></i><b>4.2.1</b> Avantages et inconvénients du mode</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="tendance.html"><a href="tendance.html#mediane"><i class="fa fa-check"></i><b>4.3</b> Médiane</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="tendance.html"><a href="tendance.html#étapes-de-calcul"><i class="fa fa-check"></i><b>4.3.1</b> Étapes de calcul</a></li>
+<li class="chapter" data-level="4.3.2" data-path="tendance.html"><a href="tendance.html#avantages-et-inconvénients-de-la-médiane"><i class="fa fa-check"></i><b>4.3.2</b> Avantages et inconvénients de la médiane</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="tendance.html"><a href="tendance.html#quelle-mesure-de-tendance-choisir"><i class="fa fa-check"></i><b>4.4</b> Quelle mesure de tendance choisir ?</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="tendance.html"><a href="tendance.html#cas-délicat-distribution-bimodale"><i class="fa fa-check"></i><b>4.4.1</b> Cas délicat : Distribution bimodale</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="tendance.html"><a href="tendance.html#distribution-unimodale-symétrique"><i class="fa fa-check"></i><b>4.5</b> Distribution unimodale symétrique</a></li>
+<li class="chapter" data-level="4.6" data-path="tendance.html"><a href="tendance.html#histogramme-et-distribution-en-r"><i class="fa fa-check"></i><b>4.6</b> Histogramme et distribution en R</a></li>
+<li class="chapter" data-level="4.7" data-path="tendance.html"><a href="tendance.html#histogramme-et-distribution-en-r-1"><i class="fa fa-check"></i><b>4.7</b> Histogramme et distribution en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html"><i class="fa fa-check"></i><b>5</b> Statistique descriptive univariée : la dispersion</a><ul>
+<li class="chapter" data-level="5.1" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#la-dispersion-statistique"><i class="fa fa-check"></i><b>5.1</b> La <strong>dispersion</strong> statistique</a></li>
+<li class="chapter" data-level="5.2" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#variance-et-écart-type"><i class="fa fa-check"></i><b>5.2</b> Variance et Écart-type</a></li>
+<li class="chapter" data-level="5.3" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#variance-et-écart-type-1"><i class="fa fa-check"></i><b>5.3</b> Variance et Écart-type</a></li>
+<li class="chapter" data-level="5.4" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#précaution"><i class="fa fa-check"></i><b>5.4</b> Précaution</a></li>
+<li class="chapter" data-level="5.5" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#lorsque-xsim-mathscrnmusigma"><i class="fa fa-check"></i><b>5.5</b> Lorsque <span class="math inline">\(X\sim \mathscr{N}(\mu,\sigma)\)</span></a></li>
+<li class="chapter" data-level="5.6" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#quantiles"><i class="fa fa-check"></i><b>5.6</b> Quantiles</a></li>
+<li class="chapter" data-level="5.7" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#déciles"><i class="fa fa-check"></i><b>5.7</b> Déciles</a></li>
+<li class="chapter" data-level="5.8" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#ecarts-inter-quartiles-et-inter-déciles"><i class="fa fa-check"></i><b>5.8</b> Ecarts inter-quartiles et inter-déciles</a></li>
+<li class="chapter" data-level="5.9" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#les-boîtes-à-moustaches-boxplots"><i class="fa fa-check"></i><b>5.9</b> Les boîtes à moustaches (boxplots)</a></li>
+<li class="chapter" data-level="5.10" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#interprétation-des-boxplots"><i class="fa fa-check"></i><b>5.10</b> Interprétation des boxplots</a></li>
+<li class="chapter" data-level="5.11" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#avantages-et-inconvénient-des-quantiles"><i class="fa fa-check"></i><b>5.11</b> Avantages et inconvénient des quantiles</a><ul>
+<li class="chapter" data-level="5.11.1" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#avantages"><i class="fa fa-check"></i><b>5.11.1</b> Avantages</a></li>
+<li class="chapter" data-level="5.11.2" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#inconvénients"><i class="fa fa-check"></i><b>5.11.2</b> Inconvénients</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#le-coefficient-de-variation"><i class="fa fa-check"></i><b>5.12</b> Le coefficient de variation</a></li>
+<li class="chapter" data-level="5.13" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#comparaison-de-dispersion-de-deux-distributions-de-valeurs."><i class="fa fa-check"></i><b>5.13</b> Comparaison de dispersion de deux distributions de valeurs.</a></li>
+<li class="chapter" data-level="5.14" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#mauvaise-comparaison-visuelle-de-deux-distributions"><i class="fa fa-check"></i><b>5.14</b> <strong>(Mauvaise)</strong> Comparaison visuelle de deux distributions</a></li>
+<li class="chapter" data-level="5.15" data-path="statistique-descriptive-univariée-la-dispersion.html"><a href="statistique-descriptive-univariée-la-dispersion.html#comparaison-visuelle-de-dispersion-de-deux-distributions"><i class="fa fa-check"></i><b>5.15</b> Comparaison visuelle de dispersion de deux distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="statistique-descriptive-univariée-la-forme.html"><a href="statistique-descriptive-univariée-la-forme.html"><i class="fa fa-check"></i><b>6</b> Statistique descriptive univariée : la forme</a><ul>
+<li class="chapter" data-level="6.1" data-path="statistique-descriptive-univariée-la-forme.html"><a href="statistique-descriptive-univariée-la-forme.html#asymétrie-des-distributions."><i class="fa fa-check"></i><b>6.1</b> <strong>Asymétrie</strong> des distributions.</a></li>
+<li class="chapter" data-level="6.2" data-path="statistique-descriptive-univariée-la-forme.html"><a href="statistique-descriptive-univariée-la-forme.html#les-coefficients-de-pearson"><i class="fa fa-check"></i><b>6.2</b> les Coefficients de Pearson</a></li>
+<li class="chapter" data-level="6.3" data-path="statistique-descriptive-univariée-la-forme.html"><a href="statistique-descriptive-univariée-la-forme.html#interprétation-des-coefficients-dasymétrie"><i class="fa fa-check"></i><b>6.3</b> Interprétation des coefficients d’asymétrie</a></li>
+<li class="chapter" data-level="6.4" data-path="statistique-descriptive-univariée-la-forme.html"><a href="statistique-descriptive-univariée-la-forme.html#le-coefficient-de-fischer"><i class="fa fa-check"></i><b>6.4</b> Le coefficient de Fischer</a></li>
+<li class="chapter" data-level="6.5" data-path="statistique-descriptive-univariée-la-forme.html"><a href="statistique-descriptive-univariée-la-forme.html#laplatissement-des-distributions-kurtosis"><i class="fa fa-check"></i><b>6.5</b> L’aplatissement des distributions (kurtosis)</a></li>
+<li class="chapter" data-level="6.6" data-path="statistique-descriptive-univariée-la-forme.html"><a href="statistique-descriptive-univariée-la-forme.html#coefficient-dapplatissement-kurtosis"><i class="fa fa-check"></i><b>6.6</b> Coefficient d’applatissement : kurtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html"><i class="fa fa-check"></i><b>7</b> Représentation d’une distribution et Échelle de couleurs</a><ul>
+<li class="chapter" data-level="7.1" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#distribution-et-échelle-de-couleurs"><i class="fa fa-check"></i><b>7.1</b> Distribution et Échelle de couleurs</a></li>
+<li class="chapter" data-level="7.2" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#distribution-et-échelle-de-couleurs-1"><i class="fa fa-check"></i><b>7.2</b> Distribution et Échelle de couleurs</a></li>
+<li class="chapter" data-level="7.3" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#exemple-avec-la-surface-des-quartiers-de-paris"><i class="fa fa-check"></i><b>7.3</b> Exemple avec la surface des quartiers de Paris</a></li>
+<li class="chapter" data-level="7.4" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#allure-de-la-distribution"><i class="fa fa-check"></i><b>7.4</b> Allure de la distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#affichage-par-défaut"><i class="fa fa-check"></i><b>7.5</b> Affichage par défaut :</a></li>
+<li class="chapter" data-level="7.6" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>7.6</b> Jenks à 5 , 7 et 9 classes</a></li>
+<li class="chapter" data-level="7.7" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#jenks-à-5-7-et-9-classes-1"><i class="fa fa-check"></i><b>7.7</b> Jenks à 5 , 7 et 9 classes</a></li>
+<li class="chapter" data-level="7.8" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#effectifs-égaux"><i class="fa fa-check"></i><b>7.8</b> Effectifs égaux</a></li>
+<li class="chapter" data-level="7.9" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#intervalles-égaux-7"><i class="fa fa-check"></i><b>7.9</b> Intervalles égaux (7)</a></li>
+<li class="chapter" data-level="7.10" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#ecart-types"><i class="fa fa-check"></i><b>7.10</b> Ecart types</a></li>
+<li class="chapter" data-level="7.11" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#guides-de-choix-de-la-méthode-de-classification"><i class="fa fa-check"></i><b>7.11</b> Guides de choix de la méthode de classification</a></li>
+<li class="chapter" data-level="7.12" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#autres-classifications"><i class="fa fa-check"></i><b>7.12</b> Autres classifications</a></li>
+<li class="chapter" data-level="7.13" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#transformations-des-données"><i class="fa fa-check"></i><b>7.13</b> Transformations des données</a></li>
+<li class="chapter" data-level="7.14" data-path="représentation-dune-distribution-et-échelle-de-couleurs.html"><a href="représentation-dune-distribution-et-échelle-de-couleurs.html#variables-centrées-réduites"><i class="fa fa-check"></i><b>7.14</b> Variables centrées-réduites</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html"><i class="fa fa-check"></i><b>8</b> Visualiser une distribution</a><ul>
+<li class="chapter" data-level="8.1" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#histogramme-code-r-ggplot"><i class="fa fa-check"></i><b>8.1</b> Histogramme : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.2" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#distribution-code-r-ggplot"><i class="fa fa-check"></i><b>8.2</b> Distribution : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.3" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#boxplot-code-r-ggplot"><i class="fa fa-check"></i><b>8.3</b> BoxPlot : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.4" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#violin-plot"><i class="fa fa-check"></i><b>8.4</b> Violin plot</a></li>
+<li class="chapter" data-level="8.5" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#violin-plot-et-boxplot-code-r-ggplot-2"><i class="fa fa-check"></i><b>8.5</b> Violin plot et Boxplot : Code R + ggplot 2</a></li>
+<li class="chapter" data-level="8.6" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#pyramides-histogrammes-juxtaposés"><i class="fa fa-check"></i><b>8.6</b> Pyramides (histogrammes juxtaposés)</a></li>
+<li class="chapter" data-level="8.7" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#polygones-de-fréquences"><i class="fa fa-check"></i><b>8.7</b> Polygones de fréquences</a></li>
+<li class="chapter" data-level="8.8" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#distribution-cumulée-fonction-de-répartition-cdf"><i class="fa fa-check"></i><b>8.8</b> Distribution cumulée , Fonction de répartition , CDF</a></li>
+<li class="chapter" data-level="8.9" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#distribution-cumulée-fonction-de-répartition-cdf-1"><i class="fa fa-check"></i><b>8.9</b> Distribution cumulée , Fonction de répartition , CDF</a></li>
+<li class="chapter" data-level="8.10" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#distribution-cumulée-simple-code-r-ggplot"><i class="fa fa-check"></i><b>8.10</b> Distribution cumulée simple : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.11" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#distribution-cumulée-par-groupe-code-r-ggplot"><i class="fa fa-check"></i><b>8.11</b> Distribution cumulée par groupe : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.12" data-path="visualiser-une-distribution.html"><a href="visualiser-une-distribution.html#dot-strip-plot"><i class="fa fa-check"></i><b>8.12</b> Dot Strip Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bonus.html"><a href="bonus.html"><i class="fa fa-check"></i><b>9</b> Bonus</a><ul>
+<li class="chapter" data-level="9.1" data-path="bonus.html"><a href="bonus.html#fat-tail-distributions"><i class="fa fa-check"></i><b>9.1</b> Fat-tail distributions</a></li>
+<li class="chapter" data-level="9.2" data-path="bonus.html"><a href="bonus.html#distribution-rang-taille-des-villes-de-france"><i class="fa fa-check"></i><b>9.2</b> Distribution rang-taille des villes de france</a></li>
+<li class="chapter" data-level="9.3" data-path="bonus.html"><a href="bonus.html#transformation-logarithmique"><i class="fa fa-check"></i><b>9.3</b> Transformation logarithmique</a></li>
+<li class="chapter" data-level="9.4" data-path="bonus.html"><a href="bonus.html#distribution-rang-logtaille"><i class="fa fa-check"></i><b>9.4</b> Distribution rang-log(taille)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="bivariee.html"><a href="bivariee.html"><i class="fa fa-check"></i><b>10</b> Analyse Bivariée</a></li>
+<li class="chapter" data-level="11" data-path="introduction-rappels.html"><a href="introduction-rappels.html"><i class="fa fa-check"></i><b>11</b> Introduction &amp; Rappels</a><ul>
+<li class="chapter" data-level="11.1" data-path="introduction-rappels.html"><a href="introduction-rappels.html#rappel-deux-familles-statistiques"><i class="fa fa-check"></i><b>11.1</b> Rappel : Deux familles statistiques</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="introduction-rappels.html"><a href="introduction-rappels.html#statistiques-inférentielles-1"><i class="fa fa-check"></i><b>11.1.1</b> Statistiques <strong>inférentielles</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="introduction-rappels.html"><a href="introduction-rappels.html#rappel-deux-familles-statistiques-1"><i class="fa fa-check"></i><b>11.2</b> Rappel : Deux familles statistiques</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="introduction-rappels.html"><a href="introduction-rappels.html#statistiques-descriptives-1"><i class="fa fa-check"></i><b>11.2.1</b> Statistiques <strong>descriptives</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="introduction-rappels.html"><a href="introduction-rappels.html#rappel-vocabulaire"><i class="fa fa-check"></i><b>11.3</b> Rappel : Vocabulaire</a></li>
+<li class="chapter" data-level="11.4" data-path="introduction-rappels.html"><a href="introduction-rappels.html#lobjet-du-cours-l-analyse-bivariée"><i class="fa fa-check"></i><b>11.4</b> L’objet du cours : l’ Analyse Bivariée</a></li>
+<li class="chapter" data-level="11.5" data-path="introduction-rappels.html"><a href="introduction-rappels.html#mise-en-garde"><i class="fa fa-check"></i><b>11.5</b> Mise en garde</a></li>
+<li class="chapter" data-level="11.6" data-path="introduction-rappels.html"><a href="introduction-rappels.html#analyse-bivariée-avec-des-données-spatiales"><i class="fa fa-check"></i><b>11.6</b> Analyse bivariée avec des données spatiales</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="introduction-rappels.html"><a href="introduction-rappels.html#données-spatiales"><i class="fa fa-check"></i><b>11.6.1</b> Données spatiales</a></li>
+<li class="chapter" data-level="11.6.2" data-path="introduction-rappels.html"><a href="introduction-rappels.html#données-localisées"><i class="fa fa-check"></i><b>11.6.2</b> Données localisées</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="régression-linéaire.html"><a href="régression-linéaire.html"><i class="fa fa-check"></i><b>12</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="12.1" data-path="régression-linéaire.html"><a href="régression-linéaire.html#première-étape"><i class="fa fa-check"></i><b>12.1</b> Première étape</a></li>
+<li class="chapter" data-level="12.2" data-path="régression-linéaire.html"><a href="régression-linéaire.html#diverses-formes-des-dépendances"><i class="fa fa-check"></i><b>12.2</b> Diverses formes des dépendances</a></li>
+<li class="chapter" data-level="12.3" data-path="régression-linéaire.html"><a href="régression-linéaire.html#les-étapes"><i class="fa fa-check"></i><b>12.3</b> Les étapes</a></li>
+<li class="chapter" data-level="12.4" data-path="régression-linéaire.html"><a href="régression-linéaire.html#régression-linéaire-1"><i class="fa fa-check"></i><b>12.4</b> Régression linéaire</a></li>
+<li class="chapter" data-level="12.5" data-path="régression-linéaire.html"><a href="régression-linéaire.html#régression-linéaire-2"><i class="fa fa-check"></i><b>12.5</b> Régression linéaire</a></li>
+<li class="chapter" data-level="12.6" data-path="régression-linéaire.html"><a href="régression-linéaire.html#régression-linéaire-le-modèle"><i class="fa fa-check"></i><b>12.6</b> Régression linéaire : le modèle</a></li>
+<li class="chapter" data-level="12.7" data-path="régression-linéaire.html"><a href="régression-linéaire.html#la-grande-question"><i class="fa fa-check"></i><b>12.7</b> La grande question</a></li>
+<li class="chapter" data-level="12.8" data-path="régression-linéaire.html"><a href="régression-linéaire.html#comment-evaluer-la-validité-du-modèle-linaire"><i class="fa fa-check"></i><b>12.8</b> Comment evaluer la “validité” du modèle linaire ?</a></li>
+<li class="chapter" data-level="12.9" data-path="régression-linéaire.html"><a href="régression-linéaire.html#le-r2"><i class="fa fa-check"></i><b>12.9</b> le <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="12.10" data-path="régression-linéaire.html"><a href="régression-linéaire.html#le-r2-1"><i class="fa fa-check"></i><b>12.10</b> le <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="12.11" data-path="régression-linéaire.html"><a href="régression-linéaire.html#la-p-value"><i class="fa fa-check"></i><b>12.11</b> la p-value</a></li>
+<li class="chapter" data-level="12.12" data-path="régression-linéaire.html"><a href="régression-linéaire.html#la-p-value-1"><i class="fa fa-check"></i><b>12.12</b> la p-value</a></li>
+<li class="chapter" data-level="12.13" data-path="régression-linéaire.html"><a href="régression-linéaire.html#lhypothèse-nulle"><i class="fa fa-check"></i><b>12.13</b> l’Hypothèse nulle</a></li>
+<li class="chapter" data-level="12.14" data-path="régression-linéaire.html"><a href="régression-linéaire.html#format-des-resultats-donnés-par-avec-r"><i class="fa fa-check"></i><b>12.14</b> Format des resultats donnés par avec R</a></li>
+<li class="chapter" data-level="12.15" data-path="régression-linéaire.html"><a href="régression-linéaire.html#bonus-critères-de-significativité-du-lien-linéaire"><i class="fa fa-check"></i><b>12.15</b> Bonus: Critères de significativité du lien linéaire</a></li>
+<li class="chapter" data-level="12.16" data-path="régression-linéaire.html"><a href="régression-linéaire.html#bonus-evaluation-de-lindépendance-des-résidus-avec-r"><i class="fa fa-check"></i><b>12.16</b> Bonus: Evaluation de l’indépendance des résidus avec R</a></li>
+<li class="chapter" data-level="12.17" data-path="régression-linéaire.html"><a href="régression-linéaire.html#bonusles-4-graphiques-résultats-de-la-fonction-lm"><i class="fa fa-check"></i><b>12.17</b> Bonus:Les 4 graphiques résultats de la fonction <code>lm</code></a></li>
+<li class="chapter" data-level="12.18" data-path="régression-linéaire.html"><a href="régression-linéaire.html#bonus-évaluer-lhomogénéité-des-résidus-avec-r"><i class="fa fa-check"></i><b>12.18</b> Bonus: Évaluer l’homogénéité des résidus avec R</a></li>
+<li class="chapter" data-level="12.19" data-path="régression-linéaire.html"><a href="régression-linéaire.html#bonus-evaluer-la-normalité-de-la-distribution-des-résidus-avec-r"><i class="fa fa-check"></i><b>12.19</b> Bonus: Evaluer la normalité de la distribution des résidus avec R</a></li>
+<li class="chapter" data-level="12.20" data-path="régression-linéaire.html"><a href="régression-linéaire.html#bonus-evaluer-lhomoscédasticité-des-résidus"><i class="fa fa-check"></i><b>12.20</b> Bonus: Evaluer l’homoscédasticité des résidus</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html"><i class="fa fa-check"></i><b>13</b> Corrélation de deux variables quantitatives</a><ul>
+<li class="chapter" data-level="13.1" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#corrélation-linéaire"><i class="fa fa-check"></i><b>13.1</b> Corrélation (linéaire)</a></li>
+<li class="chapter" data-level="13.2" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#test-de-corrélation-entre-deux-variables-avec-r"><i class="fa fa-check"></i><b>13.2</b> Test de corrélation entre deux variables avec R</a></li>
+<li class="chapter" data-level="13.3" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#calcul-direct-du-coefficient-de-corrélation"><i class="fa fa-check"></i><b>13.3</b> Calcul direct du coefficient de corrélation</a></li>
+<li class="chapter" data-level="13.4" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#matrice-de-corrélations"><i class="fa fa-check"></i><b>13.4</b> Matrice de corrélations</a></li>
+<li class="chapter" data-level="13.5" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers"><i class="fa fa-check"></i><b>13.5</b> Sensibilité aux ‘outliers’</a></li>
+<li class="chapter" data-level="13.6" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers-1"><i class="fa fa-check"></i><b>13.6</b> Sensibilité aux ‘outliers’</a></li>
+<li class="chapter" data-level="13.7" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers-2"><i class="fa fa-check"></i><b>13.7</b> Sensibilité aux ‘outliers’</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html"><i class="fa fa-check"></i><b>14</b> Régression linéaire avec R</a><ul>
+<li class="chapter" data-level="14.1" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html#regression-linéaire-avec-r"><i class="fa fa-check"></i><b>14.1</b> Regression linéaire avec R</a></li>
+<li class="chapter" data-level="14.2" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html#que-faire-lorsque-la-relation-nest-pas-linéaire"><i class="fa fa-check"></i><b>14.2</b> Que faire lorsque la relation n’est pas linéaire ?</a></li>
+<li class="chapter" data-level="14.3" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html#obtenir-le-coefficient-de-spearman-avec-r"><i class="fa fa-check"></i><b>14.3</b> Obtenir le coefficient de Spearman avec R</a></li>
+<li class="chapter" data-level="14.4" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html#utilisation-conjointe-des-coefficients-de-pearson-et-spearman"><i class="fa fa-check"></i><b>14.4</b> Utilisation conjointe des coefficients de Pearson et Spearman</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="trucs-pour-linéariser-des-relations-non-linéaires.html"><a href="trucs-pour-linéariser-des-relations-non-linéaires.html"><i class="fa fa-check"></i><b>15</b> “trucs” pour linéariser des relations non-linéaires</a><ul>
+<li class="chapter" data-level="15.1" data-path="trucs-pour-linéariser-des-relations-non-linéaires.html"><a href="trucs-pour-linéariser-des-relations-non-linéaires.html#relation-log-linéaire"><i class="fa fa-check"></i><b>15.1</b> Relation log-linéaire</a></li>
+<li class="chapter" data-level="15.2" data-path="trucs-pour-linéariser-des-relations-non-linéaires.html"><a href="trucs-pour-linéariser-des-relations-non-linéaires.html#relation-géométrique-exponentielle"><i class="fa fa-check"></i><b>15.2</b> Relation géométrique (exponentielle)</a></li>
+<li class="chapter" data-level="15.3" data-path="trucs-pour-linéariser-des-relations-non-linéaires.html"><a href="trucs-pour-linéariser-des-relations-non-linéaires.html#relation-logarithmique"><i class="fa fa-check"></i><b>15.3</b> Relation logarithmique</a></li>
+<li class="chapter" data-level="15.4" data-path="trucs-pour-linéariser-des-relations-non-linéaires.html"><a href="trucs-pour-linéariser-des-relations-non-linéaires.html#relation-logistique"><i class="fa fa-check"></i><b>15.4</b> Relation logistique</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html"><i class="fa fa-check"></i><b>16</b> Lien entre deux variables qualitatives</a><ul>
+<li class="chapter" data-level="16.1" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#représentation-graphique"><i class="fa fa-check"></i><b>16.1</b> Représentation graphique</a></li>
+<li class="chapter" data-level="16.2" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#test-statistique-dit-du-chi-2-ou-chi-carré"><i class="fa fa-check"></i><b>16.2</b> Test statistique dit du “Chi 2” ou “Chi carré”</a></li>
+<li class="chapter" data-level="16.3" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#test-statistique-dit-du-chi-2-ou-chi-carré-1"><i class="fa fa-check"></i><b>16.3</b> Test statistique dit du “Chi 2” ou “Chi carré”</a></li>
+<li class="chapter" data-level="16.4" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#principe-du-chi-2"><i class="fa fa-check"></i><b>16.4</b> Principe du Chi 2</a></li>
+<li class="chapter" data-level="16.5" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#tableau-de-contingence"><i class="fa fa-check"></i><b>16.5</b> Tableau de contingence</a></li>
+<li class="chapter" data-level="16.6" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#construction-de-la-distribution-théorique."><i class="fa fa-check"></i><b>16.6</b> Construction de la distribution théorique.</a></li>
+<li class="chapter" data-level="16.7" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#construction-de-la-distribution-théorique"><i class="fa fa-check"></i><b>16.7</b> Construction de la distribution théorique</a></li>
+<li class="chapter" data-level="16.8" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#construction-de-la-distribution-théorique-1"><i class="fa fa-check"></i><b>16.8</b> Construction de la distribution théorique</a></li>
+<li class="chapter" data-level="16.9" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#construction-de-la-distribution-théorique-2"><i class="fa fa-check"></i><b>16.9</b> Construction de la distribution théorique</a></li>
+<li class="chapter" data-level="16.10" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#construction-de-la-distribution-théorique-3"><i class="fa fa-check"></i><b>16.10</b> Construction de la distribution théorique</a></li>
+<li class="chapter" data-level="16.11" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#tableau-des-effectifs-théoriques"><i class="fa fa-check"></i><b>16.11</b> Tableau des effectifs théoriques</a></li>
+<li class="chapter" data-level="16.12" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#calcul-du-chi-2"><i class="fa fa-check"></i><b>16.12</b> Calcul du Chi 2</a></li>
+<li class="chapter" data-level="16.13" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#interprétation-du-chi-2"><i class="fa fa-check"></i><b>16.13</b> Interprétation du Chi 2</a></li>
+<li class="chapter" data-level="16.14" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#table-de-loi-de-student"><i class="fa fa-check"></i><b>16.14</b> Table de loi de Student</a></li>
+<li class="chapter" data-level="16.15" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#interprétation-du-chi-2-1"><i class="fa fa-check"></i><b>16.15</b> Interprétation du Chi 2</a></li>
+<li class="chapter" data-level="16.16" data-path="lien-entre-deux-variables-qualitatives.html"><a href="lien-entre-deux-variables-qualitatives.html#les-étapes-du-chi-2"><i class="fa fa-check"></i><b>16.16</b> Les étapes du <span class="math inline">\(\chi ^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html"><a href="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html"><i class="fa fa-check"></i><b>17</b> Lien entre une variable qualitative et une variable quantitative.</a><ul>
+<li class="chapter" data-level="17.1" data-path="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html"><a href="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html#représentation-graphique."><i class="fa fa-check"></i><b>17.1</b> Représentation graphique.</a></li>
+<li class="chapter" data-level="17.2" data-path="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html"><a href="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html#les-boîtes-à-moustaches"><i class="fa fa-check"></i><b>17.2</b> Les boîtes à moustaches</a></li>
+<li class="chapter" data-level="17.3" data-path="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html"><a href="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html#boxplot-et-distribution"><i class="fa fa-check"></i><b>17.3</b> Boxplot et Distribution</a></li>
+<li class="chapter" data-level="17.4" data-path="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html"><a href="lien-entre-une-variable-qualitative-et-une-variable-quantitative-.html#boxplot-par-catégories"><i class="fa fa-check"></i><b>17.4</b> Boxplot par catégories</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="références-supplémentaires.html"><a href="références-supplémentaires.html"><i class="fa fa-check"></i><b>18</b> Références supplémentaires</a><ul>
+<li class="chapter" data-level="18.1" data-path="références-supplémentaires.html"><a href="références-supplémentaires.html#refs"><i class="fa fa-check"></i><b>18.1</b> Refs</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>19</b> Applications</a><ul>
+<li class="chapter" data-level="19.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>19.1</b> Example one</a></li>
+<li class="chapter" data-level="19.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>19.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>20</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="régression-linéaire-avec-r" class="section level1">
+<h1><span class="header-section-number">Chapitre 14</span> Régression linéaire avec R</h1>
+<div id="regression-linéaire-avec-r" class="section level2">
+<h2><span class="header-section-number">14.1</span> Regression linéaire avec R</h2>
+<p>Fonction <code>lm()</code> , modèle de la forme <code>Variable_a_expliquer ~ Variable_explicative</code></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="régression-linéaire-avec-r.html#cb56-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Width<span class="op">~</span>Petal.Length, <span class="dt">data=</span>iris)</span>
+<span id="cb56-2"><a href="régression-linéaire-avec-r.html#cb56-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Petal.Width ~ Petal.Length, data = iris)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.56515 -0.12358 -0.01898  0.13288  0.64272 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -0.363076   0.039762  -9.131  4.7e-16 ***
+## Petal.Length  0.415755   0.009582  43.387  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2065 on 148 degrees of freedom
+## Multiple R-squared:  0.9271, Adjusted R-squared:  0.9266 
+## F-statistic:  1882 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="que-faire-lorsque-la-relation-nest-pas-linéaire" class="section level2">
+<h2><span class="header-section-number">14.2</span> Que faire lorsque la relation n’est pas linéaire ?</h2>
+<p>Quand les deux variables sembles corrélées , de façon <strong>monotone</strong> mais <strong>non linéaire</strong>,</p>
+<p><span class="math inline">\(\rightarrow\)</span> Coefficient de <strong>Spearman</strong>, basé sur le <strong>rang</strong> des individus.</p>
+<center>
+<span class="math inline">\(\rho = 1 - \frac{6\sum_{i=1}^{n}(rg(X_i)-rg(Y_i))^2 }{n^3 -n}\)</span>
+</center>
+<p>avec :</p>
+<p><span class="math inline">\(rg(X_i)\)</span> le <em>rang</em> de <span class="math inline">\(X_i\)</span> (le classement de sa valeur) dans la distribution de <span class="math inline">\(X\)</span></p>
+<p><span class="math inline">\(n\)</span> le nombre d’individus</p>
+</div>
+<div id="obtenir-le-coefficient-de-spearman-avec-r" class="section level2">
+<h2><span class="header-section-number">14.3</span> Obtenir le coefficient de Spearman avec R</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="régression-linéaire-avec-r.html#cb58-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  iris$Sepal.Length and iris$Sepal.Width
+## S = 656283, p-value = 0.04137
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## -0.1667777</code></pre>
+<p>l’argument <code>exact</code> doit être précisé en cas de valeurs ex aequo dans les données.</p>
+</div>
+<div id="utilisation-conjointe-des-coefficients-de-pearson-et-spearman" class="section level2">
+<h2><span class="header-section-number">14.4</span> Utilisation conjointe des coefficients de Pearson et Spearman</h2>
+<p><span class="math inline">\(r\)</span> (Pearson) et <span class="math inline">\(\rho\)</span> (Spearman) sont deux moyens d’estimer la corrélation: lequel choisir ?</p>
+<p>si <span class="math inline">\(r = \rho\)</span>: on garde <span class="math inline">\(r\)</span> (plus simple à interpréter)</p>
+<p>si <span class="math inline">\(r &lt; \rho\)</span>: la relation est non-linéaire : prendre <span class="math inline">\(\rho\)</span></p>
+<p>si <span class="math inline">\(r &gt; \rho\)</span>: il y a un biais, prendre <span class="math inline">\(\rho\)</span> (plus robuste)</p>
+<p>… et toujours <strong>tracer le nuage de points</strong> pour examiner la nature de la relation.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="corrélation-de-deux-variables-quantitatives.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="trucs-pour-linéariser-des-relations-non-linéaires.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_cours_stats.pdf", "bookdown_cours_stats.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+"0","ggplot(data = mpg) +"
+"0","  geom_histogram(aes(x=hwy), color=""white"", fill=""darkcyan"", bins=40) +"
+"0","  labs(title = ""Histogramme "","
+"0","       subtitle = ""Nombre d'individu selon la valeur de leur Variable 1"","
+"0","       x = ""Variable 1"","
+"0","       y = ""Effectif"""
+"0","       ) +"
+"0","  theme_minimal()"

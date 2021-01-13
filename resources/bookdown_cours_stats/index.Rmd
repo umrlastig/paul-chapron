@@ -2,17 +2,21 @@
 title: "Analyse Statistique M2 IGAST"
 author: 'PC '
 date: "`r Sys.Date()`"
-output: pdf_document
 documentclass: book
 bibliography:
 - book.bib
 - packages.bib
 biblio-style: apalike
 link-citations: yes
-description: Ce cours collecte le contenu des diapositives des cours d'analyse statistique
+description: "Ce cours collecte le contenu des diapositives des cours d'analyse statistique
   du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé»
-  que celui des diapositives  Une version PDF et une version HTML sont proposées.
+  que celui des diapositives  Une version PDF et une version HTML sont proposées."
 site: bookdown::bookdown_site
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
 ---
 
 # Préambule {-}
@@ -50,6 +54,7 @@ Le reste, c'est du bonus !
 Pour constituer ce cours, j'ai utilisé les références suivantes: 
 
 - Cours M2 IGAST 2018 d'Ana-Maria Olteanu-Raimond 
+- Cours M2 IGAST 2017 d'Élodie Buard 
 - Probabilités, analyse de données et statistiques , Gilbert Saporta, Editions TECHNIP, 2011
 - l'excellent cours de Hadrien Commenges  https://gitlab.huma-num.fr/hcommenges/cours_statcomplet/-/raw/master/cours_statcomplet.pdf
 - Nombreuses ressources en ligne, parmi lesquelles : 
