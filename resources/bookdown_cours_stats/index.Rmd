@@ -19,6 +19,13 @@ output:
     keep_tex: yes
 ---
 
+
+<!-- sequence pour compiler  -->
+<!-- options(knitr.duplicate.label = "allow" -->
+<!-- setwd("~/dev/page_Chercheur_LASTIG/pchapron_homepage/resources/bookdown_cours_stats") -->
+<!-- rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8') -->
+
+
 # Préambule {-}
 
 Ce document s'adresse en priorité aux étudiants du Master 2 IGAST de l'ENSG, dans le cadre du Module intitulé "Analyse Statistique", dirigé par Ana-Maria Olteanu-Raimond. 
