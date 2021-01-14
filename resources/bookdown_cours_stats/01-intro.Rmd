@@ -225,7 +225,7 @@ ggplot(data = mpg) +
 L'histogramme est utilisé pour observer la répartition des valeurs d'une variable. Il est recommandé de faire varier le nombre ou l'épaisseur des barres qui le constituent pour ne pas «manquer»  des phénomènes dans la distribution de valeurs (par ex. plusieurs modalités fondues en une seule du fait d'une résolution trop grossière) 
 
 
-```{r exple_dist, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+```{r exple_dist2, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
 dens <- density(mpg$hwy)
 idxborne25 <- which(dens$x > 25  )[1]
 idxborne30 <- which(dens$x > 30  )[1]
@@ -310,7 +310,7 @@ data_wide %>%  gather(,key = measure,value = value, pct:measure_t2)
 
 
 
-## Vocabulaire 
+## Vocabulaire {#vocabulaire}
 
  
  - Population : Ensemble d'**individus**. Le nombre d'individus d'une population est appelé l'**effectif**.  

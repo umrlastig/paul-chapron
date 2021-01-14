@@ -1,0 +1,404 @@
+# Cartographie, Distribution et Échelle de couleurs {#carto_discretis}
+
+
+**Contexte** : on veut faire une carte choroplèthe d'une variable sur une couche vecteur.  
+
+
+Pour une variable quantitative continue qu'on souhaite représenter par une couleur, il n'est pas toujours possible d'avoir la possibilité d'afficher en légende un gradient couleur (d'ailleurs pas toujours lisible). 
+
+Il faut (souvent) classer les valeurs en catégories, et les logiciels proposent diverses méthodes de classifications (on dit aussi discrétisation) où le **nombre** $k$ de classes de valeurs (et donc de couleurs) et les **méthodes** de classification pour fixer leurs bornes varient. 
+
+En général on propose 5,7 ou 9 classes :
+
+  - pour $k<5$ trop peu de détails  
+  - pour $k>9$ difficile de distinguer les classes proches
+
+
+
+Il existe également une règle purement indicative : l’indice de Huntsberger, qui fixe le nombre de casse "optimum" :
+
+$$k = 1 + 3.3 log_{10}(N)$$
+
+Avec $N$ , le nombre d’observations et $k$ le nombre de classe.
+
+
+
+**Priorité au cartographe:** 
+
+C'est le cartographe qui décide en dernière instance du nombre de classes et de leurs bornes. Tout dépend de la question (ou des questions) que le cartographe souhaite aborder avec sa carte. Les valeurs de bornes calculées par des méthodes générales peuvent ne pas être pertinentes. 
+Par exemple , si je devais cartographier des vitesses d'automobilistes sur un réseau routier , je choisirais certainement des bornes égales aux limitations de vitesses : 30, 50 , 90 , 110 et 130, au lieu des bornes proposées par la méthodes des ruptures naturelles ! Tout est question d'intelligibilité pour les gens qui liront la carte.
+
+
+## Méthodes usuelles de discrétisation
+
+Voici les méthodes de classification que propose QGis :
+
+- Ruptures Naturelles (Jenks) : Minimisation des variances intra-classe et maximisation des variances inter-classe.
+- Effectifs égaux (c'est-à-dire des quantiles cf \@ref(quantiles) )
+- Intervalles égaux 
+- Écart-type  :  intervalles de 1 ou 0.5 $\sigma$
+- Jolies ruptures :  intervalle égaux "décalés" pour faire joli : nombre ronds, puissances de 10, ... 
+
+
+Nous allons voir l'effet de ces méthodes sur une carte choroplèthe de la surface des quartiers de Paris. 
+
+
+## Les données
+
+### Géométrie des quartiers de Paris 
+
+Pour manipuler et afficher des objets spatiaux avec R, on utilise le package `sf`.
+Les données viennent du site opendata.paris.fr, et sont disponibles à l'adresse : [https://opendata.paris.fr/explore/dataset/quartier_paris/information/] 
+
+```{r quartierparis, echo=TRUE,eval=FALSE}
+library(sf)
+quartiers <-  st_read("data/quartier_paris.shp")
+plot(quartiers$geometry)
+```
+
+
+```{r quartierparis2, eval=TRUE, echo=FALSE, cache=TRUE, fig.width=8, fig.height=5}
+par(mar=c(0,0,0,0))
+plot(quartiers$geometry)
+```
+
+### Distribution des surfaces des quartiers 
+
+
+```{r quartierparis3, eval=TRUE, echo=TRUE, cache=TRUE, fig.width=8, fig.height=4}
+hist(quartiers$surface,breaks = 20)
+```
+
+On voit que la distribution est très asymétrique : l'essentiel des quartiers sont de surface faible, et quelques quartiers sont très grands.
+
+On peut en déduire qu'une classification par intervalle égaux produira des classes de surface avec très peu d'individus (valeurs élevées) et des classes avec beaucoup d'individus (valeurs faibles).
+
+
+## Résultats des méthodes de classification
+
+### Classification par défaut 
+
+Par defaut la fonction `plot`  du package `sf`  utilise la méthode `pretty()` avec 10 ruptures ($9\pm1$ classes) :  ce sont des intervalles égaux. 
+
+
+```{r quartierparis4, eval=TRUE, cache=TRUE, fig.width=8, fig.height=4}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"])
+```
+
+
+À la lecture de cette carte, on retrouve les défauts de la classification par intervalle égaux. On voit que les quartiers du centre, nombreux et petits, sont tous dans la même classe , ici en bleu, et visuellement peu discriminés: les autres couleurs que le bleu sont affectés aux grands quartiers, peu nombreux.
+
+
+### Méthode Jenks à 5 , 7 et 9 classes
+
+La méthode de Jenks essaye de "bien classer" la population en minimisant la  variance intra-classe et en maximisant la variance inter-classe, à la manière de l'algorithme des k-means.
+
+On peut donc s'attendre à une coloration des quartiers qui colle mieux aux surfaces : 
+
+
+```{r quartierparis6bis, eval=FALSE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=3}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="jenks", nbreaks = 5, main = "5 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 7, main="7 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 9, main= "9 breaks")
+```
+
+
+```{r quartierparis6, eval=TRUE, cache=TRUE, echo=FALSE, fig.width=12, fig.height=3}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="jenks", nbreaks = 5, main = "5 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 7, main="7 breaks")
+plot(quartiers["surface"], breaks="jenks", nbreaks = 9, main= "9 breaks")
+```
+
+
+On observe sur ces cartes une coloration plus concentrique: les quartiers du centre sont toujours en bleu foncé, mais les quartiers immédiatement voisins sont bien distincts, en violet, ainsi que les quartiers périphériques, en rose, qui sont nettement plus grands.
+
+
+### Effectifs égaux
+
+On utilise la fonction `quantile` avec une séquence de proportions de 25% (argument `probs` de la fonction), ce qui va nous calculer les quartiles de la surface des quartiers.
+Ces quartiles sont donnés en argument de la fonction `plot` du package `sf`.
+
+```{r quartierparis7, eval=TRUE, cache=TRUE, echo=FALSE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0))
+mybreaks <- quantile(quartiers$surface, probs = seq(0, 1, 0.25)) #quartiles
+plot(quartiers["surface"], breaks=mybreaks, main = "Effectifs égaux, 4 classes")
+```
+
+
+Cette carte affiche donc les quartier répartis dans 4 classes , chacune contenant 25% des quartier de Paris. Elle est forcément un peu grossière, mais très discriminante : les quartiers du centre ne sont plus d'une couleur homogène, et les frontières entre les classes sont plus accidentées, moins douces que pour Jenks par exemple. 
+
+Essayons avec 5 classes de 20% de l'effectif (on modifie la séquence de proportions dans la fonction `quantile`) :
+
+
+```{r quartierparis7bis, eval=TRUE, cache=TRUE, echo=FALSE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0))
+mybreaks <- quantile(quartiers$surface, probs = seq(0, 1, 0.20)) #quintiles
+plot(quartiers["surface"], breaks=mybreaks, main = "Effectifs égaux, 5 classes")
+```
+
+Ça n'est guère plus convaincant que la version à 4, mais il fallait essayer ! 
+
+
+### Intervalles égaux 
+
+Comme pour la méthode par défaut (pretty), qui est grosso modo la même chose, on enpeut pas s'attendre, étant donné l'allure asymétrique de la distribution des surfaces, que la méthode des effectifs égaux soit très adaptée.
+
+```{r quartierparis8, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="equal", nbreaks = 5, main = "5 Intervalles égaux")
+plot(quartiers["surface"], breaks="equal", nbreaks = 7, main = "7 Intervalles égaux")
+plot(quartiers["surface"], breaks="equal", nbreaks = 9, main = "9  Intervalles égaux")
+```
+
+Quel que soit le nombre de classe, le résultat est décevant : le gros tas de quartiers bleus au centre est indistinct, et seules changent les couleurs des quartiers périphériques.
+
+
+
+
+### Écart-types
+
+```{r quartierparis9, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0))
+plot(quartiers["surface"], breaks="sd",main = "Écart-type")
+```
+
+Cette méthode est similaire à la méthode des jolies ruptures sur la variable centrée réduite. 
+
+
+Comparons les deux sorties en affichant les cartes côte à côte (attention cela implique de ne plus afficher la légende, je le fais juste pour cette comparaison) :
+
+```{r quartierparis10, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
+par(mar=c(0,0,0,0),mfrow=c(1, 2))
+plot(quartiers["surface"], breaks="sd",main = "Écart-type", reset = F,key.pos = NULL)
+quartiers$surfCR <- (quartiers$surface - mean(quartiers$surface)) *(1/sd(quartiers$surface) ) #centrer reduire
+plot(quartiers["surfCR"], breaks="pretty",main = "Jolies ruptures", reset=F, key.pos = NULL)
+```
+
+
+Effectivement , c'est très proche !
+
+
+## Quelle méthode de classification choisir ? 
+
+
+Il n'y a évidemment pas de critère de choix universel et absolu. 
+Il faut tester, bidouiller, tester, jusqu'à converger vers une solution satisfaisante.
+
+
+Si on décide de discrétiser les valeurs soi-même, il y a tout de même quelques principes à respecter : 
+
+- les classes **doivent** contenir toutes les valeurs, être sans recouvrement, contigües et distinctes.
+- attention aux décimales et aux extrémités ! 
+- Il faut matérialiser **la structure interne des données**, c'est-à-dire les caractéristiques de la forme de sa distribution :  seuils naturels, bi-modalités, queus de distribution etc... 
+
+On peut donc en déduire des principes spécialisés :  
+
+- si la distribution est uniforme ou très plate $\rightarrow$ Intervalles égaux
+- si la distribution est asymétrique $\rightarrow$ Effectifs égaux, Jenks , plus rarement  progression géométrique pour les phénomènes aux distributions très exponentielles et piquées.
+- si la distribution est symétrique $\rightarrow$ Écart-type, intervalle égaux
+
+
+Si jamais les méthodes de classifications  abordées dans ce chapitre n'étaient pas suffisantes , vous en trouverez d'autres à essayer dans la doc de la fonction `classInt` du package du même nom.
+
+
+
+
+# Visualiser une distribution avec R 
+
+
+Ce chapitre montre les différentes façons d'afficher une distribution, ainsi qu'un exemple de code R pour l'obtenir.
+
+- Histogramme 
+- Distribution
+- BoxPlot
+- Violin plot
+- Pyramides (histogrammes juxtaposés)
+- Polygones de fréquences
+- Distribution cumulée , Fonction de répartition , CDF
+- Dot strip plot
+
+
+## Histogramme : Code R + ggplot
+
+```{r histo_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+mydata <-  penguins
+histo_mass <- ggplot(mydata)+
+  geom_histogram(aes(x=body_mass_g), fill="darkorchid4", color="darkgray", bins=50)+
+  labs(title = "Penguins Body Mass", subtitle = "Histogram")+
+  ylab("Count")+theme_light()
+histo_mass
+```
+
+
+## Distribution/densité : Code R + ggplot
+
+<span style="color:red">&#9888;</span>  ce n'est pas exactement une probabilité, mais une **densité** de probabilité.
+Pour obtenir la probabilité pour une valeur $x$ , il faut intégrer sur un petit $dx$ autour de $x$ (cf. \@ref(densite)).
+
+
+```{r distrib_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+mydata <-  penguins
+distrib_mass <- ggplot(mydata)+
+  geom_density(aes(x=body_mass_g), fill="darkorchid4", color="darkgray")+
+  geom_vline(aes(xintercept=mean(body_mass_g, na.rm = T)), color="black", size=0.4, linetype="dashed" )+
+  labs(title = "Penguins Body Mass", subtitle = "Probability density and mean")+
+  theme_light()
+distrib_mass
+```
+
+
+
+## BoxPlot : Code R + ggplot
+
+
+```{r boxplot_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+mydata <-  penguins
+boxplot_mass <- ggplot(mydata)+
+  geom_boxplot(aes(x=body_mass_g, y=species, color=species))+
+  labs(title = "Penguins Body Mass", subtitle = "BoxPlot by Species")+
+  theme_light()
+boxplot_mass
+```
+
+## Violin plot : Code R + ggplot
+
+
+Le violin plot est obtenu en faisant une symétrie de la distribution par rapport à l'axe des $x$ d'un affichage classique de distribution.
+
+
+
+Cette visualisation est utile pour des distributions complexes, e.g.  mal résumées par la moyenne et la dispersion, observées pour plusieurs facteurs ou classe (comme ici, avec l'espèce des pingouins).
+
+```{r violin_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+mydata <-  penguins
+violin_mass <- ggplot(mydata)+
+  geom_violin(aes(y=body_mass_g, x=species, fill=species), color="gray", trim=F)+
+  labs(title = "Penguins Body Mass", subtitle = "ViolinPlot by Species")+
+  theme_light()
+violin_mass
+```
+
+
+## Violin plot et Boxplot  : Code R + ggplot 2
+
+On peut superposer un boxplot de la distribution d'une variable à son violin-plot.
+
+
+```{r violin_code_2, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+mydata <-  penguins
+violin_mass <- ggplot(mydata)+
+  geom_violin(aes(y=body_mass_g, x=species, fill=species), color="lightgray", trim=F)+
+  geom_boxplot(aes(y=body_mass_g, x=species, fill=species), color="black", fill="#eeeeee" ,width=0.1)+
+  labs(title = "Penguins Body Mass", subtitle = "ViolinPlot and Boxplot by Species")+
+  theme_light()
+violin_mass
+```
+
+
+## Pyramides (histogrammes juxtaposés) 
+
+Lorsqu'une des variables est qualitative à deux modalités, on peut classer les individus selon cette variable en deux sous-populations, et représenter les histogrammes d'une autre variable quantitative pour ces deux sous-populations :
+
+```{r pyramide_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3, message=F}
+library(palmerpenguins)
+mydata <-  penguins
+pyramide_mass <-  ggplot(mydata, aes(fill = sex)) + 
+  geom_bar(data = subset(mydata, sex == "female"), stat = "bin", aes(x=body_mass_g, y=..count..*(-1)), color="grey") +
+  geom_bar(data = subset(mydata, sex == "male"), stat = "bin", aes(x=body_mass_g), color="grey") + 
+  scale_y_continuous(labels = paste0(as.character(c(seq(20, 0, -10), seq(10, 20, 10))))) +
+  ylab("count")+  coord_flip()+
+  labs(title = "Penguins Body Mass", subtitle = "Pyramid Plot by sex")+
+  theme_light()
+  
+pyramide_mass
+```
+
+Une version très connue de cette visualisation est la pyramide des âges, utilisée en démographie.
+
+
+## Polygones de fréquences
+
+On peut voir cette visualisation de distribution comme un «histogramme en courbe»
+
+Elle est utile pour comparer plusieurs distributions.
+
+
+```{r frequpoly_code1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
+library(palmerpenguins)
+mydata <-  penguins
+freqpoly_mass <- ggplot(mydata)+
+  geom_freqpoly(aes(x=body_mass_g, color=species), bins=50)+
+  labs(title = "Penguins Body Mass", subtitle = "Frequence Polygons")+
+  ylab("Count")+theme_light()
+freqpoly_mass
+```
+
+
+
+
+## Distribution cumulée, Fonction de répartition, CDF
+
+
+Les termes "Distribution cumulée", "Fonction de répartition", et "CDF" (Cumulative Distribution Function in english) sont en principe synonymes.
+
+
+
+Cette représentation diffère des représentation habituelle des distributions car on représente sur l'axe des ordonnées non plus la valeur de l'effectif ou la densité, mais la **somme cumulée** de l'effectif ou de la densité.
+
+
+Cette courbe indique en abscisse la valeur de la variable $V$, et en ordonnée la probabilité empirique d'avoir dans la population, un individu pour lequel $V\leq x$
+
+i.e. c'est la fonction  
+$$F_{V}(x)=\mathbb {P} (V\leq x)$$
+
+
+```{r CDF1 , cache = TRUE, fig.width=8, fig.height=3, echo=TRUE, warning=F}
+library(palmerpenguins)
+mydata <-  penguins
+plot_mass <- ggplot(mydata, aes(x= body_mass_g))+
+  stat_ecdf(color="darkorchid4")+
+  labs(title = "Penguins Body Mass", subtitle = "Cumulative Distribution Function")+
+  ylab("Probability")+theme_light()
+plot_mass
+```
+
+
+Cette représentation permet par exemple de superposer les CDF de sous groupes de la population (ici selon le facteur de l'espèce des penguins)
+
+```{r CDF_groupe , cache = TRUE, fig.width=8, fig.height=3, echo=TRUE, warning=F}
+library(palmerpenguins)
+mydata <-  penguins
+plot_mass <- ggplot(mydata)+
+  stat_ecdf(aes(x= body_mass_g, color=species))+
+  labs(title = "Penguins Body Mass by Species", subtitle = "Cumulative Distribution Function")+
+  ylab("Probability")+theme_light()
+plot_mass
+```
+
+
+
+## Dot Strip Plot
+
+Cette visualisation est pratique lorsque les individus sont nombreux. En jouant sur la transparence et le décalage artificiel des points (fonction `geom_jitter` à la place de `geom_point()`), on peut faire apparaître les zones de la plages de valeurs de la variable où se retrouvent un nombre notable d'individus.
+
+Cela reste à mon avis moins parlant qu'une bonne vieille courbe de densité traditionnelle.
+
+```{r dotplot1 ,cache = TRUE, fig.width=8, fig.height=3, echo=TRUE, warning=F}
+library(palmerpenguins)
+mydata <-  penguins
+plot_dot <- ggplot(mydata)+
+  geom_jitter(aes(x= bill_depth_mm, y=species, color=species),width=0, height = 0.12, alpha=0.4)+
+  labs(title = "Penguins Bill Depth  by Species", subtitle = "Dot plot / Strip plot")+
+  theme_light()
+plot_dot
+```
+

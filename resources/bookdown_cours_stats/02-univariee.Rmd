@@ -4,7 +4,7 @@
 
 
 
-## Le concept de distribution
+## Le concept de distribution {#densite}
 
 L'analyse univariée a pour but de **décrire**  et **mesurer** la **répartition** des valeurs que peut prendre une variable.
 
@@ -250,10 +250,61 @@ grid.arrange(plot1, plot2,  ncol=2, nrow =1)
 On voit ici comme la représentation graphique des variables nous renseigne à deux niveaux : elle nous indique la présence de valeurs aberrantes lors de son affichage "brut", et une fois filtrée, elle nous montre comment la population varie dans les valeurs de ses variables.
 
 
-Nous allons maintenant voir comment décrire la forme de la répartition de ces valeurs avec des mesures statistiques.
+## Afficher  histogrammes et distributions en R
 
 
-# Statistique descriptive univariée : la tendance {#tendance}
+### Histogramme d'une variable quantitative
+
+la fonction `hist` affiche un histogramme d'un vecteur **numerique**:
+
+```{r histoR}
+x <-  rnorm(2500) #init
+hist(x)
+```
+
+
+Supposons que nous ayons un fichier au format CSV , voici comment le transformer en dataframe et en tirer un histogramme :
+
+
+```{r histoCSV, cache=T}
+mydata <-  read.csv("data/pop_communes.csv")
+names(mydata) # pour connaître le nom des colonnes du tableau 
+hist(mydata$Population.totale,breaks = 30) # je choisis d'afficher 30 colonnes
+```
+
+Voici comment obtenir un histogramme avec le package `ggplot2`
+
+```{r histoCSVggplt, cache=T}
+plt1 <-  ggplot(mydata, aes(x=Population.totale))+
+  geom_histogram(bins=30, fill="darkcyan", color="grey")+ # exemple de spécification de couleur
+  theme_light()
+plt1
+```
+
+### Histogramme et variable qualitative
+
+un histogramme n'a pas de sens  pour une variable **qualitative**. 
+
+On peut utiliser `barplot`,<span style="color:red; font-size:1;">&#9888;</span> mais ce n'est plus une distribution ! 
+
+```{r histoR2,fig.width=8 }
+x <-  sample(month.name, 2500, replace=T) # month.name est la liste des noms de mois.
+tx <- table(x) #table de comptage
+barplot(tx , las=2)
+```
+
+
+
+
+
+
+
+
+
+Nous allons maintenant voir comment décrire la forme de la répartition de ces valeurs avec des mesures statistiques. La première d'entre elles est la **tendance**
+
+
+# La Tendance {#tendance}
 
 
 
@@ -424,23 +475,49 @@ Tout dépend de la distribution !
 (cette réponse est malheureusement quasiment universelle, d'où l'importance de **toujours représenter visuellement les variables** pour décider en connaissance de cause )
 
 
+De manière générale , quand les distributions ne sont pas trop «biscornues» (déformées, asymétriques, multimodales), la médiane est un bon choix par défaut. 
 
-Si la distribution n'a pas de longue queue (on dit aussi **traîne**) , la moyenne et la médiane sont adaptées.
-
-
-Si la distribution exhibe plusieurs modes , il faut réaliser une classification puis calculer médiane et moyenne pour chaque classe.
-
-
-Le **mode** est privilégié pour les variables  **nominales** c'est-à-dire des variables qualitatives dont les modalités ne sont pas ordonnées, et si on désire considérer «le cas le plus fréquent»
+Également,  observer l'écart numérique entre médiane et moyenne peut être une bonne heuristique pour évaluer rapidement l'**asymétrie** d'une distribution.
 
 
 
 
+Pour les variables quantitatives : 
 
-### Cas délicat : Distribution bimodale 
+
+ - Si la distribution n'a pas de longue queue (on dit aussi **traîne**) , la moyenne et la médiane sont adaptées. 
+
+ - Si la distribution exhibe plusieurs modes , il faut réaliser une classification puis calculer médiane et moyenne pour chaque classe.
+
+Pour les variables qualitatives : 
+
+ - Le **mode** est privilégié pour les variables  **nominales** c'est-à-dire des variables qualitatives dont les modalités ne sont pas ordonnées, et si on désire considérer «le cas le plus fréquent».
 
 
-Parfois une variable peut être **bimodale**, c'est à dire avoir deux  intervalles de valeurs majoritaires
+
+### Exemple idéal: Distribution unimodale symétrique 
+
+```{r gaussienne2, cache=TRUE, fig.width=8, fig.height=3.5}
+xx <- data.frame(value=rnorm(9000,mean = 5, sd = 1))
+plot1 <- ggplot(xx)+
+        geom_line(aes(x = value),stat = "density", color="#44DD99", lwd= 1.3)+
+        geom_vline(xintercept = mean(xx$value), color="red")+
+        geom_vline(xintercept = median(xx$value) + 0.02,color="blue")+
+        annotate("text", x=c(4.5,5.5), y=c(0.2,0.2), colour=c("red","blue"),label=c("mean", "median"))+
+        theme_light()
+plot1
+```
+
+Dans ce cas tout se passe bien : la distribution ne présente qu'un seul pic, et est symétrique : médiane et moyenne sont confondues, ce sont deux bons résumés de la tendance de cette variable, et on peut choisir l'une ou l'autre.
+
+
+
+
+### Exemple d'un cas délicat : distribution bimodale 
+
+
+Parfois une variable peut être **bimodale**, c'est-à-dire lorsque la population est regroupée autour de deux tendances, dans deux  intervalles de valeurs majoritaires.
+Voici un exemple: 
 
 ```{r bimod1, cache=TRUE, echo=FALSE,fig.width=8, fig.height=3.5}
 xx <- data.frame(value=rnorm(1600,mean = 5, sd = 1))
@@ -457,54 +534,24 @@ plot1
 
 Que choisir dans un tel cas : moyenne ou médiane ? 
 
-
-## Distribution unimodale symétrique 
-
-```{r gaussienne2, cache=TRUE, fig.width=8, fig.height=3.5}
-xx <- data.frame(value=rnorm(2900,mean = 5, sd = 1))
-plot1 <- ggplot(xx)+
-        geom_line(aes(x = value),stat = "density", color="#44DD99", lwd= 1.3)+
-        geom_vline(xintercept = mean(xx$value), color="red")+
-        geom_vline(xintercept = median(xx$value) + 0.02,color="blue")+
-        annotate("text", x=c(4.5,5.5), y=c(0.2,0.2), colour=c("red","blue"),label=c("mean", "median"))+
-        theme_light()
-plot1
-```
-
-
-## Histogramme et distribution en R
-
-
-la fonction `hist` affiche un histogramme d'un vecteur **numerique**:
-
-```{r histoR}
-x <-  rnorm(2500) #init
-hist(x)
-```
-
-## Histogramme et distribution en R
-
-un histogramme n'a pas de sens  pour une variable **qualitative**. 
-
-On peut utiliser `barplot`,<span style="color:red; font-size:1;">&#9888;</span> mais ce n'est plus une distribution ! 
-
-```{r histoR2,fig.width=8 }
-x <-  sample(month.name, 2500, replace=T)
-tx <- table(x)
-barplot(tx , las=2)
-```
+... Ni l'une ni l'autre , on voit qu'elles sont peu informatives. Il faudrait dans ce cas établir un seuil et raisonner sur les deux sous-populations. 
 
 
 
-# Statistique descriptive univariée : la dispersion
-<br><br><br>
-Variance, écart-type, Coeff. de variation.
+
+# La Dispersion {#dispersion}
+
+
+La **dispersion** désigne la façon dont les valeurs des variables des individus d'une population s'écartent de leur tendance. 
+
+Elle est décrite par la **variance**, l' **écart-type**, et le **coefficient de variation** (varmean).
 
 
 
-## La **dispersion** statistique 
+## La dispersion 
 
-Tendance des valeurs d'une variable à se disperser autour des valeurs des tendances centrales.
+Voici un nuage de points formées par deux variables, échantillonnées selon une loi normale $\mathscr{N}(0,1)$ , de moyenne 0 , et d'écart type 1 (nous allons voir dans un instant ce que signifie l'écart-type) 
+
 ```{r gaussienne2D, cache=TRUE, fig.width=10}
 mydataset <- data.frame(X=rnorm(900), Y=rnorm(900))
 plot1 <- ggplot(mydataset)+
@@ -514,39 +561,70 @@ plot1
 ```
 
 
+Dans cet exemple, la dispersion nous servira à mesure à quel point les individus s'écartent de la tendance centrale de $X$ et de celle de $Y$, ici le point (0,0).
+
+
+
 ## Variance et Écart-type
 
-La **variance** est la somme des écarts carrés à la moyenne rapporté à l'effectif
 
-$\displaystyle var_X= \frac{1}{n}\sum_{i=1}^{n}(x_i -\bar{x})^2$
+La variance et l'écart-type rendent compte de la **dispersion** de la variable autour de sa moyenne. On peut les interpréter comme une  «quantité moyenne d'écart»  entre les valeurs des individus et la valeur moyenne.
+
+
+Mathématiquement, la **variance** est définie comme la **somme des écarts carrés à la moyenne rapporté à l'effectif**
+
+$$ var(X)= \frac{1}{n}\sum_{i=1}^{n}(x_i -\bar{x})^2$$
 
 Avec :
+
   * $X$ une variable
-  * $x_i$ les valeurs de la variables
+  * $x_i$ les valeurs de la variables pour les individus de la population 
   * $\bar{x}$ la moyenne de $X$ 
-  * $n$ l'effectif
-
-$\sigma_X = \sqrt{var_X}$  : l'**écart type** est la racine carrée de la variance
-
-## Variance et Écart-type
-
-Variance et écart-type rendent compte de la **dispersion** de la variable autour de sa moyenne.
-
-Ils sont **sensibles** aux valeurs extrèmes et toujours **positifs**.
-
-Si $var_X = 0$ ou $\sigma_X = 0$ , alors $X$ est **constante**.
-
-Un écart-type faible indique que les valeurs sont réparties de façon **homogène** autour de la moyenne.
-
-## Précaution {.flexbox .vcenter}
-
-<span style="color:red; font-size:1.5em;">&#9888;</span>Variance et écart type n'ont d'intérêt que pour qualifier des distributions **unimodales**, et (à peu près) **symétriques**
+  * $n$ l'effectif de la population
 
 
-(i.e. proche de la Gaussienne)
+L'**écart-type**  (standard deviation in english) est la racine carrée de la variance: 
+$$\sigma_X=\sqrt{var(X)}$$  
 
 
-## Lorsque $X\sim \mathscr{N}(\mu,\sigma)$
+
+
+
+Conséquences de ces définitions : 
+
+-  si $var(X) = 0$ ou $\sigma_X = 0$ , alors $X$ est **constante** (et vaut sa moyenne évidemment)
+-  Ces deux mesures **sensibles** aux valeurs extrêmes et toujours **positives**.
+-  Un écart-type ou un variance faible indique que les valeurs sont réparties de façon **homogène** autour de la moyenne.
+- Du fait de la racine carrée, l'écart-type permet d'exprimer la dispersion dans les mêmes unités que celles des données, ce que ne permet pas la variance.  
+
+
+
+### Variance et écart type avec R 
+
+Les fonctions pour calculer la variance et l'écart-type d'une variable sont `var` et `sd` :
+
+
+
+```{r stdvar1, cache=TRUE, echo=TRUE}
+xx <- iris$Sepal.Width
+var(xx)
+sd(xx)
+```
+
+
+
+
+
+
+
+### Si la distribution est proche de la Gaussienne  
+
+<span style="color:red; font-size:1.5em;">&#9888;</span> Variance et écart type n'ont d'intérêt que pour qualifier des distributions **unimodales**, et (à peu près) **symétriques** , c'est-à-dire d'une allure proche de la distributions Gaussienne. 
+
+
+
+Si c'est le cas , alors la valeur de l'écart-type nous rend bien des services : 
+
 
 ```{r stddev1, cache=TRUE, echo=FALSE}
 library(latex2exp)
@@ -561,45 +639,92 @@ plot1
 ```
 
 
-<br>
-$[-\sigma;\sigma] \approx \frac{2}{3}$  de l'effectif
-<br>
-<br>
-$[-2\sigma;2\sigma] \approx$ 95% de l'effectif
+L'intervalle $[-\sigma;\sigma]$ contient  environ $\frac{2}{3}$  de l'effectif
 
-## Quantiles
+L'intervalle $[-2\sigma;2\sigma]$ contient  environ 95%  de l'effectif
+ 
 
-La **médiane** sépare une population en **deux** classes d'égal effectif selon la valeur d'une variable (quantitative).
+Cette façon de «couper» la population en tranches d'une certaine «épaisseur» (i.e. part de la population) est à la base de la mesure suivante : les **quantiles**
 
-Les **quantiles**  séparent une population en **$n$** classes d'égal effectif 
 
-Les **quartiles** d'une population selon une variable $X$ sont trois valeurs, $Q_1,Q_2,Q_3$ qui séparent la population en **quatre** classes d'égal effectif.
-<small>
+
+## Quantiles   {#quantiles}
+
+
+Nous avons vu que la **médiane** d'une variable sépare une population en **deux** classes d'égal effectif selon la valeur de cette variable (quantitative).
+
+Les **quantiles**  séparent une population en **$n$** classes d'égal effectif.
+
+En pratique, toutes les valeurs de $n\in\mathbb{N}$ ne sont pas utilisées. Les cas les plus courants sont : 
+
+- $n=4$ : les **quartiles**, qui contiennent 25% de la population 
+- $n=10$ : les **déciles**, qui en contiennent 10%
+- plus rarement $n=100$ : les **centiles** qui en contiennent 1%
+
+
+
+
+### Quartiles 
+
+Les **quartiles** d'une variable $X$ sont trois valeurs, $Q_1,Q_2,Q_3$ qui séparent la population en **quatre** classes d'égal effectif selon leur valeur de la variable : 
+
 
   * 25% des valeurs de $X$ sont strictement inférieures à $Q_1$
   * 50% des valeurs de $X$ sont strictement inférieures à $Q_2$ (médiane)
   * 75% des valeurs de $X$ sont strictement inférieures à $Q_3$
   
-</small>
 
-## Déciles
+### Déciles
 
-Les déciles sont les **9** quantiles $Q_1,Q_2,\dots,Q_9$ qui séparent une population  selon la valeur d'une variable quantitative en **10** classes d'égal effectif.
+Les **déciles** sont les **9** quantiles $Q_1,Q_2,\dots,Q_9$ qui séparent une population  selon la valeur d'une variable quantitative en **10** classes d'égal effectif.
 
-## Ecarts inter-quartiles et inter-déciles
 
-Deux mesures de la **dispersion** d'une distribution : 
 
-<br><br>
-**Écart inter-quartile**: $Q_3-Q_1$ , capture 50% des valeurs de la population les plus proches de la médiane
+### Écarts inter-quartiles et inter-déciles
 
-<br><br>
-**Écart inter-déciile**: $Q_9-Q_1$ , capture 80% des valeurs de la population les plus proches de la médiane
+Les quantiles permettent de mesurer la **dispersion** d'une distribution : 
 
-## Les boîtes à moustaches (boxplots)
 
-représentation courante de la dispersion d'une variable à l'aide de **quartiles**
+l'**Écart inter-quartile**: $Q_3-Q_1$ , nous donne l'**étendue** de 50% des valeurs de la population les plus proches de la médiane, 
 
+l'**Écart inter-déciile**: $Q_9-Q_1$ , nous donne l'**étendue**  de 80% des valeurs de la population les plus proches de la médiane
+
+
+### Avantages et inconvénient des quantiles
+
+**Avantages** :
+
+- les quantiles sont **peu sensibles** aux distributions aplaties et aux valeurs extrêmes, (puisque seuls les quantiles des extrémités de l'étendue de la variable sont concernés, et ne perturbent pas les autres)  
+
+- L'écart inter-quantile est plus robuste que l'écart-type aux valeurs extrêmes (pour cette même raison: les valeurs extrêmes de la variables ne sont pas prises en compte dans son calcul)
+
+**Inconvénients** :
+
+- leur calcul peut s'avérer délicat pour les variables quantitatives discrètes
+- les écarts inter-quantiles négligent l'influence des valeurs extrêmes sur la distribution, entraînant un risque de "passer à côté" d'individus ou évènements critiques. 
+- Les écarts inter-quantiles sont partiaux : l'écart inter-quartile néglige 50% de la population !
+
+### Les boîtes à moustaches (boxplots) avec R
+
+Les boxplots , ou boîtes à moustaches sont la représentation courante de la dispersion d'une variable à l'aide de **quartiles**.
+
+Voici comment obtenir un boxplot avec R . On prend pour cet exemple  le dataset `iris`, toujours disponible dans une session R.
+
+```{r boxplot2, cache=TRUE, fig.height=6}
+boxplot(iris$Sepal.Width ~ iris$Species)
+```
+
+
+L'interprétation des formes des boîtes est la suivante: 
+
+* La marque centrale de la boîte est la médiane 
+* Les bords de la boîte sont les quartiles $Q_1$ et $Q_3$
+* Les extrémités des moustaches vont jusqu'à la plus grande (resp. la plus petite ) valeur inférieure (resp. supérieure)  à **1.5 fois** l’écart interquartile 
+* Les valeurs qui dépassent les moustaches sont affichées sous formes de points
+
+
+
+Voici un exemple de boxplots obtenus avec le package `ggplot2` 
 
 ```{r boxplot1, cache=TRUE}
 plot1 <- ggplot(iris)+
@@ -607,34 +732,49 @@ plot1 <- ggplot(iris)+
 plot1
 ```
 
-## Interprétation des boxplots
 
-* La marque centrale de la boîte est la médiane 
-* Les bords de la boîte sont les quartiles $Q_1$ et $Q_3$
-* Les extrémités des moustaches vont jusqu'à la plus grande (resp. la plus petite ) valeur inférieure (resp. supérieure)  à 1.5 fois l’écart interquartile 
-* Les valeurs qui dépassent les moustaches sont affichées sous formes de points
+On peut voir un boxplot comme un résumé de distribution "vue du dessus", comme dans l'exemple ci-dessous où sont alignés (à quelques pixels près) un histogramme et un boxplot de la même variable: 
 
-```{r boxplot2, cache=TRUE, echo=FALSE}
-plot1 <- ggplot(iris)+
-  geom_boxplot(aes(y=Sepal.Width,x= Species) ) + coord_flip()
-plot1
+
+
+```{r boxdistsimultanee , echo=FALSE, cache=TRUE, warning=FALSE, fig.width=8, fig.height=4}
+library(ggplot2)
+library(cowplot)
+
+
+n <-  4000
+xval <-  rbeta(n, shape1 = 2, shape2 = 5) * 1000
+mydf <-  data.frame(x=xval)
+xmean <-  mean(xval)
+xsd <-  sd(xval)
+
+xlabels <- data.frame(
+  x = c(quantile(mydf$x)),
+  y = c(rep(330,5) ),
+  text = paste0(c("","Q1: ", "Q2: ", "Q3: ", ""),names(quantile(mydf$x)))
+)
+distriPlot <-  ggplot(mydf, aes(x=x))+
+  geom_histogram(bins = 50, fill="#0FAF96", color="grey")+
+  geom_vline(xintercept = xlabels$x, linetype=c(2,2,1,2,2))+
+  geom_label(data= xlabels, aes(x=x,y=y,label=text) )+
+  xlab("X")+
+  ylab("Effectif")
+
+# Marginal density plot of x (top panel) and y (right panel)
+yplot <- ggplot(mydf, aes(y = xval))+
+  geom_boxplot(outlier.alpha = 0.2)+
+  coord_flip()+
+  xlab("")+
+  ylab("")+
+  theme_void()
+
+#assemblage
+plot_grid(yplot, distriPlot,  ncol = 1, align = "hv",scale = c(1,1), 
+          rel_widths = c(1, 1), rel_heights = c(1, 3))
 ```
 
 
 
-## Avantages et inconvénient des quantiles
-
-### Avantages
-
-Peu sensibles aux distributions aplaties et aux valeurs extrèmes
-
-L'écart inter-quantile est plus robuste que l'écart-type
-
-### Inconvénients
-
-Parfois délicat pour les variables quantitatives discrètes
-
-Les écarts inter-quantiles négligent l'influence des valeurs extrèmes sur la distribution
 
 ## Le coefficient de variation 
 
@@ -642,54 +782,94 @@ Le **coefficient de variation** ($CV$) est une autre mesure de dispersion.
 
 C'est le ratio entre l'écart-type $\sigma_x$ et la moyenne $\bar{x}$ d'une variable quantitative $X$.
 
-$\displaystyle CV(X)=\frac{\sigma_x}{\bar{x}}$
+$$\displaystyle CV(X)=\frac{\sigma_x}{\bar{x}}$$
 
 Plus il est important , plus la dispersion est grande.
-
 Plus il est proche de 0, plus les données sont homogènes.
 
 
-Il souffre des mêmes inconvénients que la moyenne et l'écart-type : sensibilité aux valeurs extrèmes.
-
-## Comparaison de dispersion de deux distributions de valeurs.
+Il souffre des mêmes inconvénients que la moyenne et l'écart-type : il est sensible aux valeurs extrêmes. 
 
 
+> Comme l'écart type est une sorte de "quantité d'écart à la moyenne", il est parfois difficile d'interpréter directement sa valeur numérique, qui dépend des unités de la variables. Ici pour le $CV$ le fait de diviser par la moyenne *normalise* en quelque sorte cette mesure et permet d'avoir une mesure un peu plus *absolue* de la dispersion de la variable, quelle que soit son unité et son intervalle de valeurs.  
 
-Exemple : deux communes  versent des aides aux entreprises locales. 
 
-Commune A :  moyenne = 390 euros, $\sigma$ = 30 euros 
 
-Commune B :  moyenne = 152 euros, $\sigma$ = 8 euros
+
+## Comparer les dispersions de deux distributions.
+
+
+Interpréter la dispersion d'une seule variable est un exercice un peu vain: tenter de décider si la dispersion des valeurs d'une variable d'une population autour de sa moyenne est «notable» n'a pas beaucoup de sens si nous n'avons pas une **valeur de référence** qui nous permette de **qualifier** la dispersion calculée par comparaison. 
+Or, il n'existe pas de telle valeur de référence. Nous ne pouvons pas donner de règle générale de la forme «si l'écart type $\sigma_{tutu}>5$ , vous avez un problème !» 
+
+
+
+En revanche il est beaucoup plus aisé et pertinent de **comparer** la dispersion d'une variable avec celle d'une autre. 
+
+
+
+Prenons un exemple : 
+
+Deux communes, A et B, versent des aides aux associations locales. 
+
+
+
+|               |   moyenne    |           écart-type   |       
+|:--------------|--------------:|-------------------:|
+| Commune A     | 390€ | $\sigma_A = 30$      |
+| Commune B     | 152€ | $\sigma_B = 8$      |
 
 Pour quelle commune les aides sont les plus homogènes?
 
-<br><br>
-<small>On pourrait aussi comparer des distribution de valeurs exprimées dans des unités différentes !</small>
 
-## **(Mauvaise)** Comparaison visuelle de deux distributions
 
-<span style="font-size:60%; margin-top:-50px">Pour échantilloner dans une loi normale : fonction `rnorm`</span>
+Le calcul du coefficient de variation nous donne la réponse : 
+
+$CV_A=\frac{\sigma_A}{\bar{x_A}}=0.07692$
+
+$CV_B=\frac{\sigma_B}{\bar{x_B}}=0.052631$
+
+
+
+
+La commune A dispense des aides moins homogènes que la commune B. 
+
+
+
+> Ce n'est pas le cas dans cet exemple, mais on pourrait tout aussi bien comparer des distribution de variables qui n'ont rien à voir, exprimées dans des unités différentes.
+
+
+### Comparaison visuelle de deux distributions
+
+
+Si nous avions des données réelles, nous aurions pu (et même dû, puisque c'est la première chose à faire) répondre également par comparaison visuelle des distributions de la variable.
+
+Pour avoir des données à tracer, j'ai échantillonné 1000 individus (c'est beaucoup pour un nombre d'association, mais ça permet d'avoir des distributions graphiquement plus lisses) selon des lois normales aux caractéristiques (moyenne et écart type) des communes.
+
+Voici ce que donne une visualisation des deux distributions:
 
 ```{r compDistNorm1, fig.height=2.8}
-A <-  rnorm(n = 10000, mean = 390, sd = 30)
-B <-  rnorm(n = 10000, mean = 152, sd = 8)
+A <-  rnorm(n = 1000, mean = 390, sd = 30)
+B <-  rnorm(n = 1000, mean = 152, sd = 8)
 par(mfrow=c(1, 2)) #2 graphes en colonnes
 hist(A, probability = T)
 lines(density(A), col="red")
 hist(B, probability = T)
 lines(density(B), col="red")
 ```
-Qu'est ce qui ne va pas ?
+
+Un paradoxe ne manque pas de nous sauter au visage : les distributions ont la même allure, alors que leur coefficient de variations sont différents. 
+
+**Pourquoi?**
 
 
-##  Comparaison visuelle de dispersion de deux distributions
+>(le suspense est beaucoup moins insoutenable que dans les diapositives...)
 
-
-Il faut une **échelle commune** !
+... Parce que pour comparer visuellement la dispersion de deux variables,  il faut une **échelle commune** !
 
 ```{r compDistNorm2}
-A <-  rnorm(n = 10000, mean = 390, sd = 30)
-B <-  rnorm(n = 10000, mean = 152, sd = 8)
+A <-  rnorm(n = 1000, mean = 390, sd = 30)
+B <-  rnorm(n = 1000, mean = 152, sd = 8)
 par(mfrow=c(1, 2))
 hist(A, probability = T, xlim = c(50,600), ylim = c(0,0.05))
 lines(density(A), col="red")
@@ -698,15 +878,22 @@ lines(density(B), col="red")
 ```
 
 
+On retrouve alors que la distribution de la commune B est beaucoup plus piquée que la distribution de la commune A : les valeurs sont resserrées autour de la moyenne et s'en écartent peu, en tout cas beaucoup moins que dans la distribution de la commune A.
+Les aides de la commune B sont donc plus homogènes.
 
-# Statistique descriptive univariée : la forme
+
+# La Forme {#forme}
  
- <br>
- <br> <br> 
- Symétrie , applatissement
  
-  
-## **Asymétrie** des distributions.
+La forme d'une distribution est décrite par deux caractéristiques : sa **symétrie** (ou son asymétrie) et son **applatissement**.
+ 
+
+## Asymétrie
+
+
+L'asymétrie d'une distribution est **positive** si les valeurs fréquentes sont à gauche et la **queue de distribution** (due à quelques valeurs très élevées surreprésentées) est  **à droite** .
+
+L'asymétrie est **négative** si les valeurs fréquentes sont à droite et la **queue de distribution** (due à des valeurs très faibles surreprésentées) est **à gauche**
 
 
 ```{r asym1, echo=FALSE, fig.width=8, fig.height=4, cache=TRUE}
@@ -741,35 +928,59 @@ annotate("text", x=3.5, y=0.34, colour=c("orange"),label="mode")
 ```
 
 
-## les Coefficients de Pearson
-<br><br>
+### les Coefficients d'asymétrie de Pearson
 
-Deux moyens simples d'estimer l'asymétrie 
-<br><br>
+
+
+Il existe deux mesures simples pour estimer l'asymétrie (*skewness* in english) d'une distribution d'une variable : 
+
 $\displaystyle C_1 = \frac{\bar{x} - mode(X)}{\sigma_x}$
-<br><br>
+
+et sa version "normalisée"
+
 $\displaystyle C_2 = \frac{3(\bar{x} - mediane(X))}{\sigma_x}$
 
-## Interprétation des coefficients d'asymétrie
-<br><br>
 
-  * si le coefficient **nul**, la distribution est **symétrique**
+L'interprétation de ces coefficients est directe 
+
+  * si le coefficient est **nul**, la distribution est **symétrique**
   * si le coefficient est **négatif**, la distribution est **déformée à gauche** de la médiane (sur-représentation de valeurs faibles, à gauche)
   * si le coefficient est **positif**, la distribution est **déformée à droite** de la médiane (sur-représentation de valeurs fortes, à droite)
 
-## Le coefficient de Fischer
-<br><br>
-
-Ce coefficient est le moment  d'ordre 3  de la variable $X$ ( de moyenne $\mu$ et d'écart-type $\sigma$) **centrée réduite**
-
-$\displaystyle skewness'=\mathbb{E}\bigg[\bigg(\frac{X-\mu}{\sigma}\bigg)^3\bigg]=\frac{\sum_{i=0}^{n} (x_i - \bar{x})^3}{n\sigma^3}$
 
 
+### Le coefficient d'asymétrie de Fischer
 
-## L'aplatissement des distributions (kurtosis)
+Ce coefficient est défini comme le moment d'ordre 3  de la variable $X$ **centrée réduite**:
+
+$\displaystyle skewness'=\mathbb{E}\bigg[\bigg(\frac{X-\mu}{\sigma}\bigg)^3\bigg]=\frac{\sum_{i=0}^{n} (x_i - \mu)^3}{n\sigma^3}$
+
+avec $X$ une variable de moyenne $\mu$ et d'écart-type $\sigma$.
 
 
-```{r kurtos1, echo=FALSE, fig.width=10, fig.height=2, cache=TRUE}
+Au passage : 
+
+- **Centrer** une variable, c'est lui soustraire sa moyenne. 
+- **Réduire** une variable, c'est la diviser par son écart-type.
+- Vous connaissez déjà un «moment» , le moment d'ordre 2 : c'est la variance .
+
+
+### Calculer le coefficient d'asymétrie avec R
+
+Nous utilisons la fonction `skewness()` du package `moments` et
+```{r skew1,cache=TRUE} 
+library(moments)
+skewness(iris$Sepal.Length)
+```
+
+
+## L'Aplatissement (kurtosis) {#kurtosis}
+
+
+L' **aplatissement** d'une distribution , aussi appelée **kurtosis** quantifie la déviation de la forme de la distribution par rapport à une distribution normale.
+
+
+```{r kurtos1, echo=FALSE, fig.width=10, fig.height=4, cache=TRUE}
 
 normaleC <- 1 
 picC <- 0.6
@@ -795,17 +1006,18 @@ ggplot(mydata, aes(x=value, y=dens))+geom_line(color="#44DD99", lwd=1.2)+
   theme_light()
 ```
 
-Courbe piquée: Peu de variation, distribution relativement homogène, beaucoup de valeurs égales ou proches de la moyenne.
 
-Courbe applatie: Variations importantes, distribution relativement hétérogène, beaucoup de valeurs s'éloignent de la moyenne.
+une courbe de distribution **piquée** indique peu de variations dans les valeurs, une distribution relativement homogène,  avec beaucoup de valeurs égales ou proches de la moyenne.
 
-
-## Coefficient d'applatissement : kurtosis 
-
-Coefficient non normalisé :
+La courbe **aplatie** suggère des variations importantes, une distribution relativement hétérogène, avec beaucoup de valeurs éloignées de la moyenne.
 
 
-$\displaystyle K=\frac{\sum_{i=1}^{n}(x_i -\bar{x})^4}{n\sigma^4}$
+### Coefficient d'aplatissement (ou kurtosis)
+
+le kurtosis d'une variable s'écrit  :
+
+
+$$K=\frac{\sum_{i=1}^{n}(x_i -\bar{x})^4}{n\sigma^4}$$
 
 Si la distribution est normale , $K= 3$
 
@@ -813,384 +1025,96 @@ Si $K>3$, la distribution est **plus applatie**
 
 Si $K<3$, la distribution est **moins applatie** 
 
-On normalise parfois en considérant $K'=K-3$ (excès d'applatissement)
+
+On normalise parfois en considérant $K'=K-3$ (qui mesure donc l'excès d'applatissement)
 
 
-# Représentation d'une distribution et Échelle de couleurs
+Au passage : 
+
+- on reconnait le moment statistiques d'ordre 4 dans l'équation de la kurtosis 
+- il s'agit de la version de Pearson 
+- cette mesure ne doit pas être confondue avec la dispersion. En pratique elle traduit plutôt l'existence d'outliers qui "étirent" la courbe de la distribution au delà  d'un ou deux écarts-types , à droite et à gauche de la moyenne.
 
 
-## Distribution et Échelle de couleurs
+### Exemple de distribution à écart-type faible, mais à kurtosis important 
 
-Pour une variable quanti. continue qu'on souhaite colorer, il n'est pas toujours possible de graduer une échelle de couleur continue. 
-<br>
-Il faut (souvent) classer les valeurs en catégories.
-Le **nombre** de classes et les **méthodes** de classification varient. 
+Il est tout à fait normal d'amalgamer dispersion et kurtosis en première approximation, puisqu'une distribution symétrique à fort écart-type sera plus aplatie qu'une distribution à symétrique à faible écart-type.
 
-En général 
-
-- 5,7 ou 9 classes :
-  - $<5$ trop peu de détails  
-  - $>9$ difficile de distinguer les classes proches
-
-## Distribution et Échelle de couleurs
-
-Méthodes de classifications de Qgis
-
-- Ruptures Naturelles (Jenks) : Minimisation des variances intra-classe et maximisation des variances inter-classe
-- Effectifs égaux (quantiles)
-- Intervalles égaux 
-- Ecart-type  :  intervales de 1 ou 0.5 $\sigma$
-- Jolies ruptures :  intervalle égaux "décalés" pour faire joli : nombre ronds, puissances de 10, ... 
+Il existe néanmoins des distributions à kurtosis élevé, sans pour autant que leur variance (ou écart-type ) le soit. Par exemple ,la distribution de Laplace : 
 
 
+```{r m2lowm4high,cache=TRUE, echo=FALSE, warning=FALSE} 
+library(deamer)
+library(moments)
+yy <- data.frame(rlaplace(100000))
+names(yy) <- "value"
+yy$type <-  "Laplace"
 
-## Exemple avec la surface des quartiers de Paris 
+zz <- data.frame(rnorm(10000, 0, sqrt(2)))
+names(zz) <- "value"
+zz$type <-  "Gaussienne"
 
-
-```{r quartierparis, echo=TRUE,eval=FALSE}
-quartiers <-  st_read("data/quartier_paris.shp")
-plot(quartiers$geometry)
-```
-
-
-```{r quartierparis2, eval=TRUE, echo=FALSE, cache=TRUE, fig.width=8, fig.height=5}
-par(mar=c(0,0,0,0))
-plot(quartiers$geometry)
-```
+kurtodf <-  rbind(yy,zz)
 
 
-## Allure de la distribution
+kLaplace <- kurtosis(yy$value) %>%  round(3)
+kGauss <- kurtosis(zz$value) %>%  round(3)
+varGaus <-  var(zz$value) %>% round(3)
+varlapla <-  var(yy$value) %>%  round(3)
 
+txt <- paste0("Kurtosis respectifs:", kGauss, " et ", kLaplace, "\nVariances respectives:", varGaus, " et ", varlapla,"."  )
 
-```{r quartierparis3, eval=TRUE, echo=TRUE, cache=TRUE, fig.width=8, fig.height=5}
-hist(quartiers$surface,breaks = 15)
-```
+ggplot(kurtodf, aes(x=value, color=type))+geom_density()+theme_light()+
+  labs(title = "Distribution Gaussienne  et de Laplace", 
+       subtitle = txt)
+  
 
-## Affichage par défaut : 
-
-```{r quartierparis4, eval=TRUE, cache=TRUE, fig.width=8, fig.height=4}
-par(mar=c(0,0,0,0))
-plot(quartiers["surface"])
-```
-
-par defaut la fonction `plot`  de sf utilise la méthode "pretty" avec 10 ruptures ($9\pm1$ classes) => ce sont des intervalles égaux. 
-
-
-## Jenks à 5 , 7 et 9 classes
-
-<div class="col3">
-```{r quartierparis6, eval=TRUE, cache=TRUE, echo=FALSE, fig.width=12, fig.height=3}
-par(mar=c(0,0,0,0))
-plot(quartiers["surface"], breaks="jenks", nbreaks = 5, main = "5 breaks")
-plot(quartiers["surface"], breaks="jenks", nbreaks = 7, main="7 breaks")
-plot(quartiers["surface"], breaks="jenks", nbreaks = 9, main= "9 breaks")
-```
-</div>
-
-
-
-## Jenks à 5 , 7 et 9 classes
-Code R correspondant :
-
-<div class="col3">
-```{r quartierparis6bis, eval=FALSE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=3}
-par(mar=c(0,0,0,0))
-plot(quartiers["surface"], breaks="jenks", nbreaks = 5, main = "5 breaks")
-plot(quartiers["surface"], breaks="jenks", nbreaks = 7, main="7 breaks")
-plot(quartiers["surface"], breaks="jenks", nbreaks = 9, main= "9 breaks")
-```
-</div>
-
-
-
-## Effectifs égaux
-
-```{r quartierparis7, eval=TRUE, cache=TRUE, echo=FALSE, fig.width=12, fig.height=6}
-par(mar=c(0,0,0,0))
-plot(quartiers["surface"], breaks="quantile",main = "Effectifs égaux")
 ```
 
 
 
-## Intervalles égaux (7)
 
-```{r quartierparis8, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
-par(mar=c(0,0,0,0))
-plot(quartiers["surface"], breaks="equal", nbreaks = 7, main = "Intervalles égaux")
+### Calculer le kurtosis avec R
+
+Nous utilisons la fonction `kurtosis()` du package `moments` et
+```{r kurtosis,cache=TRUE} 
+library(moments)
+kurtosis(iris$Sepal.Length)
 ```
 
 
-## Ecart types
-
-```{r quartierparis9, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
-par(mar=c(0,0,0,0))
-plot(quartiers["surface"], breaks="sd",main = "Écart-type")
-```
-
-$\approx$ méthode des jolies ruptures sur variable centrée réduite
-
-
-## Guides de choix de la méthode de classification 
-
-
-Pour les classification manuelles : 
-<br><br>
-
-- les classes **doivent** contenir toutes les valeurs, être sans recouvrement, contigües et distinctes.
-- Procéder par essai-erreur
-- attention aux décimales et aux extrémités
-<br><br>
-
-
-- si distribution uniforme $\rightarrow$ Intervalles égaux
-- si distribution asymétrique $\rightarrow$ Effectifs égaux, Jenks , progression géométrique (rare).
-- si distribution symétrique $\rightarrow$ Écart-type, intervalle égaux
-
-
-
-## Autres classifications 
-
-consultez la doc de la fonction `classInt` du package du même nom
 
 ## Transformations des données 
 
 
-- $x \mapsto log(x)$ pour une distribution asymétrique à droite ou  $x \mapsto \sqrt x$ si moins asymétrique
+les distributions dont les formes sont particulièrement irrégulières sont délicates à appréhender (et représenter). Parfois, il est possible d'améliorer les choses en utilisant des transformations mathématiques.
 
-- $x \mapsto x^2$ pour une distribution asymétrique à gauche ou $x \mapsto x^3$ si très asymétrique 
 
-(<span style="color:red">&#9888;</span> toujours vérifier l'allure de la distribution transformée)
 
-## Variables centrées-réduites 
 
-<span style="color:red">&#9888; </span> En principe, uniquement lorsque la distribution d'une variable est proche d'une gaussienne <span style="color:red">&#9888;</span> 
+- $x \mapsto log(x)$ pour une distribution asymétrique à droite ou  $x \mapsto \sqrt x$ si moins asymétrique (le logarithme «aplatit» les pics dus aux choses exponentielles)
 
+- $x \mapsto x^2$ pour une distribution asymétrique à gauche ou $x \mapsto x^3$ si très asymétrique . (Élever des choses au carré amplifie les petites valeurs)) 
 
-Centrer : soustraire la moyenne
 
-Réduire : diviser par l'écart-type
 
+Il faut **toujours vérifier l'allure** de la distribution transformée ! 
 
-une variable **centrée réduite** est exprimée en «écarts-types à la moyenne»
 
-$\rightarrow$ permet de repérer les valeurs extrèmes ($<2\sigma$ ou $>2\sigma$)
+Une autre transformation courante est de **centrer et réduire** des variables.
+Centrer une variable signifie lui soustraire sa moyenne.
+Réduire une variable signifie la  diviser par son écart-type.
 
-$\rightarrow$ utile pour comparer des individus selon un grand nombre de variables (tableaux de synthèse)
 
+Une variable **centrée réduite** est alors exprimée en «écarts-types à la moyenne»
 
-# Visualiser une distribution
+-  Cela permet de repérer les valeurs extrêmes ($<2\sigma$ ou $>2\sigma$) , du moins si la distribution n'est pas trop irrégulière.
+- C'est utile pour comparer des individus selon un grand nombre de variables 
+- Cela permet aussi de comparer des variables définies sur des intervalles de valeurs très différentes
 
-- Histogramme 
-- Distribution
-- BoxPlot
-- Violin plot
-- Pyramides (histogrammes jusxtaposés)
-- Polygones de fréquences
-- Distribution cumulée , Fonction de répartition , CDF
-- Dot strip plot
 
 
-## Histogramme : Code R + ggplot
-
-```{r histo_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-histo_mass <- ggplot(mydata)+
-  geom_histogram(aes(x=body_mass_g), fill="darkorchid4", color="darkgray", bins=50)+
-  labs(title = "Penguins Body Mass", subtitle = "Histogram")+
-  ylab("Count")+theme_light()
-histo_mass
-```
-
-
-## Distribution : Code R + ggplot
-
-<span style="color:red">&#9888;</span>  ce n'est pas exactement une probabilité, mais une **densité** de probabilité.
-Pour obtenir la probabilité , il faut intégrer sur un petit $dx$.
-
-
-```{r distrib_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-distrib_mass <- ggplot(mydata)+
-  geom_density(aes(x=body_mass_g), fill="darkorchid4", color="darkgray")+
-  geom_vline(aes(xintercept=mean(body_mass_g, na.rm = T)), color="black", size=0.4, linetype="dashed" )+
-  labs(title = "Penguins Body Mass", subtitle = "Probability density and mean")+
-  ylab("Count")+theme_light()
-distrib_mass
-```
-
-
-
-## BoxPlot : Code R + ggplot
-
-
-```{r boxplot_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-boxplot_mass <- ggplot(mydata)+
-  geom_boxplot(aes(x=body_mass_g, y=species, color=species))+
-  labs(title = "Penguins Body Mass", subtitle = "BoxPlot by Species")+
-  ylab("Count")+theme_light()
-boxplot_mass
-```
-
-## Violin plot
-
-Dsitribution+miroir
-Utile pour des distributions complexes, e.g.  mal résumées par la moyenne et la dispersion.
-
-```{r violin_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-violin_mass <- ggplot(mydata)+
-  geom_violin(aes(y=body_mass_g, x=species, fill=species), color="gray", trim=F)+
-  labs(title = "Penguins Body Mass", subtitle = "ViolinPlot by Species")+
-  ylab("Count")+theme_light()
-violin_mass
-```
-
-
-## Violin plot et Boxplot  : Code R + ggplot 2
-
-
-
-```{r violin_code_2, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-violin_mass <- ggplot(mydata)+
-  geom_violin(aes(y=body_mass_g, x=species, fill=species), color="lightgray", trim=F)+
-  geom_boxplot(aes(y=body_mass_g, x=species, fill=species), color="black", fill="#eeeeee" ,width=0.1)+
-  labs(title = "Penguins Body Mass", subtitle = "ViolinPlot and Boxplot by Species")+
-  ylab("Count")+theme_light()
-violin_mass
-```
-
-
-## Pyramides (histogrammes juxtaposés) 
-
-lorsqu'une des variables est qualitatives à deux modalités :
-
-```{r pyramide_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3, message=F}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-pyramide_mass <-  ggplot(mydata, aes(fill = sex)) + 
-  geom_bar(data = subset(mydata, sex == "female"), stat = "bin", aes(x=body_mass_g, y=..count..*(-1)), color="grey") +
-  geom_bar(data = subset(mydata, sex == "male"), stat = "bin", aes(x=body_mass_g), color="grey") + 
-  scale_y_continuous(labels = paste0(as.character(c(seq(20, 0, -10), seq(10, 20, 10))))) +
-  ylab("count")+  coord_flip()+
-  labs(title = "Penguins Body Mass", subtitle = "Pyramid Plot by sex")+
-  theme_light()
-  
-pyramide_mass
-```
-
-## Polygones de fréquences
-
-"Histogramme en courbe"
-<br>
-Utile pour comparer plusieurs distributions
-
-
-```{r frequpoly_code1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-freqpoly_mass <- ggplot(mydata)+
-  geom_freqpoly(aes(x=body_mass_g, color=species), bins=50)+
-  labs(title = "Penguins Body Mass", subtitle = "Frequence Polygons")+
-  ylab("Count")+theme_light()
-freqpoly_mass
-```
-
-
-
-
-## Distribution cumulée , Fonction de répartition , CDF
-
-Courbe $x,y$,
-<br>
-en $x$ la valeur de la variable $V$, en $y$ la probabilité empririque d'avoir dans la population, un individu pour lequel $V\leq x$
-
-i.e. c'est la fonction  <br>
-$F_{V}(x)=\mathbb {P} (V\leq x)$
-
-
-```{r CDF1 , cache = TRUE, fig.width=8, fig.height=3, echo=F, warning=F}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-plot_mass <- ggplot(mydata, aes(x= body_mass_g))+
-  stat_ecdf(color="darkorchid4")+
-  labs(title = "Penguins Body Mass", subtitle = "Cumulative Distribution Function")+
-  ylab("Probability")+theme_light()
-plot_mass
-```
-
-
-## Distribution cumulée , Fonction de répartition , CDF
-<br><br>
-Permet de superposer les CDF de sous groupes de la population. 
-ici : la race des penguins
-
-```{r CDF_groupe , cache = TRUE, fig.width=8, fig.height=3, echo=F, warning=F}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-plot_mass <- ggplot(mydata)+
-  stat_ecdf(aes(x= body_mass_g, color=species))+
-  labs(title = "Penguins Body Mass by Species", subtitle = "Cumulative Distribution Function")+
-  ylab("Probability")+theme_light()
-plot_mass
-```
-
-
-
-## Distribution cumulée simple : Code R + ggplot
-
-```{r CDF_code , cache = TRUE, fig.width=8, fig.height=3, echo=T, warning=F}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-plot_mass <- ggplot(mydata)+
-  stat_ecdf(aes(x= body_mass_g),color="darkorchid4")+
-  labs(title = "Penguins Body Mass", subtitle = "Cumulative Distribution Function")+
-  ylab("Probability")+theme_light()
-plot_mass
-```
-
-
-## Distribution cumulée par groupe : Code R + ggplot
-
-```{r CDF_code_groupe , cache = TRUE, fig.width=8, fig.height=3, echo=T, warning=F}
-library(palmerpenguins)
-data(package = 'palmerpenguins')
-mydata <-  penguins
-plot_mass <- ggplot(mydata)+
-  stat_ecdf(aes(x= body_mass_g,color=species))+    #on affecte la couleur à la variable modale  
-  labs(title = "Penguins Body Mass", subtitle = "Cumulative Distribution Function")+
-  ylab("Probability")+theme_light()
-plot_mass
-```
-
-
-## Dot Strip Plot
-
-
-
-
-
-
-# Bonus
-
-
-## Fat-tail distributions
+## Fat-tail distributions : un exemple 
 
 
 Les distributions très asymétriques et très étendues sont délicates à résumer.
@@ -1209,7 +1133,7 @@ plot_PopVilles
 ```
 
 
-## Distribution rang-taille des villes de france 
+### Distribution rang-taille des villes de france 
 
 
 Pour mieux voir la distribution et les écarts, on trace la **taille** des villes en fonction de leur **rang** 
@@ -1223,39 +1147,34 @@ plot_PopVilles <- ggplot(mydata)+
 plot_PopVilles
 ```
 
-## Transformation logarithmique
+Lorsqu'on rencontre des distributions aussi piquée, on peut chercher à appliquer une transformation **monotone**, **bijective** et **inversible** qui "aplatisse" la distribution.
 
-Appliquer une transformation **monotone**, **bijective** et **inversible** qui "applatisse" la distribution.
+Cette transformation a pour objectif de 
 
-  * réduit les écarts entre les valeurs
-  * resserre  l'essentiel des valeurs 
+ * réduire les écarts entre les valeurs
+ * resserrer la visualisation sur l'essentiel des valeurs 
 
-$\implies$ mesure de façon plus robuste  tendance, dispersion et forme
+Cela aura aussi pour conséquence de mesurer façon plus robuste la tendance, dispersion et forme de la distribution (puisqu'elle sera moins éparpillée)
 
-Ici : le logarithme décimal
+Ici, on choisit le logarithme décimal, qu'on va appliquer sur les ordonnées du graphique grâce à la fonction `scale_y_log10()` 
 
 
-## Distribution rang-log(taille) 
+
 
 ```{r loglin1 , cache = TRUE, fig.width=8, fig.height=4, echo=FALSE}
 mydata <-  read.csv("data/pop_communes.csv")
 plot_PopVilles <- ggplot(mydata)+
   geom_point(aes(x=rank(-Population.totale), y=Population.totale), color="#44DD99")+
   xlab(label = "rang")+ylab("Population")+ggtitle("Distribution rang-taille des villes de France")+
-  scale_y_log10()+
+  scale_y_log10()+ 
   theme_light()
 plot_PopVilles
 ```
 
 
+Cette transformation fait apparaître une régularité "linéaire" qu'il sera facile d'ajuster par une régression linéaire. 
 
 
-
-
-
-
-
-
-
+>Cette représentation (dire "rang-taille") et l'ajustement d'un modèle géométrique entre rang et taille, est très utilisée en géographie, et beaucoup de propriétés du système de villes (plus de détails à ce sujet : [https://www.hypergeo.eu/spip.php?article657]) dont on trace ainsi le profil s'y retrouvent : "âge" du système, déviation de certaines villes par rapport à la droite de la loi, longueur de la traîne formée par les petites villes, hiérarchisation du système, macrocéphalie etc...
 
 
