@@ -112,11 +112,12 @@ modèle-linéaire
 estimation-prédiction-résidu
 lerreur-commise-par-le-modèle
 interpréter-la-droite-de-régression
-utiliser-modèle-linéaire
-évaluer-la-qualité-dune-régression-linaire
+utiliser-un-modèle-linéaire
+évaluer-la-qualité-dune-régression-linaire-le-r2
 le-r2
 propriétés-et-interprétation-additionnelles-du-r2
 exemples-avec-différentes-valeurs-de-r2
+évaluer-la-qualité-dune-régression-linaire-la-p-value
 la-p-value-et-lhypothèse-nulle
 approximation-moins-grossière-à-propos-de-la-p-value
 ce-quil-faut-retenir-de-la-p-value
