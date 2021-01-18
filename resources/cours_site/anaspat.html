@@ -279,8 +279,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.6" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire-la-p-value"><i class="fa fa-check"></i><b>9.2.6</b> Évaluer la qualité d’une régression linaire : la p-value</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="bivariee.html"><a href="bivariee.html#effectuer-une-régression-linéaire-avec-r"><i class="fa fa-check"></i><b>9.3</b> Effectuer une régression linéaire avec R</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>9.3.1</b> Format des résultats</a></li>
-<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#residuslm"><i class="fa fa-check"></i><b>9.3.2</b> Bonus: Critères de significativité du lien linéaire</a></li>
+<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#la-commande-lm"><i class="fa fa-check"></i><b>9.3.1</b> La commande <code>lm</code></a></li>
+<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>9.3.2</b> Format des résultats</a></li>
+<li class="chapter" data-level="9.3.3" data-path="bivariee.html"><a href="bivariee.html#residuslm"><i class="fa fa-check"></i><b>9.3.3</b> Bonus: Critères de significativité du lien linéaire</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> Corrélation de deux variables quantitatives</a><ul>
@@ -429,23 +430,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.4</span> Semis de points</h2>
 <p>Données <strong>ponctuelles</strong> i.e. unités spatiales localisées à un point.</p>
 <p>On peut étudier la répartition de ces points dans l’espace qu’on suppose <strong>isotrope</strong>.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="anaspat.html#cb74-1"></a><span class="kw">library</span>(geojsonsf)</span>
-<span id="cb74-2"><a href="anaspat.html#cb74-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb74-3"><a href="anaspat.html#cb74-3"></a>arbres &lt;-<span class="st"> </span><span class="kw">geojson_sf</span>(<span class="st">&quot;./data/&quot;</span>)</span>
-<span id="cb74-4"><a href="anaspat.html#cb74-4"></a></span>
-<span id="cb74-5"><a href="anaspat.html#cb74-5"></a>arbres &lt;-<span class="st"> </span><span class="kw">st_transform</span>(arbres,<span class="dv">2154</span>)</span>
-<span id="cb74-6"><a href="anaspat.html#cb74-6"></a>arbres &lt;-<span class="st"> </span><span class="kw">st_set_crs</span>(arbres, <span class="dv">2154</span>)</span>
-<span id="cb74-7"><a href="anaspat.html#cb74-7"></a>arbres<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.factor</span>(arbres<span class="op">$</span>arrondissement)</span>
-<span id="cb74-8"><a href="anaspat.html#cb74-8"></a>arbres_intramuros &lt;-<span class="st">  </span><span class="kw">filter</span>(arbres, <span class="op">!</span>(arrondissement <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BOIS DE BOULOGNE&quot;</span>,  <span class="st">&quot;BOIS DE VINCENNES&quot;</span>, <span class="st">&quot;HAUTS-DE-SEINE&quot;</span>, <span class="st">&quot;SEINE-SAINT-DENIS&quot;</span>, <span class="st">&quot;VAL-DE-MARNE&quot;</span>)))</span>
-<span id="cb74-9"><a href="anaspat.html#cb74-9"></a><span class="co"># on retire les valeurs modales inusitées de la variable </span></span>
-<span id="cb74-10"><a href="anaspat.html#cb74-10"></a>arbres_intramuros<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.character</span>(arbres_intramuros<span class="op">$</span>arrondissement)</span>
-<span id="cb74-11"><a href="anaspat.html#cb74-11"></a>arbres_intramuros<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.factor</span>(arbres_intramuros<span class="op">$</span>arrondissement)</span>
-<span id="cb74-12"><a href="anaspat.html#cb74-12"></a>quartiers &lt;-(<span class="kw">read_sf</span>(<span class="st">&quot;quartier_paris.shp&quot;</span>))</span>
-<span id="cb74-13"><a href="anaspat.html#cb74-13"></a>quartiers &lt;-<span class="st"> </span><span class="kw">st_transform</span>(quartiers, <span class="dv">2154</span>)</span>
-<span id="cb74-14"><a href="anaspat.html#cb74-14"></a>quartiers &lt;-<span class="st">  </span><span class="kw">st_set_crs</span>(quartiers,<span class="dv">2154</span>)</span>
-<span id="cb74-15"><a href="anaspat.html#cb74-15"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb74-16"><a href="anaspat.html#cb74-16"></a><span class="kw">plot</span>(quartiers<span class="op">$</span>geometry)</span>
-<span id="cb74-17"><a href="anaspat.html#cb74-17"></a><span class="kw">plot</span>(arbres_intramuros<span class="op">$</span>geometry, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">cex=</span><span class="fl">0.01</span>, <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>  )</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="anaspat.html#cb76-1"></a><span class="kw">library</span>(geojsonsf)</span>
+<span id="cb76-2"><a href="anaspat.html#cb76-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb76-3"><a href="anaspat.html#cb76-3"></a>arbres &lt;-<span class="st"> </span><span class="kw">geojson_sf</span>(<span class="st">&quot;./data/&quot;</span>)</span>
+<span id="cb76-4"><a href="anaspat.html#cb76-4"></a></span>
+<span id="cb76-5"><a href="anaspat.html#cb76-5"></a>arbres &lt;-<span class="st"> </span><span class="kw">st_transform</span>(arbres,<span class="dv">2154</span>)</span>
+<span id="cb76-6"><a href="anaspat.html#cb76-6"></a>arbres &lt;-<span class="st"> </span><span class="kw">st_set_crs</span>(arbres, <span class="dv">2154</span>)</span>
+<span id="cb76-7"><a href="anaspat.html#cb76-7"></a>arbres<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.factor</span>(arbres<span class="op">$</span>arrondissement)</span>
+<span id="cb76-8"><a href="anaspat.html#cb76-8"></a>arbres_intramuros &lt;-<span class="st">  </span><span class="kw">filter</span>(arbres, <span class="op">!</span>(arrondissement <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BOIS DE BOULOGNE&quot;</span>,  <span class="st">&quot;BOIS DE VINCENNES&quot;</span>, <span class="st">&quot;HAUTS-DE-SEINE&quot;</span>, <span class="st">&quot;SEINE-SAINT-DENIS&quot;</span>, <span class="st">&quot;VAL-DE-MARNE&quot;</span>)))</span>
+<span id="cb76-9"><a href="anaspat.html#cb76-9"></a><span class="co"># on retire les valeurs modales inusitées de la variable </span></span>
+<span id="cb76-10"><a href="anaspat.html#cb76-10"></a>arbres_intramuros<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.character</span>(arbres_intramuros<span class="op">$</span>arrondissement)</span>
+<span id="cb76-11"><a href="anaspat.html#cb76-11"></a>arbres_intramuros<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.factor</span>(arbres_intramuros<span class="op">$</span>arrondissement)</span>
+<span id="cb76-12"><a href="anaspat.html#cb76-12"></a>quartiers &lt;-(<span class="kw">read_sf</span>(<span class="st">&quot;quartier_paris.shp&quot;</span>))</span>
+<span id="cb76-13"><a href="anaspat.html#cb76-13"></a>quartiers &lt;-<span class="st"> </span><span class="kw">st_transform</span>(quartiers, <span class="dv">2154</span>)</span>
+<span id="cb76-14"><a href="anaspat.html#cb76-14"></a>quartiers &lt;-<span class="st">  </span><span class="kw">st_set_crs</span>(quartiers,<span class="dv">2154</span>)</span>
+<span id="cb76-15"><a href="anaspat.html#cb76-15"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb76-16"><a href="anaspat.html#cb76-16"></a><span class="kw">plot</span>(quartiers<span class="op">$</span>geometry)</span>
+<span id="cb76-17"><a href="anaspat.html#cb76-17"></a><span class="kw">plot</span>(arbres_intramuros<span class="op">$</span>geometry, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">cex=</span><span class="fl">0.01</span>, <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>  )</span></code></pre></div>
 </div>
 <div id="statistiques-simples-sur-un-semis" class="section level2">
 <h2><span class="header-section-number">16.5</span> Statistiques simples sur un semis</h2>
