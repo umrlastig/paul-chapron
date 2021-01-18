@@ -24,7 +24,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-01-14" />
+<meta name="date" content="2021-01-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="visualiser-une-distribution-avec-r.html"/>
-<link rel="next" href="corrélation-de-deux-variables-quantitatives.html"/>
+<link rel="next" href="correlation.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -205,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="dispersion.html"><a href="dispersion.html"><i class="fa fa-check"></i><b>5</b> La Dispersion</a><ul>
 <li class="chapter" data-level="5.1" data-path="dispersion.html"><a href="dispersion.html#la-dispersion"><i class="fa fa-check"></i><b>5.1</b> La dispersion</a></li>
-<li class="chapter" data-level="5.2" data-path="dispersion.html"><a href="dispersion.html#variance-et-écart-type"><i class="fa fa-check"></i><b>5.2</b> Variance et Écart-type</a><ul>
+<li class="chapter" data-level="5.2" data-path="dispersion.html"><a href="dispersion.html#variance"><i class="fa fa-check"></i><b>5.2</b> Variance et Écart-type</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="dispersion.html"><a href="dispersion.html#variance-et-écart-type-avec-r"><i class="fa fa-check"></i><b>5.2.1</b> Variance et écart type avec R</a></li>
 <li class="chapter" data-level="5.2.2" data-path="dispersion.html"><a href="dispersion.html#si-la-distribution-est-proche-de-la-gaussienne"><i class="fa fa-check"></i><b>5.2.2</b> Si la distribution est proche de la Gaussienne</a></li>
 </ul></li>
@@ -253,52 +253,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4" data-path="carto-discretis.html"><a href="carto-discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>7.4</b> Quelle méthode de classification choisir ?</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html"><i class="fa fa-check"></i><b>8</b> Visualiser une distribution avec R</a><ul>
-<li class="chapter" data-level="8.1" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#histogramme-code-r-ggplot"><i class="fa fa-check"></i><b>8.1</b> Histogramme : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.2" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distributiondensité-code-r-ggplot"><i class="fa fa-check"></i><b>8.2</b> Distribution/densité : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.3" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#boxplot-code-r-ggplot"><i class="fa fa-check"></i><b>8.3</b> BoxPlot : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.4" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-code-r-ggplot"><i class="fa fa-check"></i><b>8.4</b> Violin plot : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.5" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-et-boxplot-code-r-ggplot-2"><i class="fa fa-check"></i><b>8.5</b> Violin plot et Boxplot : Code R + ggplot 2</a></li>
-<li class="chapter" data-level="8.6" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#pyramides-histogrammes-juxtaposés"><i class="fa fa-check"></i><b>8.6</b> Pyramides (histogrammes juxtaposés)</a></li>
-<li class="chapter" data-level="8.7" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#polygones-de-fréquences"><i class="fa fa-check"></i><b>8.7</b> Polygones de fréquences</a></li>
-<li class="chapter" data-level="8.8" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distribution-cumulée-fonction-de-répartition-cdf"><i class="fa fa-check"></i><b>8.8</b> Distribution cumulée, Fonction de répartition, CDF</a></li>
-<li class="chapter" data-level="8.9" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#dot-strip-plot"><i class="fa fa-check"></i><b>8.9</b> Dot Strip Plot</a></li>
+<li class="chapter" data-level="8.0.1" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#histogramme-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.1</b> Histogramme : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.2" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distributiondensité-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.2</b> Distribution/densité : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.3" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#boxplot-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.3</b> BoxPlot : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.4" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.4</b> Violin plot : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.5" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-et-boxplot-code-r-ggplot-2"><i class="fa fa-check"></i><b>8.0.5</b> Violin plot et Boxplot : Code R + ggplot 2</a></li>
+<li class="chapter" data-level="8.0.6" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#pyramides-histogrammes-juxtaposés"><i class="fa fa-check"></i><b>8.0.6</b> Pyramides (histogrammes juxtaposés)</a></li>
+<li class="chapter" data-level="8.0.7" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#polygones-de-fréquences"><i class="fa fa-check"></i><b>8.0.7</b> Polygones de fréquences</a></li>
+<li class="chapter" data-level="8.0.8" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distribution-cumulée-fonction-de-répartition-cdf"><i class="fa fa-check"></i><b>8.0.8</b> Distribution cumulée, Fonction de répartition, CDF</a></li>
+<li class="chapter" data-level="8.0.9" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#dot-strip-plot"><i class="fa fa-check"></i><b>8.0.9</b> Dot Strip Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="bivariee.html"><a href="bivariee.html"><i class="fa fa-check"></i><b>9</b> Analyse Bivariée</a><ul>
-<li class="chapter" data-level="9.1" data-path="bivariee.html"><a href="bivariee.html#corrélation-nimplique-pas-causalité"><i class="fa fa-check"></i><b>9.1</b> Corrélation n’implique pas causalité</a></li>
-<li class="chapter" data-level="9.2" data-path="bivariee.html"><a href="bivariee.html#analyse-bivariée-avec-des-données-spatiales"><i class="fa fa-check"></i><b>9.2</b> Analyse bivariée avec des données spatiales</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="bivariee.html"><a href="bivariee.html#données-spatiales"><i class="fa fa-check"></i><b>9.2.1</b> Données spatiales</a></li>
-<li class="chapter" data-level="9.2.2" data-path="bivariee.html"><a href="bivariee.html#ressources-pour-données-localisées-et-distances"><i class="fa fa-check"></i><b>9.2.2</b> Ressources pour données localisées et distances</a></li>
+<li class="chapter" data-level="9.0.1" data-path="bivariee.html"><a href="bivariee.html#analyse-bivariée-mais-sans-la-localisation"><i class="fa fa-check"></i><b>9.0.1</b> Analyse bivariée, mais sans la localisation</a></li>
+<li class="chapter" data-level="9.0.2" data-path="bivariee.html"><a href="bivariee.html#ressources-pour-lanalyse-des-localisation-et-des-distances"><i class="fa fa-check"></i><b>9.0.2</b> Ressources pour l’analyse des localisation et des distances</a></li>
+<li class="chapter" data-level="9.1" data-path="bivariee.html"><a href="bivariee.html#corrélation-nimplique-pas-causalité"><i class="fa fa-check"></i><b>9.1</b> Corrélation n’implique pas causalité</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="bivariee.html"><a href="bivariee.html#diverses-formes-de-dépendances"><i class="fa fa-check"></i><b>9.1.1</b> Diverses formes de dépendances</a></li>
+<li class="chapter" data-level="9.1.2" data-path="bivariee.html"><a href="bivariee.html#les-étapes-de-lanalyse-bivariée"><i class="fa fa-check"></i><b>9.1.2</b> Les étapes de l’analyse bivariée</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire"><i class="fa fa-check"></i><b>9.3</b> Régression linéaire</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#avant-toute-chose"><i class="fa fa-check"></i><b>9.3.1</b> Avant toute chose</a></li>
-<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#diverses-formes-de-dépendances"><i class="fa fa-check"></i><b>9.3.2</b> Diverses formes de dépendances</a></li>
-<li class="chapter" data-level="9.3.3" data-path="bivariee.html"><a href="bivariee.html#les-étapes-de-lanalyse-bivariée"><i class="fa fa-check"></i><b>9.3.3</b> Les étapes de l’analyse bivariée</a></li>
-<li class="chapter" data-level="9.3.4" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire-1"><i class="fa fa-check"></i><b>9.3.4</b> Régression linéaire</a></li>
+<li class="chapter" data-level="9.2" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire"><i class="fa fa-check"></i><b>9.2</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="bivariee.html"><a href="bivariee.html#avant-toute-chose"><i class="fa fa-check"></i><b>9.2.1</b> Avant toute chose</a></li>
+<li class="chapter" data-level="9.2.2" data-path="bivariee.html"><a href="bivariee.html#principe-et-vocabulaire"><i class="fa fa-check"></i><b>9.2.2</b> Principe et Vocabulaire</a></li>
+<li class="chapter" data-level="9.2.3" data-path="bivariee.html"><a href="bivariee.html#interpréter-la-droite-de-régression"><i class="fa fa-check"></i><b>9.2.3</b> Interpréter la droite de régression</a></li>
+<li class="chapter" data-level="9.2.4" data-path="bivariee.html"><a href="bivariee.html#utiliser-modèle-linéaire"><i class="fa fa-check"></i><b>9.2.4</b> Utiliser modèle linéaire</a></li>
+<li class="chapter" data-level="9.2.5" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire"><i class="fa fa-check"></i><b>9.2.5</b> Évaluer la qualité d’une régression linaire</a></li>
+<li class="chapter" data-level="9.2.6" data-path="bivariee.html"><a href="bivariee.html#ce-quil-faut-retenir-de-la-p-value"><i class="fa fa-check"></i><b>9.2.6</b> Ce qu’il faut retenir de la p-value</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire-le-modèle"><i class="fa fa-check"></i><b>9.4</b> Régression linéaire : le modèle</a></li>
-<li class="chapter" data-level="9.5" data-path="bivariee.html"><a href="bivariee.html#la-grande-question"><i class="fa fa-check"></i><b>9.5</b> La grande question</a></li>
-<li class="chapter" data-level="9.6" data-path="bivariee.html"><a href="bivariee.html#comment-evaluer-la-validité-du-modèle-linaire"><i class="fa fa-check"></i><b>9.6</b> Comment evaluer la “validité” du modèle linaire ?</a></li>
-<li class="chapter" data-level="9.7" data-path="bivariee.html"><a href="bivariee.html#le-r2"><i class="fa fa-check"></i><b>9.7</b> le <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="9.8" data-path="bivariee.html"><a href="bivariee.html#le-r2-1"><i class="fa fa-check"></i><b>9.8</b> le <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="9.9" data-path="bivariee.html"><a href="bivariee.html#la-p-value"><i class="fa fa-check"></i><b>9.9</b> la p-value</a></li>
-<li class="chapter" data-level="9.10" data-path="bivariee.html"><a href="bivariee.html#la-p-value-1"><i class="fa fa-check"></i><b>9.10</b> la p-value</a></li>
-<li class="chapter" data-level="9.11" data-path="bivariee.html"><a href="bivariee.html#lhypothèse-nulle"><i class="fa fa-check"></i><b>9.11</b> l’Hypothèse nulle</a></li>
-<li class="chapter" data-level="9.12" data-path="bivariee.html"><a href="bivariee.html#format-des-resultats-donnés-par-avec-r"><i class="fa fa-check"></i><b>9.12</b> Format des resultats donnés par avec R</a></li>
-<li class="chapter" data-level="9.13" data-path="bivariee.html"><a href="bivariee.html#bonus-critères-de-significativité-du-lien-linéaire"><i class="fa fa-check"></i><b>9.13</b> Bonus: Critères de significativité du lien linéaire</a></li>
-<li class="chapter" data-level="9.14" data-path="bivariee.html"><a href="bivariee.html#bonus-evaluation-de-lindépendance-des-résidus-avec-r"><i class="fa fa-check"></i><b>9.14</b> Bonus: Evaluation de l’indépendance des résidus avec R</a></li>
-<li class="chapter" data-level="9.15" data-path="bivariee.html"><a href="bivariee.html#bonusles-4-graphiques-résultats-de-la-fonction-lm"><i class="fa fa-check"></i><b>9.15</b> Bonus:Les 4 graphiques résultats de la fonction <code>lm</code></a></li>
-<li class="chapter" data-level="9.16" data-path="bivariee.html"><a href="bivariee.html#bonus-évaluer-lhomogénéité-des-résidus-avec-r"><i class="fa fa-check"></i><b>9.16</b> Bonus: Évaluer l’homogénéité des résidus avec R</a></li>
-<li class="chapter" data-level="9.17" data-path="bivariee.html"><a href="bivariee.html#bonus-evaluer-la-normalité-de-la-distribution-des-résidus-avec-r"><i class="fa fa-check"></i><b>9.17</b> Bonus: Evaluer la normalité de la distribution des résidus avec R</a></li>
-<li class="chapter" data-level="9.18" data-path="bivariee.html"><a href="bivariee.html#bonus-evaluer-lhomoscédasticité-des-résidus"><i class="fa fa-check"></i><b>9.18</b> Bonus: Evaluer l’homoscédasticité des résidus</a></li>
+<li class="chapter" data-level="9.3" data-path="bivariee.html"><a href="bivariee.html#effectuer-une-régression-linéaire-avec-r"><i class="fa fa-check"></i><b>9.3</b> Effectuer une régression linéaire avec R</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>9.3.1</b> Format des résultats</a></li>
+<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#residuslm"><i class="fa fa-check"></i><b>9.3.2</b> Bonus: Critères de significativité du lien linéaire</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html"><i class="fa fa-check"></i><b>10</b> Corrélation de deux variables quantitatives</a><ul>
-<li class="chapter" data-level="10.1" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#corrélation-linéaire"><i class="fa fa-check"></i><b>10.1</b> Corrélation (linéaire)</a></li>
-<li class="chapter" data-level="10.2" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#test-de-corrélation-entre-deux-variables-avec-r"><i class="fa fa-check"></i><b>10.2</b> Test de corrélation entre deux variables avec R</a></li>
-<li class="chapter" data-level="10.3" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#calcul-direct-du-coefficient-de-corrélation"><i class="fa fa-check"></i><b>10.3</b> Calcul direct du coefficient de corrélation</a></li>
-<li class="chapter" data-level="10.4" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#matrice-de-corrélations"><i class="fa fa-check"></i><b>10.4</b> Matrice de corrélations</a></li>
-<li class="chapter" data-level="10.5" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers"><i class="fa fa-check"></i><b>10.5</b> Sensibilité aux ‘outliers’</a></li>
-<li class="chapter" data-level="10.6" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers-1"><i class="fa fa-check"></i><b>10.6</b> Sensibilité aux ‘outliers’</a></li>
-<li class="chapter" data-level="10.7" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers-2"><i class="fa fa-check"></i><b>10.7</b> Sensibilité aux ‘outliers’</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> Corrélation de deux variables quantitatives</a><ul>
+<li class="chapter" data-level="10.1" data-path="correlation.html"><a href="correlation.html#corrélation-linéaire"><i class="fa fa-check"></i><b>10.1</b> Corrélation (linéaire)</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation.html"><a href="correlation.html#test-de-corrélation-entre-deux-variables-avec-r"><i class="fa fa-check"></i><b>10.2</b> Test de corrélation entre deux variables avec R</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation.html"><a href="correlation.html#calcul-direct-du-coefficient-de-corrélation"><i class="fa fa-check"></i><b>10.3</b> Calcul direct du coefficient de corrélation</a></li>
+<li class="chapter" data-level="10.4" data-path="correlation.html"><a href="correlation.html#matrice-de-corrélations"><i class="fa fa-check"></i><b>10.4</b> Matrice de corrélations</a></li>
+<li class="chapter" data-level="10.5" data-path="correlation.html"><a href="correlation.html#sensibilité-aux-outliers"><i class="fa fa-check"></i><b>10.5</b> Sensibilité aux ‘outliers’</a></li>
+<li class="chapter" data-level="10.6" data-path="correlation.html"><a href="correlation.html#sensibilité-aux-outliers-1"><i class="fa fa-check"></i><b>10.6</b> Sensibilité aux ‘outliers’</a></li>
+<li class="chapter" data-level="10.7" data-path="correlation.html"><a href="correlation.html#sensibilité-aux-outliers-2"><i class="fa fa-check"></i><b>10.7</b> Sensibilité aux ‘outliers’</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html"><i class="fa fa-check"></i><b>11</b> Régression linéaire avec R</a><ul>
 <li class="chapter" data-level="11.1" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html#regression-linéaire-avec-r"><i class="fa fa-check"></i><b>11.1</b> Regression linéaire avec R</a></li>
@@ -339,7 +331,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="références-supplémentaires.html"><a href="références-supplémentaires.html"><i class="fa fa-check"></i><b>15</b> Références supplémentaires</a><ul>
 <li class="chapter" data-level="15.1" data-path="références-supplémentaires.html"><a href="références-supplémentaires.html#refs"><i class="fa fa-check"></i><b>15.1</b> Refs</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>16</b> Final Words</a></li>
+<li class="chapter" data-level="16" data-path="anaspat.html"><a href="anaspat.html"><i class="fa fa-check"></i><b>16</b> Analyse spatiale</a><ul>
+<li class="chapter" data-level="16.1" data-path="anaspat.html"><a href="anaspat.html#contenu-du-cours"><i class="fa fa-check"></i><b>16.1</b> Contenu du cours</a></li>
+<li class="chapter" data-level="16.2" data-path="anaspat.html"><a href="anaspat.html#linformation-géographique"><i class="fa fa-check"></i><b>16.2</b> L’information géographique</a></li>
+<li class="chapter" data-level="16.3" data-path="anaspat.html"><a href="anaspat.html#précautions"><i class="fa fa-check"></i><b>16.3</b> Précautions</a></li>
+<li class="chapter" data-level="16.4" data-path="anaspat.html"><a href="anaspat.html#semis-de-points"><i class="fa fa-check"></i><b>16.4</b> Semis de points</a></li>
+<li class="chapter" data-level="16.5" data-path="anaspat.html"><a href="anaspat.html#statistiques-simples-sur-un-semis"><i class="fa fa-check"></i><b>16.5</b> Statistiques simples sur un semis</a></li>
+<li class="chapter" data-level="16.6" data-path="anaspat.html"><a href="anaspat.html#concentrations-du-semis"><i class="fa fa-check"></i><b>16.6</b> Concentrations du semis</a></li>
+<li class="chapter" data-level="16.7" data-path="anaspat.html"><a href="anaspat.html#le-modele-nul-pour-un-semis-de-points"><i class="fa fa-check"></i><b>16.7</b> Le modele nul pour un semis de points</a></li>
+<li class="chapter" data-level="16.8" data-path="anaspat.html"><a href="anaspat.html#afficher-la-distribution-le-retour"><i class="fa fa-check"></i><b>16.8</b> Afficher la distribution, le retour</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html"><i class="fa fa-check"></i><b>17</b> Autorcorrélation spatiale : Moran et Geary</a><ul>
+<li class="chapter" data-level="17.1" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#lautocorrélation-spatiale"><i class="fa fa-check"></i><b>17.1</b> L’autocorrélation spatiale</a></li>
+<li class="chapter" data-level="17.2" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#lindice-de-moran"><i class="fa fa-check"></i><b>17.2</b> L’indice de Moran</a></li>
+<li class="chapter" data-level="17.3" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#lindice-de-geary"><i class="fa fa-check"></i><b>17.3</b> L’indice de Geary</a></li>
+<li class="chapter" data-level="17.4" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#commandes-r"><i class="fa fa-check"></i><b>17.4</b> Commandes R</a></li>
+<li class="chapter" data-level="17.5" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#exemples"><i class="fa fa-check"></i><b>17.5</b> Exemples</a></li>
+<li class="chapter" data-level="17.6" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#exemples-1"><i class="fa fa-check"></i><b>17.6</b> Exemples</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="les-flux.html"><a href="les-flux.html"><i class="fa fa-check"></i><b>18</b> Les flux</a><ul>
+<li class="chapter" data-level="18.1" data-path="les-flux.html"><a href="les-flux.html#matrice-de-flux"><i class="fa fa-check"></i><b>18.1</b> Matrice de flux</a></li>
+<li class="chapter" data-level="18.2" data-path="les-flux.html"><a href="les-flux.html#indices"><i class="fa fa-check"></i><b>18.2</b> Indices</a></li>
+<li class="chapter" data-level="18.3" data-path="les-flux.html"><a href="les-flux.html#cartographie-des-flux"><i class="fa fa-check"></i><b>18.3</b> Cartographie des flux</a></li>
+<li class="chapter" data-level="18.4" data-path="les-flux.html"><a href="les-flux.html#exemple"><i class="fa fa-check"></i><b>18.4</b> Exemple</a></li>
+<li class="chapter" data-level="18.5" data-path="les-flux.html"><a href="les-flux.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>18.5</b> Pour aller plus loin</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html"><i class="fa fa-check"></i><b>19</b> Le modèle gravitaire</a><ul>
+<li class="chapter" data-level="19.1" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#fin-xixe-les-lois-de-ravenstein"><i class="fa fa-check"></i><b>19.1</b> Fin XIX<sup>e</sup> : Les lois de Ravenstein</a></li>
+<li class="chapter" data-level="19.2" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#le-modèle-gravitaire-1"><i class="fa fa-check"></i><b>19.2</b> Le modèle gravitaire</a></li>
+<li class="chapter" data-level="19.3" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#distance-et-interaction"><i class="fa fa-check"></i><b>19.3</b> Distance et interaction</a></li>
+<li class="chapter" data-level="19.4" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#utilisation-du-modèle-gravitaire"><i class="fa fa-check"></i><b>19.4</b> Utilisation du modèle gravitaire</a></li>
+<li class="chapter" data-level="19.5" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#variantes-du-modèles-gravitaires"><i class="fa fa-check"></i><b>19.5</b> Variantes du modèles gravitaires</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="la-cartographie-comme-support.html"><a href="la-cartographie-comme-support.html"><i class="fa fa-check"></i><b>20</b> la Cartographie comme support</a><ul>
+<li class="chapter" data-level="20.1" data-path="la-cartographie-comme-support.html"><a href="la-cartographie-comme-support.html#cartographier-le-résultats-de-traitements-statistiques"><i class="fa fa-check"></i><b>20.1</b> Cartographier le résultats de traitements statistiques</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="létape-daprès-modèles-dynamiques.html"><a href="létape-daprès-modèles-dynamiques.html"><i class="fa fa-check"></i><b>21</b> L’étape d’après : modèles dynamiques</a><ul>
+<li class="chapter" data-level="21.1" data-path="létape-daprès-modèles-dynamiques.html"><a href="létape-daprès-modèles-dynamiques.html#modèles-simples-les-automates-cellulaires"><i class="fa fa-check"></i><b>21.1</b> Modèles simples : les automates cellulaires</a></li>
+<li class="chapter" data-level="21.2" data-path="létape-daprès-modèles-dynamiques.html"><a href="létape-daprès-modèles-dynamiques.html#modèles-complexes-mobilité"><i class="fa fa-check"></i><b>21.2</b> Modèles complexes : mobilité</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -378,48 +408,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Enfin, pour une variable quantitative et une variable qualitative :</p>
 <ul>
 <li>le lien entre la taille et la couleur des yeux,</li>
-<li>le lien entre le nombre d’aces et le côté du cours de tennis</li>
+<li>le lien entre le nombre d’aces d’un joueur et le côté du cours de tennis qu’il occupe</li>
 </ul>
-<div id="corrélation-nimplique-pas-causalité" class="section level2">
-<h2><span class="header-section-number">9.1</span> Corrélation n’implique pas causalité</h2>
-<center>
-<span style="color:red; font-size:1.5em"> ⚠ Une liaison, même très forte, entre deux variables, n’indique pas la causalité! ⚠</span>
-</center>
-<p><br>
-Cette erreur est très courante, très tentante.</p>
-<p>De nombreux contre-exemples sont heureusement disponibles pour finir de se convaincre que la <strong>corrélation n’implqiue pas la causalité</strong>:</p>
-<p><img src="chart.svg"/></p>
-<p>© TylerVigen <a href="http://tylervigen.com/spurious-correlations" class="uri">http://tylervigen.com/spurious-correlations</a>
-D’autres sont disponibles à cette adresse.</p>
-</div>
-<div id="analyse-bivariée-avec-des-données-spatiales" class="section level2">
-<h2><span class="header-section-number">9.2</span> Analyse bivariée avec des données spatiales</h2>
-<div id="données-spatiales" class="section level3">
-<h3><span class="header-section-number">9.2.1</span> Données spatiales</h3>
+<div id="analyse-bivariée-mais-sans-la-localisation" class="section level3">
+<h3><span class="header-section-number">9.0.1</span> Analyse bivariée, mais sans la localisation</h3>
 <p>L’analyse bivariée que nous allons aborder dans ce chapitre concerne des variables traditionnelles, i.e. <strong>pas des variables de localisation</strong> . Si elles proviennent de données spatiales, ce sera :</p>
 <ul>
 <li>soit des individus restreints spatialement (sélection spatiale)</li>
 <li>soit des variables “géographiques” (e.g. lieu de résidence) renseignées pour les individus</li>
 </ul>
-<p>La localisation <strong>en tant que variable</strong> n’interviendra <strong>pas</strong> directement dans nos analyses.</p>
+<p>La <strong>localisation en tant que variable</strong> n’interviendra <strong>pas</strong> dans ce cours.</p>
 </div>
-<div id="ressources-pour-données-localisées-et-distances" class="section level3">
-<h3><span class="header-section-number">9.2.2</span> Ressources pour données localisées et distances</h3>
+<div id="ressources-pour-lanalyse-des-localisation-et-des-distances" class="section level3">
+<h3><span class="header-section-number">9.0.2</span> Ressources pour l’analyse des localisation et des distances</h3>
 <p>Il existe des outils statistiques pour analyser le lien qui existe entre des variables localisées dans l’espace <em>et leur localisation elle-même</em>. Ces techniques <strong>ne sont pas au programme de ce cours</strong>, je les mentionne pour les curieux.</p>
 <p>On peut ainsi mesurer l’ <strong>auto-corrélation spatiale</strong> , qui indique si les valeurs proches sont regroupées ou au contraire disséminées dans l’espace, à l’aide de l’<a href="https://en.wikipedia.org/wiki/Moran%27s_I">indice de Moran global</a>, et identifier des clusters de valeurs plus fortes ou plus faibles que la normale à l’aide de l’<a href="https://geodacenter.github.io/workbook/6a_local_auto/lab6a.html">indice de Moran local</a>.</p>
 <p>On peut également effectuer des régressions qui tiennent compte de la localisation des observations dans l’espace, qu’on appelle GWR pour <strong>Geographicaly Weighted Regression</strong> (plus de détails <a href="https://fr.wikipedia.org/wiki/R%C3%A9gression_g%C3%A9ographiquement_pond%C3%A9r%C3%A9e">sur wikipedia</a> et la <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;ved=2ahUKEwjxtrK85pvuAhX2DmMBHdDaCTwQFjAAegQIAxAC&amp;url=https%3A%2F%2Fwww.insee.fr%2Fen%2Fstatistiques%2Ffichier%2F3635545%2Fimet131-m-chapitre-9.pdf&amp;usg=AOvVaw0Mli34vfm-BI1PymvssD5Y">fiche de l’INSEE</a>)</p>
 <p>Enfin , si on désire prendre en compte les <strong>distances</strong> dans les flux entre unités spatiales (par exemple pour expliquer les déplacements domicile-travail dans une région) on peut se tourner vers les <a href="https://www.hypergeo.eu/spip.php?article76">modèles gravitaires</a></p>
+<p>Nous donnerons à la fin de ce cours quelques éléments à ce sujet dans la section <a href="anaspat.html#anaspat">16</a></p>
 </div>
-</div>
-<div id="régression-linéaire" class="section level2">
-<h2><span class="header-section-number">9.3</span> Régression linéaire</h2>
-<div id="avant-toute-chose" class="section level3">
-<h3><span class="header-section-number">9.3.1</span> Avant toute chose</h3>
-<p>Vous devriez commencer à avoir l’habitude de ce mantra, encore plus valable dans le cas d’une analyse bivariée :</p>
-<p><span style="color:red; font-size: 1.5em;">Toujours en premier: Regarder l’aspect des données avec des graphiques </span></p>
-</div>
+<div id="corrélation-nimplique-pas-causalité" class="section level2">
+<h2><span class="header-section-number">9.1</span> Corrélation n’implique pas causalité</h2>
+<p>Nous allons voir comment quantifier l’intensité du <strong>lien statistique</strong> qui peut exister entre deux variables.</p>
+<center>
+<span style="color:red; font-size:1.5em"> ⚠ Une liaison, même très forte, entre deux variables, n’indique pas la causalité! ⚠</span>
+</center>
+<p><br>
+Cette erreur d’amalgame entre corrélation et causalité est très courante, très tentante, justement à cause du fait que l’amalgame «marche» dans de nombreux cas empiriques.</p>
+<p>De nombreux contre-exemples sont heureusement disponibles pour finir de se convaincre que la <strong>corrélation n’implique pas la causalité</strong>:</p>
+<p><img src="chart.svg"/></p>
+<p>© TylerVigen <a href="http://tylervigen.com/spurious-correlations" class="uri">http://tylervigen.com/spurious-correlations</a> <span class="math inline">\(\leftarrow\)</span> D’autres exemples sont disponibles à cette adresse.</p>
 <div id="diverses-formes-de-dépendances" class="section level3">
-<h3><span class="header-section-number">9.3.2</span> Diverses formes de dépendances</h3>
+<h3><span class="header-section-number">9.1.1</span> Diverses formes de dépendances</h3>
 <p>Ce qu’on appelle <strong>lien</strong> ou <strong>liaison</strong> ou encore <strong>dépendance</strong> entre les variables expriment le fait que les valeurs de deux variables n’évoluent pas indépendamment mais au contraire présentent une certaine <strong>forme</strong> une certaine <strong>régularité</strong>.</p>
 <p>Ces «régularités» peuvent être de plusieurs formes, en voici quelques unes :</p>
 <p><img src="bookdown_cours_stats_files/figure-html/formes-1.png" width="768" style="display: block; margin: auto;" /></p>
@@ -432,10 +452,11 @@ D’autres sont disponibles à cette adresse.</p>
 <li>une absence de dépendance, les deux variables sont indépendantes</li>
 <li>une absence de dépendance, la variable de l’axe des <span class="math inline">\(y\)</span> est constante</li>
 </ul>
-<p>En pratique les formes sont beaucoup moins régulières que ces exemples très «mathématiquement» simples</p>
+<p>En pratique les formes sont beaucoup moins régulières que ces exemples très «mathématiques» : les données peuvent être bruitées, incomplètes, contenir des outliers, etc.</p>
 </div>
 <div id="les-étapes-de-lanalyse-bivariée" class="section level3">
-<h3><span class="header-section-number">9.3.3</span> Les étapes de l’analyse bivariée</h3>
+<h3><span class="header-section-number">9.1.2</span> Les étapes de l’analyse bivariée</h3>
+<p>On peut résumer la démarche ‘mentale’ à adopter devant un jeu de données par cette séquence:</p>
 <ol style="list-style-type: decimal">
 <li>Tracer le nuage de points</li>
 <li>Existe-t-il une relation ?</li>
@@ -448,90 +469,182 @@ cf le blog de Lise Vaudor [<a href="http://perso.ens-lyon.fr/lise.vaudor/regress
 <p>Voici un arbre de décision plus précis :</p>
 <p><img src="decisionTreeCorr.svg"/></p>
 </div>
-<div id="régression-linéaire-1" class="section level3">
-<h3><span class="header-section-number">9.3.4</span> Régression linéaire</h3>
-<div id="principe" class="section level4">
-<h4><span class="header-section-number">9.3.4.1</span> Principe</h4>
-<p>Si la forme du nuage de points s’y prête, c’est-à-dire bien allongée, rectiligne , on peut entreprendre une <strong>régression linéaire</strong> (aussi appelé <strong>ajustement</strong> linéaire).</p>
-<p>Cela consiste à trouver la droite qui passe «<strong>au mieux</strong>» dans le nuage de points de deux variables quantitatives <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span>.</p>
-<p>«<strong>au mieux</strong>» est ici employé au sens des <strong>moindres carrés</strong>, c’est-à-dire que parmi toutes les droites qui peuvent passer au milieu du nuage de points, on va choisir celle pour laquelle l’erreur commise est la plus faible.</p>
-<p>L’erreur commise par la droite, c’est la somme des écarts entre les points du nuage et la droite, élevés au carré pour que les erreurs positives et négatives ne se compensent pas.</p>
-<p>On cherche la droite (en fait on cherche les deux coefficients <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> de son équation <span class="math inline">\(y=ax+b\)</span>) qui minimise la somme des carrés des écarts, d’où son nom de MCO (Moindres Carrés Ordinaires) ou OLS (Ordinary Least Squares in english).</p>
-<p>Si le nuage de points n’est pas amorphe, sans forme, et que les deux variables ne sont pas totalement indépendantes, ou constantes, alors cette droite est unique.</p>
 </div>
-<div id="la-droite-de-régression" class="section level4">
-<h4><span class="header-section-number">9.3.4.2</span> La droite de régression</h4>
-<p>Cette droite, qu’on appelle <strong>droite de régression</strong> permet de visualiser:</p>
+<div id="régression-linéaire" class="section level2">
+<h2><span class="header-section-number">9.2</span> Régression linéaire</h2>
+<div id="avant-toute-chose" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Avant toute chose</h3>
+<p>Vous devriez commencer à avoir l’habitude de ce mantra, encore plus valable dans le cas d’une analyse bivariée :</p>
+<p><span style="color:red; font-size: 1.5em;">Toujours en premier: Regarder l’aspect des données avec des graphiques </span></p>
+<p>Si le nuage de point n’est pas allongé, si vous “voyez” clairement qu’une droite ne le résulera pas, ou alors très mal, il n’est pas nécessaire d’entreprendre une rregression linéaire, qui sera de toute façon décevante!</p>
+<p>La regression linéaire ne concerne que les <strong>variables quantitatives</strong>.</p>
+</div>
+<div id="principe-et-vocabulaire" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Principe et Vocabulaire</h3>
+<div id="droite-de-régression" class="section level4">
+<h4><span class="header-section-number">9.2.2.1</span> Droite de régression</h4>
+<p>Si la forme du nuage de points s’y prête, c’est-à-dire bien allongée, rectiligne, on peut entreprendre une <strong>régression linéaire</strong> (aussi appelé <strong>ajustement</strong> linéaire).</p>
+<p>Cela consiste à trouver la droite qui passe «<strong>au mieux</strong>» dans le nuage de points de deux variables quantitatives <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span>, celle qui <strong>résume</strong> le nuage de points d’une façon satisfaisante.</p>
+<p>«<strong>au mieux</strong>» est ici employé au sens des <strong>moindres carrés</strong>, c’est-à-dire que parmi toutes les droites qui peuvent passer au milieu du nuage de points, on va choisir celle pour laquelle l’erreur commise est la plus faible.</p>
+<p>On cherche la droite (en fait on cherche les deux coefficients <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> de son équation <span class="math inline">\(y=ax+b\)</span>) qui minimise la somme des carrés des écarts, d’où le nom d’estimation MCO (Moindres Carrés Ordinaires) ou OLS (Ordinary Least Squares in english).</p>
+<p>Si le nuage de points n’est pas amorphe, sans forme, et que les deux variables ne sont pas totalement indépendantes, ou constantes, alors cette droite est <strong>unique</strong>.</p>
+</div>
+<div id="modèle-linéaire" class="section level4">
+<h4><span class="header-section-number">9.2.2.2</span> Modèle linéaire</h4>
+<p>En réalisant une régression linéaire, on cherche à <strong>expliquer</strong> une variable à partir d’une autre. «Expliquer» signifie ici «avoir un <strong>modèle</strong> pour calculer une valeur de la variable à partir d’une autre».</p>
+<p>Dans le cas d’une régression linéaire, le modèle est l’équation de <strong>la</strong> droite ajustée, de la forme <span class="math inline">\(y=ax +b\)</span>, celle qui minimise la somme des écarts au carré.</p>
+<p>On cherche donc les valeurs de <span class="math inline">\(a\)</span> et de <span class="math inline">\(b\)</span> (les coefficients du modèles linéaire) qui nous permettrait de calculer la valeur d’une variable (la variable dite <strong>expliquée</strong>) à partir d’une autre (la variable dite <strong>explicative</strong> ), que l’on peut écrire naïvement de cette façon :</p>
+<p><span class="math display">\[Valeurs\ de\ la\ variable\ expliquée = modèle(Valeurs\ de\ la\ variable\ explicative)\]</span></p>
+<p><span class="math display">\[Valeurs\ prédites\ de\ V_2 = modèle(V_1)\]</span></p>
+<p>Ici, notre modèle est linaire, donc:</p>
+<p><span class="math display">\[Valeurs\ prédites\ de\ V_2 = a\times V_1 + b\]</span></p>
+<p><strong>Variable explicative</strong>:
+C’est celle qui est utilisée par le modèle pour calculer les valeurs de la variable expliquée. Dans notre exemple , c’est <span class="math inline">\(V_1\)</span>. Par convention , on la met sur l’axe des <span class="math inline">\(x\)</span> dans les graphes.</p>
+<p><strong>Variable expliquée</strong> :
+C’est la variable pour laquelle le modèle propose des valeurs: dans notre exemple c’est <span class="math inline">\(V_2\)</span>. Par convention on la met sur l’axe des <span class="math inline">\(y\)</span> dans les graphes.</p>
+</div>
+<div id="estimation-prédiction-résidu" class="section level4">
+<h4><span class="header-section-number">9.2.2.3</span> Estimation, Prédiction, Résidu</h4>
+<p>On peut utiliser le modèle, pour <strong>estimer</strong> (=calculer, prédire) les valeurs de <span class="math inline">\(V_2\)</span>, avec les valeurs de <span class="math inline">\(V_1\)</span> et à l’aide de l’équation de droite. On note souvent les valeurs prédites <span class="math inline">\(\hat{V_2}\)</span>.</p>
+<p>L’écart entre <span class="math inline">\(\hat{V_2}\)</span> et <span class="math inline">\(V_2\)</span> est appelé <strong>résidu</strong>.</p>
+<p>Ainsi pour toutes les observations du jeu de données, on a :</p>
+<p><span class="math display">\[V_2 =  prediction(V_1) + residu\]</span>
+<span class="math display">\[V_2 =  \hat{V_2} + residu\]</span></p>
+</div>
+<div id="lerreur-commise-par-le-modèle" class="section level4">
+<h4><span class="header-section-number">9.2.2.4</span> L’erreur commise par le modèle</h4>
+<p>L’erreur commise par la droite, c’est la somme des écarts entre les points du nuage et la droite, les <strong>résidus</strong>, ces écarts sont élevés au carré avant d’être sommés pour que les erreurs positives et négatives ne se compensent pas. On appelle parfois cette somme la SSE (Sum of Square Erros in english) ou la RSS (Residuals Sum of Squares in english).</p>
+<p>On peut l’écrire avec des notations différentes, mais la signification est toujours la même :</p>
+<p><span class="math display">\[SSE = \sum_i (prediction_i - observation_i)^2\]</span>
+<span class="math display">\[SSE = \sum_i ( modele(x_i)- x_i)^2\]</span>
+<span class="math display">\[SSE = \sum_i ( ax_i + b - x_i)^2\]</span>
+<span class="math display">\[SSE = \sum_i ( \hat{y_i}- x_i)^2\]</span></p>
+<blockquote>
+<p>On peut noter qu’il ne s’agit pas de la distance entre les points et la droite (leur projeté orthogonal), mais bien l’écart en ordonnée qui intervient dans ce calcul.</p>
+</blockquote>
+<p>Quasiment toutes les statistiques inférentielles reposent sur ce genre d’équation : on cherche un modèle d’une variable, à partir d’autres variables explicatives, et parmi les modèles possibles, on essaye de réduire l’erreur et de trouver le «bon» modèle: celui qui produise des résidus avec de nombreuses propriétés souhaitables : valeurs faibles, identiquement distribuées, de distributions proches de la gaussienne, sans auto-corrélation temporelle ni spatiale, etc.</p>
+<p>Nous reviendrons dans la section bonus @ref{residuslm} sur la façon de qualifier les erreurs commises par un modèle linaire avec R.</p>
+</div>
+</div>
+<div id="interpréter-la-droite-de-régression" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Interpréter la droite de régression</h3>
+<p>L’objectif de la régression linéaire est trouver le meilleur modèle linéaire entre deux variables. Ce modèle est l’équation d’une droite, qu’on appelle <strong>droite de régression</strong> et qui permet de visualiser:</p>
 <ul>
 <li>l’<strong>intensité</strong> de la dépendance, suivant que les points sont proches de la droite ou non</li>
 <li>la <strong>forme</strong> de la dépendance, suivant que le nuage soit bien de forme linéaire</li>
 <li>le <strong>sens</strong> de la dépendance : nulle, positive ou négative</li>
 </ul>
 <p><img src="bookdown_cours_stats_files/figure-html/regline-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>«Droite qui passe au mieux» = qui minimise la <strong>somme des écarts quadratiques</strong> entre la droite et les points du nuage.</p>
+<p>Dans cet exemple, le nuage de point est assez allongé, on constate une dépendance linaire négative. Les points sont relativement proches de la droite.</p>
 </div>
-</div>
-</div>
-<div id="régression-linéaire-le-modèle" class="section level2">
-<h2><span class="header-section-number">9.4</span> Régression linéaire : le modèle</h2>
+<div id="utiliser-modèle-linéaire" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> Utiliser modèle linéaire</h3>
 <p>L’<strong>équation</strong> de la droite est un <strong>modèle linéaire</strong> de la relation statistique qui lie <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span>;</p>
 <p>Ici le modèle est : <span class="math inline">\(\hat{V_2}=aV_1+b\)</span></p>
-<p><br />
-</p>
-<p>Si la régression linéaire est avérée, alors pour un individu <span class="math inline">\(i\)</span> dont on connait <span class="math inline">\(V1_i\)</span>, on infère la valeur <span class="math inline">\(V2_i\)</span> par le modèle : <span class="math inline">\(\hat{V_{2i}} = aV_{1i} +b\)</span></p>
-<p>On dit aussi que <span class="math inline">\(V_1\)</span> <strong>explique</strong> <span class="math inline">\(V_2\)</span> , ou que le modèle <strong>prédit</strong> <span class="math inline">\(V_2\)</span> à partir de <span class="math inline">\(V_1\)</span> (on note les valeurs prédites <span class="math inline">\(\hat{V_2}\)</span>)</p>
+<p>Si la régression linéaire est réussie, alors pour un individu <span class="math inline">\(i\)</span> dont on connait <span class="math inline">\(V1_i\)</span>, on infère la valeur <span class="math inline">\(V_{2i}\)</span> par le modèle : <span class="math inline">\(\hat{V_{2i}} = aV_{1i} +b\)</span></p>
+<p>On dit aussi que <span class="math inline">\(V_1\)</span> <strong>explique</strong> <span class="math inline">\(V_2\)</span> , ou que le modèle <strong>prédit</strong> <span class="math inline">\(V_2\)</span> à partir de <span class="math inline">\(V_1\)</span> (on note les valeurs prédites <span class="math inline">\(\hat{V_2}\)</span>).</p>
+<p>Il est intéressant d’avoir un (bon) modèle de la relation entre <span class="math inline">\(V_2\)</span> et <span class="math inline">\(V_1\)</span>, car en l’absence d’observations supplémentaires de <span class="math inline">\(V_2\)</span> , on peut estimer les valeurs qu’elles prendraient si on dispose d’observations supplémentaires de <span class="math inline">\(V_1\)</span>.</p>
+<p>Imaginez que des observations de <span class="math inline">\(V_2\)</span> soient particulièrement coûteuses à recueillir, et les observations de <span class="math inline">\(V_1\)</span> particulièrement peu coûteuses, par exemple la production de salive d’un tigre adulte et réveillé et la largeur de ses empreintes</p>
 </div>
-<div id="la-grande-question" class="section level2">
-<h2><span class="header-section-number">9.5</span> La grande question</h2>
-<p>Comment déterminer qu’une régression linéaire est «correcte» ?</p>
-</div>
-<div id="comment-evaluer-la-validité-du-modèle-linaire" class="section level2">
-<h2><span class="header-section-number">9.6</span> Comment evaluer la “validité” du modèle linaire ?</h2>
-<p>En pratique, il faut réunir deux critères :</p>
+<div id="évaluer-la-qualité-dune-régression-linaire" class="section level3">
+<h3><span class="header-section-number">9.2.5</span> Évaluer la qualité d’une régression linaire</h3>
+<p>En pratique, pour considérer qu’une régression linéaire est de bonne qualité, i.e. que le modèle linéaire qui lie les deux variables décrit (explique, prédit, ..) bien les données, il faut réunir deux critères :</p>
 <ul>
-<li>des coefficients avec des <strong>p-values</strong> associées <strong>faibles</strong> (e.g. &lt;0.05) <span class="math inline">\(\leftrightarrow\)</span> “on a peu de chances de se tromper”</li>
-<li>un <span class="math inline">\(R^2\)</span> élevé <span class="math inline">\(\leftrightarrow\)</span> “le modèle prédit bien les observations”</li>
+<li>des coefficients avec des <strong>p-values</strong> associées <strong>faibles</strong> (e.g. &lt;0.05) qu’on peut grossièrement traduire par “on a peu de chances de se tromper”</li>
+<li>un <strong><span class="math inline">\(R^2\)</span> élevé</strong>, qu’on peut traduire par “le modèle prédit bien les observations”</li>
 </ul>
+<p>On commence par le <span class="math inline">\(R^2\)</span></p>
+<div id="le-r2" class="section level4">
+<h4><span class="header-section-number">9.2.5.1</span> le <span class="math inline">\(R^2\)</span></h4>
+<p>Le <strong>coefficient de détermination linéaire</strong> , noté <span class="math inline">\(R^2\)</span> est une valeur qui décrit la <strong>qualité de prédiction</strong> de la régression, c’est-à-dire à quel point la droite de régression estime correctement les valeurs de la variable expliquée.</p>
+<p>Il est défini par :
+<span class="math display">\[R^2  = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span></p>
+<ul>
+<li><span class="math inline">\(R^2 \in [0;1]\)</span></li>
+<li>Plus le <span class="math inline">\(R^2\)</span> est proche de 1, meilleure est la qualité.</li>
+</ul>
+<p>Pour avoir l’intuition de l’interprétation de cette formule, on peut remarquer que la fraction est un ratio entre la somme des résidus au carrés (écart entre valeurs observées <span class="math inline">\(y_i\)</span> et valeur prédite <span class="math inline">\(\hat{y_i}\)</span>) et la variance (cf. section <a href="dispersion.html#variance">5.2</a>) de la variable expliquée (<span class="math inline">\(y\)</span>).</p>
+<p>Le dénominateur de la fraction est constant , il vaut <span class="math inline">\(var(y)\)</span>
+Alors, intuitivement , pour un mauvais modèle, qui prédit mal les observations de <span class="math inline">\(y\)</span>, la somme des résidus au carré sera importante, donc la fraction également, et la valeur de <span class="math inline">\(R^2\)</span> sera petite, proche de 0.
+De la même manière, pour un bon modèle, qui prédit bien les valeurs de <span class="math inline">\(y\)</span>, les résidus seront faibles, donc leur somme quadratique également, ainsi que la valeur de la fraction, ce qui donnera un <span class="math inline">\(R^2\)</span> proche de 1.</p>
+<p>Mentalement , on peut réécrire la formule ainsi :</p>
+<p><span class="math display">\[R^2 \approx 1- \frac{résidus^2}{variance\ de\ y}\]</span></p>
+<p><span class="math display">\[R^2 \approx 1- (erreur\ commise\ normalisée)\]</span></p>
 </div>
-<div id="le-r2" class="section level2">
-<h2><span class="header-section-number">9.7</span> le <span class="math inline">\(R^2\)</span></h2>
-<p><span class="math inline">\(R^2 \in [0;1]\)</span> , c’est le <strong>coefficient de détermination linéaire</strong>.</p>
-<p>Donne la <strong>qualité de prédiction</strong> de la régression.</p>
-<p>“Proche de 1”" <span class="math inline">\(\equiv\)</span> “très bonne qualité”</p>
-<p>C’est le pourcentage de “variation” de <span class="math inline">\(V_2\)</span> due à la “variation” de <span class="math inline">\(V_1\)</span></p>
+<div id="propriétés-et-interprétation-additionnelles-du-r2" class="section level4">
+<h4><span class="header-section-number">9.2.5.2</span> Propriétés et interprétation additionnelles du <span class="math inline">\(R^2\)</span></h4>
+<p>Le <span class="math inline">\(R^2\)</span> peut s’écrire de plusieurs façons, notamment ainsi :</p>
+<p><span class="math display">\[R^2  =  \frac{\sum_{i=1}^{n} (\hat{y_i} -\bar{y} )^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span></p>
+<p>Cette expression est intéressante pour nous car on reconnait encore une fois une fraction de <em>variances</em> (cf. section <a href="dispersion.html#variance">5.2</a>) :</p>
+<ul>
+<li>au dénominateur , c’est la variance de <span class="math inline">\(y\)</span> , la variable expliquée</li>
+<li>au numérateur , c’est la variance de <span class="math inline">\(\hat{y}\)</span>, la variable prédite par le modèle</li>
+</ul>
+<p>(les termes en <span class="math inline">\(\frac{1}{n}\)</span> des variances au numérateur et dénominateur se simplifient )</p>
+<p>On peut donc voir le <span class="math inline">\(R^2\)</span> comme un ratio de variances : celles des estimations et celles des observations.
+En faisant une regression, on cherche à «capturer» la variance de la variable expliquée à l’aide de la variance de la variable estimée par le modèle, d’où une valeur de <span class="math inline">\(R^2\)</span> proche de 1 lorsque la variance des estimations est proche de la variance des observations</p>
 </div>
-<div id="le-r2-1" class="section level2">
-<h2><span class="header-section-number">9.8</span> le <span class="math inline">\(R^2\)</span></h2>
-<p>défini par :
-<span class="math inline">\(R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\)</span></p>
-<p>si on note <span class="math inline">\(\hat{V_2}\)</span> les valeurs de <span class="math inline">\(V_2\)</span> prédite par le modèle linéaire, alors:</p>
-<p><span class="math inline">\(R^2=cor(\hat{V_2},V_2)^2\)</span></p>
-<p>(au sens de la corrélation de Pearson)</p>
+<div id="exemples-avec-différentes-valeurs-de-r2" class="section level4">
+<h4><span class="header-section-number">9.2.5.3</span> Exemples avec différentes valeurs de <span class="math inline">\(R^2\)</span></h4>
+<p>Voici des exemples de régression linéaire de différentes qualités avec la valeurs correspondante de <span class="math inline">\(R^2\)</span>, on donne aussi la valeur de la p-value, que nous aborderons juste après.</p>
+<p><img src="bookdown_cours_stats_files/figure-html/expleR2_1-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Cette première régression est de bonne qualité: le <span class="math inline">\(R^2\)</span> est proche de 1, la droite décrit bien les données : peu de point s’en écartent significativement.</p>
+<p><img src="bookdown_cours_stats_files/figure-html/expleR2_2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Cette deuxième régression est de moindre qualité.
+Certes, le nuages de points à une forme suffisamment “allongée” pour qu’on entreprenne une régression linéaire, mais celle-ci est de qualité intermédiaire : beaucoup de points sont éloignés de la droite, le nuage est assez dispersé, ce qui augmente les erreurs et donc amoindrit le score du <span class="math inline">\(R^2\)</span>.</p>
+<p><img src="bookdown_cours_stats_files/figure-html/expleR2_3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Avec ce dernier exemple volontairement exagéré, la qualité de la régression est mauvaise.</p>
+<p>Certes la forme du nuage de points est linéaire, mais la bande est tellement large que les erreurs seront très grandes, même si la droite de régression passe bien au milieu. La variance de la variable 2 est telle qu’elle n’est pas suffisamment “capturée” par la droite.
+On notera que les p-value sont très faibles, ce qui on va le voir, indique qu’on est à peu près certains de l<em>’équation de la droite</em>, c’est bien celle-ci qui passe “au mieux” dans le nuage de points. Le problème, c’est que ce nuage de points est tout simplement «mal» décrit par une droite, vu sa forme !</p>
 </div>
-<div id="la-p-value" class="section level2">
-<h2><span class="header-section-number">9.9</span> la p-value</h2>
-<p>Elle peut s’interpréter comme «la probabilité d’avoir un résultat de regression identique avec deux variables véritablement indépendantes»</p>
-<p><br>
-<br></p>
+<div id="la-p-value-et-lhypothèse-nulle" class="section level4">
+<h4><span class="header-section-number">9.2.5.4</span> la p-value et l’hypothèse nulle</h4>
+<p>La p-value est la seconde quantité qui nous renseigne sur la qualité d’une régression linéaire.
+Le <span class="math inline">\(R^2\)</span> mesurait la qualité de prédiction du modèle linéaire, la <strong>p-value</strong> est plutôt associée avec la notion de confiance qu’on peut placer dans les coefficients du modèle linéaire que l’on obtient.</p>
+<p>La façon d’interpréter correctement une p-value fait l’objet de nombreux débats, on en propose une ici, mais il y en a de nombreuses autres.</p>
+<p><strong>Approximation grossière </strong> :</p>
+<p>la p-value est le <strong>pourcentage de chances de se tromper</strong> en rejetant l’hypothèse nulle, c’est-à-dire se tromper en considérant que les deux séries ne sont pas indépendantes et qu’il existe une relation entre les deux (ici, linéaire car nous testons un modèle linéaire).</p>
+<p>Sur la base de cette approximation, on peut d’ores et déjà dire que plus cette p-value est petite , mieux c’est.</p>
 <p>La p-value est associée à la notion d’<strong>hypothèses nulle</strong>.
-Ici , l’hypothèse nulle est “les deux séries sont indépendantes”.</p>
+Ici , l’hypothèse nulle <span class="math inline">\(H_0\)</span> est <strong>“les deux variables sont indépendantes”</strong>.</p>
+<p><strong>rejeter <span class="math inline">\(H_0\)</span></strong> c’est considérer que les deux variables <strong>ne sont pas indépendantes</strong>.
+<strong>conserver <span class="math inline">\(H_0\)</span></strong> c’est considérer que les deux variables <strong>sont indépendantes</strong>.</p>
+<p>En statistique, on raisonne avec des hypothèses, qu’on rejette ou qu’on conserve, suivant la valeur de <strong>tests statistiques</strong>.</p>
+<p>Par exemple, lorsqu’on teste si deux variables sont linéairement liées, on formule en fait une hypothèse, <span class="math inline">\(H_1\)</span> qui est «les deux variables sont linéairement liées».</p>
+<p>Il y a une hypothèse particulière, l’hypothèse nulle, <span class="math inline">\(H_0\)</span>, qu’on peut voir comme l’hypothèse à formuler dans le cas <strong>le plus général possible</strong>, quand on ne sait rien du tout sur les données. Dans ce cas là, étant donné deux variables, on pose l’hypothèse qu’elles sont indépendantes, tout simplement parce qu’il n’y a aucune raison qu’elles soient liées.</p>
 </div>
-<div id="la-p-value-1" class="section level2">
-<h2><span class="header-section-number">9.10</span> la p-value</h2>
-<p>Plus grossièrement : la p-value est le <strong>pourcentage de chances de se tromper</strong> en rejetant l’hypothèse nulle,</p>
-<p><br> c’est à dire <br></p>
-<p>se tromper en considérant que les deux séries ne sont pas indépendantes et qu’il existe une relation entre les deux (ici, linéaire car nous testons un modèle linéaire).</p>
+<div id="approximation-moins-grossière-à-propos-de-la-p-value" class="section level4">
+<h4><span class="header-section-number">9.2.5.5</span> Approximation moins grossière à propos de la p-value</h4>
+<p>La p-value peut s’interpréter comme «la probabilité d’avoir un résultat identique étant donné l’hypothèse nulle»</p>
+<p>Imaginez que vous ayez un jeu de données <span class="math inline">\(D_{ini}\)</span> constitué de 2 variables quantitatives pour 500 individus.
+Le nuage de points est suffisamment allongé pour que vous entrepreniez une régression linéaire.
+Vous obtenez une certaine valeur pour vos coefficients <span class="math inline">\(a_{D_ini}\)</span> et <span class="math inline">\(b_{D_ini}\)</span> de régression linéaire.
+Vous pouvez même faire une test de corrélation de Pearson, et obtenir une valeur de corrélation</p>
+<p>Maintenant imaginez qu’on génère une infinité de jeu de données <span class="math inline">\(\Delta\)</span> à 2 variables et à 500 individus <strong>sachant</strong> <span class="math inline">\(H_0\)</span>, donc avec des variables indépendantes, des variables pour lesquelles on <strong>sait</strong> qu’il n’y a aucun lien.</p>
+<p>Parmi cette infinité de jeu de données, il y en a une proportion qui, <strong>par hasard</strong>, <strong>par chance</strong>, présente des données qui ont la même forme que notre jeu de données, ou une forme suffisamment proche, qui donnerait les <strong>mêmes résultats</strong> de régression, la même droite, la même corrélation.</p>
+<p>Trions l’infinité de jeu de données <span class="math inline">\(\Gamma\)</span> selon ce critère de résultats, d’un côté les jeux de données qui indique les même résultats que notre régression sur <span class="math inline">\(D_{ini}\)</span>, qu’on va noter <span class="math inline">\(\Gamma_{corrélés}\)</span>, de l’autre les jeux de données pour lesquels on ne peut pas conclure aux même résultats: il n’y a pas de corrélation entre les deux variables, la forme du nuage de points n’est pas assez linéaire pour qu’un analyste décide d’en faire une régression linéaire. On note ces jeux <span class="math inline">\(\Gamma{indépendants}\)</span>.</p>
+<p>Rappelons qu’on a généré cette infinité de jeu de données sous l’hypothèse <span class="math inline">\(H_0\)</span>.
+On s’est donc trompés, pour tous les jeux de données étiquetés <span class="math inline">\(\Gamma_{corrélés}\)</span>, en obtenant des résultats de corrélation et de régression linéaire identique à ceux obtenus sur <span class="math inline">\(D_{ini}\)</span>.
+On ne s’est pas trompés pour tous les jeux de <span class="math inline">\(\Gamma_{indépendants}\)</span></p>
+<p>La p-value c’est la proportion <span class="math display">\[\frac{\Gamma_{corrélés}}{\Gamma}\]</span>.</p>
+<p>C’est la proportion de fois où on s’est trompés en affirmant à propos de <span class="math inline">\(\Gamma_{corrélés}\)</span> les résultats obtenus sur <span class="math inline">\(D_{ini}\)</span> alors qu’on avait des jeux de données où <span class="math inline">\(H_0\)</span> était vraie par construction.</p>
 </div>
-<div id="lhypothèse-nulle" class="section level2">
-<h2><span class="header-section-number">9.11</span> l’Hypothèse nulle</h2>
-<p><span class="math inline">\(H_0\)</span> : «les deux variables sont indépendantes»</p>
+</div>
+<div id="ce-quil-faut-retenir-de-la-p-value" class="section level3">
+<h3><span class="header-section-number">9.2.6</span> Ce qu’il faut retenir de la p-value</h3>
 <ul>
-<li><strong>conserver</strong> <span class="math inline">\(H_0\)</span> : considérer les deux variables comme <strong>indépendantes</strong></li>
-<li><strong>rejeter</strong> <span class="math inline">\(H_0\)</span> : considérer les deux variables comme <strong>dépendantes</strong> = ayant une relation statistique, un lien.</li>
+<li>plus elle est petite mieux c’est</li>
+<li>en sciences expérimentales, le seuil de significativité est bas (~5%), en sciences sociales , il est plus haut</li>
+<li>elle s’interprète comme un pourcentage de chances de se tromper en première approximation</li>
+<li>il faut plutôt le voir comme la proportion, parmis une infinité d’expériences avec des données de même taille mais indépendantes, d’obtenir les même résultats de régression linéaire.</li>
 </ul>
 </div>
-<div id="format-des-resultats-donnés-par-avec-r" class="section level2">
-<h2><span class="header-section-number">9.12</span> Format des resultats donnés par avec R</h2>
+</div>
+<div id="effectuer-une-régression-linéaire-avec-r" class="section level2">
+<h2><span class="header-section-number">9.3</span> Effectuer une régression linéaire avec R</h2>
+<p>La régression linéaire s’obtient avec la fonction <code>lm()</code>.</p>
+<p>Le premier argument est sous une forme particulière d’expression en R :une <strong>formule</strong>.</p>
+<p>Elle s’écrit <code>Variable expliquée ~ Variable explicative</code> dans notre cas, puisque nous faison une regression <em>univariée</em> , c’est-à-dire qu’on essaye d’expliquer une variable à l’aide d’une seule autre variable.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="bivariee.html#cb53-1"></a>regression &lt;-<span class="st"> </span><span class="kw">lm</span>(iris<span class="op">$</span>Petal.Length<span class="op">~</span>iris<span class="op">$</span>Petal.Width)</span>
 <span id="cb53-2"><a href="bivariee.html#cb53-2"></a><span class="kw">summary</span>(regression)</span></code></pre></div>
 <pre><code>## 
@@ -552,55 +665,58 @@ Ici , l’hypothèse nulle est “les deux séries sont indépendantes”.</p>
 ## Residual standard error: 0.4782 on 148 degrees of freedom
 ## Multiple R-squared:  0.9271, Adjusted R-squared:  0.9266 
 ## F-statistic:  1882 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div id="format-des-résultats" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Format des résultats</h3>
 <p>Distribution des résidus, coefficients du modèle ajusté et leur <strong>p-value</strong> associée (ici sur un test de Student, notée <code>Pr(&gt;|t|)</code> et <span class="math inline">\(R^2\)</span>)</p>
 </div>
-<div id="bonus-critères-de-significativité-du-lien-linéaire" class="section level2">
-<h2><span class="header-section-number">9.13</span> Bonus: Critères de significativité du lien linéaire</h2>
+<div id="residuslm" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Bonus: Critères de significativité du lien linéaire</h3>
 <p>Les <strong>résidus</strong> <span class="math inline">\(\epsilon_i\)</span> (écart entre valeur observée et valeur prédite (<span class="math inline">\(V_2 - \hat{V_2}\)</span>) par le modèle pour l’individu <span class="math inline">\(i\)</span>) doivent:</p>
 <ul>
 <li>être indépendants : covariance nulle ou très faible <span class="math inline">\(cov(x_i, \epsilon_i) = 0\)</span></li>
 <li>être distribués selon un loi normale de moyenne nulle <span class="math inline">\(\epsilon \sim \mathscr{N}(0,\sigma_{\epsilon})\)</span></li>
 <li>être distribués de façon homogène (homoscédasticité), i.e. de variance constante <span class="math inline">\(var(\epsilon_i)=\sigma_{\epsilon}^2\)</span> , indépendante de l’observation</li>
 </ul>
-</div>
-<div id="bonus-evaluation-de-lindépendance-des-résidus-avec-r" class="section level2">
-<h2><span class="header-section-number">9.14</span> Bonus: Evaluation de l’indépendance des résidus avec R</h2>
+<div id="bonus-evaluation-de-lindépendance-des-résidus-avec-r" class="section level4">
+<h4><span class="header-section-number">9.3.2.1</span> Bonus: Evaluation de l’indépendance des résidus avec R</h4>
 <p>Graphique de la fonction <code>acf</code>:</p>
 <p>Si une barre exceptée la première dépasse la ligne en pointillés, on peut remettre en cause l’indépendance des résidus. Ici, c’est le cas.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="bivariee.html#cb55-1"></a>modele1 &lt;-<span class="st"> </span><span class="kw">lm</span>(iris<span class="op">$</span>Petal.Length<span class="op">~</span><span class="st"> </span>iris<span class="op">$</span>Petal.Width)</span>
 <span id="cb55-2"><a href="bivariee.html#cb55-2"></a><span class="kw">acf</span>(<span class="kw">residuals</span>(modele1))</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSigni3-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="bonusles-4-graphiques-résultats-de-la-fonction-lm" class="section level2">
-<h2><span class="header-section-number">9.15</span> Bonus:Les 4 graphiques résultats de la fonction <code>lm</code></h2>
+<div id="bonusles-4-graphiques-résultats-de-la-fonction-lm" class="section level4">
+<h4><span class="header-section-number">9.3.2.2</span> Bonus:Les 4 graphiques résultats de la fonction <code>lm</code></h4>
 <p>La fonction <code>lm</code> de R et ses résultats permettent de tracer 4 graphiques pour évaluer certains des critères de significativité.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bivariee.html#cb56-1"></a>modele1 &lt;-<span class="st"> </span><span class="kw">lm</span>(iris<span class="op">$</span>Petal.Length<span class="op">~</span><span class="st"> </span>iris<span class="op">$</span>Petal.Width)</span>
 <span id="cb56-2"><a href="bivariee.html#cb56-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># pour avoir une matrice de graphes</span></span>
 <span id="cb56-3"><a href="bivariee.html#cb56-3"></a><span class="kw">plot</span>(modele1)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="bonus-évaluer-lhomogénéité-des-résidus-avec-r" class="section level2">
-<h2><span class="header-section-number">9.16</span> Bonus: Évaluer l’homogénéité des résidus avec R</h2>
+<div id="bonus-évaluer-lhomogénéité-des-résidus-avec-r" class="section level4">
+<h4><span class="header-section-number">9.3.2.3</span> Bonus: Évaluer l’homogénéité des résidus avec R</h4>
 <p>Premier graphique : pour vérifier que le nuage de points est homogène (e.g. pas de relation non-linéaire entre résidus et valeurs prédites)</p>
 <p>Une éventuelle relation non-linéaire pourrait se retrouver dans les résidus(Ici : légère structure parabolique )</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="bivariee.html#cb57-1"></a>modele1 &lt;-<span class="st"> </span><span class="kw">lm</span>(iris<span class="op">$</span>Petal.Length<span class="op">~</span><span class="st"> </span>iris<span class="op">$</span>Petal.Width)</span>
 <span id="cb57-2"><a href="bivariee.html#cb57-2"></a><span class="kw">plot</span>(modele1,<span class="dv">1</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif1-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="bonus-evaluer-la-normalité-de-la-distribution-des-résidus-avec-r" class="section level2">
-<h2><span class="header-section-number">9.17</span> Bonus: Evaluer la normalité de la distribution des résidus avec R</h2>
+<div id="bonus-évaluer-la-normalité-de-la-distribution-des-résidus-avec-r" class="section level4">
+<h4><span class="header-section-number">9.3.2.4</span> Bonus: Évaluer la normalité de la distribution des résidus avec R</h4>
 <p>Le deuxième graphique “Q-Q plot” : pour vérifier l’<strong>hypothèse de normalité des résidus</strong>, les points doivent être proches de la bissectrice</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bivariee.html#cb58-1"></a>modele1 &lt;-<span class="st"> </span><span class="kw">lm</span>(iris<span class="op">$</span>Petal.Length<span class="op">~</span><span class="st"> </span>iris<span class="op">$</span>Petal.Width)</span>
 <span id="cb58-2"><a href="bivariee.html#cb58-2"></a><span class="kw">plot</span>(modele1,<span class="dv">2</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif2-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="bonus-evaluer-lhomoscédasticité-des-résidus" class="section level2">
-<h2><span class="header-section-number">9.18</span> Bonus: Evaluer l’homoscédasticité des résidus</h2>
+<div id="bonus-évaluer-lhomoscédasticité-des-résidus" class="section level4">
+<h4><span class="header-section-number">9.3.2.5</span> Bonus: évaluer l’homoscédasticité des résidus</h4>
 <p><span style="font-size:18px;"> Le troisème graphique “Scale location” : si les résidus sont distribués de façon homogène suivant les valeurs “fittées”, alors la droite est plutôt horizontale et les points sont disposés de façon homogène autour.</span></p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="bivariee.html#cb59-1"></a>modele1 &lt;-<span class="st"> </span><span class="kw">lm</span>(iris<span class="op">$</span>Petal.Length<span class="op">~</span><span class="st"> </span>iris<span class="op">$</span>Petal.Width)</span>
 <span id="cb59-2"><a href="bivariee.html#cb59-2"></a><span class="kw">plot</span>(modele1,<span class="dv">3</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif3-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><span style="font-size:18px;">Ici: légère pente mais les points sont distribués de façon relativement homogène autour de la droite.</span></p>
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -609,7 +725,7 @@ Ici , l’hypothèse nulle est “les deux séries sont indépendantes”.</p>
         </div>
       </div>
 <a href="visualiser-une-distribution-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="corrélation-de-deux-variables-quantitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

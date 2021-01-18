@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 20 la Cartographie comme support | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 20 la Cartographie comme support | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 20 la Cartographie comme support | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="régression-linéaire-avec-r.html"/>
-<link rel="next" href="lien-entre-deux-variables-qualitatives.html"/>
+<link rel="prev" href="le-modèle-gravitaire.html"/>
+<link rel="next" href="létape-daprès-modèles-dynamiques.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -391,31 +391,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="trucs-pour-linéariser-des-relations-non-linéaires" class="section level1">
-<h1><span class="header-section-number">Chapitre 12</span> “trucs” pour linéariser des relations non-linéaires</h1>
-<div id="relation-log-linéaire" class="section level2">
-<h2><span class="header-section-number">12.1</span> Relation log-linéaire</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=ax^b\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=aln(x) + ln(b)\)</span></p>
-</div>
-<div id="relation-géométrique-exponentielle" class="section level2">
-<h2><span class="header-section-number">12.2</span> Relation géométrique (exponentielle)</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
-</div>
-<div id="relation-logarithmique" class="section level2">
-<h2><span class="header-section-number">12.3</span> Relation logarithmique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=a*ln(x)+b\)</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> changement de variable</p>
-</div>
-<div id="relation-logistique" class="section level2">
-<h2><span class="header-section-number">12.4</span> Relation logistique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b\)</span></p>
+<div id="la-cartographie-comme-support" class="section level1">
+<h1><span class="header-section-number">Chapitre 20</span> la Cartographie comme support</h1>
+<div id="cartographier-le-résultats-de-traitements-statistiques" class="section level2">
+<h2><span class="header-section-number">20.1</span> Cartographier le résultats de traitements statistiques</h2>
+<p>Une carte permet d’explorer “visuellement” des résultats de traitements statistiques :</p>
+<ul>
+<li>Cartographie univariée : Cartographie électorale</li>
+<li>Cartographie bi-variée : représenter les résidus d’un modèle explicatif à une variable</li>
+<li>Cartographie multi-variée : Cartographie de clusters, de coordonnées d’individus dans le plan factoriel (ACP), etc.</li>
+</ul>
+<p>Typiquement : les résidus d’un modèle sont-ils homogènes dans l’espace ? Si non , pourquoi ?</p>
 </div>
 </div>
             </section>
@@ -423,8 +409,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="régression-linéaire-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lien-entre-deux-variables-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="le-modèle-gravitaire.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="létape-daprès-modèles-dynamiques.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

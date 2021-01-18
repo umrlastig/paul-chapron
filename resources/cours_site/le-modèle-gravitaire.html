@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 19 Le modèle gravitaire | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 19 Le modèle gravitaire | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 19 Le modèle gravitaire | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="régression-linéaire-avec-r.html"/>
-<link rel="next" href="lien-entre-deux-variables-qualitatives.html"/>
+<link rel="prev" href="les-flux.html"/>
+<link rel="next" href="la-cartographie-comme-support.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -391,31 +391,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="trucs-pour-linéariser-des-relations-non-linéaires" class="section level1">
-<h1><span class="header-section-number">Chapitre 12</span> “trucs” pour linéariser des relations non-linéaires</h1>
-<div id="relation-log-linéaire" class="section level2">
-<h2><span class="header-section-number">12.1</span> Relation log-linéaire</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=ax^b\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=aln(x) + ln(b)\)</span></p>
+<div id="le-modèle-gravitaire" class="section level1">
+<h1><span class="header-section-number">Chapitre 19</span> Le modèle gravitaire</h1>
+<div id="fin-xixe-les-lois-de-ravenstein" class="section level2">
+<h2><span class="header-section-number">19.1</span> Fin XIX<sup>e</sup> : Les lois de Ravenstein</h2>
+<p>(Ravenstein E., 1885 &amp; 1889, “The Laws of Migration”, Journal of Royal Statist. Society, London , d’après Noin D., 1988, Géographie de la Population, Masson, Paris, pp. 273-274, cité par C. Grasland.</p>
+<p><span style="font-size:0.6em; line-height:normal;">Le nombre de migrants diminue quand la distance augmente; la plupart ne vont pas très loin ; ceux qui se déplacent sur de grandes distances se dirigent de préférence vers les grands centres commerciaux et industriels.<br>
+Le processus se fait de la façon suivante : une ville à croissance rapide attire les gens des régions environnantes ; les vides ainsi créés sont comblés par les migrants de districts plus éloignés ; la force d’attraction des grandes villes dynamiques se fait donc sentir de proche en proche en diminuant d’intensité. Le nombre de migrants de la zone d’accueil est donc <strong>proportionnel à la population de la zone d’origine et inversement proportionnel à la distance qui les sépare</strong>.<br>
+Chaque courant principal de migration suscite un contre-courant compensatoire.<br>
+Les citadins ont une mobilité plus faible que les ruraux<br>
+Les femmes ont une mobilité plus forte que les hommes, au moins à courte distance.<br>
+L’intensité des migrations augmente avec le développement du commerce, de l’industrie et des transports<br>
+Les facteurs déterminant la migration sont nombreux mais le plus important est le facteur économique</span></p>
 </div>
-<div id="relation-géométrique-exponentielle" class="section level2">
-<h2><span class="header-section-number">12.2</span> Relation géométrique (exponentielle)</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
+<div id="le-modèle-gravitaire-1" class="section level2">
+<h2><span class="header-section-number">19.2</span> Le modèle gravitaire</h2>
+<p>Modèle simple, déterministe et symmétrique qui prose de calculer l’intensité de l’interaction entre deux entités spatiales en fonction de leurs <strong>masses</strong> et de la distance qui les sépare.</p>
+<p>Plusieurs formulations :</p>
+<p><span class="math inline">\(Fij = k \frac{P_i . P_j}{D_{ij}^2}\)</span></p>
+<p>avec <span class="math inline">\(P_i\)</span> la masse (e.g. population, attraction, emmission, etc.) de l’entité spatiale <span class="math inline">\(i\)</span>, <span class="math inline">\(D_ij\)</span> une fonction de <strong>coût</strong> e.g. la distance qui sépare <span class="math inline">\(i\)</span> de <span class="math inline">\(j\)</span></p>
+<p><span class="math inline">\(Fij = k \frac{P_i . P_j}{D_{ij}^\alpha}\)</span></p>
+<p>avec alpha le <strong>frein à la distance</strong> (distance decay) , pour modéliser des déplacements plus ou moins faciles</p>
 </div>
-<div id="relation-logarithmique" class="section level2">
-<h2><span class="header-section-number">12.3</span> Relation logarithmique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=a*ln(x)+b\)</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> changement de variable</p>
+<div id="distance-et-interaction" class="section level2">
+<h2><span class="header-section-number">19.3</span> Distance et interaction</h2>
+<p style="font-size:0.6em; line-height:normal;">
+D’après H.Commenges, cours d’analyse spatiale , Delhi R School
+</p>
+<p>Lorsque l’interaction est spatialisée, elle implique nécessairement une <strong>distance</strong>.</p>
+<ul>
+<li>L’interaction spatiale considère le déplacement comme un effort.</li>
+<li>L’interaction spatiale est le rapport dialogique entre <strong>mise en contact</strong> et <strong>friction de l’éloignement</strong>.</li>
+<li>L’interaction spatiale être abordée de deux façons : relations entre lieux ou attraction/influence d’un lieu sur les autres lieux.</li>
+<li>Dans le premier cas on parlera d’analyse de flux</li>
+<li>Dans le second cas on parlera d’analyse de position (cf. Accessibilité)</li>
+</ul>
 </div>
-<div id="relation-logistique" class="section level2">
-<h2><span class="header-section-number">12.4</span> Relation logistique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b\)</span></p>
+<div id="utilisation-du-modèle-gravitaire" class="section level2">
+<h2><span class="header-section-number">19.4</span> Utilisation du modèle gravitaire</h2>
+<p>Exemple d’une formulation plus générale :
+<span class="math inline">\(F_{ij} = \alpha_i \beta_j E_i A_j C_{ij}^{−n}\)</span></p>
+<p align="left" style="font-size: 70%">
+<p>avec <span class="math inline">\(\alpha_i\)</span> et<span class="math inline">\(\beta_j\)</span> des facteurs d’équilibrage qui assurent la contrainte aux marges,<br>
+<span class="math inline">\(E_i\)</span> et <span class="math inline">\(A_j\)</span> : valeurs d’émission et d’attraction de la zone <br>
+<span class="math inline">\(C_{ij}\)</span> : coût généralisé du trajet de <span class="math inline">\(i\)</span> vers <span class="math inline">\(j\)</span> : temps, prix , inconfort.<br>
+<span class="math inline">\(n\)</span> : frein à la distance, la valeur varie selon les motifs de déplacement. (plus faible vers le travail que vers des motifs “secondaires” (e.g. courses quotidiennes)<br><br></p>
+<p>On détermine les valeurs des coefficients (<span class="math inline">\(\alpha,\ \beta,\ n\)</span>)inconnus par <strong>calibration</strong> sur des données (problème d’optimisation classique, qu’on peut résoudre par algorithme génétique, recuit simulé, etc.)</p>
+</div>
+<div id="variantes-du-modèles-gravitaires" class="section level2">
+<h2><span class="header-section-number">19.5</span> Variantes du modèles gravitaires</h2>
+<ul>
+<li><p>Nature des masses: population, emplois, émission , attraction , offre, demande</p></li>
+<li><p>Pondérations des masses : facteurs ou exposants</p></li>
+<li><p>Fonction de friction : puissance , exponentielle</p></li>
+<li><p>Contraintes aux marges : aucune , simple, double</p></li>
+</ul>
 </div>
 </div>
             </section>
@@ -423,8 +453,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="régression-linéaire-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lien-entre-deux-variables-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="les-flux.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="la-cartographie-comme-support.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

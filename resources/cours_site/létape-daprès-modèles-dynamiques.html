@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 21 L’étape d’après : modèles dynamiques | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 21 L’étape d’après : modèles dynamiques | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 21 L’étape d’après : modèles dynamiques | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="régression-linéaire-avec-r.html"/>
-<link rel="next" href="lien-entre-deux-variables-qualitatives.html"/>
+<link rel="prev" href="la-cartographie-comme-support.html"/>
+<link rel="next" href="references.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -391,31 +391,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="trucs-pour-linéariser-des-relations-non-linéaires" class="section level1">
-<h1><span class="header-section-number">Chapitre 12</span> “trucs” pour linéariser des relations non-linéaires</h1>
-<div id="relation-log-linéaire" class="section level2">
-<h2><span class="header-section-number">12.1</span> Relation log-linéaire</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=ax^b\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=aln(x) + ln(b)\)</span></p>
+<div id="létape-daprès-modèles-dynamiques" class="section level1">
+<h1><span class="header-section-number">Chapitre 21</span> L’étape d’après : modèles dynamiques</h1>
+<div id="modèles-simples-les-automates-cellulaires" class="section level2">
+<h2><span class="header-section-number">21.1</span> Modèles simples : les automates cellulaires</h2>
+<p>Le plus célèbre des modèles simples : le jeu de la vie (Conway)</p>
+<p>Modèle de ségrégation de Schelling</p>
+<p><img src="game_of_life.gif" style="display: inline-block; margin: 0;vertical-align:top" />
+<img src="schelling.gif" style="display: inline-block; margin: 0; width:50%;" /></p>
 </div>
-<div id="relation-géométrique-exponentielle" class="section level2">
-<h2><span class="header-section-number">12.2</span> Relation géométrique (exponentielle)</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
-</div>
-<div id="relation-logarithmique" class="section level2">
-<h2><span class="header-section-number">12.3</span> Relation logarithmique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=a*ln(x)+b\)</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> changement de variable</p>
-</div>
-<div id="relation-logistique" class="section level2">
-<h2><span class="header-section-number">12.4</span> Relation logistique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b\)</span></p>
+<div id="modèles-complexes-mobilité" class="section level2">
+<h2><span class="header-section-number">21.2</span> Modèles complexes : mobilité</h2>
+<p>Modèle à 4 étapes</p>
+<ol style="list-style-type: decimal">
+<li><p>Module de <strong>génération</strong> : quantité de déplacements attirés et émis par zones prédécoupées (caractéristiques de la population et des activités)</p></li>
+<li><p>Module de distribution : répartition géographique des flux (modèle gravitaire)</p></li>
+<li><p>Module de choix modal : par quel modalité s’effectue le transport ?</p></li>
+<li><p>Module d’affectation au réseau</p></li>
+</ol>
+<p>Modèles LUTI : Land Use Transport Integration</p>
+<p><strong>Accessibilité</strong> et <strong>Usage du sol</strong> exercent une influence l’un sur l’autre.</p>
+<p><strong>Simule</strong> les foyers, leurs choix de résidence , d’activité et de transports.</p>
+
 </div>
 </div>
             </section>
@@ -423,8 +420,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="régression-linéaire-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lien-entre-deux-variables-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="la-cartographie-comme-support.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

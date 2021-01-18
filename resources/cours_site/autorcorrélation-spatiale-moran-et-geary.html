@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 17 Autorcorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 17 Autorcorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 17 Autorcorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="régression-linéaire-avec-r.html"/>
-<link rel="next" href="lien-entre-deux-variables-qualitatives.html"/>
+<link rel="prev" href="anaspat.html"/>
+<link rel="next" href="les-flux.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -391,31 +391,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="trucs-pour-linéariser-des-relations-non-linéaires" class="section level1">
-<h1><span class="header-section-number">Chapitre 12</span> “trucs” pour linéariser des relations non-linéaires</h1>
-<div id="relation-log-linéaire" class="section level2">
-<h2><span class="header-section-number">12.1</span> Relation log-linéaire</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=ax^b\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=aln(x) + ln(b)\)</span></p>
+<div id="autorcorrélation-spatiale-moran-et-geary" class="section level1">
+<h1><span class="header-section-number">Chapitre 17</span> Autorcorrélation spatiale : Moran et Geary</h1>
+<div id="lautocorrélation-spatiale" class="section level2">
+<h2><span class="header-section-number">17.1</span> L’autocorrélation spatiale</h2>
+<p>L’autocorrélation spatiale est une mesure statistique qui répond à la question suivante:</p>
+<center>
+<p>« Les valeurs d’entités spatiales proches sont-elles plus similaires que les valeurs d’entités lointaines ?»</p>
+«Est-ce que les grosses(resp. petites) valeurs sont rapprochées (resp.dispersées) ? »
+</center>
+<p><br />
+E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regroupées au même endroit dans une ville ?</p>
+<p>Valeurs positives : situations ségrégées</p>
+<p>Valeurs nulles : répartition aléatoire</p>
+<p>Valeurs négatives : alternance parfaite entre valeurs</p>
 </div>
-<div id="relation-géométrique-exponentielle" class="section level2">
-<h2><span class="header-section-number">12.2</span> Relation géométrique (exponentielle)</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
+<div id="lindice-de-moran" class="section level2">
+<h2><span class="header-section-number">17.2</span> L’indice de Moran</h2>
+<p>L’indice <span class="math inline">\(I\)</span> de Moran utilise un terme <span class="math inline">\(\omega_{ij}\)</span> positif d’“interaction” pour quantifier la <strong>proximité</strong> entre deux entités <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span>.</p>
+<p>On peut le choisir discret (1 si voisins , 0 sinon) ou continu (inverse de la distance).</p>
+<p><span class="math inline">\(I=\frac{n}{\sum_i \sum_j \omega_{ij}} \frac{\sum_i \sum_j \omega_{ij}(X_i-\bar{X})(X_j-\bar{X})}{\sum_i(X_i-\bar{X})^2}\)</span></p>
+<p><span style= "font-size:0.5;"> avec <span class="math inline">\(n\)</span> le nombre d’entités spatiales ,</p>
+<p><span class="math inline">\(\omega\)</span> une matrice carrée de poids positifs de dimension <span class="math inline">\(n\)</span>, telle que <span class="math inline">\(\omega_{ij}\)</span> quantifie la proximité, l’influence de <span class="math inline">\(j\)</span> sur <span class="math inline">\(i\)</span> ,</p>
+<p><span class="math inline">\(\bar{X}\)</span> la moyenne de la variable <span class="math inline">\(X\)</span> </span></p>
 </div>
-<div id="relation-logarithmique" class="section level2">
-<h2><span class="header-section-number">12.3</span> Relation logarithmique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=a*ln(x)+b\)</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> changement de variable</p>
+<div id="lindice-de-geary" class="section level2">
+<h2><span class="header-section-number">17.3</span> L’indice de Geary</h2>
+<p>Cet indice, noté <span class="math inline">\(C\)</span>, est dit plus “local” que l’indice de Moran</p>
+<p><span class="math inline">\(C=\frac{(n-1) \sum_i \sum_j \omega_{ij}(X_i-X_j)^2 }{2W\sum_i(X_i-\bar{X})^2}\)</span></p>
+<p><span class="math inline">\(C\in[0;2]\)</span></p>
+<p><span class="math inline">\(C&lt;1\)</span> : auto-corrélation négative,</p>
+<p><span class="math inline">\(C=1\)</span> : pas d’autocorrelation,</p>
+<p><span class="math inline">\(C&gt;1\)</span> : autocorrélation positive</p>
+<p><span style="font-size:0.6em;"> avec <br><span class="math inline">\(n\)</span> le nombre d’entités spatiales,<br>
+<span class="math inline">\(\omega\)</span> une matrice carrée de poids positifs de dimension <span class="math inline">\(n\)</span>, de somme <span class="math inline">\(W\)</span> et telle que <span class="math inline">\(\omega_{ij}\)</span> quantifie la proximité, l’influence mutuelle de <span class="math inline">\(j\)</span> sur <span class="math inline">\(i\)</span>, <span class="math inline">\(\bar{X}\)</span> la moyenne de la variable <span class="math inline">\(X\)</span> </span></p>
 </div>
-<div id="relation-logistique" class="section level2">
-<h2><span class="header-section-number">12.4</span> Relation logistique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b\)</span></p>
+<div id="commandes-r" class="section level2">
+<h2><span class="header-section-number">17.4</span> Commandes R</h2>
+<p>fonction <code>moran</code> et <code>geary</code> du package <code>spdep</code></p>
+</div>
+<div id="exemples" class="section level2">
+<h2><span class="header-section-number">17.5</span> Exemples</h2>
+<p><img src="./morangini.png" /></p>
+</div>
+<div id="exemples-1" class="section level2">
+<h2><span class="header-section-number">17.6</span> Exemples</h2>
+<p><img src="./morangini2.png" /></p>
 </div>
 </div>
             </section>
@@ -423,8 +444,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="régression-linéaire-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lien-entre-deux-variables-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="anaspat.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="les-flux.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

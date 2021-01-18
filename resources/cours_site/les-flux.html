@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 18 Les flux | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 18 Les flux | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 18 Les flux | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="régression-linéaire-avec-r.html"/>
-<link rel="next" href="lien-entre-deux-variables-qualitatives.html"/>
+<link rel="prev" href="autorcorrélation-spatiale-moran-et-geary.html"/>
+<link rel="next" href="le-modèle-gravitaire.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -391,31 +391,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="trucs-pour-linéariser-des-relations-non-linéaires" class="section level1">
-<h1><span class="header-section-number">Chapitre 12</span> “trucs” pour linéariser des relations non-linéaires</h1>
-<div id="relation-log-linéaire" class="section level2">
-<h2><span class="header-section-number">12.1</span> Relation log-linéaire</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=ax^b\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=aln(x) + ln(b)\)</span></p>
+<div id="les-flux" class="section level1">
+<h1><span class="header-section-number">Chapitre 18</span> Les flux</h1>
+<div id="matrice-de-flux" class="section level2">
+<h2><span class="header-section-number">18.1</span> Matrice de flux</h2>
+<p>Pour une partition en zones d’un espace, on appelle flux toute mesure d’intéraction spatiale qui implique des échanges, des déplacements entre deux zones, matériels ou immatériels.</p>
+<p>On parle alors de <strong>matrice de flux</strong>,une matrice carrée <span class="math inline">\(F\)</span> dont le terme général <span class="math inline">\(F_{ij}\)</span> indique la quantité échangée de <span class="math inline">\(i\)</span> en ligne vers <span class="math inline">\(j\)</span> en colonne .</p>
 </div>
-<div id="relation-géométrique-exponentielle" class="section level2">
-<h2><span class="header-section-number">12.2</span> Relation géométrique (exponentielle)</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
+<div id="indices" class="section level2">
+<h2><span class="header-section-number">18.2</span> Indices</h2>
+<p><span class="math inline">\(V_i= \sum_i F_{ij} + \sum_j F_{ij}\)</span> : Volume = Départs + Arrivées</p>
+<p><span class="math inline">\(S_i = \sum_i F_{ij} - \sum_j F_{ij}\)</span> : Solde= Départs - Arrivées</p>
+<p><span class="math inline">\(A_i = \frac{S_i}{V_i}\)</span> : Attractivité = ratio des soldes sur les volumes</p>
 </div>
-<div id="relation-logarithmique" class="section level2">
-<h2><span class="header-section-number">12.3</span> Relation logarithmique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=a*ln(x)+b\)</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> changement de variable</p>
+<div id="cartographie-des-flux" class="section level2">
+<h2><span class="header-section-number">18.3</span> Cartographie des flux</h2>
+<p>On en peut pas représenter tous les flux entre toutes les zones (lisibilité).</p>
+<p>On détermine les flux <strong>dominants</strong> de la façon suivante:</p>
+<p><span class="math inline">\(F_{ij}\)</span> est dominant si:</p>
+<ul>
+<li><span class="math inline">\(i\)</span> envoie son flux le plus important vers <span class="math inline">\(j\)</span></li>
+<li>la somme des arrivées de <span class="math inline">\(j\)</span> est plus importante que la somme des arrivées de <span class="math inline">\(i\)</span></li>
+</ul>
+<p>package <code>flows</code> de R : <a href="https://cran.r-project.org/web/packages/flows/vignettes/flows.html" class="uri">https://cran.r-project.org/web/packages/flows/vignettes/flows.html</a> par les auteurs de <code>cartography</code></p>
 </div>
-<div id="relation-logistique" class="section level2">
-<h2><span class="header-section-number">12.4</span> Relation logistique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b\)</span></p>
+<div id="exemple" class="section level2">
+<h2><span class="header-section-number">18.4</span> Exemple</h2>
+<pre><code>## Warning in wkt(obj): CRS object has no comment</code></pre>
+<p><img src="bookdown_cours_stats_files/figure-html/flow-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="pour-aller-plus-loin" class="section level2">
+<h2><span class="header-section-number">18.5</span> Pour aller plus loin</h2>
+<p>les flux sont modélisés par des graphes, une grande partie de la littérature de l’analyse de réseaux et des notions de théories des graphes peuvent être transposées et utilisées pour l’analyse de flux.</p>
+<p>E.g. Attributs de noeuds ou d’arcs :</p>
+<ul>
+<li>centralité de degré (nombres de voisins dans le graphe)</li>
+<li>centralité d’intermédiarité (fréquence d’apparition du noeud dans les plus courts chemins entre deux noeuds du graphe)</li>
+</ul>
+<p>Attributs de graphes :</p>
+<ul>
+<li>communautés (sous graphes denséments connectés)</li>
+<li>densité de liens</li>
+<li>…</li>
+</ul>
 </div>
 </div>
             </section>
@@ -423,8 +441,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="régression-linéaire-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lien-entre-deux-variables-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="autorcorrélation-spatiale-moran-et-geary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="le-modèle-gravitaire.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

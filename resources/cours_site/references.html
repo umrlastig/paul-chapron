@@ -24,14 +24,14 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-01-14" />
+<meta name="date" content="2021-01-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="final-words.html"/>
+<link rel="prev" href="létape-daprès-modèles-dynamiques.html"/>
 
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -205,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="dispersion.html"><a href="dispersion.html"><i class="fa fa-check"></i><b>5</b> La Dispersion</a><ul>
 <li class="chapter" data-level="5.1" data-path="dispersion.html"><a href="dispersion.html#la-dispersion"><i class="fa fa-check"></i><b>5.1</b> La dispersion</a></li>
-<li class="chapter" data-level="5.2" data-path="dispersion.html"><a href="dispersion.html#variance-et-écart-type"><i class="fa fa-check"></i><b>5.2</b> Variance et Écart-type</a><ul>
+<li class="chapter" data-level="5.2" data-path="dispersion.html"><a href="dispersion.html#variance"><i class="fa fa-check"></i><b>5.2</b> Variance et Écart-type</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="dispersion.html"><a href="dispersion.html#variance-et-écart-type-avec-r"><i class="fa fa-check"></i><b>5.2.1</b> Variance et écart type avec R</a></li>
 <li class="chapter" data-level="5.2.2" data-path="dispersion.html"><a href="dispersion.html#si-la-distribution-est-proche-de-la-gaussienne"><i class="fa fa-check"></i><b>5.2.2</b> Si la distribution est proche de la Gaussienne</a></li>
 </ul></li>
@@ -253,52 +253,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4" data-path="carto-discretis.html"><a href="carto-discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>7.4</b> Quelle méthode de classification choisir ?</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html"><i class="fa fa-check"></i><b>8</b> Visualiser une distribution avec R</a><ul>
-<li class="chapter" data-level="8.1" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#histogramme-code-r-ggplot"><i class="fa fa-check"></i><b>8.1</b> Histogramme : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.2" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distributiondensité-code-r-ggplot"><i class="fa fa-check"></i><b>8.2</b> Distribution/densité : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.3" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#boxplot-code-r-ggplot"><i class="fa fa-check"></i><b>8.3</b> BoxPlot : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.4" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-code-r-ggplot"><i class="fa fa-check"></i><b>8.4</b> Violin plot : Code R + ggplot</a></li>
-<li class="chapter" data-level="8.5" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-et-boxplot-code-r-ggplot-2"><i class="fa fa-check"></i><b>8.5</b> Violin plot et Boxplot : Code R + ggplot 2</a></li>
-<li class="chapter" data-level="8.6" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#pyramides-histogrammes-juxtaposés"><i class="fa fa-check"></i><b>8.6</b> Pyramides (histogrammes juxtaposés)</a></li>
-<li class="chapter" data-level="8.7" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#polygones-de-fréquences"><i class="fa fa-check"></i><b>8.7</b> Polygones de fréquences</a></li>
-<li class="chapter" data-level="8.8" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distribution-cumulée-fonction-de-répartition-cdf"><i class="fa fa-check"></i><b>8.8</b> Distribution cumulée, Fonction de répartition, CDF</a></li>
-<li class="chapter" data-level="8.9" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#dot-strip-plot"><i class="fa fa-check"></i><b>8.9</b> Dot Strip Plot</a></li>
+<li class="chapter" data-level="8.0.1" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#histogramme-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.1</b> Histogramme : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.2" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distributiondensité-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.2</b> Distribution/densité : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.3" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#boxplot-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.3</b> BoxPlot : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.4" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-code-r-ggplot"><i class="fa fa-check"></i><b>8.0.4</b> Violin plot : Code R + ggplot</a></li>
+<li class="chapter" data-level="8.0.5" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#violin-plot-et-boxplot-code-r-ggplot-2"><i class="fa fa-check"></i><b>8.0.5</b> Violin plot et Boxplot : Code R + ggplot 2</a></li>
+<li class="chapter" data-level="8.0.6" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#pyramides-histogrammes-juxtaposés"><i class="fa fa-check"></i><b>8.0.6</b> Pyramides (histogrammes juxtaposés)</a></li>
+<li class="chapter" data-level="8.0.7" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#polygones-de-fréquences"><i class="fa fa-check"></i><b>8.0.7</b> Polygones de fréquences</a></li>
+<li class="chapter" data-level="8.0.8" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#distribution-cumulée-fonction-de-répartition-cdf"><i class="fa fa-check"></i><b>8.0.8</b> Distribution cumulée, Fonction de répartition, CDF</a></li>
+<li class="chapter" data-level="8.0.9" data-path="visualiser-une-distribution-avec-r.html"><a href="visualiser-une-distribution-avec-r.html#dot-strip-plot"><i class="fa fa-check"></i><b>8.0.9</b> Dot Strip Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="bivariee.html"><a href="bivariee.html"><i class="fa fa-check"></i><b>9</b> Analyse Bivariée</a><ul>
-<li class="chapter" data-level="9.1" data-path="bivariee.html"><a href="bivariee.html#corrélation-nimplique-pas-causalité"><i class="fa fa-check"></i><b>9.1</b> Corrélation n’implique pas causalité</a></li>
-<li class="chapter" data-level="9.2" data-path="bivariee.html"><a href="bivariee.html#analyse-bivariée-avec-des-données-spatiales"><i class="fa fa-check"></i><b>9.2</b> Analyse bivariée avec des données spatiales</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="bivariee.html"><a href="bivariee.html#données-spatiales"><i class="fa fa-check"></i><b>9.2.1</b> Données spatiales</a></li>
-<li class="chapter" data-level="9.2.2" data-path="bivariee.html"><a href="bivariee.html#ressources-pour-données-localisées-et-distances"><i class="fa fa-check"></i><b>9.2.2</b> Ressources pour données localisées et distances</a></li>
+<li class="chapter" data-level="9.0.1" data-path="bivariee.html"><a href="bivariee.html#analyse-bivariée-mais-sans-la-localisation"><i class="fa fa-check"></i><b>9.0.1</b> Analyse bivariée, mais sans la localisation</a></li>
+<li class="chapter" data-level="9.0.2" data-path="bivariee.html"><a href="bivariee.html#ressources-pour-lanalyse-des-localisation-et-des-distances"><i class="fa fa-check"></i><b>9.0.2</b> Ressources pour l’analyse des localisation et des distances</a></li>
+<li class="chapter" data-level="9.1" data-path="bivariee.html"><a href="bivariee.html#corrélation-nimplique-pas-causalité"><i class="fa fa-check"></i><b>9.1</b> Corrélation n’implique pas causalité</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="bivariee.html"><a href="bivariee.html#diverses-formes-de-dépendances"><i class="fa fa-check"></i><b>9.1.1</b> Diverses formes de dépendances</a></li>
+<li class="chapter" data-level="9.1.2" data-path="bivariee.html"><a href="bivariee.html#les-étapes-de-lanalyse-bivariée"><i class="fa fa-check"></i><b>9.1.2</b> Les étapes de l’analyse bivariée</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire"><i class="fa fa-check"></i><b>9.3</b> Régression linéaire</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#avant-toute-chose"><i class="fa fa-check"></i><b>9.3.1</b> Avant toute chose</a></li>
-<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#diverses-formes-de-dépendances"><i class="fa fa-check"></i><b>9.3.2</b> Diverses formes de dépendances</a></li>
-<li class="chapter" data-level="9.3.3" data-path="bivariee.html"><a href="bivariee.html#les-étapes-de-lanalyse-bivariée"><i class="fa fa-check"></i><b>9.3.3</b> Les étapes de l’analyse bivariée</a></li>
-<li class="chapter" data-level="9.3.4" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire-1"><i class="fa fa-check"></i><b>9.3.4</b> Régression linéaire</a></li>
+<li class="chapter" data-level="9.2" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire"><i class="fa fa-check"></i><b>9.2</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="bivariee.html"><a href="bivariee.html#avant-toute-chose"><i class="fa fa-check"></i><b>9.2.1</b> Avant toute chose</a></li>
+<li class="chapter" data-level="9.2.2" data-path="bivariee.html"><a href="bivariee.html#principe-et-vocabulaire"><i class="fa fa-check"></i><b>9.2.2</b> Principe et Vocabulaire</a></li>
+<li class="chapter" data-level="9.2.3" data-path="bivariee.html"><a href="bivariee.html#interpréter-la-droite-de-régression"><i class="fa fa-check"></i><b>9.2.3</b> Interpréter la droite de régression</a></li>
+<li class="chapter" data-level="9.2.4" data-path="bivariee.html"><a href="bivariee.html#utiliser-modèle-linéaire"><i class="fa fa-check"></i><b>9.2.4</b> Utiliser modèle linéaire</a></li>
+<li class="chapter" data-level="9.2.5" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire"><i class="fa fa-check"></i><b>9.2.5</b> Évaluer la qualité d’une régression linaire</a></li>
+<li class="chapter" data-level="9.2.6" data-path="bivariee.html"><a href="bivariee.html#ce-quil-faut-retenir-de-la-p-value"><i class="fa fa-check"></i><b>9.2.6</b> Ce qu’il faut retenir de la p-value</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="bivariee.html"><a href="bivariee.html#régression-linéaire-le-modèle"><i class="fa fa-check"></i><b>9.4</b> Régression linéaire : le modèle</a></li>
-<li class="chapter" data-level="9.5" data-path="bivariee.html"><a href="bivariee.html#la-grande-question"><i class="fa fa-check"></i><b>9.5</b> La grande question</a></li>
-<li class="chapter" data-level="9.6" data-path="bivariee.html"><a href="bivariee.html#comment-evaluer-la-validité-du-modèle-linaire"><i class="fa fa-check"></i><b>9.6</b> Comment evaluer la “validité” du modèle linaire ?</a></li>
-<li class="chapter" data-level="9.7" data-path="bivariee.html"><a href="bivariee.html#le-r2"><i class="fa fa-check"></i><b>9.7</b> le <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="9.8" data-path="bivariee.html"><a href="bivariee.html#le-r2-1"><i class="fa fa-check"></i><b>9.8</b> le <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="9.9" data-path="bivariee.html"><a href="bivariee.html#la-p-value"><i class="fa fa-check"></i><b>9.9</b> la p-value</a></li>
-<li class="chapter" data-level="9.10" data-path="bivariee.html"><a href="bivariee.html#la-p-value-1"><i class="fa fa-check"></i><b>9.10</b> la p-value</a></li>
-<li class="chapter" data-level="9.11" data-path="bivariee.html"><a href="bivariee.html#lhypothèse-nulle"><i class="fa fa-check"></i><b>9.11</b> l’Hypothèse nulle</a></li>
-<li class="chapter" data-level="9.12" data-path="bivariee.html"><a href="bivariee.html#format-des-resultats-donnés-par-avec-r"><i class="fa fa-check"></i><b>9.12</b> Format des resultats donnés par avec R</a></li>
-<li class="chapter" data-level="9.13" data-path="bivariee.html"><a href="bivariee.html#bonus-critères-de-significativité-du-lien-linéaire"><i class="fa fa-check"></i><b>9.13</b> Bonus: Critères de significativité du lien linéaire</a></li>
-<li class="chapter" data-level="9.14" data-path="bivariee.html"><a href="bivariee.html#bonus-evaluation-de-lindépendance-des-résidus-avec-r"><i class="fa fa-check"></i><b>9.14</b> Bonus: Evaluation de l’indépendance des résidus avec R</a></li>
-<li class="chapter" data-level="9.15" data-path="bivariee.html"><a href="bivariee.html#bonusles-4-graphiques-résultats-de-la-fonction-lm"><i class="fa fa-check"></i><b>9.15</b> Bonus:Les 4 graphiques résultats de la fonction <code>lm</code></a></li>
-<li class="chapter" data-level="9.16" data-path="bivariee.html"><a href="bivariee.html#bonus-évaluer-lhomogénéité-des-résidus-avec-r"><i class="fa fa-check"></i><b>9.16</b> Bonus: Évaluer l’homogénéité des résidus avec R</a></li>
-<li class="chapter" data-level="9.17" data-path="bivariee.html"><a href="bivariee.html#bonus-evaluer-la-normalité-de-la-distribution-des-résidus-avec-r"><i class="fa fa-check"></i><b>9.17</b> Bonus: Evaluer la normalité de la distribution des résidus avec R</a></li>
-<li class="chapter" data-level="9.18" data-path="bivariee.html"><a href="bivariee.html#bonus-evaluer-lhomoscédasticité-des-résidus"><i class="fa fa-check"></i><b>9.18</b> Bonus: Evaluer l’homoscédasticité des résidus</a></li>
+<li class="chapter" data-level="9.3" data-path="bivariee.html"><a href="bivariee.html#effectuer-une-régression-linéaire-avec-r"><i class="fa fa-check"></i><b>9.3</b> Effectuer une régression linéaire avec R</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>9.3.1</b> Format des résultats</a></li>
+<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#residuslm"><i class="fa fa-check"></i><b>9.3.2</b> Bonus: Critères de significativité du lien linéaire</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html"><i class="fa fa-check"></i><b>10</b> Corrélation de deux variables quantitatives</a><ul>
-<li class="chapter" data-level="10.1" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#corrélation-linéaire"><i class="fa fa-check"></i><b>10.1</b> Corrélation (linéaire)</a></li>
-<li class="chapter" data-level="10.2" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#test-de-corrélation-entre-deux-variables-avec-r"><i class="fa fa-check"></i><b>10.2</b> Test de corrélation entre deux variables avec R</a></li>
-<li class="chapter" data-level="10.3" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#calcul-direct-du-coefficient-de-corrélation"><i class="fa fa-check"></i><b>10.3</b> Calcul direct du coefficient de corrélation</a></li>
-<li class="chapter" data-level="10.4" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#matrice-de-corrélations"><i class="fa fa-check"></i><b>10.4</b> Matrice de corrélations</a></li>
-<li class="chapter" data-level="10.5" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers"><i class="fa fa-check"></i><b>10.5</b> Sensibilité aux ‘outliers’</a></li>
-<li class="chapter" data-level="10.6" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers-1"><i class="fa fa-check"></i><b>10.6</b> Sensibilité aux ‘outliers’</a></li>
-<li class="chapter" data-level="10.7" data-path="corrélation-de-deux-variables-quantitatives.html"><a href="corrélation-de-deux-variables-quantitatives.html#sensibilité-aux-outliers-2"><i class="fa fa-check"></i><b>10.7</b> Sensibilité aux ‘outliers’</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> Corrélation de deux variables quantitatives</a><ul>
+<li class="chapter" data-level="10.1" data-path="correlation.html"><a href="correlation.html#corrélation-linéaire"><i class="fa fa-check"></i><b>10.1</b> Corrélation (linéaire)</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation.html"><a href="correlation.html#test-de-corrélation-entre-deux-variables-avec-r"><i class="fa fa-check"></i><b>10.2</b> Test de corrélation entre deux variables avec R</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation.html"><a href="correlation.html#calcul-direct-du-coefficient-de-corrélation"><i class="fa fa-check"></i><b>10.3</b> Calcul direct du coefficient de corrélation</a></li>
+<li class="chapter" data-level="10.4" data-path="correlation.html"><a href="correlation.html#matrice-de-corrélations"><i class="fa fa-check"></i><b>10.4</b> Matrice de corrélations</a></li>
+<li class="chapter" data-level="10.5" data-path="correlation.html"><a href="correlation.html#sensibilité-aux-outliers"><i class="fa fa-check"></i><b>10.5</b> Sensibilité aux ‘outliers’</a></li>
+<li class="chapter" data-level="10.6" data-path="correlation.html"><a href="correlation.html#sensibilité-aux-outliers-1"><i class="fa fa-check"></i><b>10.6</b> Sensibilité aux ‘outliers’</a></li>
+<li class="chapter" data-level="10.7" data-path="correlation.html"><a href="correlation.html#sensibilité-aux-outliers-2"><i class="fa fa-check"></i><b>10.7</b> Sensibilité aux ‘outliers’</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html"><i class="fa fa-check"></i><b>11</b> Régression linéaire avec R</a><ul>
 <li class="chapter" data-level="11.1" data-path="régression-linéaire-avec-r.html"><a href="régression-linéaire-avec-r.html#regression-linéaire-avec-r"><i class="fa fa-check"></i><b>11.1</b> Regression linéaire avec R</a></li>
@@ -339,7 +331,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="références-supplémentaires.html"><a href="références-supplémentaires.html"><i class="fa fa-check"></i><b>15</b> Références supplémentaires</a><ul>
 <li class="chapter" data-level="15.1" data-path="références-supplémentaires.html"><a href="références-supplémentaires.html#refs"><i class="fa fa-check"></i><b>15.1</b> Refs</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>16</b> Final Words</a></li>
+<li class="chapter" data-level="16" data-path="anaspat.html"><a href="anaspat.html"><i class="fa fa-check"></i><b>16</b> Analyse spatiale</a><ul>
+<li class="chapter" data-level="16.1" data-path="anaspat.html"><a href="anaspat.html#contenu-du-cours"><i class="fa fa-check"></i><b>16.1</b> Contenu du cours</a></li>
+<li class="chapter" data-level="16.2" data-path="anaspat.html"><a href="anaspat.html#linformation-géographique"><i class="fa fa-check"></i><b>16.2</b> L’information géographique</a></li>
+<li class="chapter" data-level="16.3" data-path="anaspat.html"><a href="anaspat.html#précautions"><i class="fa fa-check"></i><b>16.3</b> Précautions</a></li>
+<li class="chapter" data-level="16.4" data-path="anaspat.html"><a href="anaspat.html#semis-de-points"><i class="fa fa-check"></i><b>16.4</b> Semis de points</a></li>
+<li class="chapter" data-level="16.5" data-path="anaspat.html"><a href="anaspat.html#statistiques-simples-sur-un-semis"><i class="fa fa-check"></i><b>16.5</b> Statistiques simples sur un semis</a></li>
+<li class="chapter" data-level="16.6" data-path="anaspat.html"><a href="anaspat.html#concentrations-du-semis"><i class="fa fa-check"></i><b>16.6</b> Concentrations du semis</a></li>
+<li class="chapter" data-level="16.7" data-path="anaspat.html"><a href="anaspat.html#le-modele-nul-pour-un-semis-de-points"><i class="fa fa-check"></i><b>16.7</b> Le modele nul pour un semis de points</a></li>
+<li class="chapter" data-level="16.8" data-path="anaspat.html"><a href="anaspat.html#afficher-la-distribution-le-retour"><i class="fa fa-check"></i><b>16.8</b> Afficher la distribution, le retour</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html"><i class="fa fa-check"></i><b>17</b> Autorcorrélation spatiale : Moran et Geary</a><ul>
+<li class="chapter" data-level="17.1" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#lautocorrélation-spatiale"><i class="fa fa-check"></i><b>17.1</b> L’autocorrélation spatiale</a></li>
+<li class="chapter" data-level="17.2" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#lindice-de-moran"><i class="fa fa-check"></i><b>17.2</b> L’indice de Moran</a></li>
+<li class="chapter" data-level="17.3" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#lindice-de-geary"><i class="fa fa-check"></i><b>17.3</b> L’indice de Geary</a></li>
+<li class="chapter" data-level="17.4" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#commandes-r"><i class="fa fa-check"></i><b>17.4</b> Commandes R</a></li>
+<li class="chapter" data-level="17.5" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#exemples"><i class="fa fa-check"></i><b>17.5</b> Exemples</a></li>
+<li class="chapter" data-level="17.6" data-path="autorcorrélation-spatiale-moran-et-geary.html"><a href="autorcorrélation-spatiale-moran-et-geary.html#exemples-1"><i class="fa fa-check"></i><b>17.6</b> Exemples</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="les-flux.html"><a href="les-flux.html"><i class="fa fa-check"></i><b>18</b> Les flux</a><ul>
+<li class="chapter" data-level="18.1" data-path="les-flux.html"><a href="les-flux.html#matrice-de-flux"><i class="fa fa-check"></i><b>18.1</b> Matrice de flux</a></li>
+<li class="chapter" data-level="18.2" data-path="les-flux.html"><a href="les-flux.html#indices"><i class="fa fa-check"></i><b>18.2</b> Indices</a></li>
+<li class="chapter" data-level="18.3" data-path="les-flux.html"><a href="les-flux.html#cartographie-des-flux"><i class="fa fa-check"></i><b>18.3</b> Cartographie des flux</a></li>
+<li class="chapter" data-level="18.4" data-path="les-flux.html"><a href="les-flux.html#exemple"><i class="fa fa-check"></i><b>18.4</b> Exemple</a></li>
+<li class="chapter" data-level="18.5" data-path="les-flux.html"><a href="les-flux.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>18.5</b> Pour aller plus loin</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html"><i class="fa fa-check"></i><b>19</b> Le modèle gravitaire</a><ul>
+<li class="chapter" data-level="19.1" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#fin-xixe-les-lois-de-ravenstein"><i class="fa fa-check"></i><b>19.1</b> Fin XIX<sup>e</sup> : Les lois de Ravenstein</a></li>
+<li class="chapter" data-level="19.2" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#le-modèle-gravitaire-1"><i class="fa fa-check"></i><b>19.2</b> Le modèle gravitaire</a></li>
+<li class="chapter" data-level="19.3" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#distance-et-interaction"><i class="fa fa-check"></i><b>19.3</b> Distance et interaction</a></li>
+<li class="chapter" data-level="19.4" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#utilisation-du-modèle-gravitaire"><i class="fa fa-check"></i><b>19.4</b> Utilisation du modèle gravitaire</a></li>
+<li class="chapter" data-level="19.5" data-path="le-modèle-gravitaire.html"><a href="le-modèle-gravitaire.html#variantes-du-modèles-gravitaires"><i class="fa fa-check"></i><b>19.5</b> Variantes du modèles gravitaires</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="la-cartographie-comme-support.html"><a href="la-cartographie-comme-support.html"><i class="fa fa-check"></i><b>20</b> la Cartographie comme support</a><ul>
+<li class="chapter" data-level="20.1" data-path="la-cartographie-comme-support.html"><a href="la-cartographie-comme-support.html#cartographier-le-résultats-de-traitements-statistiques"><i class="fa fa-check"></i><b>20.1</b> Cartographier le résultats de traitements statistiques</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="létape-daprès-modèles-dynamiques.html"><a href="létape-daprès-modèles-dynamiques.html"><i class="fa fa-check"></i><b>21</b> L’étape d’après : modèles dynamiques</a><ul>
+<li class="chapter" data-level="21.1" data-path="létape-daprès-modèles-dynamiques.html"><a href="létape-daprès-modèles-dynamiques.html#modèles-simples-les-automates-cellulaires"><i class="fa fa-check"></i><b>21.1</b> Modèles simples : les automates cellulaires</a></li>
+<li class="chapter" data-level="21.2" data-path="létape-daprès-modèles-dynamiques.html"><a href="létape-daprès-modèles-dynamiques.html#modèles-complexes-mobilité"><i class="fa fa-check"></i><b>21.2</b> Modèles complexes : mobilité</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -370,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="final-words.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="létape-daprès-modèles-dynamiques.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
