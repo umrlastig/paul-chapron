@@ -274,9 +274,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.1" data-path="bivariee.html"><a href="bivariee.html#avant-toute-chose"><i class="fa fa-check"></i><b>9.2.1</b> Avant toute chose</a></li>
 <li class="chapter" data-level="9.2.2" data-path="bivariee.html"><a href="bivariee.html#principe-et-vocabulaire"><i class="fa fa-check"></i><b>9.2.2</b> Principe et Vocabulaire</a></li>
 <li class="chapter" data-level="9.2.3" data-path="bivariee.html"><a href="bivariee.html#interpréter-la-droite-de-régression"><i class="fa fa-check"></i><b>9.2.3</b> Interpréter la droite de régression</a></li>
-<li class="chapter" data-level="9.2.4" data-path="bivariee.html"><a href="bivariee.html#utiliser-modèle-linéaire"><i class="fa fa-check"></i><b>9.2.4</b> Utiliser modèle linéaire</a></li>
-<li class="chapter" data-level="9.2.5" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire"><i class="fa fa-check"></i><b>9.2.5</b> Évaluer la qualité d’une régression linaire</a></li>
-<li class="chapter" data-level="9.2.6" data-path="bivariee.html"><a href="bivariee.html#ce-quil-faut-retenir-de-la-p-value"><i class="fa fa-check"></i><b>9.2.6</b> Ce qu’il faut retenir de la p-value</a></li>
+<li class="chapter" data-level="9.2.4" data-path="bivariee.html"><a href="bivariee.html#utiliser-un-modèle-linéaire"><i class="fa fa-check"></i><b>9.2.4</b> Utiliser un modèle linéaire</a></li>
+<li class="chapter" data-level="9.2.5" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire-le-r2"><i class="fa fa-check"></i><b>9.2.5</b> Évaluer la qualité d’une régression linaire : le <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="9.2.6" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire-la-p-value"><i class="fa fa-check"></i><b>9.2.6</b> Évaluer la qualité d’une régression linaire : la p-value</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="bivariee.html"><a href="bivariee.html#effectuer-une-régression-linéaire-avec-r"><i class="fa fa-check"></i><b>9.3</b> Effectuer une régression linéaire avec R</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>9.3.1</b> Format des résultats</a></li>
@@ -537,17 +537,18 @@ C’est la variable pour laquelle le modèle propose des valeurs: dans notre exe
 <p><img src="bookdown_cours_stats_files/figure-html/regline-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Dans cet exemple, le nuage de point est assez allongé, on constate une dépendance linaire négative. Les points sont relativement proches de la droite.</p>
 </div>
-<div id="utiliser-modèle-linéaire" class="section level3">
-<h3><span class="header-section-number">9.2.4</span> Utiliser modèle linéaire</h3>
+<div id="utiliser-un-modèle-linéaire" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> Utiliser un modèle linéaire</h3>
 <p>L’<strong>équation</strong> de la droite est un <strong>modèle linéaire</strong> de la relation statistique qui lie <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span>;</p>
 <p>Ici le modèle est : <span class="math inline">\(\hat{V_2}=aV_1+b\)</span></p>
 <p>Si la régression linéaire est réussie, alors pour un individu <span class="math inline">\(i\)</span> dont on connait <span class="math inline">\(V1_i\)</span>, on infère la valeur <span class="math inline">\(V_{2i}\)</span> par le modèle : <span class="math inline">\(\hat{V_{2i}} = aV_{1i} +b\)</span></p>
 <p>On dit aussi que <span class="math inline">\(V_1\)</span> <strong>explique</strong> <span class="math inline">\(V_2\)</span> , ou que le modèle <strong>prédit</strong> <span class="math inline">\(V_2\)</span> à partir de <span class="math inline">\(V_1\)</span> (on note les valeurs prédites <span class="math inline">\(\hat{V_2}\)</span>).</p>
 <p>Il est intéressant d’avoir un (bon) modèle de la relation entre <span class="math inline">\(V_2\)</span> et <span class="math inline">\(V_1\)</span>, car en l’absence d’observations supplémentaires de <span class="math inline">\(V_2\)</span> , on peut estimer les valeurs qu’elles prendraient si on dispose d’observations supplémentaires de <span class="math inline">\(V_1\)</span>.</p>
-<p>Imaginez que des observations de <span class="math inline">\(V_2\)</span> soient particulièrement coûteuses à recueillir, et les observations de <span class="math inline">\(V_1\)</span> particulièrement peu coûteuses, par exemple la production de salive d’un tigre adulte et réveillé et la largeur de ses empreintes</p>
+<p>Imaginez que des observations de <span class="math inline">\(V_2\)</span> soient particulièrement coûteuses à recueillir, et les observations de <span class="math inline">\(V_1\)</span> particulièrement peu coûteuses, par exemple la production de salive d’un tigre adulte en colère (<span class="math inline">\(V_2\)</span>) et la largeur de ses empreintes (<span class="math inline">\(V_1\)</span>).
+En cas de bonne qualité de régressions, le.la zoologiste sera ravi.e de mesurer les largeurs d’empreintes.</p>
 </div>
-<div id="évaluer-la-qualité-dune-régression-linaire" class="section level3">
-<h3><span class="header-section-number">9.2.5</span> Évaluer la qualité d’une régression linaire</h3>
+<div id="évaluer-la-qualité-dune-régression-linaire-le-r2" class="section level3">
+<h3><span class="header-section-number">9.2.5</span> Évaluer la qualité d’une régression linaire : le <span class="math inline">\(R^2\)</span></h3>
 <p>En pratique, pour considérer qu’une régression linéaire est de bonne qualité, i.e. que le modèle linéaire qui lie les deux variables décrit (explique, prédit, ..) bien les données, il faut réunir deux critères :</p>
 <ul>
 <li>des coefficients avec des <strong>p-values</strong> associées <strong>faibles</strong> (e.g. &lt;0.05) qu’on peut grossièrement traduire par “on a peu de chances de se tromper”</li>
@@ -597,8 +598,11 @@ Certes, le nuages de points à une forme suffisamment “allongée” pour qu’
 <p>Certes la forme du nuage de points est linéaire, mais la bande est tellement large que les erreurs seront très grandes, même si la droite de régression passe bien au milieu. La variance de la variable 2 est telle qu’elle n’est pas suffisamment “capturée” par la droite.
 On notera que les p-value sont très faibles, ce qui on va le voir, indique qu’on est à peu près certains de l<em>’équation de la droite</em>, c’est bien celle-ci qui passe “au mieux” dans le nuage de points. Le problème, c’est que ce nuage de points est tout simplement «mal» décrit par une droite, vu sa forme !</p>
 </div>
+</div>
+<div id="évaluer-la-qualité-dune-régression-linaire-la-p-value" class="section level3">
+<h3><span class="header-section-number">9.2.6</span> Évaluer la qualité d’une régression linaire : la p-value</h3>
 <div id="la-p-value-et-lhypothèse-nulle" class="section level4">
-<h4><span class="header-section-number">9.2.5.4</span> la p-value et l’hypothèse nulle</h4>
+<h4><span class="header-section-number">9.2.6.1</span> la p-value et l’hypothèse nulle</h4>
 <p>La p-value est la seconde quantité qui nous renseigne sur la qualité d’une régression linéaire.
 Le <span class="math inline">\(R^2\)</span> mesurait la qualité de prédiction du modèle linéaire, la <strong>p-value</strong> est plutôt associée avec la notion de confiance qu’on peut placer dans les coefficients du modèle linéaire que l’on obtient.</p>
 <p>La façon d’interpréter correctement une p-value fait l’objet de nombreux débats, on en propose une ici, mais il y en a de nombreuses autres.</p>
@@ -614,12 +618,12 @@ Ici , l’hypothèse nulle <span class="math inline">\(H_0\)</span> est <strong>
 <p>Il y a une hypothèse particulière, l’hypothèse nulle, <span class="math inline">\(H_0\)</span>, qu’on peut voir comme l’hypothèse à formuler dans le cas <strong>le plus général possible</strong>, quand on ne sait rien du tout sur les données. Dans ce cas là, étant donné deux variables, on pose l’hypothèse qu’elles sont indépendantes, tout simplement parce qu’il n’y a aucune raison qu’elles soient liées.</p>
 </div>
 <div id="approximation-moins-grossière-à-propos-de-la-p-value" class="section level4">
-<h4><span class="header-section-number">9.2.5.5</span> Approximation moins grossière à propos de la p-value</h4>
+<h4><span class="header-section-number">9.2.6.2</span> Approximation moins grossière à propos de la p-value</h4>
 <p>La p-value peut s’interpréter comme «la probabilité d’avoir un résultat identique étant donné l’hypothèse nulle»</p>
 <p>Imaginez que vous ayez un jeu de données <span class="math inline">\(D_{ini}\)</span> constitué de 2 variables quantitatives pour 500 individus.
 Le nuage de points est suffisamment allongé pour que vous entrepreniez une régression linéaire.
 Vous obtenez une certaine valeur pour vos coefficients <span class="math inline">\(a_{D_ini}\)</span> et <span class="math inline">\(b_{D_ini}\)</span> de régression linéaire.
-Vous pouvez même faire une test de corrélation de Pearson, et obtenir une valeur de corrélation</p>
+Vous pouvez même faire une test de corrélation de Pearson, et obtenir une valeur de corrélation élevée, bref , <strong>vous rejetez <span class="math inline">\(H_0\)</span> pour D_{ini}</strong></p>
 <p>Maintenant imaginez qu’on génère une infinité de jeu de données <span class="math inline">\(\Delta\)</span> à 2 variables et à 500 individus <strong>sachant</strong> <span class="math inline">\(H_0\)</span>, donc avec des variables indépendantes, des variables pour lesquelles on <strong>sait</strong> qu’il n’y a aucun lien.</p>
 <p>Parmi cette infinité de jeu de données, il y en a une proportion qui, <strong>par hasard</strong>, <strong>par chance</strong>, présente des données qui ont la même forme que notre jeu de données, ou une forme suffisamment proche, qui donnerait les <strong>mêmes résultats</strong> de régression, la même droite, la même corrélation.</p>
 <p>Trions l’infinité de jeu de données <span class="math inline">\(\Gamma\)</span> selon ce critère de résultats, d’un côté les jeux de données qui indique les même résultats que notre régression sur <span class="math inline">\(D_{ini}\)</span>, qu’on va noter <span class="math inline">\(\Gamma_{corrélés}\)</span>, de l’autre les jeux de données pour lesquels on ne peut pas conclure aux même résultats: il n’y a pas de corrélation entre les deux variables, la forme du nuage de points n’est pas assez linéaire pour qu’un analyste décide d’en faire une régression linéaire. On note ces jeux <span class="math inline">\(\Gamma{indépendants}\)</span>.</p>
@@ -629,15 +633,15 @@ On ne s’est pas trompés pour tous les jeux de <span class="math inline">\(\Ga
 <p>La p-value c’est la proportion <span class="math display">\[\frac{\Gamma_{corrélés}}{\Gamma}\]</span>.</p>
 <p>C’est la proportion de fois où on s’est trompés en affirmant à propos de <span class="math inline">\(\Gamma_{corrélés}\)</span> les résultats obtenus sur <span class="math inline">\(D_{ini}\)</span> alors qu’on avait des jeux de données où <span class="math inline">\(H_0\)</span> était vraie par construction.</p>
 </div>
-</div>
-<div id="ce-quil-faut-retenir-de-la-p-value" class="section level3">
-<h3><span class="header-section-number">9.2.6</span> Ce qu’il faut retenir de la p-value</h3>
+<div id="ce-quil-faut-retenir-de-la-p-value" class="section level4">
+<h4><span class="header-section-number">9.2.6.3</span> Ce qu’il faut retenir de la p-value</h4>
 <ul>
 <li>plus elle est petite mieux c’est</li>
 <li>en sciences expérimentales, le seuil de significativité est bas (~5%), en sciences sociales , il est plus haut</li>
 <li>elle s’interprète comme un pourcentage de chances de se tromper en première approximation</li>
-<li>il faut plutôt le voir comme la proportion, parmis une infinité d’expériences avec des données de même taille mais indépendantes, d’obtenir les même résultats de régression linéaire.</li>
+<li>il faut plutôt le voir comme la probabilité d’obtenir par chance les même résultats de régression linéaire, pour une jeu de données de variables indépendantes de même taille.</li>
 </ul>
+</div>
 </div>
 </div>
 <div id="effectuer-une-régression-linéaire-avec-r" class="section level2">
