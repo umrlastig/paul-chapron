@@ -611,8 +611,10 @@ Le <span class="math inline">\(R^2\)</span> mesurait la qualité de prédiction 
 <p>Sur la base de cette approximation, on peut d’ores et déjà dire que plus cette p-value est petite , mieux c’est.</p>
 <p>La p-value est associée à la notion d’<strong>hypothèses nulle</strong>.
 Ici , l’hypothèse nulle <span class="math inline">\(H_0\)</span> est <strong>“les deux variables sont indépendantes”</strong>.</p>
-<p><strong>rejeter <span class="math inline">\(H_0\)</span></strong> c’est considérer que les deux variables <strong>ne sont pas indépendantes</strong>.
-<strong>conserver <span class="math inline">\(H_0\)</span></strong> c’est considérer que les deux variables <strong>sont indépendantes</strong>.</p>
+<ul>
+<li><strong>rejeter <span class="math inline">\(H_0\)</span></strong> c’est considérer que les deux variables <strong>ne sont pas indépendantes</strong>.
+-<strong>conserver <span class="math inline">\(H_0\)</span></strong> c’est considérer que les deux variables <strong>sont indépendantes</strong>.</li>
+</ul>
 <p>En statistique, on raisonne avec des hypothèses, qu’on rejette ou qu’on conserve, suivant la valeur de <strong>tests statistiques</strong>.</p>
 <p>Par exemple, lorsqu’on teste si deux variables sont linéairement liées, on formule en fait une hypothèse, <span class="math inline">\(H_1\)</span> qui est «les deux variables sont linéairement liées».</p>
 <p>Il y a une hypothèse particulière, l’hypothèse nulle, <span class="math inline">\(H_0\)</span>, qu’on peut voir comme l’hypothèse à formuler dans le cas <strong>le plus général possible</strong>, quand on ne sait rien du tout sur les données. Dans ce cas là, étant donné deux variables, on pose l’hypothèse qu’elles sont indépendantes, tout simplement parce qu’il n’y a aucune raison qu’elles soient liées.</p>
@@ -626,11 +628,11 @@ Vous obtenez une certaine valeur pour vos coefficients <span class="math inline"
 Vous pouvez même faire une test de corrélation de Pearson, et obtenir une valeur de corrélation élevée, bref , <strong>vous rejetez <span class="math inline">\(H_0\)</span> pour D_{ini}</strong></p>
 <p>Maintenant imaginez qu’on génère une infinité de jeu de données <span class="math inline">\(\Delta\)</span> à 2 variables et à 500 individus <strong>sachant</strong> <span class="math inline">\(H_0\)</span>, donc avec des variables indépendantes, des variables pour lesquelles on <strong>sait</strong> qu’il n’y a aucun lien.</p>
 <p>Parmi cette infinité de jeu de données, il y en a une proportion qui, <strong>par hasard</strong>, <strong>par chance</strong>, présente des données qui ont la même forme que notre jeu de données, ou une forme suffisamment proche, qui donnerait les <strong>mêmes résultats</strong> de régression, la même droite, la même corrélation.</p>
-<p>Trions l’infinité de jeu de données <span class="math inline">\(\Gamma\)</span> selon ce critère de résultats, d’un côté les jeux de données qui indique les même résultats que notre régression sur <span class="math inline">\(D_{ini}\)</span>, qu’on va noter <span class="math inline">\(\Gamma_{corrélés}\)</span>, de l’autre les jeux de données pour lesquels on ne peut pas conclure aux même résultats: il n’y a pas de corrélation entre les deux variables, la forme du nuage de points n’est pas assez linéaire pour qu’un analyste décide d’en faire une régression linéaire. On note ces jeux <span class="math inline">\(\Gamma{indépendants}\)</span>.</p>
+<p>Trions l’infinité de jeu de données <span class="math inline">\(\Gamma\)</span> selon ce critère de résultats, d’un côté les jeux de données qui indique les même résultats que notre régression sur <span class="math inline">\(D_{ini}\)</span>, qu’on va noter <span class="math inline">\(\Gamma_{corrélés}\)</span>, de l’autre les jeux de données pour lesquels on ne peut pas conclure aux même résultats: il n’y a pas de corrélation entre les deux variables, la forme du nuage de points n’est pas assez linéaire pour qu’un analyste décide d’en faire une régression linéaire. On note ces jeux <span class="math inline">\(\Gamma_{indépendants}\)</span>.</p>
 <p>Rappelons qu’on a généré cette infinité de jeu de données sous l’hypothèse <span class="math inline">\(H_0\)</span>.
 On s’est donc trompés, pour tous les jeux de données étiquetés <span class="math inline">\(\Gamma_{corrélés}\)</span>, en obtenant des résultats de corrélation et de régression linéaire identique à ceux obtenus sur <span class="math inline">\(D_{ini}\)</span>.
 On ne s’est pas trompés pour tous les jeux de <span class="math inline">\(\Gamma_{indépendants}\)</span></p>
-<p>La p-value c’est la proportion <span class="math display">\[\frac{\Gamma_{corrélés}}{\Gamma}\]</span>.</p>
+<p>La p-value c’est la proportion <span class="math display">\[\frac{\Gamma_{corrélés}}{\Gamma}=\frac{\Gamma_{corrélés}}{\Gamma_{indépendants}+\Gamma_{corrélés}} \]</span>.</p>
 <p>C’est la proportion de fois où on s’est trompés en affirmant à propos de <span class="math inline">\(\Gamma_{corrélés}\)</span> les résultats obtenus sur <span class="math inline">\(D_{ini}\)</span> alors qu’on avait des jeux de données où <span class="math inline">\(H_0\)</span> était vraie par construction.</p>
 </div>
 <div id="ce-quil-faut-retenir-de-la-p-value" class="section level4">
