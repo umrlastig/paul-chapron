@@ -565,7 +565,7 @@ Dans cet exemple, la dispersion nous servira à mesure à quel point les individ
 
 
 
-## Variance et Écart-type
+## Variance et Écart-type {#variance}
 
 
 La variance et l'écart-type rendent compte de la **dispersion** de la variable autour de sa moyenne. On peut les interpréter comme une  «quantité moyenne d'écart»  entre les valeurs des individus et la valeur moyenne.

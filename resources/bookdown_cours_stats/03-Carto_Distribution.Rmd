@@ -209,7 +209,7 @@ Si jamais les méthodes de classifications  abordées dans ce chapitre n'étaien
 # Visualiser une distribution avec R 
 
 
-Ce chapitre montre les différentes façons d'afficher une distribution, ainsi qu'un exemple de code R pour l'obtenir.
+Ce chapitre montre les différentes façons d'afficher une distribution, ainsi qu'un exemple de code R pour l'obtenir pour chacun des types de graphiques suivants .
 
 - Histogramme 
 - Distribution
@@ -221,7 +221,7 @@ Ce chapitre montre les différentes façons d'afficher une distribution, ainsi q
 - Dot strip plot
 
 
-## Histogramme : Code R + ggplot
+### Histogramme : Code R + ggplot
 
 ```{r histo_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
 library(palmerpenguins)
@@ -235,7 +235,7 @@ histo_mass
 ```
 
 
-## Distribution/densité : Code R + ggplot
+### Distribution/densité : Code R + ggplot
 
 <span style="color:red">&#9888;</span>  ce n'est pas exactement une probabilité, mais une **densité** de probabilité.
 Pour obtenir la probabilité pour une valeur $x$ , il faut intégrer sur un petit $dx$ autour de $x$ (cf. \@ref(densite)).
@@ -254,7 +254,7 @@ distrib_mass
 
 
 
-## BoxPlot : Code R + ggplot
+### BoxPlot : Code R + ggplot
 
 
 ```{r boxplot_code_1, cache=T, warning=F, echo=T,fig.width=8, fig.height=3}
@@ -267,7 +267,7 @@ boxplot_mass <- ggplot(mydata)+
 boxplot_mass
 ```
 
-## Violin plot : Code R + ggplot
+### Violin plot : Code R + ggplot
 
 
 Le violin plot est obtenu en faisant une symétrie de la distribution par rapport à l'axe des $x$ d'un affichage classique de distribution.
@@ -287,7 +287,7 @@ violin_mass
 ```
 
 
-## Violin plot et Boxplot  : Code R + ggplot 2
+### Violin plot et Boxplot  : Code R + ggplot 2
 
 On peut superposer un boxplot de la distribution d'une variable à son violin-plot.
 
@@ -304,7 +304,7 @@ violin_mass
 ```
 
 
-## Pyramides (histogrammes juxtaposés) 
+### Pyramides (histogrammes juxtaposés) 
 
 Lorsqu'une des variables est qualitative à deux modalités, on peut classer les individus selon cette variable en deux sous-populations, et représenter les histogrammes d'une autre variable quantitative pour ces deux sous-populations :
 
@@ -325,7 +325,7 @@ pyramide_mass
 Une version très connue de cette visualisation est la pyramide des âges, utilisée en démographie.
 
 
-## Polygones de fréquences
+### Polygones de fréquences
 
 On peut voir cette visualisation de distribution comme un «histogramme en courbe»
 
@@ -345,7 +345,7 @@ freqpoly_mass
 
 
 
-## Distribution cumulée, Fonction de répartition, CDF
+### Distribution cumulée, Fonction de répartition, CDF
 
 
 Les termes "Distribution cumulée", "Fonction de répartition", et "CDF" (Cumulative Distribution Function in english) sont en principe synonymes.
@@ -386,7 +386,7 @@ plot_mass
 
 
 
-## Dot Strip Plot
+### Dot Strip Plot
 
 Cette visualisation est pratique lorsque les individus sont nombreux. En jouant sur la transparence et le décalage artificiel des points (fonction `geom_jitter` à la place de `geom_point()`), on peut faire apparaître les zones de la plages de valeurs de la variable où se retrouvent un nombre notable d'individus.
 
