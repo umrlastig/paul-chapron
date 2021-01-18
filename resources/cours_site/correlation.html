@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 10 Corrélation de deux variables quantitatives | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 10 Corrélation de deux variables quantitatives | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 10 Corrélation de deux variables quantitatives | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="régression-linéaire-avec-r.html"/>
-<link rel="next" href="lien-entre-deux-variables-qualitatives.html"/>
+<link rel="prev" href="bivariee.html"/>
+<link rel="next" href="régression-linéaire-avec-r.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -391,31 +391,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="trucs-pour-linéariser-des-relations-non-linéaires" class="section level1">
-<h1><span class="header-section-number">Chapitre 12</span> “trucs” pour linéariser des relations non-linéaires</h1>
-<div id="relation-log-linéaire" class="section level2">
-<h2><span class="header-section-number">12.1</span> Relation log-linéaire</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=ax^b\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=aln(x) + ln(b)\)</span></p>
+<div id="correlation" class="section level1">
+<h1><span class="header-section-number">Chapitre 10</span> Corrélation de deux variables quantitatives</h1>
+<div id="corrélation-linéaire" class="section level2">
+<h2><span class="header-section-number">10.1</span> Corrélation (linéaire)</h2>
+<p>Dans le cas d’une liaison statistique linéaire entre deux variables, on peut calculer l’«intensité» de ce lien sans nécessairement trouver les coefficients modèle linéaire : c’est la <strong>corrélation</strong></p>
+<p><span class="math inline">\(cor(x,y) \in [-1;1]\)</span> entre deux variables <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> .</p>
+<ul>
+<li>+1 : les deux variables croissent ou décroissent conjointement</li>
+<li>-1 : quand l’une des variables croît, l’autre décroît.</li>
+<li>0 : pas de relation <strong>linéaire</strong> entre les deux variables</li>
+</ul>
+<p><font size="3">R donne le coefficient de Pearson par defaut, l’argument <code>method</code> de la fonction <code>cor()</code> permet de spécifier deux autres coefficients : Kendall et Spearman.</font></p>
 </div>
-<div id="relation-géométrique-exponentielle" class="section level2">
-<h2><span class="header-section-number">12.2</span> Relation géométrique (exponentielle)</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
+<div id="test-de-corrélation-entre-deux-variables-avec-r" class="section level2">
+<h2><span class="header-section-number">10.2</span> Test de corrélation entre deux variables avec R</h2>
+<p>Version plus complète : c’est un <strong>test</strong>, on a plusieurs indicateurs statistiques sur ce test, notamment la <strong>p-value</strong> et <strong>l’intervalle de confiance</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="correlation.html#cb60-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Petal.Length, iris<span class="op">$</span>Petal.Width)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  iris$Petal.Length and iris$Petal.Width
+## t = 43.387, df = 148, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.9490525 0.9729853
+## sample estimates:
+##       cor 
+## 0.9628654</code></pre>
+<p>Rappel : la p-value quantifie la <strong>significativité</strong> du test.
+En général, on considère le test significatif si elle est en dessous de 5%, soit 0.05.</p>
 </div>
-<div id="relation-logarithmique" class="section level2">
-<h2><span class="header-section-number">12.3</span> Relation logarithmique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=a*ln(x)+b\)</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> changement de variable</p>
+<div id="calcul-direct-du-coefficient-de-corrélation" class="section level2">
+<h2><span class="header-section-number">10.3</span> Calcul direct du coefficient de corrélation</h2>
+<p>Soient deux variables <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span></p>
+<p>Le coefficient de corrélation <span class="math inline">\(r\)</span> de <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span> est la normalisation de la covariance par le produit des écart-types des variables</p>
+<p><span class="math inline">\(r= \frac{cov(V_1,V_2)}{\sigma_{V_1}\sigma_{V_2}}\)</span></p>
+<p>La covariance est la <strong>moyenne du produit des écarts à la moyenne</strong></p>
+<p><span class="math inline">\(cov(V_1,V_2)= E[(V_1-E[V_1])(V_2-E[V_2])]\)</span></p>
+<div id="lien-entre-la-corrélation-et-le-r2-dune-régression" class="section level4">
+<h4><span class="header-section-number">10.3.0.1</span> Lien entre la corrélation et le <span class="math inline">\(R^2\)</span> d’une régression</h4>
+<p>Si on fait une régression linéaire entre deux variables <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> , <span class="math inline">\(y\)</span> étant la variable expliquée, alors</p>
+<p><span class="math inline">\(R^2=cor(x,y)^2= r^2\)</span></p>
+<p>et</p>
+<p><span class="math inline">\(R^2=cor(\hat{y},y)^2\)</span></p>
+<p>avec <span class="math inline">\(\hat{y}\)</span> les valeurs de <span class="math inline">\(y\)</span> prédites par le modèle linéaire.</p>
+<p>La démonstration n’est pas évidente , nous ne la donnerons pas ici, mais l’intuition des conséquences de ces deux égalités est assez directe:</p>
+<ul>
+<li><p>Plus les deux variables sont linéairement corrélés (ce qui traduit le coefficient de corrélation de Pearson, avec des valeurs proches de 1 ou de -1 ), plus la régression linéaire sera de bonne qualité (si <span class="math inline">\(r\)</span> proche de -1 ou 1 , alors <span class="math inline">\(r^2\)</span> est proche de 1 )</p></li>
+<li><p>Dans le même ordre d’idée, plus les deux variables sont très corrélées, meilleure sera la régression et plus les valeurs prédites par le modèle seront proches des valeurs observées, et donc également très corrélées aux valeurs observées.</p></li>
+</ul>
 </div>
-<div id="relation-logistique" class="section level2">
-<h2><span class="header-section-number">12.4</span> Relation logistique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b\)</span></p>
+</div>
+<div id="matrice-de-corrélations" class="section level2">
+<h2><span class="header-section-number">10.4</span> Matrice de corrélations</h2>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="correlation.html#cb62-1"></a><span class="kw">cor</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span></code></pre></div>
+<pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
+## Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
+## Petal.Length    0.8717538  -0.4284401    1.0000000   0.9628654
+## Petal.Width     0.8179411  -0.3661259    0.9628654   1.0000000</code></pre>
+<p>Présentation des corrélations entre les variables quantitatives d’un tableau, pour tous les couples de variables.</p>
+<p>La matrice de corrélation est symétrique, et sa diagonale est constituée de 1.</p>
+</div>
+<div id="sensibilité-aux-outliers" class="section level2">
+<h2><span class="header-section-number">10.5</span> Sensibilité aux ‘outliers’</h2>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="correlation.html#cb64-1"></a>X &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
+<span id="cb64-2"><a href="correlation.html#cb64-2"></a>Y &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb64-3"><a href="correlation.html#cb64-3"></a><span class="kw">plot</span>(X, Y, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/sensitiveOut1-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="correlation.html#cb65-1"></a><span class="kw">cor.test</span>(X,Y)<span class="op">$</span>estimate</span></code></pre></div>
+<pre><code>## cor 
+##   0</code></pre>
+</div>
+<div id="sensibilité-aux-outliers-1" class="section level2">
+<h2><span class="header-section-number">10.6</span> Sensibilité aux ‘outliers’</h2>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="correlation.html#cb67-1"></a>X &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">15</span>)</span>
+<span id="cb67-2"><a href="correlation.html#cb67-2"></a>Y &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">15</span>)</span>
+<span id="cb67-3"><a href="correlation.html#cb67-3"></a><span class="kw">plot</span>(X, Y, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/sensitiveOut2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="correlation.html#cb68-1"></a><span class="kw">cor.test</span>(X,Y)<span class="op">$</span>estimate</span></code></pre></div>
+<pre><code>##       cor 
+## 0.9052224</code></pre>
+</div>
+<div id="sensibilité-aux-outliers-2" class="section level2">
+<h2><span class="header-section-number">10.7</span> Sensibilité aux ‘outliers’</h2>
+<p>Outlier : observation “<em>anormale</em>”, par sa valeur extrème , comparée aux autres.</p>
+<p>La corrélation et la régression linéaire sont très sensibles aux outliers.</p>
+<p><span class="math inline">\(\rightarrow\)</span> s’interroger sur la nécessité de nettoyer/filter les données et des conséquences</p>
 </div>
 </div>
             </section>
@@ -423,8 +486,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="régression-linéaire-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lien-entre-deux-variables-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bivariee.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="régression-linéaire-avec-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 16 Analyse spatiale | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 16 Analyse spatiale | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 12 “trucs” pour linéariser des relations non-linéaires | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 16 Analyse spatiale | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="régression-linéaire-avec-r.html"/>
-<link rel="next" href="lien-entre-deux-variables-qualitatives.html"/>
+<link rel="prev" href="références-supplémentaires.html"/>
+<link rel="next" href="autorcorrélation-spatiale-moran-et-geary.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -391,31 +391,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="trucs-pour-linéariser-des-relations-non-linéaires" class="section level1">
-<h1><span class="header-section-number">Chapitre 12</span> “trucs” pour linéariser des relations non-linéaires</h1>
-<div id="relation-log-linéaire" class="section level2">
-<h2><span class="header-section-number">12.1</span> Relation log-linéaire</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=ax^b\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=aln(x) + ln(b)\)</span></p>
+<div id="anaspat" class="section level1">
+<h1><span class="header-section-number">Chapitre 16</span> Analyse spatiale</h1>
+<div id="contenu-du-cours" class="section level2">
+<h2><span class="header-section-number">16.1</span> Contenu du cours</h2>
+<p>L’analyse spatiale s’intéresse aux <strong>structures</strong> récurrentes de l’espace et à leur <strong>influence</strong> sur les <strong>processus</strong> que cet espace supporte.</p>
+<p>Exemple de concepts courants: distance, flux , polarisation, effet de frontière, …</p>
+<ol style="list-style-type: decimal">
+<li><p>Analyse de semis de points</p></li>
+<li><p>Autocorrelation spatiale</p></li>
+<li><p>Notions sur les flux</p></li>
+<li><p>Modèle gravitaire (principes)</p></li>
+</ol>
+<p><span style="color:red; font-size:1.5em;">⚠</span> Une <strong>bonne</strong> carte surpasse toute analyse statistique spatiale statique</span></p>
 </div>
-<div id="relation-géométrique-exponentielle" class="section level2">
-<h2><span class="header-section-number">12.2</span> Relation géométrique (exponentielle)</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
+<div id="linformation-géographique" class="section level2">
+<h2><span class="header-section-number">16.2</span> L’information géographique</h2>
+<p>Information localisée en 1,2,3 dimensions.</p>
+<p>Ce qui nous intéresse principalement : leur <strong>localisation</strong></p>
+<p>Types :</p>
+<ul>
+<li>Semis d’objets : e.g. arbres de Paris</li>
+<li>Evènements : e.g. incendie, accidents,</li>
+<li>Mesures : e.g. altitude, température</li>
+<li>Statistiques : e.g. taux de chômage, votes</li>
+<li>Interaction : mobilité, flux commerciaux
+<br><br><br>
+<span style="font-size:0.6em;">d’après H.Commenges, Données massives spatialisées </span></li>
+</ul>
 </div>
-<div id="relation-logarithmique" class="section level2">
-<h2><span class="header-section-number">12.3</span> Relation logarithmique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y=a*ln(x)+b\)</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> changement de variable</p>
+<div id="précautions" class="section level2">
+<h2><span class="header-section-number">16.3</span> Précautions</h2>
+<p>Calculs de surfaces (e.g. densité) <span class="math inline">\(\rightarrow\)</span> projection équivalente</p>
+<p>Calculs de distances <span class="math inline">\(\rightarrow\)</span> projection conforme</p>
 </div>
-<div id="relation-logistique" class="section level2">
-<h2><span class="header-section-number">12.4</span> Relation logistique</h2>
-<p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>Relation de type <span class="math inline">\(y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}\)</span></p>
-<p>se linéarise par <span class="math inline">\(ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b\)</span></p>
+<div id="semis-de-points" class="section level2">
+<h2><span class="header-section-number">16.4</span> Semis de points</h2>
+<p>Données <strong>ponctuelles</strong> i.e. unités spatiales localisées à un point.</p>
+<p>On peut étudier la répartition de ces points dans l’espace qu’on suppose <strong>isotrope</strong>.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="anaspat.html#cb74-1"></a><span class="kw">library</span>(geojsonsf)</span>
+<span id="cb74-2"><a href="anaspat.html#cb74-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb74-3"><a href="anaspat.html#cb74-3"></a>arbres &lt;-<span class="st"> </span><span class="kw">geojson_sf</span>(<span class="st">&quot;./data/&quot;</span>)</span>
+<span id="cb74-4"><a href="anaspat.html#cb74-4"></a></span>
+<span id="cb74-5"><a href="anaspat.html#cb74-5"></a>arbres &lt;-<span class="st"> </span><span class="kw">st_transform</span>(arbres,<span class="dv">2154</span>)</span>
+<span id="cb74-6"><a href="anaspat.html#cb74-6"></a>arbres &lt;-<span class="st"> </span><span class="kw">st_set_crs</span>(arbres, <span class="dv">2154</span>)</span>
+<span id="cb74-7"><a href="anaspat.html#cb74-7"></a>arbres<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.factor</span>(arbres<span class="op">$</span>arrondissement)</span>
+<span id="cb74-8"><a href="anaspat.html#cb74-8"></a>arbres_intramuros &lt;-<span class="st">  </span><span class="kw">filter</span>(arbres, <span class="op">!</span>(arrondissement <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BOIS DE BOULOGNE&quot;</span>,  <span class="st">&quot;BOIS DE VINCENNES&quot;</span>, <span class="st">&quot;HAUTS-DE-SEINE&quot;</span>, <span class="st">&quot;SEINE-SAINT-DENIS&quot;</span>, <span class="st">&quot;VAL-DE-MARNE&quot;</span>)))</span>
+<span id="cb74-9"><a href="anaspat.html#cb74-9"></a><span class="co"># on retire les valeurs modales inusitées de la variable </span></span>
+<span id="cb74-10"><a href="anaspat.html#cb74-10"></a>arbres_intramuros<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.character</span>(arbres_intramuros<span class="op">$</span>arrondissement)</span>
+<span id="cb74-11"><a href="anaspat.html#cb74-11"></a>arbres_intramuros<span class="op">$</span>arrondissement &lt;-<span class="st"> </span><span class="kw">as.factor</span>(arbres_intramuros<span class="op">$</span>arrondissement)</span>
+<span id="cb74-12"><a href="anaspat.html#cb74-12"></a>quartiers &lt;-(<span class="kw">read_sf</span>(<span class="st">&quot;quartier_paris.shp&quot;</span>))</span>
+<span id="cb74-13"><a href="anaspat.html#cb74-13"></a>quartiers &lt;-<span class="st"> </span><span class="kw">st_transform</span>(quartiers, <span class="dv">2154</span>)</span>
+<span id="cb74-14"><a href="anaspat.html#cb74-14"></a>quartiers &lt;-<span class="st">  </span><span class="kw">st_set_crs</span>(quartiers,<span class="dv">2154</span>)</span>
+<span id="cb74-15"><a href="anaspat.html#cb74-15"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb74-16"><a href="anaspat.html#cb74-16"></a><span class="kw">plot</span>(quartiers<span class="op">$</span>geometry)</span>
+<span id="cb74-17"><a href="anaspat.html#cb74-17"></a><span class="kw">plot</span>(arbres_intramuros<span class="op">$</span>geometry, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">cex=</span><span class="fl">0.01</span>, <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>  )</span></code></pre></div>
+</div>
+<div id="statistiques-simples-sur-un-semis" class="section level2">
+<h2><span class="header-section-number">16.5</span> Statistiques simples sur un semis</h2>
+<p><strong>Point moyen</strong> (pondéré ou non) , <strong>point median</strong>.</p>
+<p>Le point médian est le point le plus accessible du semis. Il sépare la population en quatre cadrants contenant chacun 25% de l’effectif</p>
+<p>La <strong>dispersion</strong> du nuage de points est approchée par la <strong>distance type</strong> (euclidienne)) :</p>
+<p><span class="math inline">\(\sigma_{Dist}= \sqrt{\frac{1}{n}\sum_{i=1}^n(X_i-\bar {X})^2 + (X-\bar{X})^2} = \sqrt{\sigma_X^2 +\sigma_Y^2}\)</span></p>
+</div>
+<div id="concentrations-du-semis" class="section level2">
+<h2><span class="header-section-number">16.6</span> Concentrations du semis</h2>
+<p>Pour estimer si la répartition d’un semis de <span class="math inline">\(n\)</span> points est régulière :</p>
+<ul>
+<li>on discrétise l’espace en <span class="math inline">\(C\)</span> mailles de formes régulière( carrée, hexagonale)</li>
+<li>on calcule le nombre de points théorique par maille (la densité) : <span class="math inline">\(D= n/C\)</span></li>
+<li>on compte le nombre de points par maille et on calcule la variance <span class="math inline">\(var(D)\)</span> ou le de ce nombre</li>
+</ul>
+<p>Indice de concentration : <span class="math inline">\(IC= var(D)/D\)</span></p>
+<ul>
+<li>si IC = 1 , la distribution est aléatoire</li>
+<li>si IC &gt; 1 , la distribution est concentrée</li>
+<li>si IC &lt; 1 , la distribution est homogène</li>
+</ul>
+</div>
+<div id="le-modele-nul-pour-un-semis-de-points" class="section level2">
+<h2><span class="header-section-number">16.7</span> Le modele nul pour un semis de points</h2>
+<p>Un processus de spatial de Poisson est un processus spatialement
+aléatoire.</p>
+<p>Dans un espace découpé en zones, on estime la probabilité d’avoir un nombre de points)dans une zone <span class="math inline">\(z\)</span> par une distribution de poisson de moyenne <span class="math inline">\(\lambda * surface(zone)\)</span>.</p>
+</div>
+<div id="afficher-la-distribution-le-retour" class="section level2">
+<h2><span class="header-section-number">16.8</span> Afficher la distribution, le retour</h2>
+<p><img src="bookdown_cours_stats_files/figure-html/polar1-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre><code>## gauche 6414.482</code></pre>
+<pre><code>## droite 7023.333</code></pre>
+<p>Le nombre de points est identique dans les deux cartes.</p>
+<p>A gauche: distance type = 6423.3 A droite: distance type =7196.3</p>
 </div>
 </div>
             </section>
@@ -423,8 +489,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="régression-linéaire-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lien-entre-deux-variables-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="références-supplémentaires.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="autorcorrélation-spatiale-moran-et-geary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
