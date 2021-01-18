@@ -122,11 +122,12 @@ la-p-value-et-lhypothèse-nulle
 approximation-moins-grossière-à-propos-de-la-p-value
 ce-quil-faut-retenir-de-la-p-value
 effectuer-une-régression-linéaire-avec-r
+la-commande-lm
 format-des-résultats
 residuslm
-bonus-evaluation-de-lindépendance-des-résidus-avec-r
-bonusles-4-graphiques-résultats-de-la-fonction-lm
-bonus-évaluer-lhomogénéité-des-résidus-avec-r
+évaluation-de-lindépendance-des-résidus-avec-r
+les-4-graphiques-résultats-de-la-fonction-lm
+évaluer-lhomogénéité-des-résidus-avec-r
 bonus-évaluer-la-normalité-de-la-distribution-des-résidus-avec-r
 bonus-évaluer-lhomoscédasticité-des-résidus
 correlation

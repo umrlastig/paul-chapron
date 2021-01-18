@@ -279,8 +279,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.6" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire-la-p-value"><i class="fa fa-check"></i><b>9.2.6</b> Évaluer la qualité d’une régression linaire : la p-value</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="bivariee.html"><a href="bivariee.html#effectuer-une-régression-linéaire-avec-r"><i class="fa fa-check"></i><b>9.3</b> Effectuer une régression linéaire avec R</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>9.3.1</b> Format des résultats</a></li>
-<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#residuslm"><i class="fa fa-check"></i><b>9.3.2</b> Bonus: Critères de significativité du lien linéaire</a></li>
+<li class="chapter" data-level="9.3.1" data-path="bivariee.html"><a href="bivariee.html#la-commande-lm"><i class="fa fa-check"></i><b>9.3.1</b> La commande <code>lm</code></a></li>
+<li class="chapter" data-level="9.3.2" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>9.3.2</b> Format des résultats</a></li>
+<li class="chapter" data-level="9.3.3" data-path="bivariee.html"><a href="bivariee.html#residuslm"><i class="fa fa-check"></i><b>9.3.3</b> Bonus: Critères de significativité du lien linéaire</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>10</b> Corrélation de deux variables quantitatives</a><ul>
@@ -396,8 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="regression-linéaire-avec-r" class="section level2">
 <h2><span class="header-section-number">11.1</span> Regression linéaire avec R</h2>
 <p>Fonction <code>lm()</code> , modèle de la forme <code>Variable_a_expliquer ~ Variable_explicative</code></p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="régression-linéaire-avec-r.html#cb70-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Width<span class="op">~</span>Petal.Length, <span class="dt">data=</span>iris)</span>
-<span id="cb70-2"><a href="régression-linéaire-avec-r.html#cb70-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="régression-linéaire-avec-r.html#cb72-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Width<span class="op">~</span>Petal.Length, <span class="dt">data=</span>iris)</span>
+<span id="cb72-2"><a href="régression-linéaire-avec-r.html#cb72-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Petal.Width ~ Petal.Length, data = iris)
@@ -430,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="obtenir-le-coefficient-de-spearman-avec-r" class="section level2">
 <h2><span class="header-section-number">11.3</span> Obtenir le coefficient de Spearman avec R</h2>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="régression-linéaire-avec-r.html#cb72-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="régression-linéaire-avec-r.html#cb74-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
