@@ -1,26 +1,29 @@
 # Analyse spatiale  {#anaspat}
 
 
-## Contenu du cours
+## Contenu du chapitre
 
-L'analyse spatiale s'intéresse aux **structures** récurrentes de l'espace et à leur **influence** sur les **processus** que cet espace supporte. 
-
-Exemple de concepts courants: distance, flux , polarisation, effet de frontière, ...
-
-1. Analyse de semis de points
-
-2. Autocorrelation spatiale 
-
-3. Notions sur les flux 
-
-4. Modèle gravitaire (principes)
-
-<span style="color:red; font-size:1.5em;">&#9888;</span> Une **bonne** carte surpasse toute analyse statistique spatiale statique</span>
+Ce chapitre présente quelques notions d'analyse spatiale proprement dite. L'analyse spatiale s'intéresse aux **structures** récurrentes de l'espace et à leur **influence** sur les **processus** que cet espace supporte. Cette fois-ci les variables qui nous intéresse ont un rapport avec la localisation, la distance et les interactions d'objets spatialisés.
 
 
+- Analyse de semis de points
+
+- Autocorrélation spatiale globale 
+
+- Notions sur les flux 
+
+- Principe du modèle gravitaire 
 
 
-## L'information géographique
+Ces outils, même s'ils sont basiques, sont utiles et puissants, ne peuvent pas se substituer à une représentation cartographique adéquate d'un phénomène spatialisé.
+
+>(opinion personelle) Une **bonne** carte surpasse toute analyse statistique spatiale statique
+
+
+
+
+
+### L'information géographique
 
 Information localisée en 1,2,3 dimensions. 
 
@@ -29,7 +32,7 @@ Ce qui nous intéresse principalement : leur **localisation**
 Types :
 
 - Semis d'objets : e.g. arbres de Paris
-- Evènements : e.g. incendie, accidents, 
+- Événements : e.g. incendie, accidents, 
 - Mesures : e.g. altitude, température
 - Statistiques : e.g. taux de chômage, votes
 - Interaction : mobilité, flux commerciaux
@@ -370,7 +373,7 @@ On détermine les valeurs des coefficients ($\alpha,\ \beta,\ n$)inconnus  par *
 
 Une carte permet d'explorer "visuellement" des résultats de traitements statistiques : 
 
-- Cartographie univariée : Cartographie électorale 
+- Cartographie univariée : par exemple Cartographie électorale 
 - Cartographie bi-variée : représenter les résidus d'un modèle explicatif à une variable 
 - Cartographie multi-variée : Cartographie de clusters, de coordonnées d'individus dans le plan factoriel (ACP), etc.
 

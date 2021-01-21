@@ -1,6 +1,8 @@
 # Analyse Bivariée {#bivariee}
 
 
+## Introduction
+
 L'analyse bivariée , comme son nom l'indique, a pour objectif d'analyser le lien qui peut exister entre **deux** variables.
 
 
@@ -55,7 +57,7 @@ Nous donnerons à la fin de ce cours quelques éléments à ce sujet dans la sec
 
 
 
-## Corrélation n'implique pas causalité 
+### Corrélation n'implique pas causalité 
 
 
 Nous allons voir comment quantifier l'intensité du **lien statistique** qui peut exister entre deux variables.
@@ -140,10 +142,25 @@ Voici un arbre de décision plus précis :
 <img src="decisionTreeCorr.svg"/>
 
 
+## Contenu du chapitre 
+
+
+**Lien entre deux variables quantitatives**   
+
+La section \@ref(reglin) traite de la régression linéaire, la section \@ref(correlation) traite de la corrélation, la section \@ref(manipR) montre comment réaliser ces opérations avec R 
+la section \@ref(lineariser)  montrer quelques astuces pour linéariser des dépendances de formes connues
+
+**Lien entre deux variables qualitatives**   
+
+la section \@ref(chi2) traite de test du $\chi^2$
+
+**Lien entre une variable qualitative et une variable quantitative**
+
+la section \@ref(qualiquanti) montre quelques représentations graphique faisant intervenir une variable qualitative et une variable quantitative.
 
 
 
-## Régression linéaire 
+## Régression linéaire {#reglin} 
 
 
 
@@ -418,7 +435,7 @@ On notera que les p-value sont très faibles,  ce qui on va le voir, indique qu'
 
 
  
-### Évaluer la  qualité d'une régression linaire : la p-value
+### Évaluer la  qualité d'une régression linaire : la p-value {#interpval}
 
 
 #### la p-value et l'hypothèse nulle
@@ -431,7 +448,7 @@ La façon d'interpréter correctement une p-value fait l'objet de nombreux déba
 
 
 
-**Approximation grossière **  : 
+**Approximation grossière**  : 
 
 la p-value est le  **pourcentage de chances de se tromper** en rejetant l'hypothèse nulle, c'est-à-dire se tromper en considérant que  les deux séries ne sont pas indépendantes et qu'il existe une relation entre les deux (ici, linéaire car nous testons un modèle linéaire).
 
@@ -490,31 +507,226 @@ C'est la proportion de fois où on s'est trompés en affirmant à propos de $\Ga
 > Évidemment cette proportion est très faible pour des cas où le lien entre les deux variables est marquée, mais comme on raisonne à l'infini elle ne sera jamais nulle !
 
 
+#### le seuil de significativité
+
+Il est d'usage de **rejeter** $H_1$ , l'hypothèse alternative qui considère que les deux variables ne sont pas indépendantes lorsque la p-value associée aux coefficients de la régression linéaire dépasse un certain **seuil**. 
+
+Il n'y a pas de valeur absolue de ce seuil, par une sorte de "tradition" scientifique, le seuil est fixé à 5% ($p \leq 0.05$) en sciences expérimentales et en sciences sociales.
+
+Dans certains cas il est tout-à-fait acceptable d'augmenter ce score. Cela se comprend d'autant mieux si on interprète la p-value comme une estimation de **la plausibilité de la compatibilité des données avec l'hypothèse nulle**, et surtout si on se rappelle bien que ce n'est pas parce qu'un test est significatif qu'on a démontré quoique ce soit : on a juste chiffré ce qui sépare notre cas d'étude des cas de même taille dont les valeurs seraient purement dues au hasard.
 
 
 
 ####  Ce qu'il faut retenir de la p-value
 
 
-- plus elle est petite, mieux c'est
-- en sciences expérimentales, le seuil de significativité est bas (~5%), en sciences sociales , il est plus haut.
+- «plus elle est petite, mieux c'est»
+- le seuil usuel de significativité est bas (~5%), 
 - elle s'interprète comme un pourcentage de chances de se tromper en première approximation
-- il faut plutôt le voir comme la probabilité d'obtenir par chance les même résultats de régression linéaire, pour une jeu de données de variables indépendantes de même taille. 
+- il faut plutôt le voir comme la probabilité d'obtenir par chance des résultats de régression linéaire aussi bons, pour une jeu de données de variables indépendantes de même taille. 
 
 
 
 
 
 
-## Effectuer une régression linéaire avec  R
+
+
+## Corrélation  {#correlation}
+
+
+Dans le cas d'une liaison entre deux variables, on peut calculer l'«intensité» et le sens de ce lien sans nécessairement que la dépendance soit linéaire, ni trouver les coefficients du modèle linéaire : c'est ce que nous décrit la valeur   de **corrélation**.
+
+$cor(x,y) \in [-1;1]$ entre deux variables $x$ et $y$ .
+
+- +1 : les deux variables croissent ou décroissent conjointement
+- -1 : quand l'une des variables croît, l'autre décroît.
+- 0 : pas de relation entre les deux variables
+ 
+ 
+
+Nous verrons deux corrélations : celle de **Pearson** et celle de **Spearman**.
+
+La corrélation de Pearson s'utilise lorsque la dépendance est de forme **linéaire**, allongée, i.e. comme la régression.
+
+La corrélation de Spearman est  utilisée lorsque la dépendance est **monotone**, mais pas forcément linéaire.
+
+
+> **monotone** signifie que le sens de variation de la variable est constant: uniquement croissante ou uniquement décroissante.
+
+
+### Calcul direct du coefficient de corrélation (de Pearson)
+
+Soient deux variables $V_1$ et $V_2$
+
+Le coefficient de corrélation $r$ de $V_1$ et $V_2$ est la normalisation de la covariance ce $V_1$ et $V_2$ par le produit des écart-types des variables. 
+
+$r= \frac{cov(V_1,V_2)}{\sigma_{V_1}\sigma_{V_2}}$ 
+
+
+
+La covariance est la **moyenne du produit des écarts à la moyenne**
+
+$cov(V_1,V_2)= E[(V_1-E[V_1])(V_2-E[V_2])]$
+
+
+Dans cette formule, et de façon courante en statistique,  on note $E[X]$ l'**espérance** de la variable $X$, ce qui revient dans ce cas à sa moyenne. 
+
+
+#### Lien entre corrélation et le $R^2$ d'une régression 
+
+
+Si on fait une régression linéaire entre deux variables $x$ et $y$ , $y$ étant la variable expliquée, alors  
+
+
+$R^2=cor(x,y)^2= r^2$
+
+
+et 
+
+$R^2=cor(\hat{y},y)^2$   
+
+avec $\hat{y}$ les valeurs de $y$ prédites par le modèle linéaire.
+
+
+La démonstration n'est pas évidente, nous ne la donnerons pas ici, mais l'intuition des conséquences de ces deux égalités est assez directe: 
+
+- Plus les deux variables sont linéairement corrélés (ce qui traduit le coefficient de corrélation de Pearson, avec des valeurs proches de 1 ou de -1 ), plus la régression linéaire sera de bonne qualité (si $r$ proche de -1 ou 1 , alors $r^2$ est proche de 1 )
+
+- Dans le même ordre d'idée, plus les deux variables sont corrélées, meilleure sera la régression et plus  les valeurs prédites par le modèle seront  proches des valeurs observées, et donc également très corrélées aux valeurs observées.
+
+
+
+
+### Le coefficient de corrélation de Spearman
+
+Quand les deux variables sembles corrélées , de façon **monotone** mais **non linéaire**, on utilise le coefficient de corrélation de **Spearman**, basé sur le **rang** des individus.
+
+<center>
+$\rho = 1 - \frac{6\sum_{i=1}^{n}(rg(X_i)-rg(Y_i))^2 }{n^3 -n}$
+</center>
+
+
+avec :
+
+$rg(X_i)$ le *rang* de $X_i$  (le classement de sa valeur) dans la distribution de $X$ et $n$ le nombre d'individus. 
+
+Les valeurs et les interprétations du coefficient de Spearman sont les mêmes que pour le coefficient de corrélation de Pearson.
+
+
+
+
+
+### Pearson ou  Spearman  ?
+
+Les coefficients  $r$ (Pearson) et $\rho$ (Spearman) sont deux moyens d'estimer la corrélation: lequel choisir ?
+
+
+- si $r = \rho$: on garde $r$ (plus simple à interpréter)
+- si $r < \rho$: la relation est non-linéaire : prendre  $\rho$
+- si $r > \rho$: il y a un biais, prendre $\rho$ (plus robuste)
+
+... et surtout toujours **tracer le nuage de points** pour examiner  la nature de la relation.
+
+
+
+
+### Matrice de corrélations
+
+En présence de plusieurs variables, on peut rassembler les valeurs de coefficient de corrélations calculés sur toues les variables deux à deux,  dans une **matrice de corrélations**
+
+
+```{r corMatIris, cache=TRUE}
+cor(iris[,1:4])
+```
+
+
+Cette matrice de corrélation est symétrique, et sa diagonale est constituée de 1.
+
+
+
+### Sensibilité aux valeurs extrêmes
+
+La corrélation de Pearson  est un indicateur assez sensible aux valeurs extrêmes. 
+Prenons ce dataset particulier, que j'ai choisi pour qu'il ne présente aucune corrélation: 
+
+```{r sensitiveOut1, cache=TRUE, fig.height=4}
+X <-  c(3,2,3,4,1,2,3,4,5,2,3,4,3)
+Y <-  c(1,2,2,2,3,3,3,3,3,4,4,4,5)
+plot(X, Y, xlim = c(0,16), ylim= c(0,16))
+cor.test(X,Y)$estimate
+```
+
+
+Si on perturbe ce dataset en ajoutant le point $(x=15, y=15)$ et qu'on recalcule la corrélation : 
+
+```{r sensitiveOut2, cache=TRUE,  fig.height=4}
+X <-  c(X, 15)
+Y <- c(Y,15)
+plot(X, Y, xlim = c(0,16), ylim= c(0,16))
+cor.test(X,Y)$estimate
+```
+
+
+À lui tout seul, ce point transforme la corrélation du jeu de données, le faisant passer d'une corrélation nulle à une corrrélation très forte et positive. 
+
+>Par ses valeurs éloignées des autres, ce point exerce une sorte de *bras de levier* sur tous les autres, et pourrait faire croire à une tendance linéaire dans le groupe entier. 
+>Avant qu'il n'arrive , tous les liens entre les points se compensaient, s'annulaient en quelques sorte. A son arrivée, ce point crée un "petit bout de linéarité"" avec tous les autres, ces petits bouts vont tous globalement dans le même sens puisqu'il est loin de la masse de point, et l'écart numérique entre ce point et la moyenne des autres fait le reste: cela suffit à passer pour de la corrélation.
+
+
+Cet exemple est volontairement exagéré : il y a seulement 13 individus dans le jeu de données avant la perturbation, ce qui est vraiment peu. Mais c'est l'occasion de rappeler qu'après l'affichage des données brutes, il est utile de  s'interroger sur la nécessité de nettoyer/filter les données et des conséquences de ce nettoyage sur le reste des analyses.
+
+
+Voyons ce qui se passerait avec un jeu de données plus conséquent : 1000 points dont les valeurs $x$ et $y$ sont échantillonnées chacune selon une loi normale$\mathscr{N}(0,1)$ , perturbés par un outlier en $(x=15,y=15)$:
+
+```{r sensitiveOut3, cache=TRUE,  fig.height=4}
+set.seed(55)
+X <-  rnorm(1000)
+Y <-  rnorm(1000) 
+cor.test(X,Y)$estimate # Pearson sans perturbation
+X <-  c(X, 15)
+Y <- c(Y,15)
+ggplot(data.frame(X,Y), aes(X,Y))+ geom_point(size=.2)+theme_light()
+cor.test(X,Y)$estimate # Pearson après perturbation
+cor.test(X,Y, method = "spearman", exact = TRUE)$estimate #Spearman après perturbation
+```
+
+La perturbation par l'ajout d'un point (un millième de l'effectif seulement) fait passer la corrélation de pearson de -0.04 à 0.15 !   
+
+On peut remarquer que le coefficient de Spearman, puisqu'il prend en compte le rang des individus et non leurs valeurs de variables est bien plus robuste à ce type de perturbations. 
+
+
+Ajoutons une deuxième perturbation en (16,16) pour finir de s'en convaincre : 
+
+```{r sensitiveOut4, cache=TRUE,  fig.height=4}
+X <-  c(X, 16)
+Y <- c(Y,16)
+cor.test(X,Y)$estimate # Pearson après 2 perturbations
+cor.test(X,Y, method = "spearman", exact = TRUE)$estimate #Spearman après 2 perturbations
+```
+
+
+La corrélation de Pearson a doublé ! 
+
+
+>On pourrait continuer les expériences en faisant varier le nombre de points, le nombre d'outliers et leur écart avec les valeurs moyennes. On retiendrait que le **nombre** et la valeur de l'**écart** des outliers avec le points moyen augmentent l'erreur de corrélation de Pearson (ce qui est assez trivial quand on regarde la formule du coefficient de Pearson)
+
+
+
+
+
+
+## Régression linéaire et corrélation avec  R {#manipR}
 
 ### La commande `lm`
 
-La régression linéaire entre deux variables `x` et `y` s'obtient avec la fonction `lm(y ~ x)`.
+
+
+La régression linéaire entre deux variables `x` et `y` s'obtient avec la fonction `lm()` et s'écrit `lm(y ~ x)` pour expliquer la variable `y` par la variable `x`.
 
 Le premier argument est sous une forme particulière d'expression en R :une **formule**.
 
-Elle s'écrit `Variable expliquée ~ Variable explicative` dans notre cas, puisque nous faisons une régression *univariée* , c'est-à-dire qu'on essaye d'expliquer une variable à l'aide d'une seule autre variable. 
+Elle s'écrit `Variable expliquée ~ Variable explicative` dans notre cas, puisque nous faisons une régression *univariée* , c'est-à-dire qu'on essaye d'expliquer une variable à l'aide d'**une** seule autre variable. 
 
 ```{r reslm,fig.width=6, fig.height=4}
 lm(iris$Petal.Length~iris$Petal.Width)
@@ -534,13 +746,14 @@ summary(regression)
 
 On y trouve dans l'ordre: 
 
-- la formule de la regression (section `Call`)
+- la formule de la régression (section `Call`)
 - les quartiles des résidus (section `Residuals`)
 - les coefficients du modèle ajusté et leur **p-value** associée, ici sur un test de Student, notée `Pr(>|t|)` (section `Coefficients`) 
 - le $R^2$, on pourra prendre la valeur étiquetée `Adjusted R-squared` (dernière section) 
 
 
-
+Ce premier niveau de résultats nous suffit dans le cadre de ce cours : nous avons le $R^2$ et la p-value. 
+D'autres critères sont sont disponibles pour renforcer l'analyse, ils sont donnés dans les sections suivantes à titre indicatifs.
 
 
 
@@ -645,181 +858,67 @@ Dans cet exemple: on voit une légère pente mais les points sont distribués de
 
 
 
-# Corrélation de deux variables quantitatives {#correlation}
-
-## Corrélation (linéaire)
-
-Dans le cas d'une liaison statistique linéaire entre deux variables, on peut calculer l'«intensité» et le sens de ce lien sans nécessairement trouver les coefficients du modèle linéaire : c'est ce que nous décrit la valeur   de **corrélation**.
-
-$cor(x,y) \in [-1;1]$ entre deux variables $x$ et $y$ .
-
-- +1 : les deux variables croissent ou décroissent conjointement
-- -1 : quand l'une des variables croît, l'autre décroît.
-- 0 : pas de relation **linéaire** entre les deux variables
- 
- <font size="3">R donne le coefficient de Pearson par defaut, l'argument `method` de la fonction `cor()` permet de spécifier deux autres coefficients : Kendall et Spearman.</font>
+#### TODO residual vs. leverage
 
 
-## Test de corrélation entre deux variables avec R
+Pour le moment je ne sais pas comment interpréter le dernier des quatre graphiques. À suivre !
 
-Version plus complète : c'est un **test**, on a plusieurs indicateurs statistiques sur ce test, notamment la **p-value** et **l'intervalle de confiance**
 
-```{r cortestIris}
-cor.test(iris$Petal.Length, iris$Petal.Width)
+
+### Tests de corrélation avec R
+
+
+la corrélation peut être obtenue avec la fonction `cor()`, dont les deux premiers arguments sont des listes (ou vecteurs) de valeurs de même taille.
+
+La fonction `cor.test` est plus complète : comme c'est un **test**, on a plusieurs indicateurs statistiques sur ce test, notamment la **p-value** et **l'intervalle de confiance**, qui est l'intervalle dans lequel on encadre la valeur de la corrélation.
+On peut spécifier le niveau de confiance qu'on désire obtenir pour cet intervalle avec l'argument `conf.level` .
+
+PLus le niveau de confiance est élevée , plus l'intervalle est grand, plus il est bas, plus l'intervalle est étroit.
+
+
+
+
+```{r cortestIris, cache=TRUE}
+cor.test(iris$Petal.Length, iris$Petal.Width, conf.level= 0.95)
+cor.test(iris$Petal.Length, iris$Petal.Width, conf.level= 0.75)
 ```
+
 Rappel : la p-value quantifie la **significativité** du test.
-En général, on considère le test significatif si elle est en dessous de 5%, soit 0.05.  
-
-
-## Calcul direct du coefficient de corrélation
-
-Soient deux variables $V_1$ et $V_2$
-
-Le coefficient de corrélation $r$ de $V_1$ et $V_2$ est la normalisation de la covariance par le produit des écart-types des variables 
-
-$r= \frac{cov(V_1,V_2)}{\sigma_{V_1}\sigma_{V_2}}$ 
+Elle s'interprète de la même façon que pour celles associées aux coefficients de la régression linéaire ( cf. section  \@ref(interpval))
 
 
 
+la fonction `cor.test`\ R donne le coefficient de Pearson par defaut, l'argument `method` de la fonction permet de spécifier deux autres coefficients : Kendall et Spearman.
 
-La covariance est la **moyenne du produit des écarts à la moyenne**
+Pour extraire uniquement la valeur des coefficient , il faut utiliser l'attribut `estimate` de l'objet renvoyé par la fonction.
 
-$cov(V_1,V_2)= E[(V_1-E[V_1])(V_2-E[V_2])]$
-
-
-
-#### Lien entre la corrélation et le $R^2$ d'une régression 
-
-
-Si on fait une régression linéaire entre deux variables $x$ et $y$ , $y$ étant la variable expliquée, alors  
-
-
-$R^2=cor(x,y)^2= r^2$
-
-
-et 
-
-$R^2=cor(\hat{y},y)^2$   
-
-avec $\hat{y}$ les valeurs de $y$ prédites par le modèle linéaire.
-
-
-La démonstration n'est pas évidente , nous ne la donnerons pas ici, mais l'intuition des conséquences de ces deux égalités est assez directe: 
-
-- Plus les deux variables sont linéairement corrélés (ce qui traduit le coefficient de corrélation de Pearson, avec des valeurs proches de 1 ou de -1 ), plus la régression linéaire sera de bonne qualité (si $r$ proche de -1 ou 1 , alors $r^2$ est proche de 1 )
-
-- Dans le même ordre d'idée, plus les deux variables sont très corrélées, meilleure sera la régression et plus  les valeurs prédites par le modèle seront  proches des valeurs observées, et donc également très corrélées aux valeurs observées.
-
-
-
-
-
-
-## Matrice de corrélations
-
-
-```{r corMatIris}
-cor(iris[,1:4])
-```
-
-Présentation des corrélations entre les variables quantitatives d'un tableau, pour tous les couples de variables.
-
-La matrice de corrélation est symétrique, et sa diagonale est constituée de 1.
-
-
-
-
-## Sensibilité aux 'outliers'
-
-```{r sensitiveOut1}
-X <-  c(3,2,3,4,1,2,3,4,5,2,3,4,3)
-Y <-  c(1,2,2,2,3,3,3,3,3,4,4,4,5)
-plot(X, Y, xlim = c(0,16), ylim= c(0,16))
-cor.test(X,Y)$estimate
+```{r rho, cache=TRUE}
+my_test <- cor.test(iris$Sepal.Length, iris$Sepal.Width, method="spearman", exact = FALSE)
+my_test$estimate
 ```
 
 
-## Sensibilité aux 'outliers'
-
-```{r sensitiveOut2}
-X <-  c(3,2,3,4,1,2,3,4,5,2,3,4,3,15)
-Y <-  c(1,2,2,2,3,3,3,3,3,4,4,4,5,15)
-plot(X, Y, xlim = c(0,16), ylim= c(0,16))
-cor.test(X,Y)$estimate
-```
-
-## Sensibilité aux 'outliers'
-
-Outlier : observation "*anormale*",  par sa valeur extrème , comparée aux autres.
+l'argument `exact` doit être précisé en cas de valeurs ex-aequo dans les données.  
 
 
-La corrélation et la régression linéaire sont très sensibles aux outliers.
-
-$\rightarrow$ s'interroger sur la nécessité de nettoyer/filter les données et des conséquences 
+## "trucs" pour linéariser des relations non-linéaires {#lineariser}
 
 
-
-# Régression linéaire avec R
-
-## Regression linéaire avec R
-
-Fonction  `lm()` , modèle de la forme `Variable_a_expliquer ~ Variable_explicative` 
-
-```{r regress, echo=TRUE }
-my_model <- lm(Petal.Width~Petal.Length, data=iris)
-summary(my_model)
-```
+Les techniques que nous avons abordées sont faites pour les relations linéaires. Tout est plus compliqué lorsque la dépendance entre deux variables est avérée, mais ne suit pas une forme linéaire : elle est mal décrite par le modèle linéaire d'une régression, ou la corrélation de Pearson est peu précise, etc.
 
 
-## Que faire lorsque la relation n'est pas linéaire ?
+Quand on a de la chance , on peut néanmoins reconnaître dans les nuages de points quelques formes de dépendances «connues», qui peuvent être issus de lois ou provenir de phénomènes décrits par des lois usuelles.
 
-Quand les deux variables sembles corrélées , de façon **monotone** mais **non linéaire**,
-
-$\rightarrow$ Coefficient de **Spearman**, basé sur le **rang** des individus.
-
-<center>
-$\rho = 1 - \frac{6\sum_{i=1}^{n}(rg(X_i)-rg(Y_i))^2 }{n^3 -n}$
-</center>
+On va donner un exemples de ces relations connues, avec l'effet de leur linéarisation.
+Les exemples sont volontairement exagérés pour mieux cataloguer les formes. Évidemment en pratique les données sont beaucoup moins propres, et une linéarisation «aveugle» n'améliore  pas toujours les choses. 
 
 
-avec :
+### Relation log-linéaire 
 
-$rg(X_i)$ le *rang* de $X_i$  (le classement de sa valeur) dans la distribution de $X$
-
-$n$ le nombre d'individus
-
-## Obtenir le coefficient  de Spearman avec R
-
-
-```{r rho}
-cor.test(iris$Sepal.Length, iris$Sepal.Width, method="spearman", exact = FALSE)
-```
-
-
-l'argument `exact` doit être précisé en cas de valeurs ex aequo dans les données.  
-
-
-## Utilisation conjointe des coefficients de Pearson et Spearman 
-
-$r$ (Pearson) et $\rho$ (Spearman) sont deux moyens d'estimer la corrélation: lequel choisir ?
-
-si $r = \rho$: on garde $r$ (plus simple à interpréter)
-
-si $r < \rho$: la relation est non-linéaire : prendre  $\rho$
-
-si $r > \rho$: il y a un biais, prendre $\rho$ (plus robuste)
-
-... et toujours **tracer le nuage de points** pour examiner  la nature de la relation.
-
-
-# "trucs" pour linéariser des relations non-linéaires
-
-
-## Relation log-linéaire 
-
-```{r loglin, echo=FALSE, fig.width= 8, fig.height=4, cache=T}
-x <- runif(1000, min = 0, max=10)
-y1 <- 1.5*x^2.2  + rnorm(1000,10, 12)
+```{r loglin, echo=TRUE, fig.width= 8, fig.height=4}
+x <- runif(500, min = 1, max=10) 
+y1 <- 1.5*x^4.5   
+x <- x + rnorm(500) #on ajoute du bruit sur x 
 data2 <-  data.frame(x, y1)
 library(ggplot2)
 plo2 <-  ggplot(data2, aes(x=x, y=y1))+
@@ -830,20 +929,16 @@ plo2
 ```
 
 
-Relation de type $y=ax^b$ 
-
-se linéarise par $ln(y)=aln(x) + ln(b)$
-
+Cette forme est observée lorsque les variables sont liées par une relation de type $y=ax^b$.
+Elle se linéarise par $ln(y)=bln(x) + ln(a)$
 
 
-## Relation géométrique (exponentielle) 
-
-```{r expolin, echo=FALSE, fig.width= 8, fig.height=4, cache=T}
-x <- runif(1000, min = 0, max=10)
-y1 <- exp(1.5*x+ 0.2)  + 10000*rnorm(1000,10, 12)
-data2 <-  data.frame(x, y1)
+```{r loglin2, echo=TRUE, fig.width= 8, fig.height=4}
+x_transform <- log(x)
+y_transform <- log(y1)
+data_transform <-  data.frame(x_transform, y_transform)
 library(ggplot2)
-plo2 <-  ggplot(data2, aes(x=x, y=y1))+
+plo2 <-  ggplot(data_transform, aes(x=x_transform, y=y_transform))+
   geom_point(size =1, color = "#0FAF96", alpha=0.8)+
   xlab(" x ")+
   ylab(" y ")
@@ -851,96 +946,249 @@ plo2
 ```
 
 
-Relation de type $y=e^{ax+b}$ 
+Le nuage de points fait un peu peur, mais cette transformation améliorerait la qualité d'une régression linéaire : 
 
-se linéarise par $ln(y)=ax + ln(b)$
+```{r loglin3, echo=TRUE, fig.width= 8, fig.height=4}
+summary(lm(y1~x))$r.squared
+summary(lm(y_transform~x_transform))$r.squared
+```
 
-## Relation logarithmique
 
-```{r logar, echo=FALSE, fig.width= 8, fig.height=4, cache=T}
+
+
+
+### Relation géométrique (exponentielle) 
+
+```{r expolin, echo=FALSE, fig.width= 8, fig.height=4}
 x <- runif(1000, min = 0, max=10)
-y1 <- 1.5*log(x)+ 0.2  + 0.22*rnorm(1000,1, 2)
-data2 <-  data.frame(x, y1)
+y2 <- exp(0.8*x+ 0.2) 
+y2 <- y2 *(1 +rnorm(1000,0,0.2)) 
+
+data2 <-  data.frame(x, y2)
 library(ggplot2)
-plo2 <-  ggplot(data2, aes(x=x, y=y1))+
+plo2 <-  ggplot(data2, aes(x=x, y=y2))+
   geom_point(size =1, color = "#0FAF96", alpha=0.8)+
   xlab(" x ")+
   ylab(" y ")
 plo2
 ```
 
-Relation de type $y=a*ln(x)+b$ 
 
-$\rightarrow$ changement de variable 
+Relation de type $y=e^{ax+b}$ , qui se  se linéarise par $ln(y)=ax + ln(b)$
 
-## Relation logistique
-
-```{r logistic, echo=FALSE, fig.width= 8, fig.height=4, cache=T}
-x <- runif(1000, min = 0, max=10)
-ymax <-  10
-ymin <- 0
-y1 <- ymin+ ((ymax -ymin) /(1 + exp(-1.5*x+6.8))) + 0.5*rnorm(1000,1,1)
-data2 <-  data.frame(x, y1)
+```{r expolin2, echo=FALSE, fig.width= 8, fig.height=4}
+x_transform <- x
+y_transform <-  log(y2)
+data_transform <-  data.frame(x_transform, y_transform)
 library(ggplot2)
-plo2 <-  ggplot(data2, aes(x=x, y=y1))+
+plo2 <-  ggplot(data_transform, aes(x=x_transform, y=y_transform))+
   geom_point(size =1, color = "#0FAF96", alpha=0.8)+
   xlab(" x ")+
   ylab(" y ")
 plo2
 ```
 
-Relation de type $y= y_{min} * \frac{y_{max}-y_{min}}{1+e^{ax+b}}$
 
-se linéarise par $ln\bigg(\frac{y_{max}-y}{y-y_{min}}\bigg)=ax+b$
+```{r expolin3, echo=TRUE, fig.width= 8, fig.height=4}
+summary(lm(y2~x))$r.squared
+summary(lm(y_transform~x_transform))$r.squared
+```
 
-# Lien entre deux variables qualitatives
+On a logiquement un bien meilleur coefficient de détermination
 
-## Représentation graphique
+### Relation logarithmique
 
-Pour deux variables qualitatives, on ne peut pas produire de nuages de points, ni de droite de régression.
+```{r logar, echo=FALSE, fig.width= 8, fig.height=4}
+x <- runif(1000, min = 0, max=10)
+y3 <- 1.5*log(x)+ 0.2  + 0.22*rnorm(1000,1, 2)
+data2 <-  data.frame(x, y3)
+library(ggplot2)
+plo2 <-  ggplot(data2, aes(x=x, y=y3))+
+  geom_point(size =1, color = "#0FAF96", alpha=0.8)+
+  xlab(" x ")+
+  ylab(" y ")
+plo2
+```
 
-$\rightarrow$ on peut représenter la table de contingence (cf. fonction `mosaicplot` de R).
+Cette forme est celle d'une relation de type $y=a*ln(x)+b$ .
+Ici , un changement de variable suffit  : on pose $x' = ln(x)$
 
-```{r mosaic, echo=FALSE, fig.height=3}
-library(RColorBrewer)
-mypalette <-  brewer.pal(12,"Set3")
+
+```{r logar2, echo=FALSE, fig.width= 8, fig.height=4}
+x_transform <- log(x) 
+y_transform <-  y3
+data_transform <-  data.frame(x_transform, y_transform)
+library(ggplot2)
+plo2 <-  ggplot(data_transform, aes(x=x_transform, y=y_transform))+
+  geom_point(size =1, color = "#0FAF96", alpha=0.8)+
+  xlab(" x ")+
+  ylab(" y ")
+plo2
+```
+La regression linéaire était déjà de bonne qualité , la transformation l'améliore encore  : 
+
+```{r logar3, echo=TRUE, fig.width= 8, fig.height=4}
+summary(lm(y3~x))$r.squared
+summary(lm(y_transform~x_transform))$r.squared
+```
+
+
+
+### Relation logistique
+
+```{r logistic, echo=FALSE, fig.width= 8, fig.height=4}
+x <- runif(1000, min = 0, max=10)
+K <-  25 
+a <- -2.5
+b <-  9 
+y4 <- K  /(1 + exp(a*x +b))  
+x <- x*(1+rnorm(1000, 0,0.05))
+data2 <-  data.frame(x, y4)
+library(ggplot2)
+plo2 <-  ggplot(data2, aes(x=x, y=y4))+
+  geom_point(size =1, color = "#0FAF96", alpha=0.8)+
+  xlab(" x ")+
+  ylab(" y ")
+plo2
+```
+
+
+Cette forme en 'S' est bien connue : c'est une courbe dite "logistique"
+La fonction qui la décrit est par exemple : $y= K  \frac{1}{1+ae^{rx}}$ avec $a>0$ et $r>0$. 
+
+Pour estimer $a$ et $r$ , on peut linéariser par l'emploi de la fonction logit : $logit(y)=ln(\frac{y}{1-y})$
+
+Si on applique cette fonction à $\frac{y}{K}$, on a : 
+
+
+$$logit\left(\frac{1}{1+ae^{-rx}}\right)  =  \ln\left(\frac{1}{1+ae^{-rx}} \times \frac{1}{1-\frac{1}{1+ae^{-rx}}}\right)$$
+$$  = \ln\left(\frac{1}{1+ae^{-rx}} \times \frac{1}{ \frac{1+ae^{-rx} -1}{1+ae^{-rx}}}\right) $$
+
+$$  = \ln\left(\frac{1}{1+ae^{-rx}} \times \frac{1}{ \frac{ae^{-rx}}{1+ae^{-rx}}}\right) $$
+
+$$  = \ln\left(\frac{1}{1+ae^{-rx}} \times \frac{1+ae^{-rx}}{ ae^{-rx}}\right) $$
+
+$$  = \ln\left(\frac{1}{ae^{-rx}}\right) $$
+
+Ensuite, on a assez facilement : 
+
+$\ln\left(\frac{1}{ae^{-rx}}\right)=rx-\ln(a)$
+
+
+Donc en appliquant la fonction $logit$ à $y/K$, on a pu linéariser la relation entre $y$ et $x$
+
+
+
+```{r logistic2, echo=FALSE, fig.width= 8, fig.height=4, cache=T}
+x_transform <-  x 
+y_transform <-  log((y4 / K)/(1- (y4 / K) ))
+data_transform <-  data.frame(x_transform, y_transform)
+library(ggplot2)
+plo2 <-  ggplot(data_transform, aes(x=x_transform, y=y_transform))+
+  geom_point(size =1, color = "#0FAF96", alpha=0.8)+
+  xlab(" x ")+
+  ylab(" y ")
+plo2
+```
+
+à la vue du graphique, on s'attend à améliorer la régression linéaire, ce qui est le cas :  
+
+
+```{r logistic3, echo=TRUE, fig.width= 8, fig.height=4, cache=TRUE}
+summary(lm(y4~x))$r.squared
+summary(lm(y_transform~x_transform))$r.squared
+```
+
+
+On a donc pu estimer par régression (linéaire) les coefficients $r$ et $ln(a)$ !  
+
+
+## Lien entre deux variables qualitatives {#chi2}
+
+### Table de contingence 
+
+Pour deux variables qualitatives, on ne peut pas produire de nuages de points dans un repère $(x,y)$, ni calculer de corrélation, encore moins de droite de régression.
+
+La seule chose qu'on puisse faire avec deux variables qualitatives décrivant les individus d'une population , c'est **compter le nombre d'individus**   pour des combinaisons de modalités des deux variables.
+
+C'est ce que fait la fonction `table()` de R, lorsqu'on lui donne deux séries de variables qualitatives (de même taille).  
+
+```{r tablecontin, echo=FALSE, fig.height=3}
+library(palmerpenguins)
+table(penguins$sex, penguins$species)
+``` 
+
+
+On appelle ce genre de tableau croisé un **tableau de contingence**.
+
+On représente les tables de contingence sous la forme de diagrammes dits «**en mosaïque**» qui aident à décrire  les données, et à identifier visuellement les combinaisons de modalités les plus (resp. les moins) représentées dans la population.
+
+Ces diagramme s'obtiennent avec la fonction `mosaicplot()`, les deux variables désirées sont données en premier argument sous la forme d'une formule `~Var1+Var2`
+
+Voici un exemple avec des données sur les passagers du Titanic. En colonnes la classe d'appartenance des personnes sur le Titanic : l'équipage , et les voyageurs (en 1ère, 2nde et 3ème classe), en ligne la survie des personnes.
+
+```{r mosaic, echo=FALSE, fig.height=3, cache=TRUE}
 par(mar=c(0,0,0,0))
 mosaicplot(~Class+Survived, data=Titanic, color=mypalette,main = "")
 ``` 
 
 
-## Test statistique dit du "Chi 2" ou "Chi carré"
-
-Le test du $\chi ^2$ est un test d'indépendance, il mesure l'**écart**, la différence,  entre deux distributions de **variables qualitatives**  
-
-Il répond à la question : "Existe-t-il un lien statistique entre deux séries de valeurs qualitatives"  
-
-(La réponse est de type  OUI/NON , le $\chi^2$ ne donne pas l'**intensité** du lien)
+En observant ce diagramme , on voit par exemple la proportion de survivants plus importante en première classe par rapport aux autres catégories, ou encore que le taux de survie entre l'équipage et les passagers en troisième classe est quasiment identique.
 
 
-## Test statistique dit du "Chi 2" ou "Chi carré"
+Pour représenter l'**imbrication** de catégories, il faudrait passer à un type de visualisation plus complexe : les **treemaps**, dont voici un exemple tiré de la documentation du package   `treemap`. on y représente une valeur numérique "GNI" par pays, eux-mêmes classés par continents
 
-- Hypothèse nulle $H_0$ : les deux distributions sont indépendantes.
-- «faire le test» permet de conserver ou de rejeter cette hypothèse
+```{r treemap, echo=FALSE, fig.height=4.5, cache=TRUE}
+library(treemap)
+treemap(GNI2014,
+       index=c("continent", "iso3"),
+       vSize="population",
+       vColor="GNI",
+       type="value",
+       format.legend = list(scientific = FALSE, big.mark = " "))
+``` 
 
-## Principe du Chi 2
-
-- On génère une **population théorique** à laquelle on va comparer la **population observée** en considérant leurs **distribution**.
-- Cette distribution théorique reflête ce qui se passerait si on suppose que $H_0$ est vraie 
-- Avec cette comparaison,  on pourra rejeter ou conserver l'hypothèse nulle.
-
-La construction de cette distribution se fait à partir du **tableau de contingence**
 
 
-##  Tableau de contingence
+La visualisation de l'effectif par modalités croisées peut nous donner des intuitions sur le lien qui pourrait exister entre deux variables qualitatives. Par exemple dans le cas des passagers du Titanic, il semble y avoir un lien entre la classe des passagers et leur survie. 
+Pour confirmer cette intuition on utilise un test statistique appelé test du $\chi^2$ ( qui se prononce "ki deux" ou "ki carré")
+
+
+### Test statistique du $\chi^2$ ou "Khi carré"
+
+Le test du $\chi ^2$ est un **test d'indépendance**, il mesure l'**écart**, la différence,  entre deux distributions de **variables qualitatives**  
+
+Il répond à la question : "Existe-t-il un lien statistique entre deux séries de valeurs qualitatives ?"  
+
+La réponse qu'il donne est de type  OUI/NON , le $\chi^2$ ne donne pas l'**intensité** du lien. 
+
+
+Comme tout test, il a son **hypothèse nulle**, qu'on rejette ou non en fonction du résultat. Sans surprise, $H_0$ est «les deux distributions sont indépendantes.»
+
+
+
+#### Principe du $\chi^2$
+
+
+Le test du $\chi^2$ que nous abordons ici est le plus simple : il s'agit du **test d'indépendance**.
+
+Son principe est assez simple et se résume en quelques étapes : 
+
+
+- on génère une **population théorique** dans laquelle les deux variables sont indépendantes (i.e. qui respecte $H_0$)
+- on compare cette population théorique à la **population observée** en passant par  la **distribution** des deux variables dans les deux population.
+- on mesure l'écart entre ces deux distributions.
+- la comparaison de cet écart avec une table de valeurs de référence nous indique si peut  rejeter l'hypothèse nulle.
+
+
+
+####  Tableau de contingence
 
 C'est un tableau à double entrée qui croise deux **variables qualitatives**. 
-
-
 Dans une case on trouve l'**effectif** (= le nombre) des individus caractérisés par la conjonction des modalités en ligne et en colonnes.
 
 
-Exemple sur des formes géométriques de couleurs :
+Prenons un exemple sur des formes géométriques de couleurs blanches ou noires :
 
 $$\begin{array}{c|c|c}
    & blanc & noir \\ 
@@ -953,11 +1201,14 @@ carré &  22 &   12 \\
 \end{array}$$
 
 
-Dans R : fonction `table()`
+Dans R on obtient cette table avec la fonction `table()`, cf. l'exemple en introduction de cette partie.
 
-## Construction de la distribution théorique.
 
-On commence par sommer les effectifs selon les modalités (en ligne et en colonne)
+#### Calcul de la valeur du $\chi^2$
+
+**Étape 1**
+
+On commence par sommer les effectifs de la population observée selon les modalités.  (On fait donc la somme en ligne et en colonne)
 
 $$\begin{array}{c|c|c|c}
    & blanc & noir & \texttt{total}\\ 
@@ -971,13 +1222,12 @@ carré &  22 &   12 & 34\\
   \texttt{total} & 58 & 47 & 105
   \end{array}$$
 
-On appelle les sommes en lignes et en colonnes **sommes marginales**, elles sont mises dans les "marges" du tableau.
+On appelle les sommes en lignes et en colonnes **sommes marginales** car elles sont mises dans les "marges" du tableau.
+
+**Étape 2**
 
 
-
-## Construction de la distribution théorique
-
-En divisant par la taille de la population, on obtient les **fréquences observées**.
+On divise toutes les valeurs du tableau par la taille de la population. On appelle ces valeurs les **fréquences observées**. 
 
 $$\begin{array}{c|c|c|c}
    & blanc & noir & \texttt{total}\\ 
@@ -991,54 +1241,21 @@ carré &  0.20952381&  0.11428571 &  0.3238095\\
   \texttt{total} &  0.552381 & 0.447619 & 1
   \end{array}$$
 
-<font size="4">
-On obtient les **pourcentages de l'effectif** dans les cases du tableau.
 
 
-C'est également la **probabilité** , qu'un individu de la **population observée** soit caractérisé par les modalités en ligne et en colonne.
-</font>
-
-## Construction de la distribution théorique
-
-$$\begin{array}{c|c|c|c}
-   & blanc & noir & \texttt{total}\\ 
-   \hline
-carré &  0.20952381&  0.11428571 &  \textbf{0.3238095}\\ 
-  \hline
-  rond &    0.09523810 & 0.28571429 & \textbf{0.3809524}  \\ 
-    \hline
-  triangle & 0.24761905 & 0.04761905 &   \textbf{0.2952381}\\
-  \hline
-  \texttt{total} &  \textbf{0.552381} & \textbf{0.447619} & 1
-  \end{array}$$
+On a maintenant un tableau dont les cases contiennent les  **pourcentages de l'effectif**.
+Ce pourcentage est également la **probabilité**  qu'un individu de la population observée soit caractérisé par les modalités en ligne et en colonne.
 
 
-De la même façon, les **fréquences marginales** (marges divisées par la taille de la pop.), donnent la **probabilité** d'observer un individu de la modalité correspondant à la ligne ou à la colonne considérée.
+De la même façon, dans les marges , on a les **fréquences marginales** (marges divisées par la taille de la pop.), ces fréquences marginales nous donnent la **probabilité** d'observer un individu de la modalité correspondant à la ligne ou à la colonne considérée.
 
-<font size="4">
-Exemple : dans cette population , j'ai 29.5% de chances de tirer un triangle, et 55% de chances de tirer une pièce blanche.
-</font>
+Par exemple dans cette population , j'ai 29.5% de chances de tirer un triangle, et 55% de chances de tirer une pièce blanche.
 
-## Construction de la distribution théorique
 
-Rappel : Probabilité conjointe de deux évènements $A$ et $B$ **indépendants**  
-$P(A \cap B) = P(A) \times P(B)$
+**Étape 3**
 
-À partir des **fréquences marginales** précédentes, on obtient pour chaque couple de modalités, la probabilité **théorique**,  celle qui suppose $H_0$, par un simple **produit**.
 
-<font size="4">
-Exemple :  Si $H_0$ est vraie, la probabilité d'observer un triangle noir est donnée par: 
-
-$P(triangle \cap noir) = P(triangle) \times P(noir)$
-
-$P(triangle \cap noir) =0.447619 \times 0.2952381  = 0.1321542$
-
-La probabilité théorique d'observer un triangle noir est de 13,2%  
-</font>
-
-## Construction de la distribution théorique
-
-On crée un second tableau, dont chaque case vaut le produit des fréquences marginales calculées sur le tableau des observations.
+On crée un second tableau, dont chaque case vaut le **produit des fréquences marginales** correspondantes (en gras ici),  calculées sur le tableau des observations.
 
 $$\begin{array}{c|c|c|c}
    & blanc & noir & \texttt{total}\\ 
@@ -1052,12 +1269,14 @@ carré &  0.1788662 &   0.1449433 &  \textbf{0.3238095}\\
   \texttt{total} &  \textbf{0.552381} & \textbf{0.447619} & 1
   \end{array}$$
 
-C'est le tableau des **fréquences théoriques**.
+Ce tableau est le tableau des **fréquences théoriques**.
+Pour savoir pourquoi on les obtient par un produit , voir la section \@ref(probaproduit)
+
+**Étape 4**
 
 
-## Tableau des effectifs théoriques
-
-On l'obtient en multipliant les fréquences théoriques par la taille de la population observée (ici 105)
+On multiplie les fréquences théoriques par la taille de la population observée (ici 105)
+On obtient le **tableau des effectifs théoriques**.
 
 
 $$\begin{array}{c|c|c}
@@ -1070,47 +1289,47 @@ carré &  18.78095 &  15.21905 \\
   triangle & 17.12381 & 13.87619   \\
   \end{array}$$
 
-<font size="4">
-N.B. Il n'est pas nécessaire d'arrondir les effectifs théoriques
-</font>
+
+>N.B. Il n'est pas nécessaire d'arrondir les effectifs théoriques
 
 
-## Calcul du Chi 2
+**Étape 5**
+
+On calcule la valeur du  $\chi^2$ 
+
+Soient $T^{obs}$ le tableau des effectifs observés, $T^{theo}$ le tableau des effectifs théoriques 
 
 
-C'est la somme, pour chaque case du tableau de contingence (i.e. pour chaque couple de modalités),  des écarts carrés entre effectif observé et effectif théorique**, divisés par l'effectif théorique.
-
-Soient $T^{obs}$ le tableau des effectifs observés, $T^{theo}$ le tableau des effectifs théoriques, 
-
-
-<center>
-$\chi^2 =  \sum_{i,j}  \frac{( T^{obs}_{i,j} -  T^{theo}_{i,j})^2}{T^{obs}_{i,j}}$       
-</center>
-
-ici : $\chi^2 = 26.30329$
-
-
-## Interprétation du Chi 2 
-
-Il faut comparé la valeur du $\chi^2$ calculée avec la **valeur critique** qu'on trouve   dans une **table de loi de Student** (ou table de loi du chi 2).
-
-C'est un tableau à double entrée : une **valeur de quantile**, et un **degré de liberté**.
-
-On peut considérer que la valeur de quantile est le pourcentage d'erreur qu'on s'autorise de faire.  On prend souvent **5%** :  la colonne 1-0.05 =  0.95
-
-Le degré de liberté est obtenu en calculant la valeur $(nb\_lignes - 1)*(nb\_colonnes -1)$.
-
-Dans notre exemple , le degré de liberté est 2*1 = 2
-
-
-## Table de loi de Student 
-
-<center>
-<img src="table.loi.de.student.png", width=100%></img>
+$$\chi^2 =  \sum_{i,j}  \frac{( T^{obs}_{i,j} -  T^{theo}_{i,j})^2}{T^{obs}_{i,j}}$$       
 </center>
 
 
-## Interprétation du Chi 2 
+C'est la somme, pour chaque case du tableau de contingence (i.e. pour chaque couple de modalités),  des écarts carrés entre effectif observé et effectif théorique, divisés par l'effectif théorique.
+
+Dans notre exemple avec les formes géométriques  $\chi^2 = 26.30$
+
+
+
+### Interprétation de la valeur du $\chi^2$ 
+
+Il faut comparer la valeur du $\chi^2$ calculée avec une **valeur critique** qu'on trouve   dans une **table de loi de Student** (ou table de loi du $\chi^2$).
+
+
+C'est un tableau à double entrée : 
+
+- une **valeur de quantile**
+- un **degré de liberté**.
+
+La valeur de quantile est le pourcentage d'erreur qu'on s'autorise de faire.  On prend souvent **5%** .   
+Le degré de liberté est obtenu en calculant la valeur $df=(nb\_lignes - 1)*(nb\_colonnes -1)$.
+
+Dans notre exemple , le degré de liberté est $2\times1 = 2$ 
+
+
+
+<img src="./table.loi.de.student.png">
+
+
 
 
 D'après le tableau de la loi de Student , la valeur critique pour un test avec 5% de chances de se tromper est un degré de liberté de 2 vaut 4.303.
@@ -1119,57 +1338,76 @@ Si la valeur calculée du $\chi^2$ est **supérieure** à la valeur critique, on
 
 
 
-Pour notre exemple: On rejette $H_0$, i.e. les deux variables sont **dépendantes**,  car $\chi ^2 \approx 26 > 4.303$
+Pour notre exemple: On rejette $H_0$ : les deux variables ne sont pas **indépendantes**,  car $\chi ^2 \approx 26 > 4.303$
 
 Interprétation: «la forme est liée à la couleur dans cette population, nous pouvons l'affirmer avec un risque d'erreur d'au moins  5%»
 
 
-## Les étapes du $\chi ^2$
-
-- Tableau de contingence
-- Sommes marginales 
-    - Calcul des fréquences observées 
-    - Calcul des fréquences théoriques
-- Tableau d'effectifs théoriques
-- Calcul de la valeur du test 
-- Comparaison avec les valeurs de la table de Student 
+### Résumé des étapes du $\chi ^2$
 
 
 
-# Lien entre une variable qualitative et une variable quantitative.
+- faire un tableau de contingence
+- calculer les sommes marginales et diviser par l'effectif 
+    - on obtient les fréquences observées et les fréquences marginales
+    - on obtient les fréquences théoriques par produit des fréquences marginales
+- calcul du tableau d'effectifs théoriques
+- calcul de la valeur du test 
+- comparaison avec les valeurs de la table de Student 
 
 
-## Représentation graphique.
 
-Pas de moyen **simple** de calculer le lien entre une variable qualitative et une variable quantitative.
+### Fréquences théoriques et fréquences marginales {#probaproduit}
+
+
+À partir des **fréquences marginales** , on obtient pour chaque couple de modalités, la probabilité **théorique**,  celle qui suppose $H_0$, par un simple **produit**.
+
+
+Cela découle du fait que la probabilité conjointe de deux évènements $A$ et $B$ **indépendants**  est donné par leur produit.
+$P(A \cap B) = P(A) \times P(B)$
+
+pour générer la population théorique, on se place dans le cas  où $H_0$ est vrai, les deux variables sont indépendantes, et donc la probabilité théorique d'avoir un individu  caractérisé par une certaine combinaison de modalités est obtenu par le produit des fréquences marginales des modalités concernées.
+
+
+
+Exemple :  Si $H_0$ est vraie, la probabilité d'observer un triangle noir est donnée par: 
+
+$P(triangle \cap noir) = P(triangle) \times P(noir)$
+
+$P(triangle \cap noir) =0.447619 \times 0.2952381  = 0.1321542$
+
+La probabilité théorique d'observer un triangle noir est de 13,2%  
+
+
+
+
+
+## Lien entre une variable qualitative et une variable quantitative. {#qualiquanti}
+
+
+
+Il n'existe malheureusement pas de moyen **simple** de calculer le lien entre une variable qualitative et une variable quantitative.
+Des possibilités sont offertes par les techniques suivantes, qui ne sont pas au programme de ce cours : 
   
   - corrélation de rang 
   - régression logistique 
   - analyse de la variance (ANOVA)
   
-$\implies$ Alors on fait un graphique ! 
-
-La variable qualitative sert de **catégorie**, on fait varier la représentation graphique de la variable quantitative suivant cette catégorie.
-
-2 possibilités :
-
-  - boîtes à moustaches
-  - superposition d' histogrammes / densités 
-
-## Les boîtes à moustaches 
-
-"Boîte à moustaches", aussi appellées "boxplot", montre les quartiles d'une variable
-
-Quartile = «quantile de 4», valeurs qui séparent une variable quantitative en quarts, i.e. paquets d'un quart de l'effectif
-
-- Premier quartile : sépare les 25% inférieurs des valeurs
-- Second quartile : **mediane**, sépare les 50% inférieurs des valeurs
-- troisième quartile : sépare les 75% inférieurs des valeurs
 
 
-Dans R, fonction `quantile` 
+On peut tout de même qualifier le lien entre une variable quantitative et une variable qualitative.
 
-## Boxplot et Distribution
+La variable qualitative sert de **catégorie**, et on fait varier la représentation graphique de la variable quantitative suivant cette catégorie.
+
+Deux possibilités s'offrent à nous:
+
+  - plusieurs boîtes à moustaches (une par modalité)  
+  - la superposition d' histogrammes ou de densités 
+
+
+
+Nous avons déjà vu les quartiles dans la section \@ref(quantiles) 
+
 
 
 ```{r, echo=FALSE, cache=TRUE, warning=FALSE, fig.width=8, fig.height=6}
@@ -1210,24 +1448,46 @@ plot_grid(yplot, distriPlot,  ncol = 1, align = "hv",scale = c(1,1),
 
 
 
-## Boxplot par catégories
+### Boxplot par catégories
 
 
-Principe : on trace un boxplot par modalité de la variable qualitative.
-
-E.g. : consommation de véhicules par type (dataset `mpg` de R)
+Par exemple, voici comment obtenir la consommation de véhicules par type (dataset `mpg` de R)
 
 
-```{r, echo=FALSE, warning=FALSE}
+```{r distribboxplot, echo=TRUE, warning=FALSE}
 p <- ggplot(mpg, aes(class, hwy))
 p + geom_boxplot(outlier.alpha = 0.2) +xlab("type de véhicule (var. qualitative)") +ylab("consommation (var. quantitative")+theme_light()
 ```
 
+### Superpositions de distributions
 
-# Références supplémentaires
+Nous avons donné dans la section \@ref(visudistrib) des exemples de visualisation  de distributions par modalité d'une variable qualitative.
 
 
-## Refs
+Voici comment réaliser la superposition de distribution  en R avec le package  `ggplot`  .
+
+
+
+```{r distribcategories, echo=TRUE, warning=FALSE, cache=TRUE}
+library(palmerpenguins)
+myplot <- ggplot(penguins, aes(x=body_mass_g, group=species))+
+  geom_density(aes(fill=species, color=species), alpha=0.5) +
+  theme_light()
+myplot
+```
+
+L'équivalent en histogrammes, est illisible et à proscrire : 
+
+```{r histogramcategories, echo=TRUE, warning=FALSE, cache=TRUE}
+library(palmerpenguins)
+myplot <- ggplot(penguins, aes(x=body_mass_g, group=species))+
+  geom_histogram(aes(fill=species, color=species), alpha=0.5) +
+  theme_light()
+myplot
+```
+
+
+## Références supplémentaires
 
 
 Cours complet sur les modèles linéaires : [https://www.math.univ-toulouse.fr/~barthe/M1modlin/poly.pdf]

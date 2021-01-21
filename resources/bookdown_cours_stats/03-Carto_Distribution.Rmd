@@ -206,7 +206,7 @@ Si jamais les méthodes de classifications  abordées dans ce chapitre n'étaien
 
 
 
-# Visualiser une distribution avec R 
+# Visualiser une distribution avec R {#visudistrib}
 
 
 Ce chapitre montre les différentes façons d'afficher une distribution, ainsi qu'un exemple de code R pour l'obtenir pour chacun des types de graphiques suivants .
