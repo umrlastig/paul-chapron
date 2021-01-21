@@ -24,7 +24,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-01-18" />
+<meta name="date" content="2021-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -397,8 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="regression-linéaire-avec-r" class="section level2">
 <h2><span class="header-section-number">11.1</span> Regression linéaire avec R</h2>
 <p>Fonction <code>lm()</code> , modèle de la forme <code>Variable_a_expliquer ~ Variable_explicative</code></p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="régression-linéaire-avec-r.html#cb72-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Width<span class="op">~</span>Petal.Length, <span class="dt">data=</span>iris)</span>
-<span id="cb72-2"><a href="régression-linéaire-avec-r.html#cb72-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="régression-linéaire-avec-r.html#cb74-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Width<span class="op">~</span>Petal.Length, <span class="dt">data=</span>iris)</span>
+<span id="cb74-2"><a href="régression-linéaire-avec-r.html#cb74-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Petal.Width ~ Petal.Length, data = iris)
@@ -431,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="obtenir-le-coefficient-de-spearman-avec-r" class="section level2">
 <h2><span class="header-section-number">11.3</span> Obtenir le coefficient de Spearman avec R</h2>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="régression-linéaire-avec-r.html#cb74-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="régression-linéaire-avec-r.html#cb76-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 

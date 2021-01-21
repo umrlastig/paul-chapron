@@ -24,7 +24,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-01-18" />
+<meta name="date" content="2021-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -396,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapitre 10</span> Corrélation de deux variables quantitatives</h1>
 <div id="corrélation-linéaire" class="section level2">
 <h2><span class="header-section-number">10.1</span> Corrélation (linéaire)</h2>
-<p>Dans le cas d’une liaison statistique linéaire entre deux variables, on peut calculer l’«intensité» de ce lien sans nécessairement trouver les coefficients modèle linéaire : c’est la <strong>corrélation</strong></p>
+<p>Dans le cas d’une liaison statistique linéaire entre deux variables, on peut calculer l’«intensité» et le sens de ce lien sans nécessairement trouver les coefficients du modèle linéaire : c’est ce que nous décrit la valeur de <strong>corrélation</strong>.</p>
 <p><span class="math inline">\(cor(x,y) \in [-1;1]\)</span> entre deux variables <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> .</p>
 <ul>
 <li>+1 : les deux variables croissent ou décroissent conjointement</li>
@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="test-de-corrélation-entre-deux-variables-avec-r" class="section level2">
 <h2><span class="header-section-number">10.2</span> Test de corrélation entre deux variables avec R</h2>
 <p>Version plus complète : c’est un <strong>test</strong>, on a plusieurs indicateurs statistiques sur ce test, notamment la <strong>p-value</strong> et <strong>l’intervalle de confiance</strong></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="correlation.html#cb62-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Petal.Length, iris<span class="op">$</span>Petal.Width)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="correlation.html#cb64-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Petal.Length, iris<span class="op">$</span>Petal.Width)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -446,7 +446,7 @@ En général, on considère le test significatif si elle est en dessous de 5%, s
 </div>
 <div id="matrice-de-corrélations" class="section level2">
 <h2><span class="header-section-number">10.4</span> Matrice de corrélations</h2>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="correlation.html#cb64-1"></a><span class="kw">cor</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="correlation.html#cb66-1"></a><span class="kw">cor</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
 ## Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
@@ -457,21 +457,21 @@ En général, on considère le test significatif si elle est en dessous de 5%, s
 </div>
 <div id="sensibilité-aux-outliers" class="section level2">
 <h2><span class="header-section-number">10.5</span> Sensibilité aux ‘outliers’</h2>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="correlation.html#cb66-1"></a>X &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
-<span id="cb66-2"><a href="correlation.html#cb66-2"></a>Y &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb66-3"><a href="correlation.html#cb66-3"></a><span class="kw">plot</span>(X, Y, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="correlation.html#cb68-1"></a>X &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
+<span id="cb68-2"><a href="correlation.html#cb68-2"></a>Y &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb68-3"><a href="correlation.html#cb68-3"></a><span class="kw">plot</span>(X, Y, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/sensitiveOut1-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="correlation.html#cb67-1"></a><span class="kw">cor.test</span>(X,Y)<span class="op">$</span>estimate</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="correlation.html#cb69-1"></a><span class="kw">cor.test</span>(X,Y)<span class="op">$</span>estimate</span></code></pre></div>
 <pre><code>## cor 
 ##   0</code></pre>
 </div>
 <div id="sensibilité-aux-outliers-1" class="section level2">
 <h2><span class="header-section-number">10.6</span> Sensibilité aux ‘outliers’</h2>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="correlation.html#cb69-1"></a>X &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">15</span>)</span>
-<span id="cb69-2"><a href="correlation.html#cb69-2"></a>Y &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">15</span>)</span>
-<span id="cb69-3"><a href="correlation.html#cb69-3"></a><span class="kw">plot</span>(X, Y, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="correlation.html#cb71-1"></a>X &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">15</span>)</span>
+<span id="cb71-2"><a href="correlation.html#cb71-2"></a>Y &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">15</span>)</span>
+<span id="cb71-3"><a href="correlation.html#cb71-3"></a><span class="kw">plot</span>(X, Y, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/sensitiveOut2-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="correlation.html#cb70-1"></a><span class="kw">cor.test</span>(X,Y)<span class="op">$</span>estimate</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="correlation.html#cb72-1"></a><span class="kw">cor.test</span>(X,Y)<span class="op">$</span>estimate</span></code></pre></div>
 <pre><code>##       cor 
 ## 0.9052224</code></pre>
 </div>
