@@ -3,21 +3,30 @@
 
 ## Contenu du chapitre
 
-Ce chapitre présente quelques notions d'analyse spatiale proprement dite. L'analyse spatiale s'intéresse aux **structures** récurrentes de l'espace et à leur **influence** sur les **processus** que cet espace supporte. Cette fois-ci les variables qui nous intéresse ont un rapport avec la localisation, la distance et les interactions d'objets spatialisés.
+Ce chapitre présente quelques notions d'analyse spatiale proprement dite. Ces notions ne sont pas au programme du module d'analyse statistique 
+
+
+L'analyse spatiale s'intéresse aux **structures** récurrentes de l'espace et à leur **influence** sur les processus que cet espace supporte. 
+
+
+Cette fois-ci les variables qui nous intéressent ont un rapport avec la localisation, la distance et les interactions d'objets spatialisés.
+Les thèmes abordés dans ce court chapitre sont : 
 
 
 - Analyse de semis de points
 
-- Autocorrélation spatiale globale 
+- Auto-corrélation spatiale globale 
 
 - Notions sur les flux 
 
 - Principe du modèle gravitaire 
 
 
-Ces outils, même s'ils sont basiques, sont utiles et puissants, ne peuvent pas se substituer à une représentation cartographique adéquate d'un phénomène spatialisé.
+Ces outils, même s'ils sont relativement basiques, sont utiles et puissants, mais ils ne peuvent pas se substituer à une représentation cartographique adéquate d'un phénomène spatialisé, ni sa description exhaustive. 
 
->(opinion personelle) Une **bonne** carte surpasse toute analyse statistique spatiale statique
+Les outils statistiques apportent des informations complémentaires, quantifient des phénomènes (par exemple la spatialisation des résidus d'un modèles nous indique quelles sont les zones qui résistent au pouvoir généralisateur du modèle), et sont destinés à être employés en combinaison avec une méthodologie adéquate, des représentations cartographiques et un discours précis qui lie le tout. Calculer l'auto-corrélation spatiale d'une mesure et s'en tenir là n'aurait pas de sens.
+
+>(opinion personelle) Une **bonne** carte surpasse toute analyse statistique spatiale (statique)
 
 
 
@@ -25,38 +34,45 @@ Ces outils, même s'ils sont basiques, sont utiles et puissants, ne peuvent pas 
 
 ### L'information géographique
 
-Information localisée en 1,2,3 dimensions. 
+L'information géographique est une information localisée en une, deux (la plupart du temps), ou trois dimensions. 
 
-Ce qui nous intéresse principalement : leur **localisation**
+Ici , au contraire des chapitres précédents, ce qui nous intéresse principalement, c'est la **localisation** des individus de la populations.
+L'immense majorité des objets que nous allons aborder sont des objets qui peuvent être ramenés à des objets ponctuels, où à des graphes dont les nœuds sont des objets ponctuels: 
 
-Types :
 
-- Semis d'objets : e.g. arbres de Paris
-- Événements : e.g. incendie, accidents, 
-- Mesures : e.g. altitude, température
-- Statistiques : e.g. taux de chômage, votes
-- Interaction : mobilité, flux commerciaux
+- Objets : e.g. arbres de Paris,  stations de Vélib'
+- Événements : e.g. incendies , accidents 
+- Mesures : e.g. altitude, température, pollution 
+- Statistiques : e.g. taux de chômage par quartier, votes par communes
+- Interactions : mobilité, flux commerciaux
 <br><br><br>
 <span style="font-size:0.6em;">d'après H.Commenges, Données massives spatialisées </span>
 
-## Précautions 
-
-Calculs de surfaces (e.g. densité) $\rightarrow$ projection équivalente 
+### Précautions dans l'emploi de projections
 
 
-Calculs de distances $\rightarrow$ projection conforme 
+Nous ne ferons que des calculs en coordonnées projetées. 
+
+Si on a besoin de calculer des **surfaces**  (e.g. densité) , il faut utiliser une **projection équivalente**.
+
+Si la **distance** intervient dans l'analyse, il faut utiliser une **projection conforme**.
+
+
+
+Cette mise en garde ne s'applique que pour les calculs. une fois qu'ils sont faits, le choix de la projection pour la cartographie est laissé au cartographe.    
+
 
 
 ## Semis de points
 
-Données **ponctuelles** i.e. unités spatiales localisées à un point.
+Les données **ponctuelles** représentent des unités spatiales localisées à un point et/ou dont on peut négliger l'emprise au sol.
 
-On peut étudier la répartition de ces points dans l'espace qu'on suppose **isotrope**.
+On peut étudier la répartition de ces points avec la distance euclidienne dans l'espace qu'on suppose **isotrope** (invariant par direction) et **homogène** (invariable par translation).
 
-```{r arbres, cache=T, fig.width=7, fig.height=4, echo=TRUE, eval=FALSE}
+```{r arbres, cache=T, fig.width=7, fig.height=4, echo=FALSE }
 library(geojsonsf)
 library(dplyr)
-arbres <- geojson_sf("./data/")
+arbres <- geojson_sf("./data/les-arbres.geojson")
 
 arbres <- st_transform(arbres,2154)
 arbres <- st_set_crs(arbres, 2154)
@@ -65,7 +81,7 @@ arbres_intramuros <-  filter(arbres, !(arrondissement %in% c("BOIS DE BOULOGNE",
 # on retire les valeurs modales inusitées de la variable 
 arbres_intramuros$arrondissement <- as.character(arbres_intramuros$arrondissement)
 arbres_intramuros$arrondissement <- as.factor(arbres_intramuros$arrondissement)
-quartiers <-(read_sf("quartier_paris.shp"))
+quartiers <-(read_sf("./data/quartier_paris.shp"))
 quartiers <- st_transform(quartiers, 2154)
 quartiers <-  st_set_crs(quartiers,2154)
 par(mar=c(0,0,0,0))
@@ -73,50 +89,51 @@ plot(quartiers$geometry)
 plot(arbres_intramuros$geometry, add=TRUE, alpha=0.5, cex=0.01, col="orange"  )
 ```
 
+Par exemple avec la localisation des arbres de paris, on observe que les arbres ne sont pas localisés n'importe où : la localisation des arbres à Paris n'est pas isotrope. 
+
+En pratique, les données spatiales sont rarement réparties de façon isotropes. On fait pourtant souvent l'approximation de faire des calculs avec la distance euclidienne, qui suppose en principe d'avoir un espace isotrope, pour que les distances aient un sens. 
+
+
+
+### Point moyen et point médian 
+
+Si on définit une distance dans l'espace, par exemple ici la distance euclidienne, on peut définir  deux points particuliers à ce semis : 
+
+
+Le **point moyen** est le point dont les coordonnées sont les moyennes des coordonnées des points du semis (en $x$ et en $y$).
+
+Si on le note $G$ , $x_G=\bar{x}$ et $y_G=\bar{y}$.
+
+
+Le **point médian** est **le point le plus accessible** du semis, celui qui minimise la somme des distances entre lui et les autres points du semis. Il sépare la population en quatre cadrants contenant chacun 25% de l'effectif.
+Avec la distance euclidienne, il ne peut pas se calculer directement , et s'obtient par approximations successives (il est trouvé par la résolution d'un problème d'optimisation)
+
+:::{.note}
+Ces deux indicateurs n'ont de sens que dans une référentiel **euclidien**.
+Dans un espace rectilinéaire, i.e. où on utilise la **distance de Manhattan**, son calcul est plus direct: 
+:::
+
+### Dispersion et concentration d'un semis
+
+La **dispersion** du nuage de points est approchée par la **distance type** (euclidienne) :
+
+$$\sigma_{Dist}= \sqrt{\frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^2 + (y_i-\bar{y})^2} =  \sqrt{\sigma_x^2 +\sigma_y^2}$$
+
+Ce n'est pas pour rien qu'on l'appelle la distance type , car c'est l'écart type des distances au point moyen.
+On reconnaît dans la formule la racine carrée de la somme des variances des coordonnées.
 
 
 
 
-## Statistiques simples sur un semis
-
-**Point moyen** (pondéré ou non) , **point median**.
+Voici un exemple de deux semis de points, répartis dans les IRIS du département de la Seine-Saint-Denis, avec la valeur de leurs distances types. 
 
 
-Le point médian est le point le plus accessible du semis. Il sépare la population en quatre cadrants contenant chacun 25% de l'effectif  
+Le nombre de points est identique dans les deux cartes. 
+Dans le semis de gauche, dans la surface de chaque IRIS, on tire 2 points aléatoirement.
+Dans le semis de droite, on tire aléatoirement le même nombre de points (2 x Nombre d'IRIS), mais dans toute la surface de la Seine-Saint-Denis .
 
-La **dispersion** du nuage de points est approchée par la **distance type** (euclidienne)) :
-
-$\sigma_{Dist}= \sqrt{\frac{1}{n}\sum_{i=1}^n(X_i-\bar {X})^2 + (X-\bar{X})^2} =  \sqrt{\sigma_X^2 +\sigma_Y^2}$
-
-
-## Concentrations du semis
-
-Pour estimer si la répartition d'un semis de $n$ points est régulière : 
-
-- on discrétise l'espace en $C$ mailles de formes régulière( carrée, hexagonale) 
-- on calcule le nombre de points théorique par maille (la densité) : $D= n/C$
-- on compte le nombre de points par maille et on calcule la variance $var(D)$ ou le de ce nombre
-
-Indice de concentration : $IC= var(D)/D$
-
-- si IC = 1 , la distribution est aléatoire 
-- si IC > 1 , la distribution est concentrée
-- si IC < 1 , la distribution est homogène  
-
-## Le modele nul pour un semis de points 
-
-
-Un processus de spatial de Poisson est un processus spatialement
-aléatoire.
-
-Dans un espace découpé en zones, on estime la probabilité d'avoir un nombre de points)dans une zone $z$ par une distribution de poisson de moyenne $\lambda * surface(zone)$.
-
-
-
-
-## Afficher la distribution, le retour
-
-```{r polar1, cache =T, fig.height=4, fig.width=8, echo=F }
+```{r polar1, cache =T, fig.height=4, fig.width=8, echo=FALSE }
+set.seed(5678)  
 ssd <-  read_sf("data/neufTrois_simple.shp")
 par(mar=c(0,0,0,0))
 par(mfrow=c(1,2))
@@ -128,21 +145,69 @@ plot(ssd$geometry, lwd=0.8, border="gray", reset=T)
 plot(pts2, add=T, pch=20, cex= 0.4, col= "orange" )
 coordsPT1 <-  as.data.frame(st_coordinates(pts))
 coordsPT2 <-  as.data.frame(st_coordinates(pts2))
-cat("gauche", sqrt(sd(coordsPT1$X)**2 + sd(coordsPT1$Y)**2))
-cat("droite", sqrt(sd(coordsPT2$X)**2 + sd(coordsPT2$Y)**2))
-
+cat("Distance type à gauche", sqrt(sd(coordsPT1$X)**2 + sd(coordsPT1$Y)**2))
+cat("Distance type à droite", sqrt(sd(coordsPT2$X)**2 + sd(coordsPT2$Y)**2))
 ```
 
-Le nombre de points est identique dans les deux cartes. 
 
-A gauche: distance type = 6423.3   A droite: distance type =7196.3
+la configuration de gauche est plus agrégée/polarisée , du fait de la différence de surface des IRIS et de leur nombre de points constants.
+Celle de droite est plus homogène, même si ce terme n'a pas beaucoup de sens puisqu'on n'évalue pas -encore- la concentration des points. 
 
 
-# Autorcorrélation spatiale : Moran et Geary
+<br>
 
-## L'autocorrélation spatiale 
 
-L'autocorrélation spatiale est une mesure statistique qui répond à la question suivante: 
+La **concentration** d'un semis est mesurée par l'**indice de concentration**, qui décrit la régularité des positions des points.
+
+Pour l'obtenir : 
+
+
+- on discrétise l'espace en $C$ mailles de formes régulière( carrée, hexagonale) 
+- on calcule le nombre de points théorique par maille (la densité théorique) : $D_{théo}= N/C$
+- on compte le nombre de points du semis  par maille (la densité observée) et on calcule la variance de cette série : $$var(D_{obs}) = \frac{1}{C}\sum_c(nb_c-D_{théo})^2$$ 
+
+avec: 
+
+- $nb_c$, le nombre de points comptés dans la maille $c$
+- $C$ le nombre de maille du maillage
+- $N$ le nombre de points du semis.
+
+
+
+L'indice de concentration est le ratio entre la densité et la variance du nombre de points par maille : $$IC= var(D_{obs})/D_{théo}$$
+
+- si IC = 1 , la distribution est **aléatoire** 
+- si IC > 1 , la distribution est **concentrée**
+- si IC < 1 , la distribution est **homogène** 
+
+
+
+Vous avez reconnu la comparaison -ici par un ratio- entre la distribution *observée* d'une quantité -la densité-  et sa distribution *théorique*. De cette comparaison, on peut quantifier l'écart au modèle nul, ici une répartition aléatoire des objets. 
+
+comme dans le test du $\chi^2$ , abordé en section \@ref(chi2).
+
+Voici quelques exemples de semis avec leur indice de concentration associés:
+
+
+
+
+
+### Le modèle nul pour un semis de points 
+
+
+Un processus de spatial de Poisson est un processus spatialement
+aléatoire.
+
+Dans un espace découpé en zones, on estime la probabilité d'avoir un nombre de points)dans une zone $z$ par une distribution de poisson de moyenne $\lambda * surface(zone)$.
+
+
+
+
+## Auto-corrélation spatiale : Moran et Geary
+
+
+
+L'auto-corrélation spatiale est une mesure statistique qui répond à la question suivante: 
 
 <center>
 « Les valeurs d'entités spatiales proches sont-elles plus similaires que les valeurs d'entités lointaines ?»
@@ -159,7 +224,7 @@ Valeurs nulles : répartition aléatoire
 Valeurs négatives : alternance parfaite entre valeurs 
 
 
-## L'indice de Moran 
+### L'indice de Moran 
 
 L'indice $I$ de Moran utilise un terme $\omega_{ij}$  positif d'"interaction" pour quantifier la **proximité** entre deux entités $i$ et $j$.
 
@@ -173,7 +238,7 @@ $\omega$ une matrice carrée de poids positifs de dimension $n$, telle que $\ome
 
 $\bar{X}$ la moyenne de la variable $X$ </span> 
 
-## L'indice de Geary 
+### L'indice de Geary 
 
 Cet indice, noté $C$,  est dit plus "local" que l'indice de Moran 
 
@@ -192,28 +257,33 @@ $C>1$ :  autocorrélation positive
 $\omega$ une matrice carrée de poids positifs de dimension $n$, de somme $W$ et telle que $\omega_{ij}$ quantifie la proximité, l'influence mutuelle de $j$ sur $i$, $\bar{X}$ la moyenne de la variable $X$ </span> 
 
 
-## Commandes R
+### Commandes R
 
-fonction `moran` et `geary` du package `spdep`
+Les mesures des indices de Moran et Geary s'obtiennent avec les fonctions `moran` et `geary` du package `spdep`
 
 
-## Exemples 
+### Interprétation de l'indice de Moran
+
+
+les images suivantes montrent comment varient les valeurs de l'indice de Moran en fonction de la localisation d'une quantité dans une grille régulière.
+
+
 
 ![](./morangini.png)
 
 
-## Exemples 
+
 
 ![](./morangini2.png)
 
 
-# Les flux
+## Les flux
 
-## Matrice de flux
+### Matrice de flux
 
-Pour une partition en zones d'un espace, on appelle flux toute mesure d'intéraction spatiale qui implique des échanges, des déplacements entre deux zones, matériels ou immatériels.   
+Pour une partition en zones d'un espace, on appelle **flux** toute mesure d'intéraction spatiale qui implique des échanges, des déplacements entre deux zones, matériels ou immatériels.   
 
-On parle alors de **matrice de flux**,une matrice carrée $F$ dont le terme général $F_{ij}$  indique la quantité échangée de $i$ en ligne vers $j$ en colonne .
+On range les mesures qui mesurent ces échanges dans un **matrice de flux**,une matrice carrée $F$ dont le terme général $F_{ij}$  indique la quantité échangée entre le site $i$ en ligne et le site $j$ en colonne .
 
 ## Indices 
 
@@ -294,9 +364,9 @@ Attributs de graphes :
 - ...
 
 
-# Le modèle gravitaire 
+## Le modèle gravitaire 
 
-## Fin XIX<sup>e</sup> : Les lois de Ravenstein
+### Fin XIX<sup>e</sup> : Les lois de Ravenstein
 (Ravenstein E., 1885 & 1889, "The Laws of Migration", Journal of Royal Statist. Society, London , d'après Noin D., 1988, Géographie de la Population, Masson, Paris, pp. 273-274, cité par C. Grasland.
 
 <span style= "font-size:0.6em; line-height:normal;">Le nombre de migrants diminue quand la distance augmente; la plupart ne vont pas très loin ; ceux qui se déplacent sur de grandes distances se dirigent de préférence vers les grands centres commerciaux et industriels.<br>
@@ -312,7 +382,7 @@ Attributs de graphes :
 
 
 
-## Le modèle gravitaire
+### Le modèle gravitaire
 
 Modèle simple, déterministe et symmétrique qui prose de calculer l'intensité de l'interaction entre deux entités spatiales en fonction de leurs **masses** et de la distance qui les sépare.
 
@@ -327,7 +397,7 @@ $Fij = k \frac{P_i . P_j}{D_{ij}^\alpha}$
 avec alpha le **frein à la distance** (distance decay) , pour modéliser des déplacements plus ou moins faciles 
 
 
-## Distance et interaction 
+### Distance et interaction 
 
 <p style= "font-size:0.6em; line-height:normal;"> D'après H.Commenges, cours d'analyse spatiale , Delhi R School</p>
 
@@ -340,7 +410,7 @@ Lorsque l’interaction est spatialisée, elle implique nécessairement une **di
  - Dans le second cas on parlera d’analyse de position (cf. Accessibilité)
 
 
-## Utilisation du modèle gravitaire
+### Utilisation du modèle gravitaire
 
 Exemple d'une formulation plus générale : 
 $F_{ij} = \alpha_i \beta_j E_i A_j C_{ij}^{−n}$ 
@@ -355,7 +425,7 @@ $n$ : frein à la distance, la valeur varie selon les motifs de déplacement. (p
 On détermine les valeurs des coefficients ($\alpha,\ \beta,\ n$)inconnus  par **calibration** sur des données (problème d'optimisation classique, qu'on peut résoudre par algorithme génétique, recuit simulé, etc.)
 
 
-## Variantes du modèles gravitaires 
+### Variantes du modèles gravitaires 
 
 - Nature des masses: population, emplois, émission , attraction , offre, demande
 
@@ -366,10 +436,10 @@ On détermine les valeurs des coefficients ($\alpha,\ \beta,\ n$)inconnus  par *
 - Contraintes aux marges : aucune , simple, double
 
 
-# la Cartographie comme support
+## la Cartographie comme support
 
 
-## Cartographier le résultats de traitements statistiques
+### Cartographier le résultats de traitements statistiques
 
 Une carte permet d'explorer "visuellement" des résultats de traitements statistiques : 
 
@@ -381,9 +451,9 @@ Une carte permet d'explorer "visuellement" des résultats de traitements statist
 Typiquement : les résidus d'un modèle sont-ils homogènes dans l'espace ? Si non , pourquoi ? 
 
 
-# L'étape d'après : modèles dynamiques
+## L'étape d'après : modèles dynamiques
 
-## Modèles simples : les automates cellulaires
+### Modèles simples : les automates cellulaires
 
 Le plus célèbre des modèles simples : le jeu de la vie (Conway)
 
@@ -396,7 +466,7 @@ Modèle de ségrégation de Schelling
 <img src="./schelling.gif" style="display: inline-block; margin: 0; width:50%;" />
 
 
-## Modèles complexes : mobilité
+### Principe d'un modèle complexe de mobilité
 
 Modèle à 4 étapes 
 

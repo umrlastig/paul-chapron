@@ -591,7 +591,7 @@ avec $\hat{y}$ les valeurs de $y$ prédites par le modèle linéaire.
 
 La démonstration n'est pas évidente, nous ne la donnerons pas ici, mais l'intuition des conséquences de ces deux égalités est assez directe: 
 
-- Plus les deux variables sont linéairement corrélés (ce qui traduit le coefficient de corrélation de Pearson, avec des valeurs proches de 1 ou de -1 ), plus la régression linéaire sera de bonne qualité (si $r$ proche de -1 ou 1 , alors $r^2$ est proche de 1 )
+- Plus les deux variables sont linéairement corrélés (ce qui traduit le coefficient de corrélation de Pearson, avec des valeurs proches de 1 ou de -1 ), meilleure sera  la qualité de la régression linéaire (si $r$ proche de -1 ou 1 , alors $r^2$ est proche de 1 )
 
 - Dans le même ordre d'idée, plus les deux variables sont corrélées, meilleure sera la régression et plus  les valeurs prédites par le modèle seront  proches des valeurs observées, et donc également très corrélées aux valeurs observées.
 
@@ -915,7 +915,7 @@ Les exemples sont volontairement exagérés pour mieux cataloguer les formes. É
 
 ### Relation log-linéaire 
 
-```{r loglin, echo=TRUE, fig.width= 8, fig.height=4}
+```{r loglin, echo=TRUE, fig.width= 8, fig.height=4,cache=TRUE}
 x <- runif(500, min = 1, max=10) 
 y1 <- 1.5*x^4.5   
 x <- x + rnorm(500) #on ajoute du bruit sur x 

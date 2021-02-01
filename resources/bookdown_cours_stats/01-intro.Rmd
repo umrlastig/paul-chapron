@@ -18,6 +18,20 @@ library(tufte)
 library(sf)
 quartiers <-  st_read("data/quartier_paris.shp")
 
+
+knitr::opts_template$set(solution = list(box.title = "Solution",
+                                         box.body = list(fill = "#e6f6e7", colour = "black"),
+                                         box.header = list(fill = "#ace1af", colour = "black"),
+                                         box.icon = "fa-check-square",
+                                         box.collapse = TRUE))
+knitr::opts_template$set(information = list(box.title = "Information",
+                                            box.body = list(fill = "#bbe8f4", colour = "black"),
+                                            box.header = list(fill = "#64c9e6", colour = "black"),
+                                            box.icon = "fa-info-circle",
+                                            box.collapse = NULL))
+
+
+
 ```
 
 
@@ -26,9 +40,10 @@ quartiers <-  st_read("data/quartier_paris.shp")
 
 Commençons par le plus important : 
 
-<span style="color:red; font-size:1.5em">En présence de données, la première chose à faire est de les **visualiser**, avant d'entreprendre tout calcul.</span>
-
-
+:::{.attention}
+En présence de données, , avant tout calcul, la première chose à faire est de les **visualiser**.
+:::
+<br>
 Cette exploration visuelle permet: 
 
 - d'identifier les intervalles de valeurs des variables, ou leur modalités 
@@ -45,7 +60,7 @@ plot(penguins) #affiche une matrice de graphique
 ```
 
 
-Avec un peu d'expérience, on identifie rapidement des caractéristiques utiles :
+Avec un peu d'expérience, on identifie rapidement des caractéristiques utiles. par exemple ici :
 
  - les  deux premières variables sont des variables qualitatives à trois modalités
  - les variables suivantes sont quantitatives, les deux dernières semblent corrélées positivement 
@@ -54,7 +69,7 @@ Avec un peu d'expérience, on identifie rapidement des caractéristiques utiles 
 
 **Ce cours a pour but de vous donner le vocabulaire et les outils nécessaires à préciser le sens de ces caractéristiques, et d'en chiffrer certaines propriétés.**
 
-L'analyse statistique ne se confond pas avec l'analyse spatiale, bien qu'elles soient parfois cousines. Nous allons commencer par préciser ce qu'on entend par analyse spatiale et statistique, sachant que ce support de cours se concentre sur les prémices  de l'analyse statistique : l'analyse **univariée**  \@ref(univariee) et l'analyse **bivariée** \@ref(bivariee)
+L'analyse statistique ne se confond pas avec l'analyse spatiale, bien qu'elles soient parfois cousines. Nous allons commencer par préciser ce qu'on entend par analyse spatiale et statistique, sachant que ce support de cours se concentre sur les prémices  de l'analyse statistique : l'analyse **univariée** (cf section  \@ref(univariee)) et l'analyse **bivariée** (cf. section \@ref(bivariee))
 
 
 
@@ -82,7 +97,7 @@ En analyse statistique :
 
 En analyse **spatiale** statistique, au contraire :
 
-  * Les unités d’analyse sont localisables 
+  * Les unités d’analyse sont localisables, et donc ne sont pas toujours indépendants du point de vue spatial.
   * On s’intéresse à leur propriétés y compris et surtout leur localisation et l'effet de celle-ci : on fait l’hypothèse que la localisation des unités peut influencer les valeurs des variables des unités observées.
   
 
@@ -333,7 +348,7 @@ Très souvent, les variables sont les **colonnes** du tableau des données. On d
 
 Ce sont des variables qui représentent une **quantité**, une grandeur. Ce sont des nombres , et ils sont parfois accompagnés d'une **unité**. Par exemple : la taille, la masse, le revenu mensuel, la surface, les points de vie,etc. 
 
-Les variables quantitatives peuvent être **continues** : $var \in \mathbb{R}$ , ou **discrètes**  : $var \in \mathbb{N}$ .
+Les variables quantitatives peuvent être **continues** i.e. prendre des valeurs réelles: $var \in \mathbb{R}$ , ou **discrètes** i.e. prendre des valeurs entières : $var \in \mathbb{N}$ .
 
 
 

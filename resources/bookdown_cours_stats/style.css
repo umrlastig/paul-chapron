@@ -37,4 +37,82 @@ font: 1.0em ,"Arial", sans-serif;
 }
 
 
+.nbbox {
+  padding: 1em;
+  background: darkgrey;
+  color: white;
+  border: 1px solid #7fa106;
+  border-radius: 5px;
+  text-align: center;
+}
 
+
+.warningbox {
+    padding: 1em;
+  background: #fefefe;
+  color: red;
+  border: 1px dashed red;
+  border-radius: 5px;
+  text-align: center;
+  font: 1.5em;
+}
+
+
+
+
+div.attention {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #eeeeee;
+    background-color: #ff6961;
+    border: solid 3px #ee4545;
+
+    font-size: 1.2em;
+  }
+
+div.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #eeeeee;
+    background-color: #E2FAB5;
+    border: solid 3px #ee4545;
+}
+
+
+
+div.attention {
+  background-image: url("./notabene.png");
+}
+
+div.note {
+  background-image: url("./notabene.png");
+}
+
+
+
+.toc-logo {
+  width: 200px !important;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+.toc-logo img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.summary > li:first-child {
+  height: auto !important; 
+}

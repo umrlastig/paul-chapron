@@ -8,7 +8,7 @@
 
 L'analyse univariée a pour but de **décrire**  et **mesurer** la **répartition** des valeurs que peut prendre une variable.
 
-On appelle la répartition des valeurs d'un variable sa  **distribution** , que l'on peut approximativement voir comme son «histogramme en continu».
+On appelle la répartition des valeurs d'un variable sa  **distribution** , que l'on peut très approximativement voir comme son «histogramme en continu».
 
 Voilà une distribution d'une variable réelle (courbe noire), superposée à son histogramme :  
 
@@ -141,7 +141,6 @@ plot1
 
 Comme son nom l'indique, la loi uniforme vaut partout la même valeur entre deux bornes $a$ et $b$, autrement dit , la probabilité d'obtenir une certaine valeur $v\in[a;b]$ est constante.
 
-La forme de sa distribution est théoriquement une fonction en créneau, qui vaut 1 partout   mais en pratique quand on échantillonne (i.e. génère) des valeurs suivant cette loi, même un grand nombre de fois, la distribution, qui devrait être plate, est courbée aux extrémités.
 
 ```{r , distribunif1, cache=TRUE, fig.height=2, echo=FALSE}
 yy <- data.frame(value=runif(1000000))
@@ -304,7 +303,7 @@ barplot(tx , las=2)
 Nous allons maintenant voir comment décrire la forme de la répartition de ces valeurs avec des mesures statistiques. La première d'entre elles est la **tendance**
 
 
-# La Tendance {#tendance}
+## La Tendance {#tendance}
 
 
 
@@ -316,7 +315,7 @@ Si la forme de la distribution est suffisamment régulière, cette tendance peut
 Les indicateurs de tendance centrale de la distribution d'une variable sont la 
 **moyenne** et ses variantes, la **médiane** et le **mode**.
 
-## Moyenne
+### Moyenne
 
 
 La moyenne d'une variable $x$ , notée $\bar{x}$ , s'écrit :
@@ -324,7 +323,7 @@ La moyenne d'une variable $x$ , notée $\bar{x}$ , s'écrit :
 $$ \bar{x} = \frac{1}{n}\sum_{i=0}^{n} x_i $$
 
 
-### Moyenne pondérée
+#### Moyenne pondérée
 
 Lorsque des poids $p_i$ sont affectés aux individus, la moyenne pondérée s'écrit :
 
@@ -332,7 +331,7 @@ $$ \bar{x} = \frac{1}{\sum_{i=0}^n pi}\sum_{i=0}^{n} p_i x_i $$
 
 
 
-### Avantages et inconvénients de la moyenne
+#### Avantages et inconvénients de la moyenne
 
 **Avantage** : chaque valeur compte dans le calcul.
 
@@ -390,7 +389,7 @@ $$\bar{x} = \frac{1}{11}\sum _{j=i-5}^{j=i+5} x_j$$
 
 
 
-## Mode {#mode}
+### Mode {#mode}
 
 Le **mode** d'une variable est **la valeur la plus fréquente** ( d'effectif maximum) d'une variable.
 
@@ -403,7 +402,7 @@ C'est exactement ce que fait un histogramme graphiquement !
 
 
 
-### Avantages et inconvénients du mode
+#### Avantages et inconvénients du mode
 
 **Avantages** : 
 
@@ -416,14 +415,14 @@ le mode ne dépends pas de toutes les observations : la modification d'une seule
 
 
 
-## Médiane {#mediane}
+### Médiane {#mediane}
 
 La **médiane** est la valeur qui partage une série de valeurs en **deux sous-ensembles d’égal effectif**
 
 Comme en géométrie, la médiane est la valeur de la variable qui est la plus proche de toutes les autres.
 
 
-### Étapes de calcul 
+#### Étapes de calcul 
 
 Déterminer la médiane d'un ensemble de valeurs est très simple : 
 
@@ -434,7 +433,7 @@ Déterminer la médiane d'un ensemble de valeurs est très simple :
 <small> Dans cet algo , on suppose qu'on compte les cellules d'un tableau à partir de 0, comme en python. En R, où on compte les cellules à partir de 1 , il faudrait ajouter 1 à tous les indices. </small>
 
 
-### Avantages et inconvénients de la médiane 
+#### Avantages et inconvénients de la médiane 
 
 **Avantages** : 
 
@@ -468,7 +467,7 @@ Supposons qu'on cherche à évaluer si un salaire mensuel net équivalent temps 
 
 
 
-## Quelle mesure de tendance choisir ?
+### Quelle mesure de tendance choisir ?
 
 Tout dépend de la distribution ! 
 
@@ -495,7 +494,7 @@ Pour les variables qualitatives :
 
 
 
-### Exemple idéal: Distribution unimodale symétrique 
+#### Exemple idéal: Distribution unimodale symétrique 
 
 ```{r gaussienne2, cache=TRUE, fig.width=8, fig.height=3.5}
 xx <- data.frame(value=rnorm(9000,mean = 5, sd = 1))
@@ -513,7 +512,7 @@ Dans ce cas tout se passe bien : la distribution ne présente qu'un seul pic, et
 
 
 
-### Exemple d'un cas délicat : distribution bimodale 
+#### Exemple d'un cas délicat : distribution bimodale 
 
 
 Parfois une variable peut être **bimodale**, c'est-à-dire lorsque la population est regroupée autour de deux tendances, dans deux  intervalles de valeurs majoritaires.
@@ -539,7 +538,7 @@ Que choisir dans un tel cas : moyenne ou médiane ?
 
 
 
-# La Dispersion {#dispersion}
+## La Dispersion {#dispersion}
 
 
 La **dispersion** désigne la façon dont les valeurs des variables des individus d'une population s'écartent de leur tendance. 
@@ -548,7 +547,6 @@ Elle est décrite par la **variance**, l' **écart-type**, et le **coefficient d
 
 
 
-## La dispersion 
 
 Voici un nuage de points formées par deux variables, échantillonnées selon une loi normale $\mathscr{N}(0,1)$ , de moyenne 0 , et d'écart type 1 (nous allons voir dans un instant ce que signifie l'écart-type) 
 
@@ -565,7 +563,7 @@ Dans cet exemple, la dispersion nous servira à mesure à quel point les individ
 
 
 
-## Variance et Écart-type {#variance}
+### Variance et Écart-type {#variance}
 
 
 La variance et l'écart-type rendent compte de la **dispersion** de la variable autour de sa moyenne. On peut les interpréter comme une  «quantité moyenne d'écart»  entre les valeurs des individus et la valeur moyenne.
@@ -599,7 +597,7 @@ Conséquences de ces définitions :
 
 
 
-### Variance et écart type avec R 
+#### Variance et écart type avec R 
 
 Les fonctions pour calculer la variance et l'écart-type d'une variable sont `var` et `sd` :
 
@@ -617,13 +615,13 @@ sd(xx)
 
 
 
-### Si la distribution est proche de la Gaussienne  
+#### Si la distribution est proche de la Gaussienne  
 
 <span style="color:red; font-size:1.5em;">&#9888;</span> Variance et écart type n'ont d'intérêt que pour qualifier des distributions **unimodales**, et (à peu près) **symétriques** , c'est-à-dire d'une allure proche de la distributions Gaussienne. 
 
 
 
-Si c'est le cas , alors la valeur de l'écart-type nous rend bien des services : 
+Si c'est le cas , alors la valeur de l'écart-type nous rend bien des services , puisque qu'il nous donne la largeur de la tranche autour de la moyenne qui prend un certaine proportion de la population, en rouge et bleu dans l'image ci-dessous: 
 
 
 ```{r stddev1, cache=TRUE, echo=FALSE}
@@ -648,7 +646,7 @@ Cette façon de «couper» la population en tranches d'une certaine «épaisseur
 
 
 
-## Quantiles   {#quantiles}
+### Quantiles   {#quantiles}
 
 
 Nous avons vu que la **médiane** d'une variable sépare une population en **deux** classes d'égal effectif selon la valeur de cette variable (quantitative).
@@ -664,7 +662,7 @@ En pratique, toutes les valeurs de $n\in\mathbb{N}$ ne sont pas utilisées. Les 
 
 
 
-### Quartiles 
+#### Quartiles 
 
 Les **quartiles** d'une variable $X$ sont trois valeurs, $Q_1,Q_2,Q_3$ qui séparent la population en **quatre** classes d'égal effectif selon leur valeur de la variable : 
 
@@ -674,13 +672,13 @@ Les **quartiles** d'une variable $X$ sont trois valeurs, $Q_1,Q_2,Q_3$ qui sépa
   * 75% des valeurs de $X$ sont strictement inférieures à $Q_3$
   
 
-### Déciles
+#### Déciles
 
 Les **déciles** sont les **9** quantiles $Q_1,Q_2,\dots,Q_9$ qui séparent une population  selon la valeur d'une variable quantitative en **10** classes d'égal effectif.
 
 
 
-### Écarts inter-quartiles et inter-déciles
+#### Écarts inter-quartiles et inter-déciles
 
 Les quantiles permettent de mesurer la **dispersion** d'une distribution : 
 
@@ -690,7 +688,7 @@ l'**Écart inter-quartile**: $Q_3-Q_1$ , nous donne l'**étendue** de 50% des va
 l'**Écart inter-déciile**: $Q_9-Q_1$ , nous donne l'**étendue**  de 80% des valeurs de la population les plus proches de la médiane
 
 
-### Avantages et inconvénient des quantiles
+#### Avantages et inconvénient des quantiles
 
 **Avantages** :
 
@@ -704,7 +702,7 @@ l'**Écart inter-déciile**: $Q_9-Q_1$ , nous donne l'**étendue**  de 80% des v
 - les écarts inter-quantiles négligent l'influence des valeurs extrêmes sur la distribution, entraînant un risque de "passer à côté" d'individus ou évènements critiques. 
 - Les écarts inter-quantiles sont partiaux : l'écart inter-quartile néglige 50% de la population !
 
-### Les boîtes à moustaches (boxplots) avec R
+#### Les boîtes à moustaches (boxplots) avec R
 
 Les boxplots , ou boîtes à moustaches sont la représentation courante de la dispersion d'une variable à l'aide de **quartiles**.
 
@@ -776,7 +774,7 @@ plot_grid(yplot, distriPlot,  ncol = 1, align = "hv",scale = c(1,1),
 
 
 
-## Le coefficient de variation 
+### Le coefficient de variation 
 
 Le **coefficient de variation** ($CV$) est une autre mesure de dispersion.
 
@@ -796,7 +794,7 @@ Il souffre des mêmes inconvénients que la moyenne et l'écart-type : il est se
 
 
 
-## Comparer les dispersions de deux distributions.
+### Comparer les dispersions de deux distributions.
 
 
 Interpréter la dispersion d'une seule variable est un exercice un peu vain: tenter de décider si la dispersion des valeurs d'une variable d'une population autour de sa moyenne est «notable» n'a pas beaucoup de sens si nous n'avons pas une **valeur de référence** qui nous permette de **qualifier** la dispersion calculée par comparaison. 
@@ -839,7 +837,7 @@ La commune A dispense des aides moins homogènes que la commune B.
 > Ce n'est pas le cas dans cet exemple, mais on pourrait tout aussi bien comparer des distribution de variables qui n'ont rien à voir, exprimées dans des unités différentes.
 
 
-### Comparaison visuelle de deux distributions
+#### Comparaison visuelle de deux distributions
 
 
 Si nous avions des données réelles, nous aurions pu (et même dû, puisque c'est la première chose à faire) répondre également par comparaison visuelle des distributions de la variable.
@@ -858,14 +856,14 @@ hist(B, probability = T)
 lines(density(B), col="red")
 ```
 
-Un paradoxe ne manque pas de nous sauter au visage : les distributions ont la même allure, alors que leur coefficient de variations sont différents. 
+C'est paradoxal : les distributions ont la même allure, alors que leur coefficient de variations sont différents. **Pourquoi?**
 
-**Pourquoi?**
+Parce que pour comparer visuellement la dispersion de deux variables, il faut une **échelle commune** , pour que les écarts en x et en y soit comparables.
+<br>
+Cette remarque est valable que les deux distributions soient représentées sur des graphiques juxtaposés ou non.
+Recommencçons l'affichage en fixant l'échelle pour les deux distributions:
+<br>
 
-
->(le suspense est beaucoup moins insoutenable que dans les diapositives...)
-
-... Parce que pour comparer visuellement la dispersion de deux variables,  il faut une **échelle commune** !
 
 ```{r compDistNorm2}
 A <-  rnorm(n = 1000, mean = 390, sd = 30)
@@ -882,13 +880,13 @@ On retrouve alors que la distribution de la commune B est beaucoup plus piquée 
 Les aides de la commune B sont donc plus homogènes.
 
 
-# La Forme {#forme}
+## La Forme {#forme}
  
  
 La forme d'une distribution est décrite par deux caractéristiques : sa **symétrie** (ou son asymétrie) et son **applatissement**.
  
 
-## Asymétrie
+### Asymétrie
 
 
 L'asymétrie d'une distribution est **positive** si les valeurs fréquentes sont à gauche et la **queue de distribution** (due à quelques valeurs très élevées surreprésentées) est  **à droite** .
@@ -928,7 +926,7 @@ annotate("text", x=3.5, y=0.34, colour=c("orange"),label="mode")
 ```
 
 
-### les Coefficients d'asymétrie de Pearson
+#### les Coefficients d'asymétrie de Pearson
 
 
 
@@ -949,7 +947,7 @@ L'interprétation de ces coefficients est directe
 
 
 
-### Le coefficient d'asymétrie de Fischer
+#### Le coefficient d'asymétrie de Fischer
 
 Ce coefficient est défini comme le moment d'ordre 3  de la variable $X$ **centrée réduite**:
 
@@ -965,7 +963,7 @@ Au passage :
 - Vous connaissez déjà un «moment» , le moment d'ordre 2 : c'est la variance .
 
 
-### Calculer le coefficient d'asymétrie avec R
+#### Calculer le coefficient d'asymétrie avec R
 
 Nous utilisons la fonction `skewness()` du package `moments` et
 ```{r skew1,cache=TRUE} 
@@ -974,7 +972,7 @@ skewness(iris$Sepal.Length)
 ```
 
 
-## L'Aplatissement (kurtosis) {#kurtosis}
+### L'Aplatissement (kurtosis) {#kurtosis}
 
 
 L' **aplatissement** d'une distribution , aussi appelée **kurtosis** quantifie la déviation de la forme de la distribution par rapport à une distribution normale.
@@ -1012,7 +1010,7 @@ une courbe de distribution **piquée** indique peu de variations dans les valeur
 La courbe **aplatie** suggère des variations importantes, une distribution relativement hétérogène, avec beaucoup de valeurs éloignées de la moyenne.
 
 
-### Coefficient d'aplatissement (ou kurtosis)
+#### Coefficient d'aplatissement (ou kurtosis)
 
 le kurtosis d'une variable s'écrit  :
 
@@ -1036,7 +1034,7 @@ Au passage :
 - cette mesure ne doit pas être confondue avec la dispersion. En pratique elle traduit plutôt l'existence d'outliers qui "étirent" la courbe de la distribution au delà  d'un ou deux écarts-types , à droite et à gauche de la moyenne.
 
 
-### Exemple de distribution à écart-type faible, mais à kurtosis important 
+#### Exemple de distribution à écart-type faible, mais à kurtosis important 
 
 Il est tout à fait normal d'amalgamer dispersion et kurtosis en première approximation, puisqu'une distribution symétrique à fort écart-type sera plus aplatie qu'une distribution à symétrique à faible écart-type.
 
@@ -1074,7 +1072,7 @@ ggplot(kurtodf, aes(x=value, color=type))+geom_density()+theme_light()+
 
 
 
-### Calculer le kurtosis avec R
+#### Calculer le kurtosis avec R
 
 Nous utilisons la fonction `kurtosis()` du package `moments` et
 ```{r kurtosis,cache=TRUE} 
@@ -1084,7 +1082,7 @@ kurtosis(iris$Sepal.Length)
 
 
 
-## Transformations des données 
+### Transformations des données 
 
 
 les distributions dont les formes sont particulièrement irrégulières sont délicates à appréhender (et représenter). Parfois, il est possible d'améliorer les choses en utilisant des transformations mathématiques.
@@ -1114,7 +1112,7 @@ Une variable **centrée réduite** est alors exprimée en «écarts-types à la 
 
 
 
-## Fat-tail distributions : un exemple 
+### Fat-tail distributions : un exemple 
 
 
 Les distributions très asymétriques et très étendues sont délicates à résumer.
@@ -1133,7 +1131,7 @@ plot_PopVilles
 ```
 
 
-### Distribution rang-taille des villes de france 
+#### Distribution rang-taille des villes de france 
 
 
 Pour mieux voir la distribution et les écarts, on trace la **taille** des villes en fonction de leur **rang** 

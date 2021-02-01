@@ -2,10 +2,11 @@ bookdown::gitbook:
   css: style.css
   config:
     toc:
+      collapse: section
       before: |
-        <li><a href="index.html">Analyse Statistique M2 IGAST </a></li>
+        <li class="toc-logo"><a href="./index.html"><img src="./logoENSG.jpg"><br>Analyse Statistique<br> M2 IGAST</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank"> Published with bookdown</a></li>
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
