@@ -8,7 +8,7 @@
 
 L'analyse univariée a pour but de **décrire**  et **mesurer** la **répartition** des valeurs que peut prendre une variable.
 
-On appelle la répartition des valeurs d'un variable sa  **distribution** , que l'on peut très approximativement voir comme son «histogramme en continu».
+On appelle la répartition des valeurs d'un variable sa  **distribution** , que l'on peut approximativement voir comme son «histogramme en continu».
 
 Voilà une distribution d'une variable réelle (courbe noire), superposée à son histogramme :  
 
@@ -594,7 +594,7 @@ Notons que la robustesse de la médiane est bien utile dans le cas de distributi
 #### Moyenne, médiane et forme de la distribution 
 
 
-L'écart enter la moyenne et la médiane est un bonne indicateur de l'asymétrie d'une distribution , d'autant plus importante que l'écart entre moyenne et médiane est important.
+L'écart entre la moyenne et la médiane est un bonne indicateur de l'asymétrie d'une distribution , d'autant plus importante que l'écart entre moyenne et médiane est important.
 
 
 Prenons un exemple avec les revenus mensuels en équivalent temps plein en  France en 2016 :  le revenu mensuel net moyen est de 2 238 €, le revenu mensuel net médian est de  1 789 € :

@@ -466,7 +466,7 @@ Voici les chiffres du bilan d’une entreprise en 2013 et 2014
 * Mme. BBB :  «le salaire moyen a augmenté d’environ 18%»
 
 
-Ces deux phrases sont justes, et il n'y a pas lieu d'en choisir une plus que l'autre.
+Ces deux phrases sont justes, et il n'y a pas lieu d'en choisir une plus que l'autre. Un.e analyste consciencieux.se se devrait de mentionner les deux à la fois ! 
 
 
 ### Taille et représentativité de  l'échantillon
@@ -523,7 +523,7 @@ while(nb_samples > 1){
   samples <-  c(samples, nb_samples) # concaténation des listes
 }
 
-# fonction qui tire un échantillon d'une certaione taille dans une liste
+# fonction qui tire un échantillon d'une certaine taille dans une liste
 myfunction<- function(taille,data){
   return(sample(data,taille,replace = F))
 }
@@ -564,6 +564,7 @@ Sur notre graphique, on constate que la médiane des moyennes est très stable e
 
 Nous aborderons l'interprétation des boxplots dans le chapitre \@ref(univariee) de façon plus précise.
 
+Sur notre graphique, on constate que la médiane des moyenne est très stable et est toujours proche de 10, mais que les tailles des boxplot sont très petites pour les grandes tailles d'échantillons (indiquant que la moyenne des hauteurs varie peu), et qu'au contraire , pour des tailles d'échantillons faibles (moins de 100 individus), la moyenne des hauteurs varie plus fortement. 
 
 Pour finir de se convaincre de ces variations, voici la représentation alternative des valeurs moyennes en fonction de la taille des échantillons sous la forme d'un nuage de point: 
 
@@ -611,7 +612,9 @@ $H_A$ est valable si l'on considère les valeurs de la population dans son ensem
 
 Lorsqu'on manipule des données spatiales, le territoire sur lequel les données sont disponibles peut être découpé de plusieurs façons. Souvent, ces découpages sont imbriqués : la maille d'un niveau $n$ est partionnée en plusieurs mailles au niveau $n-1$. Par exemple, la France se découpe en régions, elles-mêmes décomposées en départements, eux-mêmes décomposés en commune.  
 
+Par exemple, la France se découpe en régions, elles-mêmes décomposées en départements, eux-mêmes décomposés en commune. 
 
+Un jeu de données spatial est défini à un certain niveau de découpage spatial. Par exemple, on peut disposer du revenu mensuel moyen des foyers par commune, mais on ne dispose pas des données "brutes" qui y ont conduit: les revenus des personnes qui composent les foyer des communes.
 
 La difficulté est qu'un jeu de données spatial est défini et disponible à un certain niveau de découpage spatial, et que considérer ces mêmes données à un niveau de découpage plus fin ou plus grossier nécessite une transformation : l'**agrégation** ou la **désagrégation**.  
 L'agrégation est relativement directe , la désagrégation l'est beaucoup moins.
@@ -622,12 +625,13 @@ L'agrégation est relativement directe , la désagrégation l'est beaucoup moins
 Par exemple, on peut disposer du revenu mensuel moyen des foyers par commune, mais on ne dispose pas des données "brutes" qui y ont conduit: les revenus des personnes qui composent les foyer des communes.
 Si on désire considérer la même variable à un niveau de découpage plus grossier (ici, les régions) ou plus fin (ici, les communes), on devra agréger ou désagréger les données. 
 
+L'agrégation est relativement directe , la désagrégation l'est beaucoup moins
 
 ### Agrégation 
 
-On parle d'agrégation lorsqu'on désirer regrouper des données disponibles à un niveau de découpage donné au niveau de découpage supérieur (plus large, par exemple , regroupper les données de communes à l'échelle des départements.)
 
-Cela revient à inférer des caractéristiques concernant les unités agrégées d’après les caractéristiques individuelles.
+
+On parle d'agrégation lorsqu'on désirer regrouper des données disponibles à un niveau de découpage donné   Inférer des caractéristiques concernant les unités agrégées d’après les caractéristiques individuelles 
 
 En fonction des données manipulées, l'agrégation peut se faire par la somme (par exemple pour des stocks) la moyenne (par exemple pour des ratios), ou tout autre combinaison bien choisie.
 

@@ -39,12 +39,13 @@ L'information géographique est une information localisée en une, deux (la plup
 Ici , au contraire des chapitres précédents, ce qui nous intéresse principalement, c'est la **localisation** des individus de la populations.
 L'immense majorité des objets que nous allons aborder sont des objets qui peuvent être ramenés à des objets ponctuels, où à des graphes dont les nœuds sont des objets ponctuels: 
 
+Types :
 
-- Objets : e.g. arbres de Paris,  stations de Vélib'
-- Événements : e.g. incendies , accidents 
-- Mesures : e.g. altitude, température, pollution 
-- Statistiques : e.g. taux de chômage par quartier, votes par communes
-- Interactions : mobilité, flux commerciaux
+- Semis d'objets : e.g. arbres de Paris
+- Événements : e.g. incendie, accidents, 
+- Mesures : e.g. altitude, température
+- Statistiques : e.g. taux de chômage, votes
+- Interaction : mobilité, flux commerciaux
 <br><br><br>
 <span style="font-size:0.6em;">d'après H.Commenges, Données massives spatialisées </span>
 
@@ -94,6 +95,8 @@ Par exemple avec la localisation des arbres de paris, on observe que les arbres 
 En pratique, les données spatiales sont rarement réparties de façon isotropes. On fait pourtant souvent l'approximation de faire des calculs avec la distance euclidienne, qui suppose en principe d'avoir un espace isotrope, pour que les distances aient un sens. 
 
 
+
+## Statistiques simples sur un semis
 
 ### Point moyen et point médian 
 
@@ -154,8 +157,9 @@ la configuration de gauche est plus agrégée/polarisée , du fait de la différ
 Celle de droite est plus homogène, même si ce terme n'a pas beaucoup de sens puisqu'on n'évalue pas -encore- la concentration des points. 
 
 
-<br>
+# Autorcorrélation spatiale : Moran et Geary
 
+## L'autocorrélation spatiale 
 
 La **concentration** d'un semis est mesurée par l'**indice de concentration**, qui décrit la régularité des positions des points.
 
