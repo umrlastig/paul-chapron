@@ -17,16 +17,11 @@ types-de-variables-et-représentations
 difficultés-de-la-statistique
 plusieurs-discours-sont-possibles
 taille-et-représentativité-de-léchantillon
-<<<<<<< HEAD
 exemple-de-leffet-de-la-taille
 le-paradoxe-de-simpsons
 échelle-individuelle-vs.-échelle-agrégée
 agrégation
 désagrégation-ou-ventilation
-=======
-le-paradoxe-de-simpsons
-échelle-individuelle-vs.-échelle-agrégée
->>>>>>> refs/remotes/origin/gh-pages
 à-quelle-échelle-observer-le-maup
 effet-de-zonage
 maup-exemples
@@ -34,10 +29,7 @@ rappel-la-première-chose-à-faire
 univariee
 densite
 interpret_dens
-<<<<<<< HEAD
 bonus-estimation-la-probabilité-à-partir-de-la-densité-de-probabilité
-=======
->>>>>>> refs/remotes/origin/gh-pages
 exemples-de-distributions-de-lois-connues
 loi-gaussienne
 loi-uniforme
@@ -47,37 +39,20 @@ afficher-histogrammes-et-distributions-en-r
 histogramme-dune-variable-quantitative
 histogramme-et-variable-qualitative
 tendance
-<<<<<<< HEAD
 moyennes
 moyenne-pondérée
 avantages-et-inconvénients-de-la-moyenne
 autres-moyennes
-=======
-moyenne
-moyenne-pondérée
-avantages-et-inconvénients-de-la-moyenne
-autres-moyennes
-moyenne-geométrique
-moyenne-quadratique-rms
-hors-sujet-moyenne-glissante
->>>>>>> refs/remotes/origin/gh-pages
 mode
 avantages-et-inconvénients-du-mode
 mediane
 étapes-de-calcul
 avantages-et-inconvénients-de-la-médiane
-<<<<<<< HEAD
 moyenne-médiane-et-forme-de-la-distribution
-=======
->>>>>>> refs/remotes/origin/gh-pages
 quelle-mesure-de-tendance-choisir
 exemple-idéal-distribution-unimodale-symétrique
 exemple-dun-cas-délicat-distribution-bimodale
 dispersion
-<<<<<<< HEAD
-=======
-la-dispersion
->>>>>>> refs/remotes/origin/gh-pages
 variance
 variance-et-écart-type-avec-r
 si-la-distribution-est-proche-de-la-gaussienne
@@ -187,36 +162,21 @@ boxplot-par-catégories
 superpositions-de-distributions
 références-supplémentaires
 anaspat
-<<<<<<< HEAD
 contenu-du-chapitre-1
 linformation-géographique
 précautions-dans-lemploi-de-projections
 semis-de-points
+statistiques-simples-sur-un-semis
 point-moyen-et-point-médian
 dispersion-et-concentration-dun-semis
+autorcorrélation-spatiale-moran-et-geary
+lautocorrélation-spatiale
 le-modèle-nul-pour-un-semis-de-points
 auto-corrélation-spatiale-moran-et-geary
 lindice-de-moran
 lindice-de-geary
 commandes-r
 interprétation-de-lindice-de-moran
-=======
-contenu-du-cours
-linformation-géographique
-précautions
-semis-de-points
-statistiques-simples-sur-un-semis
-concentrations-du-semis
-le-modele-nul-pour-un-semis-de-points
-afficher-la-distribution-le-retour
-autorcorrélation-spatiale-moran-et-geary
-lautocorrélation-spatiale
-lindice-de-moran
-lindice-de-geary
-commandes-r
-exemples
-exemples-1
->>>>>>> refs/remotes/origin/gh-pages
 les-flux
 matrice-de-flux
 indices
@@ -229,14 +189,6 @@ le-modèle-gravitaire-1
 distance-et-interaction
 utilisation-du-modèle-gravitaire
 variantes-du-modèles-gravitaires
-<<<<<<< HEAD
 létape-daprès-modèles-dynamiques
 modèles-simples-les-automates-cellulaires
 principe-dun-modèle-complexe-de-mobilité
-=======
-la-cartographie-comme-support
-cartographier-le-résultats-de-traitements-statistiques
-létape-daprès-modèles-dynamiques
-modèles-simples-les-automates-cellulaires
-modèles-complexes-mobilité
->>>>>>> refs/remotes/origin/gh-pages

@@ -70,7 +70,7 @@ Les données **ponctuelles** représentent des unités spatiales localisées à 
 
 On peut étudier la répartition de ces points avec la distance euclidienne dans l'espace qu'on suppose **isotrope** (invariant par direction) et **homogène** (invariable par translation).
 
-```{r arbres, cache=T, fig.width=7, fig.height=4, echo=FALSE }
+```{r arbres, cache=T, fig.width=7, fig.height=4, echo=FALSE, eval=FALSE }
 library(geojsonsf)
 library(dplyr)
 arbres <- geojson_sf("./data/les-arbres.geojson")
@@ -135,7 +135,7 @@ Le nombre de points est identique dans les deux cartes.
 Dans le semis de gauche, dans la surface de chaque IRIS, on tire 2 points aléatoirement.
 Dans le semis de droite, on tire aléatoirement le même nombre de points (2 x Nombre d'IRIS), mais dans toute la surface de la Seine-Saint-Denis .
 
-```{r polar1, cache =T, fig.height=4, fig.width=8, echo=FALSE }
+```{r polar1, cache =TRUE, fig.height=4, fig.width=8, echo=FALSE, eval=FALSE }
 set.seed(5678)  
 ssd <-  read_sf("data/neufTrois_simple.shp")
 par(mar=c(0,0,0,0))
@@ -157,7 +157,7 @@ la configuration de gauche est plus agrégée/polarisée , du fait de la différ
 Celle de droite est plus homogène, même si ce terme n'a pas beaucoup de sens puisqu'on n'évalue pas -encore- la concentration des points. 
 
 
-# Autorcorrélation spatiale : Moran et Geary
+# Autocorrélation spatiale : Moran et Geary
 
 ## L'autocorrélation spatiale 
 
