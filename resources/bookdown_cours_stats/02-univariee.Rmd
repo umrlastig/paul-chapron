@@ -23,15 +23,22 @@ ggplot(penguins, aes(flipper_length_mm))+
 
 Vous pouvez voir avec cet exemple, que la courbe suit les variations de hauteur des colonnes de l'histogramme, tout en lissant les aspérités.
 
+ C'est de cette courbe que l'on parle lorsqu'on évoque la  **distribution** de la variable. (Il serait plus rigoureux de parler de courbe de densité de probabilité.)
 
 
- C'est de cette courbe que l'on parle lorsqu'on évoque la  **distribution** de la variable.
 
-> Plus formellement, pour une population donnée,  la distribution d'une variable $V$ est définie comme une fonction qui donne la probabilité qu'un individu $x$ pris au hasard dans la population ait la valeur $V_x$  pour la variable $V$ : 
+
+:::{.note}
+Plus précisément, la distribution représente des **probabilités** (ou des **densités de probabilité**), et non des effectifs. En toute rigueur , représenter une courbe de distribution de probabilité par dessus un histogramme est impropre : il faudrait deux axes des ordonnées: un pour l'histogramme, représentant un effectif, l'autre  pour la distribution , représentant une probabilité (variable à valeurs discrète) ou une densité de probabilité (variable à valeurs réelles)
+
+
+
+
+> Formellement, pour une population donnée,  la distribution d'une variable $V$ peut être définie comme une fonction qui donne la probabilité qu'un individu $x$ pris au hasard dans la population ait la valeur $V_x$  pour la variable $V$ : 
 $$distribution(V) \equiv P(V=V_x), \forall V_x \in \Omega_V$$
 > avec $\Omega_V$ l'ensemble des valeurs que peut prendre $V$ : l'univers de $V$. 
 >Lorsque la variable prend des valeurs réelles, on parle de **densité** de probabilité, c'est pourquoi on retrouve ce terme "density" sur les axes des ordonnées dans les graphiques de distribution.   
-
+:::
 
 La forme d'une distribution donne beaucoup d'informations sur les valeurs d'une variable dans une population  : 
 
@@ -50,17 +57,17 @@ La forme d'une distribution donne beaucoup d'informations sur les valeurs d'une 
 ### Interpréter la courbe de densité  {#interpret_dens}
 
 
-L'histogramme représente l'effectif de la population en fonction de la valeur d'une variable, son interprétation est directe et aisée puisque ce graphique donne une représentation du nombre d'individus par intervalles de valeurs. 
+L'**histogramme** représente l'**effectif** de la population en fonction de classes de valeur d'une variable, son interprétation est directe et aisée puisque ce graphique donne une représentation du nombre d'individus par intervalles de valeurs. 
 
-La représentation d'une distribution est légèrement plus délicate à comprendre mathématiquement.
-En première approximation , vous pouvez l'interpréter comme un histogramme dont les barres seraient infiniement fines, et dont l'axe des $y$ représenteraient une probabilité au lieu d'un effectif.
+La représentation d'une **densité**  est légèrement plus délicate à comprendre mathématiquement.
+En première approximation , vous pouvez l'interpréter comme un histogramme dont les barres seraient infiniment fines, et dont l'axe des $y$ représenterait une probabilité au lieu d'un effectif.
 
 La densité de probabilité comme son nom l'indique, représente des probabilités: celles d'obtenir, pour un individu dans la population, une certaine valeur de la variable. 
 
-Le point délicat est qu'une variable continue (i.e. définie sur un intervalle de $\mathbb{R}$), peut prendre une **infinité** de valeurs possibles, et que la probabilité d'obtenir **exactement**, c'est à dire avec une précision infinie, une valeur est infinitésimale, en fait carrément nulle. 
+Le point délicat est qu'une variable continue (i.e. définie sur un intervalle de $\mathbb{R}$), peut prendre une **infinité** de valeurs possibles, et que la probabilité d'obtenir **exactement**, c'est à dire avec une précision infinie, une valeur est infinitésimale, en fait carrément **nulle**. 
 
 
-Il faut alors considérer la probabilité d'obtenir une valeur, non pas de façon exacte , mais dans un **intervalle** de valeur. Par exemple, dans le graphique ci-dessous, de s'intérroger sur la probabilité , pour un individu tiré au hasard dans la population , d'avoir une valeur de Variable 1 dans l'intervalle [25;30].
+Il faut alors considérer la probabilité d'obtenir une valeur, non pas de façon exacte , mais dans un **intervalle** de valeur. Par exemple, dans le graphique ci-dessous, de s'interroger sur la probabilité , pour un individu tiré au hasard dans la population , d'avoir une valeur de Variable 1 dans l'intervalle $[25;30]$.
 
 Cela pourrait s'écrire $P( 25  \leq   V_1  \leq 30)$ et serait égal à l'intégrale de la fonction de densité notée $f_{V_1}$ entre les bornes 25 et 30 de l'intervalle de $V_1$ : \int
 
@@ -77,7 +84,12 @@ L'aire totale sous la courbe vaut 1 (cela revient à considérer la somme de tou
 dens <- density(mpg$hwy)
 idxborne25 <- which(dens$x > 25  )[1]
 idxborne30 <- which(dens$x > 30  )[1]
-dens$y[idxborne25:idxborne30] %>% sum
+
+integration_step  <-  dens$x[2]-dens$x[1]
+
+constant_normalisation <-  (dens$y %>% sum ) *integration_step
+#proba entre 25 et 30 unsacaled 
+sum(dens$y[idxborne25:idxborne30])*integration_step /constant_normalisation
 ggplot(data = mpg) +
   geom_density(aes(x=hwy), color="white", fill="darkcyan", alpha=0.7) +
   geom_vline(xintercept = 25)+
@@ -91,8 +103,113 @@ ggplot(data = mpg) +
 ```
 
 
-ici , la valeur de $P( 25  \leq   V_1  \leq 30)$ vaut XXX
+Par exemple ici , la valeur de $P( 25  \leq   V_1  \leq 30) \approx 0.312$
 
+### Bonus: Estimation la probabilité à partir de la densité de probabilité
+
+Attention, je ne donne pas ici la méthode d'approximation de la densité, uniquement la façon de calculer une valeur de probabilité à partir d'une densité, avec R.
+
+
+Le principe est assez simple : on approxime l'aire sous la courbe de densité  par une somme de Riemann à pas constant. 
+
+On note:
+
+ - $f$ la fonction dont on cherche à approcher l'aire sous la courbe. On suppose que c'est une fonction continue et définie partout. 
+ - $[a;b]$ le segment sur lequel on veut intégrer $f$
+ - on découpe $[a;b]$ en $n$ "tranches" de taille égale, on notes les bornes de ces tranches $x_i$, avec $n_0=a, <x_1<\dots<x_i<\dots<x_{n-1}<x_n=b$. Chaque tranche a une largeur, qu'on note $\delta$, on l'appelle le *pas d'intégration* . Il est constant.
+ - dans chaque tranche $[x_{i-1};x_i]$, on considère une valeur $t_i, i\in \{1,\dots,n\}$, pour laquelle on connaît$f(t_i)$, la valeur de $f$ en ce point.
+ 
+ $S(f)$La somme de Riemann de la fonction $f$,  qui approxime l'aire sous la courbe de la fonction $f$ est définie par: 
+ 
+$$S(f)=\sum _{i=1}^{n}(x_{i}-x_{i-1})f(t_{i})$$
+ qu'on peut reformuler ainsi : l'intégrale est approchée par la somme des aires des "tranches" rectangulaire, de largeur $\delta=x_i -x_{i-1}$ et de hauteur $f(t_i)$. 
+ 
+ Notre pas d'intégration est constant , on peut le sortir de la somme , et simplement calculer la somme des valeurs de densité dans le segment $[a;b]$ !
+ 
+ 
+
+```{r exple_dist_reimann, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+
+dd <- density(mpg$hwy,n = 60)
+dd <- data.frame(dd$x, dd$y)
+names(dd) <- c("xx", "yy")
+
+
+ggplot(data = mpg,aes(x=hwy)) +
+  geom_col(data=dd,aes(xx,yy),  fill=NA, color="black")+
+  geom_density( color="darkcyan", fill="darkcyan", alpha=0.6) +
+  labs(title = "Distribution",
+       subtitle = "",
+       x = "Variable 1",
+       y = "Densité"
+       ) +
+  theme_minimal()
+```
+
+
+la fonction `density()` de R retourne un objet avec plusieurs attributs : 
+
+
+- l'attribut `x` du résultat est la coordonnées des points où la densité est estimée. par défaut , il y a 512 points.
+- l'attribut `y`, les valeurs des densités calculées en chaque point de `x`
+
+ 
+
+On peut donc facilement approcher la probabilité d'avoir un individu dont la variable est contenue entre deux valeurs.
+
+1. On calcule la densité d'une variable , ici `hwy` du dataset `mpg`
+
+```{r exple_rieman, echo=TRUE, cache=TRUE, warning=FALSE, message=FALSE}
+data(mpg)
+dens <- density(mpg$hwy)
+```
+
+
+2. On calcule le pas d'intégration $\delta$, en calculant l'écart entre deux points successifs de l'attribut `x` de la 
+
+```{r reimann2, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+delta <-  dens$x[2] -dens$x[1]
+delta
+```
+
+3. On calcule la somme des valeurs de densité entre deux bornes `b1` et `b2`
+
+```{r reimann3, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+b1 <- 27
+b2 <- 34
+# détermination des index des valeurs entre b1 et b2 
+index_x_b1 <-  which(dens$x > b1)[1]
+index_x_b2 <-  which(dens$x > b2)[1]
+# somme des valeurs de desnité 
+sumdens <- sum(dens$y[index_x_b1:index_x_b2])
+# calcul de la proba
+proba <-  sumdens * delta
+cat(proba)
+```
+
+4.  On peut normaliser par une constante d'intégration. Comme on approxime une probabilité par des valeurs discrètes, on fait obligatoirement une erreur , car il faudrait que $\delta$ tende vers 0 pour que (limite de) la somme de Riemann soit égale à l'intégrale $\int_a^bf(t)dt$. 
+
+On peut évaluer cette erreur en calculant la somme de Riemann sur toute l'étendue de la variable.
+Cette valeur s'approche de 1, sa valeur théorique qui serait la probabilité de la variable calculée sur tout son univers.
+
+```{r error_riemann, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+#contante de normalisation 
+constante_integ <- sum(dens$y)*delta
+constante_integ
+```
+
+On voit qu'on est assez proche de 1 !
+On peut normaliser le calcul de la probabilité par cette constante pour tenir compte de cette erreur.
+
+
+
+```{r error_riemann2, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+proba_corrig <-  proba/constante_integ
+proba_corrig
+```
+
+
+On pourrait vérifier que cette erreur est d'autant plus importante que le pas d'intégration est important.
 
 
 ## Exemples de distributions de lois  connues
@@ -105,7 +222,7 @@ Ce sont des distributions de probabilités que l'on peut formaliser par une équ
 
 ### Loi Gaussienne 
 
-La plus connue est la **distribution Gaussienne**, on dit aussi **distribution normale** du nom de la loi de probabilité qu'elle suit : la loi dite **normale**. 
+La plus connue est la **distribution Gaussienne**, on dit aussi **distribution normale** du nom de la loi de probabilité qu'elle suit : la loi **normale**. 
 
 Cette loi a deux paramètres : 
 
@@ -315,7 +432,7 @@ Si la forme de la distribution est suffisamment régulière, cette tendance peut
 Les indicateurs de tendance centrale de la distribution d'une variable sont la 
 **moyenne** et ses variantes, la **médiane** et le **mode**.
 
-### Moyenne
+### Moyenne(s)
 
 
 La moyenne d'une variable $x$ , notée $\bar{x}$ , s'écrit :
@@ -351,29 +468,31 @@ Pour y remédier :
 
 
 
-### Autres Moyennes
+#### Autres Moyennes 
 
 
-#### Moyenne geométrique:
+La moyenne **géométrique**  est définie ainsi 
 
-Elle s'écrit ainsi : 
-
-$$ \bar{x} = \sqrt[n]{\prod _{i=0}^{n} x_i}$$  
+$$ \bar{x}_{geom} = \sqrt[n]{\prod _{i=0}^{n} x_i}$$  
 
 
 
 Elle a l'avantage d'être moins sensible à la présence de valeurs extrêmes que la moyenne algébrique. 
 
 
-#### Moyenne quadratique (RMS) 
+
+
+La **moyenne quadratique** (par fois appelée RMS pour Root Mean Square in english) est définie ainsi:
 
 Elle s'écrit : 
 
 
-$$\bar{x} = \sqrt{\frac{1}{n}\sum _{i=0}^{n} x_i^2} $$
+$$\bar{x}_{quad} = \sqrt{\frac{1}{n}\sum _{i=0}^{n} x_i^2} $$
 
 
-#### Hors sujet : Moyenne glissante
+
+:::{.note}
+ **Moyenne glissante**
 
 Ce n'est pas une moyenne comme les autres, au sens où elle ne résume pas toute une série de valeurs 
 
@@ -385,7 +504,7 @@ Par exemple, pour une moyenne glissante sur une fenêtre de taille 10, la valeur
  
 
 $$\bar{x} = \frac{1}{11}\sum _{j=i-5}^{j=i+5} x_j$$
-
+:::
 
 
 
@@ -400,6 +519,24 @@ Dans ce cas, le mode est la moyenne des valeurs min et max des bornes de la clas
 
 C'est exactement ce que fait un histogramme graphiquement ! 
 
+:::{.note}
+Par définition le mode est unique, mais on peut appeler modes les valeurs des autres pics d'une distribution 
+On parle de distribution **bi-modale** ou **tri-modale** lorsqu'une distribution présente deux ou trois pics. 
+Les *valeurs modales* d'une distribution sont les valeurs correspondant à) ces pics.
+Voici l'histogramme d'une variable dont la distribution est trimodale:
+
+```{r exple_trimodale, echo=F, cache=T}
+x1 <- rnorm(500, mean = 20, 4)
+x2 <- rnorm(500, mean = 50, 2) 
+x3 <- rnorm(500, mean = 80, 10) 
+x <-  c(x1,x2,x3) %>% data.frame()
+names(x) <-  "valeur"
+ggplot(x, aes(x=valeur))+
+  geom_histogram(bins= 40, fill=NA, color="darkcyan")+
+  labs(x= "valeur", y="effectif")
+
+```
+:::
 
 
 #### Avantages et inconvénients du mode
@@ -451,14 +588,24 @@ Comme le mode, la médiane ne dépend pas de toutes les observations : la modifi
 
 Notons que la robustesse de la médiane est bien utile dans le cas de distribution particulièrement asymétriques, où la moyenne est dégradée par les valeurs extrêmes, à droite (valeurs très élevées) ou à gauche (valeurs très faibles). 
 
-Par exemple , pour les revenus mensuels en équivalent temps plein en France en 2016 : 
-le revenu mensuel net moyen est de 2 238 €, le revenu mensuel net médian est de  1 789 € :
+
+
+
+#### Moyenne, médiane et forme de la distribution 
+
+
+L'écart enter la moyenne et la médiane est un bonne indicateur de l'asymétrie d'une distribution , d'autant plus importante que l'écart entre moyenne et médiane est important.
+
+
+Prenons un exemple avec les revenus mensuels en équivalent temps plein en  France en 2016 :  le revenu mensuel net moyen est de 2 238 €, le revenu mensuel net médian est de  1 789 € :
 selon l'[https://www.insee.fr/fr/statistiques/4277680?sommaire=4318291]
+
+
 
 Supposons qu'on cherche à évaluer si un salaire mensuel net équivalent temps plein de 2000€ est un *bon salaire* en France, sans définir trop rigoureusement ce qui signifie «bon».
 
  - 2000€ est inférieur à la moyenne du pays, on peut le considérer comme trop bas pour être «bon».
- - 2000€ est supérieur au salaire médian, il est supérieur à (au moins) la moitié des salaires du pays, et on peut le considérer comme un «bon» salaire.
+ - 2000€ est supérieur au salaire médian, il est supérieur à (au moins) la moitié des salaires du pays, et on peut logiquement le considérer comme un «bon» salaire.
 
 
  Cette double interprétation est due au fait que certains salaires très élevés, mais d'effectifs peu nombreux, tirent la distribution du salaire vers la droite, et avec eux, la moyenne. 
@@ -474,7 +621,7 @@ Tout dépend de la distribution !
 (cette réponse est malheureusement quasiment universelle, d'où l'importance de **toujours représenter visuellement les variables** pour décider en connaissance de cause )
 
 
-De manière générale , quand les distributions ne sont pas trop «biscornues» (déformées, asymétriques, multimodales), la médiane est un bon choix par défaut. 
+De manière générale , quand les distributions ne sont pas trop «biscornues» (déformées, asymétriques), la médiane est un bon choix par défaut.
 
 Également,  observer l'écart numérique entre médiane et moyenne peut être une bonne heuristique pour évaluer rapidement l'**asymétrie** d'une distribution.
 
@@ -547,8 +694,28 @@ Elle est décrite par la **variance**, l' **écart-type**, et le **coefficient d
 
 
 
+Voici un exemple de distributions suivant des lois normales de moyenne 0 et dont la dispersion varie.
 
-Voici un nuage de points formées par deux variables, échantillonnées selon une loi normale $\mathscr{N}(0,1)$ , de moyenne 0 , et d'écart type 1 (nous allons voir dans un instant ce que signifie l'écart-type) 
+
+```{r gaussienne1D, cache=TRUE, fig.width=10, echo=F}
+dfA <- data.frame(X=rnorm(900,sd = 1), type="1")
+dfB <- data.frame(X=rnorm(900,sd = 2), type="2")
+dfC <- data.frame(X=rnorm(900,sd = 5), type="5")
+dfD <- data.frame(X=rnorm(900,sd = 10), type="10")
+
+mydataset <-  rbind(dfA,dfB, dfC, dfD)
+plot1 <- ggplot(mydataset)+
+        geom_density(aes(x=X, fill=type), alpha=0.5  )+
+        theme_light()+
+        labs(title = "Distribution gaussiennes ",  subtitle="(moyenne= 0 ) ", fill ="écart-type")
+plot1
+```
+
+
+Dans cet exemple, on voit que les distributions dont l'écart-type est important ont beaucoup d'individus éloignées de leur moyenne (qui vaut 0).
+
+
+Cet autre exemple montre  un nuage de points formées par deux variables, échantillonnées selon une loi normale $\mathscr{N}(0,1)$ , de moyenne 0 , et d'écart type 1 (nous allons voir dans un instant ce que signifie l'écart-type) 
 
 ```{r gaussienne2D, cache=TRUE, fig.width=10}
 mydataset <- data.frame(X=rnorm(900), Y=rnorm(900))
@@ -559,7 +726,11 @@ plot1
 ```
 
 
-Dans cet exemple, la dispersion nous servira à mesure à quel point les individus s'écartent de la tendance centrale de $X$ et de celle de $Y$, ici le point (0,0).
+Dans ce dernier exemple, la dispersion quantifie à quel point les individus s'écartent de la tendance centrale de $X$ et de celle de $Y$, ici le point (0,0).
+
+
+
+
 
 
 
@@ -702,13 +873,13 @@ l'**Écart inter-déciile**: $Q_9-Q_1$ , nous donne l'**étendue**  de 80% des v
 - les écarts inter-quantiles négligent l'influence des valeurs extrêmes sur la distribution, entraînant un risque de "passer à côté" d'individus ou évènements critiques. 
 - Les écarts inter-quantiles sont partiaux : l'écart inter-quartile néglige 50% de la population !
 
-#### Les boîtes à moustaches (boxplots) avec R
+### Les boîtes à moustaches (boxplots) avec R
 
 Les boxplots , ou boîtes à moustaches sont la représentation courante de la dispersion d'une variable à l'aide de **quartiles**.
 
 Voici comment obtenir un boxplot avec R . On prend pour cet exemple  le dataset `iris`, toujours disponible dans une session R.
 
-```{r boxplot2, cache=TRUE, fig.height=6}
+```{r boxplot2, cache=TRUE, fig.height=6, echo=TRUE}
 boxplot(iris$Sepal.Width ~ iris$Species)
 ```
 
@@ -789,7 +960,9 @@ Plus il est proche de 0, plus les données sont homogènes.
 Il souffre des mêmes inconvénients que la moyenne et l'écart-type : il est sensible aux valeurs extrêmes. 
 
 
-> Comme l'écart type est une sorte de "quantité d'écart à la moyenne", il est parfois difficile d'interpréter directement sa valeur numérique, qui dépend des unités de la variables. Ici pour le $CV$ le fait de diviser par la moyenne *normalise* en quelque sorte cette mesure et permet d'avoir une mesure un peu plus *absolue* de la dispersion de la variable, quelle que soit son unité et son intervalle de valeurs.  
+> Comme l'écart type est une sorte de "quantité d'écart à la moyenne", il est parfois difficile d'interpréter directement sa valeur numérique, qui dépend des unités de la variables. Ici pour le $CV$ le fait de diviser par la moyenne *normalise* en quelque sorte cette mesure et permet d'avoir une mesure un peu plus *absolue* de la dispersion de la variable, quelle que soit son unité et son intervalle de valeurs.
+
+>Cela permet par exemple de comparer la dispersion de variables quantitatives entre elles !  
 
 
 
@@ -889,9 +1062,9 @@ La forme d'une distribution est décrite par deux caractéristiques : sa **symé
 ### Asymétrie
 
 
-L'asymétrie d'une distribution est **positive** si les valeurs fréquentes sont à gauche et la **queue de distribution** (due à quelques valeurs très élevées surreprésentées) est  **à droite** .
+L'asymétrie d'une distribution est **positive** si les valeurs les plus fréquentes (i.e. celles du pic) sont à gauche et la **queue de distribution** (due à quelques valeurs très élevées surreprésentées) est  **à droite** .
 
-L'asymétrie est **négative** si les valeurs fréquentes sont à droite et la **queue de distribution** (due à des valeurs très faibles surreprésentées) est **à gauche**
+L'asymétrie est **négative** si les valeurs les plus fréquentes (i.e. celles du pic) sont à droite et la **queue de distribution** (due à des valeurs très faibles surreprésentées) est **à gauche**
 
 
 ```{r asym1, echo=FALSE, fig.width=8, fig.height=4, cache=TRUE}

@@ -21,7 +21,7 @@ output:
 
 
 <!-- sequence pour compiler  -->
-<!-- options(knitr.duplicate.label = "allow" -->
+<!-- options(knitr.duplicate.label = "allow") -->
 <!-- setwd("~/dev/page_Chercheur_LASTIG/pchapron_homepage/resources/bookdown_cours_stats") -->
 <!-- rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8') -->
 

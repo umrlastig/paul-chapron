@@ -83,9 +83,9 @@ div.note {
     background-repeat: no-repeat;
     background-position: 15px center;
     min-height: 120px;
-    color: #eeeeee;
-    background-color: #E2FAB5;
-    border: solid 3px #ee4545;
+    color: #333333;
+    background-color: #ADD8E6;
+    border: solid 3px #4273CB;
 }
 
 
@@ -95,7 +95,7 @@ div.attention {
 }
 
 div.note {
-  background-image: url("./notabene.png");
+  background-image: url("./noteinfo.png");
 }
 
 

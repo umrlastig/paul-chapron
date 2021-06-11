@@ -285,7 +285,7 @@ Pour une partition en zones d'un espace, on appelle **flux** toute mesure d'int�
 
 On range les mesures qui mesurent ces échanges dans un **matrice de flux**,une matrice carrée $F$ dont le terme général $F_{ij}$  indique la quantité échangée entre le site $i$ en ligne et le site $j$ en colonne .
 
-## Indices 
+### Indices 
 
 $V_i= \sum_i F_{ij} + \sum_j F_{ij}$  : Volume = Départs + Arrivées
 
@@ -294,7 +294,7 @@ $S_i = \sum_i F_{ij} - \sum_j F_{ij}$  : Solde= Départs - Arrivées
 $A_i = \frac{S_i}{V_i}$  : Attractivité = ratio des soldes sur les volumes
 
 
-## Cartographie des flux 
+### Cartographie des flux 
 
 
 On en peut pas représenter tous les flux entre toutes les zones (lisibilité).
@@ -347,7 +347,7 @@ title("Dominant Flows of Commuters in the French Grand Est")
 mtext(text = "INSEE, 2011", side = 4, line = -1, adj = 0.01, cex = 0.8)
 ```
 
-## Pour aller plus loin
+### Pour aller plus loin
 
 
 les flux sont modélisés par des graphes, une grande partie de la littérature de l'analyse de réseaux et des notions de théories des graphes peuvent être transposées et utilisées pour l'analyse de flux.
@@ -436,22 +436,18 @@ On détermine les valeurs des coefficients ($\alpha,\ \beta,\ n$)inconnus  par *
 - Contraintes aux marges : aucune , simple, double
 
 
-## la Cartographie comme support
-
-
-### Cartographier le résultats de traitements statistiques
-
-Une carte permet d'explorer "visuellement" des résultats de traitements statistiques : 
-
-- Cartographie univariée : par exemple Cartographie électorale 
-- Cartographie bi-variée : représenter les résidus d'un modèle explicatif à une variable 
-- Cartographie multi-variée : Cartographie de clusters, de coordonnées d'individus dans le plan factoriel (ACP), etc.
-
-
-Typiquement : les résidus d'un modèle sont-ils homogènes dans l'espace ? Si non , pourquoi ? 
 
 
 ## L'étape d'après : modèles dynamiques
+
+
+Les modèles que nous avons jusqu'à présent étaient des modèles statiques: ils décrivaient ou résumaient des données par des objets mathématiques eux aussi "statiques".
+
+Nous avons vu le modèle linéaire , qui résume une nuage de points lorsqu'il a la forme appropriée. Cet objet est fixe, il s'agit des deux coefficient d'une équation de droite $y=ax+b$, et $a$ et $b$ une fois déterminés n'ont pas vocation à évoluer.
+
+
+
+
 
 ### Modèles simples : les automates cellulaires
 

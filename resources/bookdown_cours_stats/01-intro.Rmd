@@ -188,7 +188,7 @@ Penguins data were collected and made available by Dr. Kristen Gorman and the Pa
 </small>
 
 
-Dans cet exemple, une régression linaire a été réalisée entre deux variables : la masse du corps de pingouins et la longueur de leurs nageoires. Pour autant que cette régression linaire soit  de bonne qualité (cf la section dédiée dans le chapitre \@ref(bivariee),  la droite de régression, ici en bleu,  est un modèle **linéaire**  qui permet , à partir de la valeur d'une des deux variables, de déduire la valeur de l'autre. 
+Dans cet exemple, une régression linaire a été réalisée entre deux variables : la masse du corps de pingouins et la longueur de leurs nageoires. Pour autant que cette régression linaire soit  de bonne qualité (cf la section dédiée dans le chapitre \@ref(bivariee)),  la droite de régression, ici en bleu,  est un modèle **linéaire**  qui permet , à partir de la valeur d'une des deux variables, de déduire la valeur de l'autre. 
 
 Par exemple, si on était en présence d'un pingouin  avec une règle graduée , mais sans balance, et qu'on mesurait sa nageoire à 197mm, on peut se servir de la droite de régression pour postuler que ce pingouin pèse 4000g. C'est ce calcul qui est appelé parfois **prédiction** : le modèle linéaire, s'il est bien ajusté au nuage de points , permet de prédire la valeur de la masse du pingouin.
 
@@ -204,7 +204,7 @@ Ce résumé peut prendre plusieurs formes :
   - **Graphiques** : nuages de points , histogrammes, distributions, camemberts...
   - **Mesures agrégées** : moyenne , médiane, fréquences, caractéristiques des distributions, par exemple leur symétrie, leur aplatissement  ... calculées à partir des valeurs des variables
   - **Liaisons statistiques** entre variables : corrélation, covariance, qui sont des mesures de l'intensité du lien qui peut exister entre deux variables
-  - **Forme et structure** des données, par exemple des regroupements,  détectées par classification , Analyse en Composantes Principale,...
+  - **Forme et structure** des données, particulièrement les regroupements,  détectées par classification (k-means, Random Forest, DBSCAN), ou la réduction de la dimensionalité des données (Analyse en Composantes Principale),...
 
 
 Voici des exemples de graphiques habituels : 
@@ -255,7 +255,7 @@ ggplot(data = mpg) +
        ) +
   theme_minimal()
 ```
- la densité d'une distribution est un autre moyen de représenter la répartition des valeurs d'une variable quantitative? Pour l'interprétation d'un tel graphique, reportez-vous à la section  dédiée \@ref{interpret_dens} du chapitre \@ref{univariee} 
+ la densité d'une distribution est un autre moyen de représenter la répartition des valeurs d'une variable quantitative? Pour l'interprétation d'un tel graphique, reportez-vous à la section  dédiée \@ref(interpret_dens) du chapitre \@ref(univariee)  
 
 ```{r exple_pie, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
 
@@ -437,12 +437,12 @@ Claus O. Wilke [https://serialmentor.com/dataviz/]
 
 
 
-# Difficultés de la statistique
+## Difficultés de la statistique
 
 Nous donnons ci-dessous quelques exemples de difficultés inhérentes à l'analyse statistique.
 
 
-## Plusieurs discours sont possibles
+### Plusieurs discours sont possibles
 
 
 Les statistiques sont délicates parce qu'un.e statisticien.ne ne peut pas se limiter à des calculs et à la représentation graphique de ses données, mais doit également les décrire **et** les  interpréter.
@@ -466,11 +466,10 @@ Voici les chiffres du bilan d’une entreprise en 2013 et 2014
 * Mme. BBB :  «le salaire moyen a augmenté d’environ 18%»
 
 
-Ces deux phrases sont justes, et il n'y a pas lieu d'en choisir une plus que l'autre. Un.e analyste consciencieux.se se devrait de mentionner les deux à la fois ! 
+Ces deux phrases sont justes, et il n'y a pas lieu d'en choisir une plus que l'autre.
 
 
-
-## Taille et représentativité de  l'échantillon
+### Taille et représentativité de  l'échantillon
 
 
 Les données ne sont jamais exhaustives: elles sont le résultats de mesures, d'enquête et ne captent qu'une partie, un **échantillon** de l'ensemble des objets qu'elles décrivent. 
@@ -480,6 +479,8 @@ La taille et la représentativité de cet échantillon sont critiques, et il est
 
 Quand on en a la possibilité, il faut toujours privilégier les données les plus nombreuses et les plus représentatives du phénomène étudié.
 
+
+#### Exemple de l'effet de la taille
 
 Prenons un exemple avec des données "réelles" , on va calculer la hauteur moyenne des arbres de paris , dont le jeu de données est disponible [ici](https://opendata.paris.fr/explore/dataset/les-arbres/information/?disjunctive.typeemplacement&disjunctive.arrondissement&disjunctive.libellefrancais&disjunctive.genre&disjunctive.espece&disjunctive.varieteoucultivar&disjunctive.stadedeveloppement&disjunctive.remarquable)
 
@@ -505,36 +506,40 @@ mean(arbresJeunes$hauteurenm)
 
 Observons maintenant l'effet que peut avoir la taille de l'échantillon sur un calcul de moyenne : 
 
-On va prendre des échantillons du dataset des arbres de Paris  de plus en plus petits (on divise par deux la taille de l'échantillons à chaque fois) et on va observer la variation de la hauteur moyenne des arbres de cet échantillon en fonction de la taille de l'échantillon.
+On va prendre des échantillons du dataset des arbres de Paris  de plus en plus petits (on divise par deux la taille de l'échantillons à chaque fois) et on va observer la variation de la hauteur moyenne des arbres en fonction de la taille de l'échantillon sur lequel on calcule.
 
-Pour chaque taille d'échantillon , on réalise plusieurs tirages et on observe les valeurs moyennes de la hauteur en mètres sur ces échantillons
+Pour chaque taille d'échantillon, on réalise plusieurs tirages (50) et on observe la dispersion des valeurs moyennes de la hauteur en mètres sur 50 tirages , pour montrer la **variabilité de la valeur moyenne**
+
+A titre indicatif, voici un moyen de coder simplement cette expérience en R : 
 
 
 
 ```{r effetTailleSample ,cache =TRUE,message=FALSE}
-nbSpls <-  nrow(arbres)
-spls <-  c()
-while(nbSpls > 1){
-  nbSpls <-  floor(nbSpls/2)
-  spls <-  c(spls, nbSpls)
+
+nb_samples <-  nrow(arbres)
+samples <-  c()
+while(nb_samples > 1){
+  nb_samples <-  floor(nb_samples/2)
+  samples <-  c(samples, nb_samples) # concaténation des listes
 }
 
-myfunc<- function(taille,data){
+# fonction qui tire un échantillon d'une certaione taille dans une liste
+myfunction<- function(taille,data){
   return(sample(data,taille,replace = F))
 }
 # tirage  simple
-samples_hauteur <- sapply(spls, myfunc, arbres$hauteurenm)
+samples_hauteur <- sapply(samples, myfunction, arbres$hauteurenm)
 valeurs_moyennes <-  sapply(samples_hauteur, mean)
-names(valeurs_moyennes) <-  spls %>% as.character()
+names(valeurs_moyennes) <-  samples %>% as.character()
 
-#on répète  fois le tirage
-spls_sizes <- rep(spls, 50)
-spl_h <- sapply(spls_sizes, myfunc, arbres$hauteurenm )
+#on répète 50 fois le tirage
+spls_sizes <- rep(samples, 50)
+spl_h <- sapply(spls_sizes, myfunction, arbres$hauteurenm )
 spl_moy  <-  sapply(spl_h, mean)
 
 # constitution du dataframe
 dfhmoy <-  data.frame(spl_moy, spls_sizes)
-dfhmoy$spls_sizes <-  factor(dfhmoy$spls_sizes, levels=spls)
+dfhmoy$spls_sizes <-  factor(dfhmoy$spls_sizes, levels=samples)
 names(dfhmoy) <-  c("h_moy", "spl_size")
 #graphique 
 ggplot(dfhmoy ,aes(h_moy, spl_size))+
@@ -544,26 +549,23 @@ ggplot(dfhmoy ,aes(h_moy, spl_size))+
   labs(x="hauteur moyenne en mètre",
        y="taille de l'échantillon",
        title="Sensibilité de la moyenne à la taille de l'échantillon",
-       subtitle = "chaque échantillon est tiré 50 fois dans la population")
+       subtitle = "On tire 50 échantillons de chaque taille.")
 ```
 
 Ce graphique présente  sous la forme d'un boxplot (ou boîte à moustaches), la distribution de la valeur des moyennes des hauteurs, calculées sur des échantillons dont la taille  varie de 84508 individus, soit la moitié du dataset des arbres filtrés, à 1 individu.
+Le boxplot montre l'étendue de la variation d'une variable quantitative
 
-Pour chaque taille d'échantillon, on réalise 50 tirages de cette même taille, pour éviter les "coups de chance", et on calcule pour la moyenne pour chaque taille. 
+Pour chaque taille d'échantillon, on réalise 50 tirages  pour éviter les "coups de chance", et on calcule la moyenne de chaque échantillon.
 On a donc calculé 50 valeurs de moyenne , pour chaque taille d'échantillon.
 
+Plus la boîte à moustache est grande (étirée), plus les valeurs de la variable qu'elle représente sont variées. Le trait noir au milieu représente la médiane des valeurs.
+
+Sur notre graphique, on constate que la médiane des moyennes est très stable et est toujours proche de 10, mais que les tailles des boxplots sont très petites pour les échantillons de grande taille(indiquant que la moyenne des hauteurs varie peu), et qu'au contraire , pour des tailles d'échantillons faibles (moins de 100 individus), la moyenne des hauteurs varie plus fortement. 
+
+Nous aborderons l'interprétation des boxplots dans le chapitre \@ref(univariee) de façon plus précise.
 
 
-Pour voir comment la valeurs des 50 moyennes varie, on représente la distributions des valeurs de moyenne obtenues sous la forme d'un boxplot. Le boxplot montre l'étendue de la variation d'une variable quantitative
-.
-Plus la boîte est grande (étirée), plus les valeurs de la variable qu'il représente varient. Le trait noir au milieu représente la médiance des valeurs.
-
-Sur notre graphique, on constate que la médiane des moyenne est très stable et est toujours proche de 10, mais que les tailles des boxplot sont très petites pour les grandes tailles d'échantillons (indiquant que la moyenne des hauteurs varie peu), et qu'au contraire , pour des tailles d'échantillons faibles (moins de 100 individus), la moyenne des hauteurs varie plus fortement. 
-
-Nous aborderons l'interprétation des boxplots dans le chapitre \@ref(univariée) de façon plus précise.
-
-
-Pour finir de se convaincre de ces variations, voici la représentation des valeurs moyennes en fonction de la taille des échantillons sous la forme d'un nuage de point: 
+Pour finir de se convaincre de ces variations, voici la représentation alternative des valeurs moyennes en fonction de la taille des échantillons sous la forme d'un nuage de point: 
 
 ```{r effetTailleSample2 ,cache =TRUE,message=FALSE}
 ggplot(dfhmoy ,aes(h_moy, spl_size))+
@@ -573,12 +575,12 @@ ggplot(dfhmoy ,aes(h_moy, spl_size))+
   labs(x="hauteur moyenne en mètre",
        y="taille de l'échantillon",
        title="Hauteur moyenne en fonction de la taille d'échantillon",
-       subtitle = "chaque échantillon est tiré 50 fois dans la population")
+       subtitle = "On tire 50 échantillons de chaque taille.")
 ```
 
 
 
-## Le paradoxe de Simpsons
+### Le paradoxe de Simpsons
 
 
 
@@ -593,10 +595,10 @@ source: wikipedia
 </small>
 
 
-Par exemple, le nuage de points animés ci-dessus, illustre comment on peut formuler deux hypothèses contradictoire concernant la même population : 
+Par exemple, le nuage de points animé ci-dessus, illustre comment on peut formuler deux hypothèses contradictoire concernant la même population : 
 
- - $H_A$ : la variable $x$ est corrélée négativement avec la variable $y$ 
- - $H_B$ : la variable $x$ est corrélée positivement avec la variable $y$ 
+ - $H_A$ : la variable $x$ est corrélée linéairement et négativement avec la variable $y$ 
+ - $H_B$ : la variable $x$ est corrélée linéairement positivement avec la variable $y$ 
 
 
 $H_A$ est valable si l'on considère les valeurs de la population dans son ensemble et **sans** tenir compte des groupes  qui la structurent.
@@ -604,28 +606,34 @@ $H_A$ est valable si l'on considère les valeurs de la population dans son ensem
 À l'intérieur de chaque groupe, $H_B$ est valable et contredit $H_A$.
 
 
-## Échelle individuelle vs. Échelle agrégée 
+### Échelle individuelle vs. Échelle agrégée 
 
 
-Lorsqu'on manipule des données spatiales, le territoire sur lequel les données sont disponibles peut être découpé de plusieurs façons.
-
-Par exemple, la France se découpe en régions, elles-mêmes décomposées en départements, eux-mêmes décomposés en commune. 
-
-Un jeu de données spatial est défini à un certain niveau de découpage spatial. Par exemple, on peut disposer du revenu mensuel moyen des foyers par commune, mais on ne dispose pas des données "brutes" qui y ont conduit: les revenus des personnes qui composent les foyer des communes.
+Lorsqu'on manipule des données spatiales, le territoire sur lequel les données sont disponibles peut être découpé de plusieurs façons. Souvent, ces découpages sont imbriqués : la maille d'un niveau $n$ est partionnée en plusieurs mailles au niveau $n-1$. Par exemple, la France se découpe en régions, elles-mêmes décomposées en départements, eux-mêmes décomposés en commune.  
 
 
+
+La difficulté est qu'un jeu de données spatial est défini et disponible à un certain niveau de découpage spatial, et que considérer ces mêmes données à un niveau de découpage plus fin ou plus grossier nécessite une transformation : l'**agrégation** ou la **désagrégation**.  
+L'agrégation est relativement directe , la désagrégation l'est beaucoup moins.
+
+
+
+
+Par exemple, on peut disposer du revenu mensuel moyen des foyers par commune, mais on ne dispose pas des données "brutes" qui y ont conduit: les revenus des personnes qui composent les foyer des communes.
 Si on désire considérer la même variable à un niveau de découpage plus grossier (ici, les régions) ou plus fin (ici, les communes), on devra agréger ou désagréger les données. 
 
-L'agrégation est relativement directe , la désagrégation l'est beaucoup moins
+
+### Agrégation 
+
+On parle d'agrégation lorsqu'on désirer regrouper des données disponibles à un niveau de découpage donné au niveau de découpage supérieur (plus large, par exemple , regroupper les données de communes à l'échelle des départements.)
+
+Cela revient à inférer des caractéristiques concernant les unités agrégées d’après les caractéristiques individuelles.
+
+En fonction des données manipulées, l'agrégation peut se faire par la somme (par exemple pour des stocks) la moyenne (par exemple pour des ratios), ou tout autre combinaison bien choisie.
 
 
-**Agrégation** 
 
-On parle d'agrégation lorsqu'on désirer regrouper des données disponibles à un niveau de découpage donné   Inférer des caractéristiques concernant les unités agrégées d’après les caractéristiques individuelles 
-
-
-
-**Désagrégation** ou  **Ventilation** 
+### Désagrégation ou  Ventilation 
 
 
 On parle de désagrégation ou de ventilation de données lorsqu'à partir de données disponibles à un niveau de découpage donné, on cherche à simuler  une répartition de données à un niveau de découpage **plus fin**, tout en restant cohérent avec la répartition des données au niveau de découpage originel. 
@@ -677,7 +685,7 @@ Voici quelques exemples qui montrent ces difficultés.
 ### Effet de zonage 
 
 
-Cette image tiré de la page wikipedia [gerrymanding](https://fr.wikipedia.org/wiki/Gerrymandering), illustre bien comment un découpage d'une même zone peut amener à des résultats de vote différents.
+Cette image tirée de la page wikipedia [gerrymanding](https://fr.wikipedia.org/wiki/Gerrymandering), illustre bien comment un découpage d'une même zone peut amener à des résultats de vote différents.
 
 
 

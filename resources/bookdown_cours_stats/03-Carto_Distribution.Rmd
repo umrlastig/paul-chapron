@@ -1,4 +1,4 @@
-# Cartographie, Distribution et Échelle de couleurs {#carto_discretis}
+# Classification et Échelle de couleurs pour la cartographie {#carto_discretis}
 
 
 **Contexte** : on veut faire une carte choroplèthe d'une variable sur une couche vecteur.  
