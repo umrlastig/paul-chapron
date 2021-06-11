@@ -169,7 +169,7 @@ semis-de-points
 statistiques-simples-sur-un-semis
 point-moyen-et-point-médian
 dispersion-et-concentration-dun-semis
-autorcorrélation-spatiale-moran-et-geary
+autocorrélation-spatiale-moran-et-geary
 lautocorrélation-spatiale
 le-modèle-nul-pour-un-semis-de-points
 auto-corrélation-spatiale-moran-et-geary

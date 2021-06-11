@@ -317,7 +317,7 @@ data_wide <- read.table(header=TRUE, text='
        3   F     9.5  13.1  13.8
        4   M    11.5  13.4  12.9
 ')
-data_wide %>%  gather(,key = measure,value = value, pct:measure_t2)
+data_wide %>%  gather(key = measure,value = value, pct:measure_t2)
 ```
 
 

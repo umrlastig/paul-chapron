@@ -68,7 +68,7 @@ Pour constituer ce cours, j'ai utilisé les références suivantes:
     - http://www.foad-mooc.auf.org/IMG/pdf/424B_-Application_des_methodes_statistiques_d_analyse.pdf
     - http://www.itse.be/statistique2010/co/Module_statistique_FSP.html
 
-J'ai également fait un usage immodéré de Wikipedia, Google, et StackOverflow
+J'ai également fait un usage immodéré de Wikipedia, Google, StackOverflow et je vous encourage à faire de même.
 
 Pour les principes de la visualisation, 
 j'essaye de suivre quelques uns des conseils prodigués par Claus O. Wilke dans son ouvrage [Fundamentals of Data Visualization]( https://clauswilke.com/dataviz/)

@@ -135,7 +135,7 @@ Le nombre de points est identique dans les deux cartes.
 Dans le semis de gauche, dans la surface de chaque IRIS, on tire 2 points aléatoirement.
 Dans le semis de droite, on tire aléatoirement le même nombre de points (2 x Nombre d'IRIS), mais dans toute la surface de la Seine-Saint-Denis .
 
-```{r polar1, cache =TRUE, fig.height=4, fig.width=8, echo=FALSE, eval=FALSE }
+```{r polar1, cache =TRUE, fig.height=4, fig.width=8, echo=FALSE }
 set.seed(5678)  
 ssd <-  read_sf("data/neufTrois_simple.shp")
 par(mar=c(0,0,0,0))

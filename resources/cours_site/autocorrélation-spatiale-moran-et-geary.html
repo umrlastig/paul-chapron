@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="autocorrélation-spatiale-moran-et-geary.html"/>
-
+<link rel="prev" href="anaspat.html"/>
+<link rel="next" href="references.html"/>
 <script src="book_assets/header-attrs-2.8/header-attrs.js"></script>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -378,17 +378,218 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="autocorrélation-spatiale-moran-et-geary" class="section level1" number="7">
+<h1><span class="header-section-number">Chapitre 7</span> Autocorrélation spatiale : Moran et Geary</h1>
+<div id="lautocorrélation-spatiale" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> L’autocorrélation spatiale</h2>
+<p>La <strong>concentration</strong> d’un semis est mesurée par l’<strong>indice de concentration</strong>, qui décrit la régularité des positions des points.</p>
+<p>Pour l’obtenir :</p>
+<ul>
+<li>on discrétise l’espace en <span class="math inline">\(C\)</span> mailles de formes régulière( carrée, hexagonale)</li>
+<li>on calcule le nombre de points théorique par maille (la densité théorique) : <span class="math inline">\(D_{théo}= N/C\)</span></li>
+<li>on compte le nombre de points du semis par maille (la densité observée) et on calcule la variance de cette série : <span class="math display">\[var(D_{obs}) = \frac{1}{C}\sum_c(nb_c-D_{théo})^2\]</span></li>
+</ul>
+<p>avec:</p>
+<ul>
+<li><span class="math inline">\(nb_c\)</span>, le nombre de points comptés dans la maille <span class="math inline">\(c\)</span></li>
+<li><span class="math inline">\(C\)</span> le nombre de maille du maillage</li>
+<li><span class="math inline">\(N\)</span> le nombre de points du semis.</li>
+</ul>
+<p>L’indice de concentration est le ratio entre la densité et la variance du nombre de points par maille : <span class="math display">\[IC= var(D_{obs})/D_{théo}\]</span></p>
+<ul>
+<li>si IC = 1 , la distribution est <strong>aléatoire</strong></li>
+<li>si IC &gt; 1 , la distribution est <strong>concentrée</strong></li>
+<li>si IC &lt; 1 , la distribution est <strong>homogène</strong></li>
+</ul>
+<p>Vous avez reconnu la comparaison -ici par un ratio- entre la distribution <em>observée</em> d’une quantité -la densité- et sa distribution <em>théorique</em>. De cette comparaison, on peut quantifier l’écart au modèle nul, ici une répartition aléatoire des objets.</p>
+<p>comme dans le test du <span class="math inline">\(\chi^2\)</span> , abordé en section <a href="bivariee.html#chi2">5.7</a>.</p>
+<p>Voici quelques exemples de semis avec leur indice de concentration associés:</p>
+<div id="le-modèle-nul-pour-un-semis-de-points" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Le modèle nul pour un semis de points</h3>
+<p>Un processus de spatial de Poisson est un processus spatialement
+aléatoire.</p>
+<p>Dans un espace découpé en zones, on estime la probabilité d’avoir un nombre de points)dans une zone <span class="math inline">\(z\)</span> par une distribution de poisson de moyenne <span class="math inline">\(\lambda * surface(zone)\)</span>.</p>
+</div>
+</div>
+<div id="auto-corrélation-spatiale-moran-et-geary" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Auto-corrélation spatiale : Moran et Geary</h2>
+<p>L’auto-corrélation spatiale est une mesure statistique qui répond à la question suivante:</p>
+<center>
+<p>« Les valeurs d’entités spatiales proches sont-elles plus similaires que les valeurs d’entités lointaines ?»</p>
+«Est-ce que les grosses(resp. petites) valeurs sont rapprochées (resp.dispersées) ? »
+</center>
+<p><br />
+E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regroupées au même endroit dans une ville ?</p>
+<p>Valeurs positives : situations ségrégées</p>
+<p>Valeurs nulles : répartition aléatoire</p>
+<p>Valeurs négatives : alternance parfaite entre valeurs</p>
+<div id="lindice-de-moran" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> L’indice de Moran</h3>
+<p>L’indice <span class="math inline">\(I\)</span> de Moran utilise un terme <span class="math inline">\(\omega_{ij}\)</span> positif d’“interaction” pour quantifier la <strong>proximité</strong> entre deux entités <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span>.</p>
+<p>On peut le choisir discret (1 si voisins , 0 sinon) ou continu (inverse de la distance).</p>
+<p><span class="math inline">\(I=\frac{n}{\sum_i \sum_j \omega_{ij}} \frac{\sum_i \sum_j \omega_{ij}(X_i-\bar{X})(X_j-\bar{X})}{\sum_i(X_i-\bar{X})^2}\)</span></p>
+<p><span style= "font-size:0.5;"> avec <span class="math inline">\(n\)</span> le nombre d’entités spatiales ,</p>
+<p><span class="math inline">\(\omega\)</span> une matrice carrée de poids positifs de dimension <span class="math inline">\(n\)</span>, telle que <span class="math inline">\(\omega_{ij}\)</span> quantifie la proximité, l’influence de <span class="math inline">\(j\)</span> sur <span class="math inline">\(i\)</span> ,</p>
+<p><span class="math inline">\(\bar{X}\)</span> la moyenne de la variable <span class="math inline">\(X\)</span> </span></p>
+</div>
+<div id="lindice-de-geary" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> L’indice de Geary</h3>
+<p>Cet indice, noté <span class="math inline">\(C\)</span>, est dit plus “local” que l’indice de Moran</p>
+<p><span class="math inline">\(C=\frac{(n-1) \sum_i \sum_j \omega_{ij}(X_i-X_j)^2 }{2W\sum_i(X_i-\bar{X})^2}\)</span></p>
+<p><span class="math inline">\(C\in[0;2]\)</span></p>
+<p><span class="math inline">\(C&lt;1\)</span> : auto-corrélation négative,</p>
+<p><span class="math inline">\(C=1\)</span> : pas d’autocorrelation,</p>
+<p><span class="math inline">\(C&gt;1\)</span> : autocorrélation positive</p>
+<p><span style="font-size:0.6em;"> avec <br><span class="math inline">\(n\)</span> le nombre d’entités spatiales,<br>
+<span class="math inline">\(\omega\)</span> une matrice carrée de poids positifs de dimension <span class="math inline">\(n\)</span>, de somme <span class="math inline">\(W\)</span> et telle que <span class="math inline">\(\omega_{ij}\)</span> quantifie la proximité, l’influence mutuelle de <span class="math inline">\(j\)</span> sur <span class="math inline">\(i\)</span>, <span class="math inline">\(\bar{X}\)</span> la moyenne de la variable <span class="math inline">\(X\)</span> </span></p>
+</div>
+<div id="commandes-r" class="section level3" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Commandes R</h3>
+<p>Les mesures des indices de Moran et Geary s’obtiennent avec les fonctions <code>moran</code> et <code>geary</code> du package <code>spdep</code></p>
+</div>
+<div id="interprétation-de-lindice-de-moran" class="section level3" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Interprétation de l’indice de Moran</h3>
+<p>les images suivantes montrent comment varient les valeurs de l’indice de Moran en fonction de la localisation d’une quantité dans une grille régulière.</p>
+<p><img src="./morangini.png" /></p>
+<p><img src="./morangini2.png" /></p>
+</div>
+</div>
+<div id="les-flux" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Les flux</h2>
+<div id="matrice-de-flux" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Matrice de flux</h3>
+<p>Pour une partition en zones d’un espace, on appelle <strong>flux</strong> toute mesure d’intéraction spatiale qui implique des échanges, des déplacements entre deux zones, matériels ou immatériels.</p>
+<p>On range les mesures qui mesurent ces échanges dans un <strong>matrice de flux</strong>,une matrice carrée <span class="math inline">\(F\)</span> dont le terme général <span class="math inline">\(F_{ij}\)</span> indique la quantité échangée entre le site <span class="math inline">\(i\)</span> en ligne et le site <span class="math inline">\(j\)</span> en colonne .</p>
+</div>
+<div id="indices" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Indices</h3>
+<p><span class="math inline">\(V_i= \sum_i F_{ij} + \sum_j F_{ij}\)</span> : Volume = Départs + Arrivées</p>
+<p><span class="math inline">\(S_i = \sum_i F_{ij} - \sum_j F_{ij}\)</span> : Solde= Départs - Arrivées</p>
+<p><span class="math inline">\(A_i = \frac{S_i}{V_i}\)</span> : Attractivité = ratio des soldes sur les volumes</p>
+</div>
+<div id="cartographie-des-flux" class="section level3" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Cartographie des flux</h3>
+<p>On en peut pas représenter tous les flux entre toutes les zones (lisibilité).</p>
+<p>On détermine les flux <strong>dominants</strong> de la façon suivante:</p>
+<p><span class="math inline">\(F_{ij}\)</span> est dominant si:</p>
+<ul>
+<li><span class="math inline">\(i\)</span> envoie son flux le plus important vers <span class="math inline">\(j\)</span></li>
+<li>la somme des arrivées de <span class="math inline">\(j\)</span> est plus importante que la somme des arrivées de <span class="math inline">\(i\)</span></li>
+</ul>
+<p>package <code>flows</code> de R : <a href="https://cran.r-project.org/web/packages/flows/vignettes/flows.html" class="uri">https://cran.r-project.org/web/packages/flows/vignettes/flows.html</a> par les auteurs de <code>cartography</code></p>
+</div>
+</div>
+<div id="exemple" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Exemple</h2>
+<pre><code>## Warning in wkt(obj): CRS object has no comment</code></pre>
+<p><img src="bookdown_cours_stats_files/figure-html/flow-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="pour-aller-plus-loin" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Pour aller plus loin</h3>
+<p>les flux sont modélisés par des graphes, une grande partie de la littérature de l’analyse de réseaux et des notions de théories des graphes peuvent être transposées et utilisées pour l’analyse de flux.</p>
+<p>E.g. Attributs de noeuds ou d’arcs :</p>
+<ul>
+<li>centralité de degré (nombres de voisins dans le graphe)</li>
+<li>centralité d’intermédiarité (fréquence d’apparition du noeud dans les plus courts chemins entre deux noeuds du graphe)</li>
+</ul>
+<p>Attributs de graphes :</p>
+<ul>
+<li>communautés (sous graphes denséments connectés)</li>
+<li>densité de liens</li>
+<li>…</li>
+</ul>
+</div>
+</div>
+<div id="le-modèle-gravitaire" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Le modèle gravitaire</h2>
+<div id="fin-xixe-les-lois-de-ravenstein" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Fin XIX<sup>e</sup> : Les lois de Ravenstein</h3>
+<p>(Ravenstein E., 1885 &amp; 1889, “The Laws of Migration,” Journal of Royal Statist. Society, London , d’après Noin D., 1988, Géographie de la Population, Masson, Paris, pp. 273-274, cité par C. Grasland.</p>
+<p><span style="font-size:0.6em; line-height:normal;">Le nombre de migrants diminue quand la distance augmente; la plupart ne vont pas très loin ; ceux qui se déplacent sur de grandes distances se dirigent de préférence vers les grands centres commerciaux et industriels.<br>
+Le processus se fait de la façon suivante : une ville à croissance rapide attire les gens des régions environnantes ; les vides ainsi créés sont comblés par les migrants de districts plus éloignés ; la force d’attraction des grandes villes dynamiques se fait donc sentir de proche en proche en diminuant d’intensité. Le nombre de migrants de la zone d’accueil est donc <strong>proportionnel à la population de la zone d’origine et inversement proportionnel à la distance qui les sépare</strong>.<br>
+Chaque courant principal de migration suscite un contre-courant compensatoire.<br>
+Les citadins ont une mobilité plus faible que les ruraux<br>
+Les femmes ont une mobilité plus forte que les hommes, au moins à courte distance.<br>
+L’intensité des migrations augmente avec le développement du commerce, de l’industrie et des transports<br>
+Les facteurs déterminant la migration sont nombreux mais le plus important est le facteur économique</span></p>
+</div>
+<div id="le-modèle-gravitaire-1" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Le modèle gravitaire</h3>
+<p>Modèle simple, déterministe et symmétrique qui prose de calculer l’intensité de l’interaction entre deux entités spatiales en fonction de leurs <strong>masses</strong> et de la distance qui les sépare.</p>
+<p>Plusieurs formulations :</p>
+<p><span class="math inline">\(Fij = k \frac{P_i . P_j}{D_{ij}^2}\)</span></p>
+<p>avec <span class="math inline">\(P_i\)</span> la masse (e.g. population, attraction, emmission, etc.) de l’entité spatiale <span class="math inline">\(i\)</span>, <span class="math inline">\(D_ij\)</span> une fonction de <strong>coût</strong> e.g. la distance qui sépare <span class="math inline">\(i\)</span> de <span class="math inline">\(j\)</span></p>
+<p><span class="math inline">\(Fij = k \frac{P_i . P_j}{D_{ij}^\alpha}\)</span></p>
+<p>avec alpha le <strong>frein à la distance</strong> (distance decay) , pour modéliser des déplacements plus ou moins faciles</p>
+</div>
+<div id="distance-et-interaction" class="section level3" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Distance et interaction</h3>
+<p style="font-size:0.6em; line-height:normal;">
+D’après H.Commenges, cours d’analyse spatiale , Delhi R School
+</p>
+<p>Lorsque l’interaction est spatialisée, elle implique nécessairement une <strong>distance</strong>.</p>
+<ul>
+<li>L’interaction spatiale considère le déplacement comme un effort.</li>
+<li>L’interaction spatiale est le rapport dialogique entre <strong>mise en contact</strong> et <strong>friction de l’éloignement</strong>.</li>
+<li>L’interaction spatiale être abordée de deux façons : relations entre lieux ou attraction/influence d’un lieu sur les autres lieux.</li>
+<li>Dans le premier cas on parlera d’analyse de flux</li>
+<li>Dans le second cas on parlera d’analyse de position (cf. Accessibilité)</li>
+</ul>
+</div>
+<div id="utilisation-du-modèle-gravitaire" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Utilisation du modèle gravitaire</h3>
+<p>Exemple d’une formulation plus générale :
+<span class="math inline">\(F_{ij} = \alpha_i \beta_j E_i A_j C_{ij}^{−n}\)</span></p>
+<p align="left" style="font-size: 70%">
+<p>avec <span class="math inline">\(\alpha_i\)</span> et<span class="math inline">\(\beta_j\)</span> des facteurs d’équilibrage qui assurent la contrainte aux marges,<br>
+<span class="math inline">\(E_i\)</span> et <span class="math inline">\(A_j\)</span> : valeurs d’émission et d’attraction de la zone <br>
+<span class="math inline">\(C_{ij}\)</span> : coût généralisé du trajet de <span class="math inline">\(i\)</span> vers <span class="math inline">\(j\)</span> : temps, prix , inconfort.<br>
+<span class="math inline">\(n\)</span> : frein à la distance, la valeur varie selon les motifs de déplacement. (plus faible vers le travail que vers des motifs “secondaires” (e.g. courses quotidiennes)<br><br></p>
+<p>On détermine les valeurs des coefficients (<span class="math inline">\(\alpha,\ \beta,\ n\)</span>)inconnus par <strong>calibration</strong> sur des données (problème d’optimisation classique, qu’on peut résoudre par algorithme génétique, recuit simulé, etc.)</p>
+</div>
+<div id="variantes-du-modèles-gravitaires" class="section level3" number="7.5.5">
+<h3><span class="header-section-number">7.5.5</span> Variantes du modèles gravitaires</h3>
+<ul>
+<li><p>Nature des masses: population, emplois, émission , attraction , offre, demande</p></li>
+<li><p>Pondérations des masses : facteurs ou exposants</p></li>
+<li><p>Fonction de friction : puissance , exponentielle</p></li>
+<li><p>Contraintes aux marges : aucune , simple, double</p></li>
+</ul>
+</div>
+</div>
+<div id="létape-daprès-modèles-dynamiques" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> L’étape d’après : modèles dynamiques</h2>
+<p>Les modèles que nous avons jusqu’à présent étaient des modèles statiques: ils décrivaient ou résumaient des données par des objets mathématiques eux aussi “statiques.”</p>
+<p>Nous avons vu le modèle linéaire , qui résume une nuage de points lorsqu’il a la forme appropriée. Cet objet est fixe, il s’agit des deux coefficient d’une équation de droite <span class="math inline">\(y=ax+b\)</span>, et <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> une fois déterminés n’ont pas vocation à évoluer.</p>
+<div id="modèles-simples-les-automates-cellulaires" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Modèles simples : les automates cellulaires</h3>
+<p>Le plus célèbre des modèles simples : le jeu de la vie (Conway)</p>
+<p>Modèle de ségrégation de Schelling</p>
+<p><img src="game_of_life.gif" style="display: inline-block; margin: 0;vertical-align:top" />
+<img src="schelling.gif" style="display: inline-block; margin: 0; width:50%;" /></p>
+</div>
+<div id="principe-dun-modèle-complexe-de-mobilité" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Principe d’un modèle complexe de mobilité</h3>
+<p>Modèle à 4 étapes</p>
+<ol style="list-style-type: decimal">
+<li><p>Module de <strong>génération</strong> : quantité de déplacements attirés et émis par zones prédécoupées (caractéristiques de la population et des activités)</p></li>
+<li><p>Module de distribution : répartition géographique des flux (modèle gravitaire)</p></li>
+<li><p>Module de choix modal : par quel modalité s’effectue le transport ?</p></li>
+<li><p>Module d’affectation au réseau</p></li>
+</ol>
+<p>Modèles LUTI : Land Use Transport Integration</p>
+<p><strong>Accessibilité</strong> et <strong>Usage du sol</strong> exercent une influence l’un sur l’autre.</p>
+<p><strong>Simule</strong> les foyers, leurs choix de résidence , d’activité et de transports.</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="autocorrélation-spatiale-moran-et-geary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="anaspat.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

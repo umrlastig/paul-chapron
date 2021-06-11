@@ -1,1 +1,3 @@
 ./resources/bookdown_cours_stats/data/les-arbres.geojson
+*.geojson
+
