@@ -1129,7 +1129,7 @@ Voici un exemple avec des données sur les passagers du Titanic. En colonnes la 
 
 ```{r mosaic, echo=FALSE, fig.height=3, cache=TRUE}
 par(mar=c(0,0,0,0))
-mosaicplot(~Class+Survived, data=Titanic, color=mypalette,main = "")
+mosaicplot(~Class+Survived, data=Titanic,main = "")
 ``` 
 
 
@@ -1140,6 +1140,7 @@ Pour représenter l'**imbrication** de catégories, il faudrait passer à un typ
 
 ```{r treemap, echo=FALSE, fig.height=4.5, cache=TRUE}
 library(treemap)
+data(GNI2014)
 treemap(GNI2014,
        index=c("continent", "iso3"),
        vSize="population",

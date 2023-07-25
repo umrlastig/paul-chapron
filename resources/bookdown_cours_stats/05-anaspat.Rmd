@@ -135,9 +135,9 @@ Le nombre de points est identique dans les deux cartes.
 Dans le semis de gauche, dans la surface de chaque IRIS, on tire 2 points aléatoirement.
 Dans le semis de droite, on tire aléatoirement le même nombre de points (2 x Nombre d'IRIS), mais dans toute la surface de la Seine-Saint-Denis .
 
-```{r polar1, cache =TRUE, fig.height=4, fig.width=8, echo=FALSE }
+```{r polar1, echo=FALSE, fig.height=4, fig.width=8, cache=TRUE}
 set.seed(5678)  
-ssd <-  read_sf("data/neufTrois_simple.shp")
+ssd <-  read_sf("data/neufTrois_simple.shp") %>% st_as_sf()
 par(mar=c(0,0,0,0))
 par(mfrow=c(1,2))
 pts <-  st_sample(ssd, rep(2, length(ssd$geometry)))
@@ -153,7 +153,7 @@ cat("Distance type à droite", sqrt(sd(coordsPT2$X)**2 + sd(coordsPT2$Y)**2))
 ```
 
 
-la configuration de gauche est plus agrégée/polarisée , du fait de la différence de surface des IRIS et de leur nombre de points constants.
+La configuration de gauche est plus agrégée/polarisée , du fait de la différence de surface des IRIS et de leur nombre de points constants.
 Celle de droite est plus homogène, même si ce terme n'a pas beaucoup de sens puisqu'on n'évalue pas -encore- la concentration des points. 
 
 
