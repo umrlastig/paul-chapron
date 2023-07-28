@@ -1,3 +1,4 @@
+fig:unnamed-chunk-1
 intro
 analyse-spatiale-définition
 analyse-spatiale-analyse-statistique
@@ -28,7 +29,7 @@ maup-exemples
 rappel-la-première-chose-à-faire
 univariee
 densite
-interpret_dens
+interpretdens
 bonus-estimation-la-probabilité-à-partir-de-la-densité-de-probabilité
 exemples-de-distributions-de-lois-connues
 loi-gaussienne
@@ -191,4 +192,19 @@ utilisation-du-modèle-gravitaire
 variantes-du-modèles-gravitaires
 létape-daprès-modèles-dynamiques
 modèles-simples-les-automates-cellulaires
-principe-dun-modèle-complexe-de-mobilité
+principe-dun-modèle-de-mobilité
+galerie-de-graphiques-avec-ggplot
+représenter-le-lien-entre-deux-variables
+nuage-de-points-simple
+ajouter-un-titre-étiqueter-les-axes
+nuage-de-points-colorés-par-variable-continue-quantitative
+nuage-de-points-colorés-par-variable-discrète-qualitative
+nuage-de-points-et-droite-de-regression-de-lissage
+à-ne-pas-faire
+ajouter-les-histogrammes-marginaux
+lien-entre-plusieurs-variables
+correlogramme-simple-avec-ggally
+correlogramme-plus-complexe-avec-ggally
+apprendre-r
+visualisation
+r-visualisation-et-données-spatiales

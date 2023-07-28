@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST, et DESIGEO</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34.2 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST, et DESIGEO" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 7 Autocorrélation spatiale : Moran et Geary | Analyse Statistique M2 IGAST, et DESIGEO" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-06-11" />
+<meta name="date" content="2023-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="anaspat.html"/>
 <link rel="next" href="references.html"/>
-<script src="book_assets/header-attrs-2.8/header-attrs.js"></script>
-<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="book_assets/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="book_assets/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -219,23 +223,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.4" data-path="univariee.html"><a href="univariee.html#fat-tail-distributions-un-exemple"><i class="fa fa-check"></i><b>2.7.4</b> Fat-tail distributions : un exemple</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="carto-discretis.html"><a href="carto-discretis.html"><i class="fa fa-check"></i><b>3</b> Cartographie, Distribution et Échelle de couleurs</a>
+<li class="chapter" data-level="3" data-path="carto_discretis.html"><a href="carto_discretis.html"><i class="fa fa-check"></i><b>3</b> Cartographie, Distribution et Échelle de couleurs</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="carto-discretis.html"><a href="carto-discretis.html#méthodes-usuelles-de-discrétisation"><i class="fa fa-check"></i><b>3.1</b> Méthodes usuelles de discrétisation</a></li>
-<li class="chapter" data-level="3.2" data-path="carto-discretis.html"><a href="carto-discretis.html#les-données"><i class="fa fa-check"></i><b>3.2</b> Les données</a>
+<li class="chapter" data-level="3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#méthodes-usuelles-de-discrétisation"><i class="fa fa-check"></i><b>3.1</b> Méthodes usuelles de discrétisation</a></li>
+<li class="chapter" data-level="3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#les-données"><i class="fa fa-check"></i><b>3.2</b> Les données</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="carto-discretis.html"><a href="carto-discretis.html#géométrie-des-quartiers-de-paris"><i class="fa fa-check"></i><b>3.2.1</b> Géométrie des quartiers de Paris</a></li>
-<li class="chapter" data-level="3.2.2" data-path="carto-discretis.html"><a href="carto-discretis.html#distribution-des-surfaces-des-quartiers"><i class="fa fa-check"></i><b>3.2.2</b> Distribution des surfaces des quartiers</a></li>
+<li class="chapter" data-level="3.2.1" data-path="carto_discretis.html"><a href="carto_discretis.html#géométrie-des-quartiers-de-paris"><i class="fa fa-check"></i><b>3.2.1</b> Géométrie des quartiers de Paris</a></li>
+<li class="chapter" data-level="3.2.2" data-path="carto_discretis.html"><a href="carto_discretis.html#distribution-des-surfaces-des-quartiers"><i class="fa fa-check"></i><b>3.2.2</b> Distribution des surfaces des quartiers</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="carto-discretis.html"><a href="carto-discretis.html#résultats-des-méthodes-de-classification"><i class="fa fa-check"></i><b>3.3</b> Résultats des méthodes de classification</a>
+<li class="chapter" data-level="3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#résultats-des-méthodes-de-classification"><i class="fa fa-check"></i><b>3.3</b> Résultats des méthodes de classification</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="carto-discretis.html"><a href="carto-discretis.html#classification-par-défaut"><i class="fa fa-check"></i><b>3.3.1</b> Classification par défaut</a></li>
-<li class="chapter" data-level="3.3.2" data-path="carto-discretis.html"><a href="carto-discretis.html#méthode-jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>3.3.2</b> Méthode Jenks à 5 , 7 et 9 classes</a></li>
-<li class="chapter" data-level="3.3.3" data-path="carto-discretis.html"><a href="carto-discretis.html#effectifs-égaux"><i class="fa fa-check"></i><b>3.3.3</b> Effectifs égaux</a></li>
-<li class="chapter" data-level="3.3.4" data-path="carto-discretis.html"><a href="carto-discretis.html#intervalles-égaux"><i class="fa fa-check"></i><b>3.3.4</b> Intervalles égaux</a></li>
-<li class="chapter" data-level="3.3.5" data-path="carto-discretis.html"><a href="carto-discretis.html#écart-types"><i class="fa fa-check"></i><b>3.3.5</b> Écart-types</a></li>
+<li class="chapter" data-level="3.3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#classification-par-défaut"><i class="fa fa-check"></i><b>3.3.1</b> Classification par défaut</a></li>
+<li class="chapter" data-level="3.3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#méthode-jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>3.3.2</b> Méthode Jenks à 5 , 7 et 9 classes</a></li>
+<li class="chapter" data-level="3.3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#effectifs-égaux"><i class="fa fa-check"></i><b>3.3.3</b> Effectifs égaux</a></li>
+<li class="chapter" data-level="3.3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#intervalles-égaux"><i class="fa fa-check"></i><b>3.3.4</b> Intervalles égaux</a></li>
+<li class="chapter" data-level="3.3.5" data-path="carto_discretis.html"><a href="carto_discretis.html#écart-types"><i class="fa fa-check"></i><b>3.3.5</b> Écart-types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="carto-discretis.html"><a href="carto-discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>3.4</b> Quelle méthode de classification choisir ?</a></li>
+<li class="chapter" data-level="3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>3.4</b> Quelle méthode de classification choisir ?</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="visudistrib.html"><a href="visudistrib.html"><i class="fa fa-check"></i><b>4</b> Visualiser une distribution avec R</a>
 <ul>
@@ -370,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST, et DESIGEO</a>
           </h1>
         </div>
 
@@ -378,10 +382,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="autocorrélation-spatiale-moran-et-geary" class="section level1" number="7">
-<h1><span class="header-section-number">Chapitre 7</span> Autocorrélation spatiale : Moran et Geary</h1>
-<div id="lautocorrélation-spatiale" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> L’autocorrélation spatiale</h2>
+<div id="autocorrélation-spatiale-moran-et-geary" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapitre 7</span> Autocorrélation spatiale : Moran et Geary<a href="autocorrélation-spatiale-moran-et-geary.html#autocorrélation-spatiale-moran-et-geary" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lautocorrélation-spatiale" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> L’autocorrélation spatiale<a href="autocorrélation-spatiale-moran-et-geary.html#lautocorrélation-spatiale" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La <strong>concentration</strong> d’un semis est mesurée par l’<strong>indice de concentration</strong>, qui décrit la régularité des positions des points.</p>
 <p>Pour l’obtenir :</p>
 <ul>
@@ -404,15 +408,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Vous avez reconnu la comparaison -ici par un ratio- entre la distribution <em>observée</em> d’une quantité -la densité- et sa distribution <em>théorique</em>. De cette comparaison, on peut quantifier l’écart au modèle nul, ici une répartition aléatoire des objets.</p>
 <p>comme dans le test du <span class="math inline">\(\chi^2\)</span> , abordé en section <a href="bivariee.html#chi2">5.7</a>.</p>
 <p>Voici quelques exemples de semis avec leur indice de concentration associés:</p>
-<div id="le-modèle-nul-pour-un-semis-de-points" class="section level3" number="7.1.1">
-<h3><span class="header-section-number">7.1.1</span> Le modèle nul pour un semis de points</h3>
+<div id="le-modèle-nul-pour-un-semis-de-points" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Le modèle nul pour un semis de points<a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-nul-pour-un-semis-de-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Un processus de spatial de Poisson est un processus spatialement
 aléatoire.</p>
 <p>Dans un espace découpé en zones, on estime la probabilité d’avoir un nombre de points)dans une zone <span class="math inline">\(z\)</span> par une distribution de poisson de moyenne <span class="math inline">\(\lambda * surface(zone)\)</span>.</p>
 </div>
 </div>
-<div id="auto-corrélation-spatiale-moran-et-geary" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Auto-corrélation spatiale : Moran et Geary</h2>
+<div id="auto-corrélation-spatiale-moran-et-geary" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Auto-corrélation spatiale : Moran et Geary<a href="autocorrélation-spatiale-moran-et-geary.html#auto-corrélation-spatiale-moran-et-geary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>L’auto-corrélation spatiale est une mesure statistique qui répond à la question suivante:</p>
 <center>
 <p>« Les valeurs d’entités spatiales proches sont-elles plus similaires que les valeurs d’entités lointaines ?»</p>
@@ -423,8 +427,8 @@ E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regrou
 <p>Valeurs positives : situations ségrégées</p>
 <p>Valeurs nulles : répartition aléatoire</p>
 <p>Valeurs négatives : alternance parfaite entre valeurs</p>
-<div id="lindice-de-moran" class="section level3" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> L’indice de Moran</h3>
+<div id="lindice-de-moran" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> L’indice de Moran<a href="autocorrélation-spatiale-moran-et-geary.html#lindice-de-moran" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’indice <span class="math inline">\(I\)</span> de Moran utilise un terme <span class="math inline">\(\omega_{ij}\)</span> positif d’“interaction” pour quantifier la <strong>proximité</strong> entre deux entités <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span>.</p>
 <p>On peut le choisir discret (1 si voisins , 0 sinon) ou continu (inverse de la distance).</p>
 <p><span class="math inline">\(I=\frac{n}{\sum_i \sum_j \omega_{ij}} \frac{\sum_i \sum_j \omega_{ij}(X_i-\bar{X})(X_j-\bar{X})}{\sum_i(X_i-\bar{X})^2}\)</span></p>
@@ -432,8 +436,8 @@ E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regrou
 <p><span class="math inline">\(\omega\)</span> une matrice carrée de poids positifs de dimension <span class="math inline">\(n\)</span>, telle que <span class="math inline">\(\omega_{ij}\)</span> quantifie la proximité, l’influence de <span class="math inline">\(j\)</span> sur <span class="math inline">\(i\)</span> ,</p>
 <p><span class="math inline">\(\bar{X}\)</span> la moyenne de la variable <span class="math inline">\(X\)</span> </span></p>
 </div>
-<div id="lindice-de-geary" class="section level3" number="7.2.2">
-<h3><span class="header-section-number">7.2.2</span> L’indice de Geary</h3>
+<div id="lindice-de-geary" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> L’indice de Geary<a href="autocorrélation-spatiale-moran-et-geary.html#lindice-de-geary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Cet indice, noté <span class="math inline">\(C\)</span>, est dit plus “local” que l’indice de Moran</p>
 <p><span class="math inline">\(C=\frac{(n-1) \sum_i \sum_j \omega_{ij}(X_i-X_j)^2 }{2W\sum_i(X_i-\bar{X})^2}\)</span></p>
 <p><span class="math inline">\(C\in[0;2]\)</span></p>
@@ -443,32 +447,32 @@ E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regrou
 <p><span style="font-size:0.6em;"> avec <br><span class="math inline">\(n\)</span> le nombre d’entités spatiales,<br>
 <span class="math inline">\(\omega\)</span> une matrice carrée de poids positifs de dimension <span class="math inline">\(n\)</span>, de somme <span class="math inline">\(W\)</span> et telle que <span class="math inline">\(\omega_{ij}\)</span> quantifie la proximité, l’influence mutuelle de <span class="math inline">\(j\)</span> sur <span class="math inline">\(i\)</span>, <span class="math inline">\(\bar{X}\)</span> la moyenne de la variable <span class="math inline">\(X\)</span> </span></p>
 </div>
-<div id="commandes-r" class="section level3" number="7.2.3">
-<h3><span class="header-section-number">7.2.3</span> Commandes R</h3>
+<div id="commandes-r" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Commandes R<a href="autocorrélation-spatiale-moran-et-geary.html#commandes-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Les mesures des indices de Moran et Geary s’obtiennent avec les fonctions <code>moran</code> et <code>geary</code> du package <code>spdep</code></p>
 </div>
-<div id="interprétation-de-lindice-de-moran" class="section level3" number="7.2.4">
-<h3><span class="header-section-number">7.2.4</span> Interprétation de l’indice de Moran</h3>
+<div id="interprétation-de-lindice-de-moran" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Interprétation de l’indice de Moran<a href="autocorrélation-spatiale-moran-et-geary.html#interprétation-de-lindice-de-moran" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>les images suivantes montrent comment varient les valeurs de l’indice de Moran en fonction de la localisation d’une quantité dans une grille régulière.</p>
 <p><img src="./morangini.png" /></p>
 <p><img src="./morangini2.png" /></p>
 </div>
 </div>
-<div id="les-flux" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Les flux</h2>
-<div id="matrice-de-flux" class="section level3" number="7.3.1">
-<h3><span class="header-section-number">7.3.1</span> Matrice de flux</h3>
+<div id="les-flux" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Les flux<a href="autocorrélation-spatiale-moran-et-geary.html#les-flux" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="matrice-de-flux" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Matrice de flux<a href="autocorrélation-spatiale-moran-et-geary.html#matrice-de-flux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pour une partition en zones d’un espace, on appelle <strong>flux</strong> toute mesure d’intéraction spatiale qui implique des échanges, des déplacements entre deux zones, matériels ou immatériels.</p>
 <p>On range les mesures qui mesurent ces échanges dans un <strong>matrice de flux</strong>,une matrice carrée <span class="math inline">\(F\)</span> dont le terme général <span class="math inline">\(F_{ij}\)</span> indique la quantité échangée entre le site <span class="math inline">\(i\)</span> en ligne et le site <span class="math inline">\(j\)</span> en colonne .</p>
 </div>
-<div id="indices" class="section level3" number="7.3.2">
-<h3><span class="header-section-number">7.3.2</span> Indices</h3>
+<div id="indices" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Indices<a href="autocorrélation-spatiale-moran-et-geary.html#indices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math inline">\(V_i= \sum_i F_{ij} + \sum_j F_{ij}\)</span> : Volume = Départs + Arrivées</p>
 <p><span class="math inline">\(S_i = \sum_i F_{ij} - \sum_j F_{ij}\)</span> : Solde= Départs - Arrivées</p>
 <p><span class="math inline">\(A_i = \frac{S_i}{V_i}\)</span> : Attractivité = ratio des soldes sur les volumes</p>
 </div>
-<div id="cartographie-des-flux" class="section level3" number="7.3.3">
-<h3><span class="header-section-number">7.3.3</span> Cartographie des flux</h3>
+<div id="cartographie-des-flux" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Cartographie des flux<a href="autocorrélation-spatiale-moran-et-geary.html#cartographie-des-flux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On en peut pas représenter tous les flux entre toutes les zones (lisibilité).</p>
 <p>On détermine les flux <strong>dominants</strong> de la façon suivante:</p>
 <p><span class="math inline">\(F_{ij}\)</span> est dominant si:</p>
@@ -479,12 +483,25 @@ E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regrou
 <p>package <code>flows</code> de R : <a href="https://cran.r-project.org/web/packages/flows/vignettes/flows.html" class="uri">https://cran.r-project.org/web/packages/flows/vignettes/flows.html</a> par les auteurs de <code>cartography</code></p>
 </div>
 </div>
-<div id="exemple" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Exemple</h2>
-<pre><code>## Warning in wkt(obj): CRS object has no comment</code></pre>
+<div id="exemple" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Exemple<a href="autocorrélation-spatiale-moran-et-geary.html#exemple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Reading layer `urban_area&#39; from data source `/home/paulchapron/R/x86_64-pc-linux-gnu-library/4.1/flows/gpkg/GE.gpkg&#39; using driver `GPKG&#39;
+## Simple feature collection with 159 features and 2 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 691189 ymin: 6562692 xmax: 1070595 ymax: 7009226
+## Projected CRS: RGF93 v1 / Lambert-93</code></pre>
+<pre><code>## Reading layer `region&#39; from data source `/home/paulchapron/R/x86_64-pc-linux-gnu-library/4.1/flows/gpkg/GE.gpkg&#39; using driver `GPKG&#39;
+## Simple feature collection with 1 feature and 0 fields
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 688355 ymin: 6562692 xmax: 1082671 ymax: 7009226
+## Projected CRS: RGF93 v1 / Lambert-93</code></pre>
 <p><img src="bookdown_cours_stats_files/figure-html/flow-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div id="pour-aller-plus-loin" class="section level3" number="7.4.1">
-<h3><span class="header-section-number">7.4.1</span> Pour aller plus loin</h3>
+<pre><code>## 95 &#39;NA&#39; values are not plotted on the map.</code></pre>
+<p><img src="bookdown_cours_stats_files/figure-html/flow-2.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="pour-aller-plus-loin" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Pour aller plus loin<a href="autocorrélation-spatiale-moran-et-geary.html#pour-aller-plus-loin" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>les flux sont modélisés par des graphes, une grande partie de la littérature de l’analyse de réseaux et des notions de théories des graphes peuvent être transposées et utilisées pour l’analyse de flux.</p>
 <p>E.g. Attributs de noeuds ou d’arcs :</p>
 <ul>
@@ -499,11 +516,11 @@ E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regrou
 </ul>
 </div>
 </div>
-<div id="le-modèle-gravitaire" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Le modèle gravitaire</h2>
-<div id="fin-xixe-les-lois-de-ravenstein" class="section level3" number="7.5.1">
-<h3><span class="header-section-number">7.5.1</span> Fin XIX<sup>e</sup> : Les lois de Ravenstein</h3>
-<p>(Ravenstein E., 1885 &amp; 1889, “The Laws of Migration,” Journal of Royal Statist. Society, London , d’après Noin D., 1988, Géographie de la Population, Masson, Paris, pp. 273-274, cité par C. Grasland.</p>
+<div id="le-modèle-gravitaire" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Le modèle gravitaire<a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-gravitaire" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fin-xixe-les-lois-de-ravenstein" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Fin XIX<sup>e</sup> : Les lois de Ravenstein<a href="autocorrélation-spatiale-moran-et-geary.html#fin-xixe-les-lois-de-ravenstein" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>(Ravenstein E., 1885 &amp; 1889, “The Laws of Migration”, Journal of Royal Statist. Society, London , d’après Noin D., 1988, Géographie de la Population, Masson, Paris, pp. 273-274, cité par C. Grasland.</p>
 <p><span style="font-size:0.6em; line-height:normal;">Le nombre de migrants diminue quand la distance augmente; la plupart ne vont pas très loin ; ceux qui se déplacent sur de grandes distances se dirigent de préférence vers les grands centres commerciaux et industriels.<br>
 Le processus se fait de la façon suivante : une ville à croissance rapide attire les gens des régions environnantes ; les vides ainsi créés sont comblés par les migrants de districts plus éloignés ; la force d’attraction des grandes villes dynamiques se fait donc sentir de proche en proche en diminuant d’intensité. Le nombre de migrants de la zone d’accueil est donc <strong>proportionnel à la population de la zone d’origine et inversement proportionnel à la distance qui les sépare</strong>.<br>
 Chaque courant principal de migration suscite un contre-courant compensatoire.<br>
@@ -512,8 +529,8 @@ Les femmes ont une mobilité plus forte que les hommes, au moins à courte dista
 L’intensité des migrations augmente avec le développement du commerce, de l’industrie et des transports<br>
 Les facteurs déterminant la migration sont nombreux mais le plus important est le facteur économique</span></p>
 </div>
-<div id="le-modèle-gravitaire-1" class="section level3" number="7.5.2">
-<h3><span class="header-section-number">7.5.2</span> Le modèle gravitaire</h3>
+<div id="le-modèle-gravitaire-1" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Le modèle gravitaire<a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-gravitaire-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Modèle simple, déterministe et symmétrique qui prose de calculer l’intensité de l’interaction entre deux entités spatiales en fonction de leurs <strong>masses</strong> et de la distance qui les sépare.</p>
 <p>Plusieurs formulations :</p>
 <p><span class="math inline">\(Fij = k \frac{P_i . P_j}{D_{ij}^2}\)</span></p>
@@ -521,8 +538,8 @@ Les facteurs déterminant la migration sont nombreux mais le plus important est 
 <p><span class="math inline">\(Fij = k \frac{P_i . P_j}{D_{ij}^\alpha}\)</span></p>
 <p>avec alpha le <strong>frein à la distance</strong> (distance decay) , pour modéliser des déplacements plus ou moins faciles</p>
 </div>
-<div id="distance-et-interaction" class="section level3" number="7.5.3">
-<h3><span class="header-section-number">7.5.3</span> Distance et interaction</h3>
+<div id="distance-et-interaction" class="section level3 hasAnchor" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Distance et interaction<a href="autocorrélation-spatiale-moran-et-geary.html#distance-et-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p style="font-size:0.6em; line-height:normal;">
 D’après H.Commenges, cours d’analyse spatiale , Delhi R School
 </p>
@@ -535,8 +552,8 @@ D’après H.Commenges, cours d’analyse spatiale , Delhi R School
 <li>Dans le second cas on parlera d’analyse de position (cf. Accessibilité)</li>
 </ul>
 </div>
-<div id="utilisation-du-modèle-gravitaire" class="section level3" number="7.5.4">
-<h3><span class="header-section-number">7.5.4</span> Utilisation du modèle gravitaire</h3>
+<div id="utilisation-du-modèle-gravitaire" class="section level3 hasAnchor" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Utilisation du modèle gravitaire<a href="autocorrélation-spatiale-moran-et-geary.html#utilisation-du-modèle-gravitaire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Exemple d’une formulation plus générale :
 <span class="math inline">\(F_{ij} = \alpha_i \beta_j E_i A_j C_{ij}^{−n}\)</span></p>
 <p align="left" style="font-size: 70%">
@@ -546,8 +563,8 @@ D’après H.Commenges, cours d’analyse spatiale , Delhi R School
 <span class="math inline">\(n\)</span> : frein à la distance, la valeur varie selon les motifs de déplacement. (plus faible vers le travail que vers des motifs “secondaires” (e.g. courses quotidiennes)<br><br></p>
 <p>On détermine les valeurs des coefficients (<span class="math inline">\(\alpha,\ \beta,\ n\)</span>)inconnus par <strong>calibration</strong> sur des données (problème d’optimisation classique, qu’on peut résoudre par algorithme génétique, recuit simulé, etc.)</p>
 </div>
-<div id="variantes-du-modèles-gravitaires" class="section level3" number="7.5.5">
-<h3><span class="header-section-number">7.5.5</span> Variantes du modèles gravitaires</h3>
+<div id="variantes-du-modèles-gravitaires" class="section level3 hasAnchor" number="7.5.5">
+<h3><span class="header-section-number">7.5.5</span> Variantes du modèles gravitaires<a href="autocorrélation-spatiale-moran-et-geary.html#variantes-du-modèles-gravitaires" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Nature des masses: population, emplois, émission , attraction , offre, demande</p></li>
 <li><p>Pondérations des masses : facteurs ou exposants</p></li>
@@ -556,19 +573,19 @@ D’après H.Commenges, cours d’analyse spatiale , Delhi R School
 </ul>
 </div>
 </div>
-<div id="létape-daprès-modèles-dynamiques" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> L’étape d’après : modèles dynamiques</h2>
-<p>Les modèles que nous avons jusqu’à présent étaient des modèles statiques: ils décrivaient ou résumaient des données par des objets mathématiques eux aussi “statiques.”</p>
+<div id="létape-daprès-modèles-dynamiques" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> L’étape d’après : modèles dynamiques<a href="autocorrélation-spatiale-moran-et-geary.html#létape-daprès-modèles-dynamiques" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Les modèles que nous avons jusqu’à présent étaient des modèles statiques: ils décrivaient ou résumaient des données par des objets mathématiques eux aussi “statiques”.</p>
 <p>Nous avons vu le modèle linéaire , qui résume une nuage de points lorsqu’il a la forme appropriée. Cet objet est fixe, il s’agit des deux coefficient d’une équation de droite <span class="math inline">\(y=ax+b\)</span>, et <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> une fois déterminés n’ont pas vocation à évoluer.</p>
-<div id="modèles-simples-les-automates-cellulaires" class="section level3" number="7.6.1">
-<h3><span class="header-section-number">7.6.1</span> Modèles simples : les automates cellulaires</h3>
+<div id="modèles-simples-les-automates-cellulaires" class="section level3 hasAnchor" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Modèles simples : les automates cellulaires<a href="autocorrélation-spatiale-moran-et-geary.html#modèles-simples-les-automates-cellulaires" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Le plus célèbre des modèles simples : le jeu de la vie (Conway)</p>
 <p>Modèle de ségrégation de Schelling</p>
 <p><img src="game_of_life.gif" style="display: inline-block; margin: 0;vertical-align:top" />
 <img src="schelling.gif" style="display: inline-block; margin: 0; width:50%;" /></p>
 </div>
-<div id="principe-dun-modèle-complexe-de-mobilité" class="section level3" number="7.6.2">
-<h3><span class="header-section-number">7.6.2</span> Principe d’un modèle complexe de mobilité</h3>
+<div id="principe-dun-modèle-complexe-de-mobilité" class="section level3 hasAnchor" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Principe d’un modèle complexe de mobilité<a href="autocorrélation-spatiale-moran-et-geary.html#principe-dun-modèle-complexe-de-mobilité" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Modèle à 4 étapes</p>
 <ol style="list-style-type: decimal">
 <li><p>Module de <strong>génération</strong> : quantité de déplacements attirés et émis par zones prédécoupées (caractéristiques de la population et des activités)</p></li>
@@ -593,7 +610,6 @@ D’après H.Commenges, cours d’analyse spatiale , Delhi R School
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -633,6 +649,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdown_cours_stats.pdf", "bookdown_cours_stats.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -646,7 +666,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

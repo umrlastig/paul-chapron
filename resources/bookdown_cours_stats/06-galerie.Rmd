@@ -1,0 +1,260 @@
+# Galerie de graphiques avec ggplot
+
+Cette section contient des exemples de visualisations obtenues avec la librairie `ggplot2`.
+Elle reprend des exemple de cette page https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html adaptés en français et augmentés d'explications
+
+
+Les exemples seront réalisés avec le jeu de données des manchots de la librairie `palmerpenguins`, dont vous pouvez avoir un aperçu avec la fonction `summary()`.
+
+```{r,appercu, cache=TRUE, fig.height=2, echo=TRUE, warning=FALSE, message=FALSE}
+library(palmerpenguins) # charche le jeu de données 'penguins'
+data("penguins")
+summary(penguins) # résumé des variables du dataframe
+```
+
+
+
+## Représenter le lien entre deux variables
+
+
+Pour examiner le lien qu'il peut exister entre deux variables d'une population , le plus courrant est de réaliser un nuage de points (scatterplot in english). Sur la base de la forme de ce nuage, on pourra décider de calculer la corrélation, faire une regression etc.
+
+
+### Nuage de points simple
+
+```{r,, simplescatter, cache=TRUE, fig.height=4, echo=TRUE, warning=FALSE, message=FALSE}
+library(palmerpenguins) # charche le jeu de données 'penguins'
+data("penguins")
+simpleplot <- ggplot(data = penguins, aes(x=body_mass_g, y=flipper_length_mm))+
+   geom_point()
+simpleplot
+```
+
+
+Beaucoup de choses sont faites par défaut avec ce code minimal : 
+
+- figuré des points (cercles pleins )
+- figurés sont de couleurs noire 
+- thème graphique par défaut : grille blanche sur fond gris clair
+- axes étiquetés avec le nom brut des variables (axe X et Y)
+- graduations des axes
+- pas de titre 
+
+Je préfère utiliser un thème moins marqué, `theme_light`, qu'on peut ajouter à l'objet `simpleplot`, pour changer de thème.
+
+
+```{r,, simplescatter2, cache=TRUE, fig.height=4, echo=TRUE, warning=FALSE, message=FALSE}
+simpleplot_light <- ggplot(data = penguins, aes(x=body_mass_g, y=flipper_length_mm))+
+   geom_point()+
+  theme_light()
+simpleplot_light
+```
+
+Pour modifier la couleur , on utilise les arguments de la fonction `geom_point`.
+On utilise un nom de la liste des couleurs prédéfinies de R,  un entier entre 0 et 25  pour la forme des figurés: 
+
+
+```{r,, simplescatter3, cache=TRUE, fig.height=4, echo=TRUE, warning=FALSE, message=FALSE}
+simpleplot_light <- ggplot(data = penguins, aes(x=body_mass_g, y=flipper_length_mm))+
+   geom_point(color="darkcyan", shape=18)+
+  theme_light()
+simpleplot_light
+```
+
+
+
+Beaucoup d'autres options sont modifiables, pour en avoir un aperçu, tapez la commandes `vignette("ggplot2-specs")` dans la console R.
+
+
+
+
+### Ajouter un titre , étiqueter les axes 
+ 
+ On continue de "décorer" l'objet ggplot avec des fonctions spécifiques : 
+ 
+- `labs()` pour le titre, le sous-titre 
+-`xlab` et `ylab` pour les étiquettes des axes X et Y
+- évenutellement, `caption` , un argument de la fonction `labs()` pour une sorte de cartouche, idéale pour citer les sources.
+ 
+ 
+```{r, simplescatter4, cache=TRUE, fig.height=4, echo=TRUE, warning=FALSE, message=FALSE}
+plot_complet <- ggplot(data = penguins, aes(x=body_mass_g, y=flipper_length_mm))+
+   geom_point(color="darkcyan", shape=18)+
+  theme_light()+
+  labs(title = "titre principal du graphique",subtitle = "un sous-titre ", caption = "Source: dataset palmerpenguins ")+
+  xlab("étiquette des abscisses")+
+  ylab("étiquette des ordonnées ")
+plot_complet
+```
+
+
+### Nuage de points colorés par variable continue (quantitative) 
+
+
+Pour colorer les figurés selon une troisième variable, on demande à ggplot de réaliser un *mapping* (i.e. on "câble" deux variables ensemble) entre une variable du dataframe , et une **variable visuelle**.
+
+
+Cela se fait à l'intérieur de la fonction `geom_point()`, avec l'expression `aes(color=bill_length_mm)`.
+Cette expression réalise la liaison entre la valeur de la variable `bill_length_mm` et la couleur du figuré (argument `color`). L'échelle de couleur par défaut est un gradient de nuances de bleu.
+
+
+Ici nous allons lier la variable continue `bill_length_mm` avec la couleur des figurés. 
+
+
+```{r, simplescatter4, cache=TRUE, fig.height=4, echo=TRUE, warning=FALSE, message=FALSE}
+plot_color_by_var <- ggplot(data = penguins, aes(x=body_mass_g, y=flipper_length_mm))+
+   geom_point(aes(color=bill_length_mm))+
+  theme_light()+
+labs(title = "Masse des manchots en fonction de la longueur des nageoires",subtitle = "coloré par la longueur du bec (mm)", caption = "Source: dataset palmerpenguins ")+
+  xlab("masse du corps (g)")+
+  ylab("longueur des nageoires (mm) ")
+plot_color_by_var
+```
+
+
+### Nuage de points colorés par variable discrète (qualitative)
+
+
+Le principe est similaire au précédent, seule la variable affectée à la couleur va changer, on utilise cette fois la variable qualitative `species`. GGplot2 se charge du reste et affecte une couleur à chaque espèce dans le nuage de points.
+
+```{r, simplescatter5, cache=TRUE, fig.height=4, echo=TRUE, warning=FALSE, message=FALSE}
+plot_color_by_var <- ggplot(data = penguins, aes(x=body_mass_g, y=flipper_length_mm))+
+   geom_point(aes(color=species))+
+  theme_light()+
+labs(title = "Masse des manchots en fonction de la longueur des nageoires",subtitle = "coloré par espèce", caption = "Source: dataset palmerpenguins ")+
+  xlab("masse du corps (g)")+
+  ylab("longueur des nageoires (mm) ")
+plot_color_by_var
+```
+
+
+
+
+### Nuage de points et droite de regression / de lissage
+
+```{r, simplescatter5, cache=TRUE, fig.height=4, echo=TRUE, warning=FALSE, message=FALSE}
+plot_color_by_var <- ggplot(data = penguins, aes(x=body_mass_g, y=flipper_length_mm))+
+   geom_point()+
+  geom_smooth(method="lm", se=F)+
+  theme_light()+
+labs(title = "Masse des manchots en fonction de la longueur des nageoires",subtitle = "avec la droite de regression", caption = "Source: dataset palmerpenguins ")+
+  xlab("masse du corps (g)")+
+  ylab("longueur des nageoires (mm) ")
+plot_color_by_var
+```
+
+
+GGplot propose une fonction de lissage, `geom_smooth`, qui propose des courbes qui *généralisent* le nuage de points, par différentes méthodes. La plus simple est la droite de **régression linéaire**, mais il est également possible  d'utiliser une LOESS ou une régression linéaire multiple. 
+
+
+
+
+
+:::{.note}
+On peut également afficher "l'intervalle de confiance" de la courbe, avec l'argument `se` de la fonction `geom_smooth()` mis à TRUE. C'est l'intervalle autour de la courbe dans lequel se trouveraient les autres droites de régression si on venait à répéter la régression sur un sous-échantillon un grand nombre de fois. Quand cet intervalle est étroit, on peut l'interpréter comme le signe d'une regression robuste , car 95% (la valeur par défaut, que l'on peut forcer avec l'argument `level` ) des droites se retrouveraient dans cette enveloppe, si on répétait l'opération sur d'autres échantillons de la même population. 
+:::
+
+
+
+
+### À ne pas faire
+
+Il est tentant d'utiliser toutes les variables visuelles et ajouts possibles, en un seul graphique : 
+- couleur des figurés 
+- forme des figurés
+- taille des figurés
+- transparence
+- étiquettes de certains points
+- droites/courbes de prédictions
+
+
+
+le résultat final perd en lisibilité et le message est complexe : il faut alors tenir compte de plusieurs variables à la fois pour interpréter le graphique.
+Voici un exemple 
+
+
+```{r echo=TRUE, fig.height=4, fig.width=8,message=FALSE, warning=FALSE, overcomplicated, cache=TRUE}
+library(viridis)
+overcomplicated_plot <- ggplot(data = penguins %>% na.omit(), aes(x=body_mass_g, y=flipper_length_mm, group=species))+
+   geom_point(aes(color=species, shape=sex, size=bill_length_mm))+
+  geom_smooth(method="lm", se=T, aes(linetype=species), color="blue")+
+  theme_light()+
+labs(title = "Graphique montrant trop de variables",subtitle = "Ne faites pas ça ", caption = "Source: dataset palmerpenguins ")+
+  xlab("masse du corps (g)")+
+  ylab("longueur des nageoires (mm) ")+
+  scale_colour_viridis_d()
+overcomplicated_plot
+```
+
+
+
+
+
+### Ajouter les histogrammes marginaux 
+
+Parfois à cause de points superposés par exemple, ou masqués par la taille d'autres points voisins, il est difficile d'estimer visuellement la densité d'individus dans les zones de valeurs des deux variables X et Y. Il est pertinent d'ajouter , sur les côté du graphe, l'histogramme des variables choisies en X et Y. 
+
+On utilise pour ça le package `ggExtra`. Une fois le graphe ggplot initial constitué (ici `margin_hist_plot`), il est passé en argument à la fonction  `ggmarginal` qui va le décorer avec les histogrammes des variables qui ont été affectées aux variables visuelles `x` et `y` de la fonction `aes()`.
+
+
+
+
+
+
+```{r marginhist, echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+library(ggExtra)
+margin_hist_plot <- ggplot(data = penguins %>% na.omit(), aes(x=body_mass_g, y=flipper_length_mm, group=species))+
+  geom_point(aes(color=species))+
+  theme_light()+
+labs(title = "Masse et longueur des nageoires",subtitle = "Avec histogrammes marginaux", caption = "Source: dataset palmerpenguins ")+
+  xlab("masse du corps (g)")+
+  ylab("longueur des nageoires (mm) ")
+
+ggMarginal(margin_hist_plot, type = "histogram", fill="transparent" )
+```
+
+
+Attention cependant à ne pas surcharger le graphique inutilement, il faut que l'affichage des histogramme ait un intérêt (par exemple une bi-modalité) en lui même  et qu'il puisse être mobilisé dans le discours/l'interprétation du graphique.
+
+## Lien entre plusieurs variables
+
+
+On s'intéresse maintenant à l'affichage simultané du lien qui peut exister entre plusieurs **variables quantitatives**.
+Souvent , ce lien est la **corrélation**, on appel donc ce genre de graphiques des **correlogrammes** 
+
+
+### Correlogramme simple avec `GGally`
+
+
+Le package `GGally` possède une fonction pour réaliser un corrélogramme, que l'on peut facilement compléter avec d'autres informatiosn utiles : distribution des variables individuellement, affichage du nuages de points etc... 
+
+
+on commence par filtrer les variables numériques du dataset des manchots à l'aide de la fonction `select` du package `dplyr` : 
+
+```{r correl0, echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+library(dplyr)
+numeric_var_penguins <- penguins %>% select(where(is.numeric)) %>% select(-year)  
+```
+
+
+La fonction `ggcorr` réalise un corrélogramme simple, où la couleur représente la valeur du coefficient de corrélation sur une échelle de couleur bidirectionnelle. 
+
+
+```{r correl1, echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+library(GGally)
+ggcorr(numeric_var_penguins,
+       name="corrélation de Pearson",
+       label=T,
+       layout.exp = 1.9)
+```
+
+
+### Correlogramme plus complexe avec `GGally`
+
+On peut ajouter dans la matrice de corrélation des nuages de points, et sur la diagonale, l'affichage des distributions, à l'aide de la fonction `ggpairs()`.
+
+
+```{r correl2, echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+library(GGally)
+ggpairs(numeric_var_penguins)
+```

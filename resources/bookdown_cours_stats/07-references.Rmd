@@ -1,0 +1,25 @@
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+
+
+## Apprendre R  
+
+https://mtes-mct.github.io/parcours-r/
+
+## Visualisation 
+
+https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+
+
+https://gramener.github.io/visual-vocabulary-vega/
+
+https://r-graph-gallery.com/199-correlation-matrix-with-ggally.html
+
+
+
+## R, visualisation et données spatiales 
+
+
+https://statnmap.com/2018-07-14-introduction-to-mapping-with-sf-and-co/

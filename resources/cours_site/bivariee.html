@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST, et DESIGEO</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34.2 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST, et DESIGEO" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST, et DESIGEO" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-06-11" />
+<meta name="date" content="2023-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="visudistrib.html"/>
 <link rel="next" href="anaspat.html"/>
-<script src="book_assets/header-attrs-2.8/header-attrs.js"></script>
-<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="book_assets/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="book_assets/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -181,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="univariee.html"><a href="univariee.html#densite"><i class="fa fa-check"></i><b>2.1</b> Le concept de distribution</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="univariee.html"><a href="univariee.html#interpret_dens"><i class="fa fa-check"></i><b>2.1.1</b> Interpréter la courbe de densité</a></li>
+<li class="chapter" data-level="2.1.1" data-path="univariee.html"><a href="univariee.html#interpretdens"><i class="fa fa-check"></i><b>2.1.1</b> Interpréter la courbe de densité</a></li>
 <li class="chapter" data-level="2.1.2" data-path="univariee.html"><a href="univariee.html#bonus-estimation-la-probabilité-à-partir-de-la-densité-de-probabilité"><i class="fa fa-check"></i><b>2.1.2</b> Bonus: Estimation la probabilité à partir de la densité de probabilité</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="univariee.html"><a href="univariee.html#exemples-de-distributions-de-lois-connues"><i class="fa fa-check"></i><b>2.2</b> Exemples de distributions de lois connues</a>
@@ -219,23 +223,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.4" data-path="univariee.html"><a href="univariee.html#fat-tail-distributions-un-exemple"><i class="fa fa-check"></i><b>2.7.4</b> Fat-tail distributions : un exemple</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="carto-discretis.html"><a href="carto-discretis.html"><i class="fa fa-check"></i><b>3</b> Cartographie, Distribution et Échelle de couleurs</a>
+<li class="chapter" data-level="3" data-path="carto_discretis.html"><a href="carto_discretis.html"><i class="fa fa-check"></i><b>3</b> Cartographie, Distribution et Échelle de couleurs</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="carto-discretis.html"><a href="carto-discretis.html#méthodes-usuelles-de-discrétisation"><i class="fa fa-check"></i><b>3.1</b> Méthodes usuelles de discrétisation</a></li>
-<li class="chapter" data-level="3.2" data-path="carto-discretis.html"><a href="carto-discretis.html#les-données"><i class="fa fa-check"></i><b>3.2</b> Les données</a>
+<li class="chapter" data-level="3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#méthodes-usuelles-de-discrétisation"><i class="fa fa-check"></i><b>3.1</b> Méthodes usuelles de discrétisation</a></li>
+<li class="chapter" data-level="3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#les-données"><i class="fa fa-check"></i><b>3.2</b> Les données</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="carto-discretis.html"><a href="carto-discretis.html#géométrie-des-quartiers-de-paris"><i class="fa fa-check"></i><b>3.2.1</b> Géométrie des quartiers de Paris</a></li>
-<li class="chapter" data-level="3.2.2" data-path="carto-discretis.html"><a href="carto-discretis.html#distribution-des-surfaces-des-quartiers"><i class="fa fa-check"></i><b>3.2.2</b> Distribution des surfaces des quartiers</a></li>
+<li class="chapter" data-level="3.2.1" data-path="carto_discretis.html"><a href="carto_discretis.html#géométrie-des-quartiers-de-paris"><i class="fa fa-check"></i><b>3.2.1</b> Géométrie des quartiers de Paris</a></li>
+<li class="chapter" data-level="3.2.2" data-path="carto_discretis.html"><a href="carto_discretis.html#distribution-des-surfaces-des-quartiers"><i class="fa fa-check"></i><b>3.2.2</b> Distribution des surfaces des quartiers</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="carto-discretis.html"><a href="carto-discretis.html#résultats-des-méthodes-de-classification"><i class="fa fa-check"></i><b>3.3</b> Résultats des méthodes de classification</a>
+<li class="chapter" data-level="3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#résultats-des-méthodes-de-classification"><i class="fa fa-check"></i><b>3.3</b> Résultats des méthodes de classification</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="carto-discretis.html"><a href="carto-discretis.html#classification-par-défaut"><i class="fa fa-check"></i><b>3.3.1</b> Classification par défaut</a></li>
-<li class="chapter" data-level="3.3.2" data-path="carto-discretis.html"><a href="carto-discretis.html#méthode-jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>3.3.2</b> Méthode Jenks à 5 , 7 et 9 classes</a></li>
-<li class="chapter" data-level="3.3.3" data-path="carto-discretis.html"><a href="carto-discretis.html#effectifs-égaux"><i class="fa fa-check"></i><b>3.3.3</b> Effectifs égaux</a></li>
-<li class="chapter" data-level="3.3.4" data-path="carto-discretis.html"><a href="carto-discretis.html#intervalles-égaux"><i class="fa fa-check"></i><b>3.3.4</b> Intervalles égaux</a></li>
-<li class="chapter" data-level="3.3.5" data-path="carto-discretis.html"><a href="carto-discretis.html#écart-types"><i class="fa fa-check"></i><b>3.3.5</b> Écart-types</a></li>
+<li class="chapter" data-level="3.3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#classification-par-défaut"><i class="fa fa-check"></i><b>3.3.1</b> Classification par défaut</a></li>
+<li class="chapter" data-level="3.3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#méthode-jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>3.3.2</b> Méthode Jenks à 5 , 7 et 9 classes</a></li>
+<li class="chapter" data-level="3.3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#effectifs-égaux"><i class="fa fa-check"></i><b>3.3.3</b> Effectifs égaux</a></li>
+<li class="chapter" data-level="3.3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#intervalles-égaux"><i class="fa fa-check"></i><b>3.3.4</b> Intervalles égaux</a></li>
+<li class="chapter" data-level="3.3.5" data-path="carto_discretis.html"><a href="carto_discretis.html#écart-types"><i class="fa fa-check"></i><b>3.3.5</b> Écart-types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="carto-discretis.html"><a href="carto-discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>3.4</b> Quelle méthode de classification choisir ?</a></li>
+<li class="chapter" data-level="3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>3.4</b> Quelle méthode de classification choisir ?</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="visudistrib.html"><a href="visudistrib.html"><i class="fa fa-check"></i><b>4</b> Visualiser une distribution avec R</a>
 <ul>
@@ -319,45 +323,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="anaspat.html"><a href="anaspat.html#point-moyen-et-point-médian"><i class="fa fa-check"></i><b>6.3.1</b> Point moyen et point médian</a></li>
 <li class="chapter" data-level="6.3.2" data-path="anaspat.html"><a href="anaspat.html#dispersion-et-concentration-dun-semis"><i class="fa fa-check"></i><b>6.3.2</b> Dispersion et concentration d’un semis</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html"><i class="fa fa-check"></i><b>7</b> Autocorrélation spatiale : Moran et Geary</a>
+<li class="chapter" data-level="6.4" data-path="anaspat.html"><a href="anaspat.html#autocorrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>6.4</b> Autocorrélation spatiale : Moran et Geary</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#lautocorrélation-spatiale"><i class="fa fa-check"></i><b>7.1</b> L’autocorrélation spatiale</a>
+<li class="chapter" data-level="6.4.1" data-path="anaspat.html"><a href="anaspat.html#lautocorrélation-spatiale"><i class="fa fa-check"></i><b>6.4.1</b> L’autocorrélation spatiale</a></li>
+<li class="chapter" data-level="6.4.2" data-path="anaspat.html"><a href="anaspat.html#le-modèle-nul-pour-un-semis-de-points"><i class="fa fa-check"></i><b>6.4.2</b> Le modèle nul pour un semis de points</a></li>
+<li class="chapter" data-level="6.4.3" data-path="anaspat.html"><a href="anaspat.html#auto-corrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>6.4.3</b> Auto-corrélation spatiale : Moran et Geary</a></li>
+<li class="chapter" data-level="6.4.4" data-path="anaspat.html"><a href="anaspat.html#lindice-de-moran"><i class="fa fa-check"></i><b>6.4.4</b> L’indice de Moran</a></li>
+<li class="chapter" data-level="6.4.5" data-path="anaspat.html"><a href="anaspat.html#lindice-de-geary"><i class="fa fa-check"></i><b>6.4.5</b> L’indice de Geary</a></li>
+<li class="chapter" data-level="6.4.6" data-path="anaspat.html"><a href="anaspat.html#commandes-r"><i class="fa fa-check"></i><b>6.4.6</b> Commandes R</a></li>
+<li class="chapter" data-level="6.4.7" data-path="anaspat.html"><a href="anaspat.html#interprétation-de-lindice-de-moran"><i class="fa fa-check"></i><b>6.4.7</b> Interprétation de l’indice de Moran</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="anaspat.html"><a href="anaspat.html#les-flux"><i class="fa fa-check"></i><b>6.5</b> Les flux</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-nul-pour-un-semis-de-points"><i class="fa fa-check"></i><b>7.1.1</b> Le modèle nul pour un semis de points</a></li>
+<li class="chapter" data-level="6.5.1" data-path="anaspat.html"><a href="anaspat.html#matrice-de-flux"><i class="fa fa-check"></i><b>6.5.1</b> Matrice de flux</a></li>
+<li class="chapter" data-level="6.5.2" data-path="anaspat.html"><a href="anaspat.html#indices"><i class="fa fa-check"></i><b>6.5.2</b> Indices</a></li>
+<li class="chapter" data-level="6.5.3" data-path="anaspat.html"><a href="anaspat.html#cartographie-des-flux"><i class="fa fa-check"></i><b>6.5.3</b> Cartographie des flux</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#auto-corrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>7.2</b> Auto-corrélation spatiale : Moran et Geary</a>
+<li class="chapter" data-level="6.6" data-path="anaspat.html"><a href="anaspat.html#exemple"><i class="fa fa-check"></i><b>6.6</b> Exemple</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#lindice-de-moran"><i class="fa fa-check"></i><b>7.2.1</b> L’indice de Moran</a></li>
-<li class="chapter" data-level="7.2.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#lindice-de-geary"><i class="fa fa-check"></i><b>7.2.2</b> L’indice de Geary</a></li>
-<li class="chapter" data-level="7.2.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#commandes-r"><i class="fa fa-check"></i><b>7.2.3</b> Commandes R</a></li>
-<li class="chapter" data-level="7.2.4" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#interprétation-de-lindice-de-moran"><i class="fa fa-check"></i><b>7.2.4</b> Interprétation de l’indice de Moran</a></li>
+<li class="chapter" data-level="6.6.1" data-path="anaspat.html"><a href="anaspat.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>6.6.1</b> Pour aller plus loin</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#les-flux"><i class="fa fa-check"></i><b>7.3</b> Les flux</a>
+<li class="chapter" data-level="6.7" data-path="anaspat.html"><a href="anaspat.html#le-modèle-gravitaire"><i class="fa fa-check"></i><b>6.7</b> Le modèle gravitaire</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#matrice-de-flux"><i class="fa fa-check"></i><b>7.3.1</b> Matrice de flux</a></li>
-<li class="chapter" data-level="7.3.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#indices"><i class="fa fa-check"></i><b>7.3.2</b> Indices</a></li>
-<li class="chapter" data-level="7.3.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#cartographie-des-flux"><i class="fa fa-check"></i><b>7.3.3</b> Cartographie des flux</a></li>
+<li class="chapter" data-level="6.7.1" data-path="anaspat.html"><a href="anaspat.html#fin-xixe-les-lois-de-ravenstein"><i class="fa fa-check"></i><b>6.7.1</b> Fin XIX<sup>e</sup> : Les lois de Ravenstein</a></li>
+<li class="chapter" data-level="6.7.2" data-path="anaspat.html"><a href="anaspat.html#le-modèle-gravitaire-1"><i class="fa fa-check"></i><b>6.7.2</b> Le modèle gravitaire</a></li>
+<li class="chapter" data-level="6.7.3" data-path="anaspat.html"><a href="anaspat.html#distance-et-interaction"><i class="fa fa-check"></i><b>6.7.3</b> Distance et interaction</a></li>
+<li class="chapter" data-level="6.7.4" data-path="anaspat.html"><a href="anaspat.html#utilisation-du-modèle-gravitaire"><i class="fa fa-check"></i><b>6.7.4</b> Utilisation du modèle gravitaire</a></li>
+<li class="chapter" data-level="6.7.5" data-path="anaspat.html"><a href="anaspat.html#variantes-du-modèles-gravitaires"><i class="fa fa-check"></i><b>6.7.5</b> Variantes du modèles gravitaires</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#exemple"><i class="fa fa-check"></i><b>7.4</b> Exemple</a>
+<li class="chapter" data-level="6.8" data-path="anaspat.html"><a href="anaspat.html#létape-daprès-modèles-dynamiques"><i class="fa fa-check"></i><b>6.8</b> L’étape d’après : modèles dynamiques</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>7.4.1</b> Pour aller plus loin</a></li>
+<li class="chapter" data-level="6.8.1" data-path="anaspat.html"><a href="anaspat.html#modèles-simples-les-automates-cellulaires"><i class="fa fa-check"></i><b>6.8.1</b> Modèles simples : les automates cellulaires</a></li>
+<li class="chapter" data-level="6.8.2" data-path="anaspat.html"><a href="anaspat.html#principe-dun-modèle-de-mobilité"><i class="fa fa-check"></i><b>6.8.2</b> Principe d’un modèle de mobilité</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-gravitaire"><i class="fa fa-check"></i><b>7.5</b> Le modèle gravitaire</a>
+</ul></li>
+<li class="chapter" data-level="7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html"><i class="fa fa-check"></i><b>7</b> Galerie de graphiques avec ggplot</a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#fin-xixe-les-lois-de-ravenstein"><i class="fa fa-check"></i><b>7.5.1</b> Fin XIX<sup>e</sup> : Les lois de Ravenstein</a></li>
-<li class="chapter" data-level="7.5.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-gravitaire-1"><i class="fa fa-check"></i><b>7.5.2</b> Le modèle gravitaire</a></li>
-<li class="chapter" data-level="7.5.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#distance-et-interaction"><i class="fa fa-check"></i><b>7.5.3</b> Distance et interaction</a></li>
-<li class="chapter" data-level="7.5.4" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#utilisation-du-modèle-gravitaire"><i class="fa fa-check"></i><b>7.5.4</b> Utilisation du modèle gravitaire</a></li>
-<li class="chapter" data-level="7.5.5" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#variantes-du-modèles-gravitaires"><i class="fa fa-check"></i><b>7.5.5</b> Variantes du modèles gravitaires</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#létape-daprès-modèles-dynamiques"><i class="fa fa-check"></i><b>7.6</b> L’étape d’après : modèles dynamiques</a>
+<li class="chapter" data-level="7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#représenter-le-lien-entre-deux-variables"><i class="fa fa-check"></i><b>7.1</b> Représenter le lien entre deux variables</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#modèles-simples-les-automates-cellulaires"><i class="fa fa-check"></i><b>7.6.1</b> Modèles simples : les automates cellulaires</a></li>
-<li class="chapter" data-level="7.6.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#principe-dun-modèle-complexe-de-mobilité"><i class="fa fa-check"></i><b>7.6.2</b> Principe d’un modèle complexe de mobilité</a></li>
+<li class="chapter" data-level="7.1.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-simple"><i class="fa fa-check"></i><b>7.1.1</b> Nuage de points simple</a></li>
+<li class="chapter" data-level="7.1.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-un-titre-étiqueter-les-axes"><i class="fa fa-check"></i><b>7.1.2</b> Ajouter un titre , étiqueter les axes</a></li>
+<li class="chapter" data-level="7.1.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-continue-quantitative"><i class="fa fa-check"></i><b>7.1.3</b> Nuage de points colorés par variable continue (quantitative)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-discrète-qualitative"><i class="fa fa-check"></i><b>7.1.4</b> Nuage de points colorés par variable discrète (qualitative)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-et-droite-de-regression-de-lissage"><i class="fa fa-check"></i><b>7.1.5</b> Nuage de points et droite de regression / de lissage</a></li>
+<li class="chapter" data-level="7.1.6" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#à-ne-pas-faire"><i class="fa fa-check"></i><b>7.1.6</b> À ne pas faire</a></li>
+<li class="chapter" data-level="7.1.7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-les-histogrammes-marginaux"><i class="fa fa-check"></i><b>7.1.7</b> Ajouter les histogrammes marginaux</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-plusieurs-variables"><i class="fa fa-check"></i><b>7.2</b> Lien entre plusieurs variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-simple-avec-ggally"><i class="fa fa-check"></i><b>7.2.1</b> Correlogramme simple avec <code>GGally</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-plus-complexe-avec-ggally"><i class="fa fa-check"></i><b>7.2.2</b> Correlogramme plus complexe avec <code>GGally</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
+<ul>
+<li class="chapter" data-level="7.3" data-path="references.html"><a href="references.html#apprendre-r"><i class="fa fa-check"></i><b>7.3</b> Apprendre R</a></li>
+<li class="chapter" data-level="7.4" data-path="references.html"><a href="references.html#visualisation"><i class="fa fa-check"></i><b>7.4</b> Visualisation</a></li>
+<li class="chapter" data-level="7.5" data-path="references.html"><a href="references.html#r-visualisation-et-données-spatiales"><i class="fa fa-check"></i><b>7.5</b> R, visualisation et données spatiales</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank"> Published with bookdown</a></li>
 
@@ -370,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST, et DESIGEO</a>
           </h1>
         </div>
 
@@ -378,10 +401,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bivariee" class="section level1" number="5">
-<h1><span class="header-section-number">Chapitre 5</span> Analyse Bivariée</h1>
-<div id="introduction" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Introduction</h2>
+<div id="bivariee" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapitre 5</span> Analyse Bivariée<a href="bivariee.html#bivariee" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Introduction<a href="bivariee.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>L’analyse bivariée , comme son nom l’indique, a pour objectif d’analyser le lien qui peut exister entre <strong>deux</strong> variables.</p>
 <p>En guise de rappel sur les types de variables (cf section <a href="intro.html#vocabulaire">1.5</a>) , donnons des exemples:</p>
 <p>Pour deux variables quantitatives , on pourrait analyser le lien entre :</p>
@@ -399,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>le lien entre la taille et la couleur des yeux,</li>
 <li>le lien entre le nombre d’aces d’un joueur et le côté du cours de tennis qu’il occupe</li>
 </ul>
-<div id="analyse-bivariée-mais-sans-la-localisation" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Analyse bivariée, mais sans la localisation</h3>
+<div id="analyse-bivariée-mais-sans-la-localisation" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Analyse bivariée, mais sans la localisation<a href="bivariee.html#analyse-bivariée-mais-sans-la-localisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’analyse bivariée que nous allons aborder dans ce chapitre concerne des variables traditionnelles, i.e. <strong>pas des variables de localisation</strong> . Si elles proviennent de données spatiales, ce sera :</p>
 <ul>
 <li>soit des individus restreints spatialement (sélection spatiale)</li>
@@ -408,16 +431,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>La <strong>localisation en tant que variable</strong> n’interviendra <strong>pas</strong> dans ce cours.</p>
 </div>
-<div id="ressources-pour-lanalyse-des-localisation-et-des-distances" class="section level3" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> Ressources pour l’analyse des localisation et des distances</h3>
+<div id="ressources-pour-lanalyse-des-localisation-et-des-distances" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Ressources pour l’analyse des localisation et des distances<a href="bivariee.html#ressources-pour-lanalyse-des-localisation-et-des-distances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Il existe des outils statistiques pour analyser le lien qui existe entre des variables localisées dans l’espace <em>et leur localisation elle-même</em>. Ces techniques <strong>ne sont pas au programme de ce cours</strong>, je les mentionne pour les curieux.</p>
 <p>On peut ainsi mesurer l’ <strong>auto-corrélation spatiale</strong> , qui indique si les valeurs proches sont regroupées ou au contraire disséminées dans l’espace, à l’aide de l’<a href="https://en.wikipedia.org/wiki/Moran%27s_I">indice de Moran global</a>, et identifier des clusters de valeurs plus fortes ou plus faibles que la normale à l’aide de l’<a href="https://geodacenter.github.io/workbook/6a_local_auto/lab6a.html">indice de Moran local</a>.</p>
 <p>On peut également effectuer des régressions qui tiennent compte de la localisation des observations dans l’espace, qu’on appelle GWR pour <strong>Geographicaly Weighted Regression</strong> (plus de détails <a href="https://fr.wikipedia.org/wiki/R%C3%A9gression_g%C3%A9ographiquement_pond%C3%A9r%C3%A9e">sur wikipedia</a> et la <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;ved=2ahUKEwjxtrK85pvuAhX2DmMBHdDaCTwQFjAAegQIAxAC&amp;url=https%3A%2F%2Fwww.insee.fr%2Fen%2Fstatistiques%2Ffichier%2F3635545%2Fimet131-m-chapitre-9.pdf&amp;usg=AOvVaw0Mli34vfm-BI1PymvssD5Y">fiche de l’INSEE</a>)</p>
 <p>Enfin , si on désire prendre en compte les <strong>distances</strong> dans les flux entre unités spatiales (par exemple pour expliquer les déplacements domicile-travail dans une région) on peut se tourner vers les <a href="https://www.hypergeo.eu/spip.php?article76">modèles gravitaires</a></p>
 <p>Nous donnerons à la fin de ce cours quelques éléments à ce sujet dans la section <a href="anaspat.html#anaspat">6</a></p>
 </div>
-<div id="corrélation-nimplique-pas-causalité" class="section level3" number="5.1.3">
-<h3><span class="header-section-number">5.1.3</span> Corrélation n’implique pas causalité</h3>
+<div id="corrélation-nimplique-pas-causalité" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Corrélation n’implique pas causalité<a href="bivariee.html#corrélation-nimplique-pas-causalité" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Nous allons voir comment quantifier l’intensité du <strong>lien statistique</strong> qui peut exister entre deux variables.</p>
 <center>
 <span style="color:red; font-size:1.5em"> ⚠ Une liaison, même très forte, entre deux variables, n’indique pas la causalité! ⚠</span>
@@ -428,8 +451,8 @@ Cette erreur d’amalgame entre corrélation et causalité est très courante, t
 <p><img src="chart.svg"/></p>
 <p>© TylerVigen <a href="http://tylervigen.com/spurious-correlations" class="uri">http://tylervigen.com/spurious-correlations</a> <span class="math inline">\(\leftarrow\)</span> D’autres exemples sont disponibles à cette adresse.</p>
 </div>
-<div id="diverses-formes-de-dépendances" class="section level3" number="5.1.4">
-<h3><span class="header-section-number">5.1.4</span> Diverses formes de dépendances</h3>
+<div id="diverses-formes-de-dépendances" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Diverses formes de dépendances<a href="bivariee.html#diverses-formes-de-dépendances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ce qu’on appelle <strong>lien</strong> ou <strong>liaison</strong> ou encore <strong>dépendance</strong> entre les variables expriment le fait que les valeurs de deux variables n’évoluent pas indépendamment mais au contraire présentent une certaine <strong>forme</strong> une certaine <strong>régularité</strong>.</p>
 <p>Ces «régularités» peuvent être de plusieurs formes, en voici quelques unes :</p>
 <p><img src="bookdown_cours_stats_files/figure-html/formes-1.png" width="768" style="display: block; margin: auto;" /></p>
@@ -444,8 +467,8 @@ Cette erreur d’amalgame entre corrélation et causalité est très courante, t
 </ul>
 <p>En pratique les formes sont beaucoup moins régulières que ces exemples très «mathématiques» : les données peuvent être bruitées, incomplètes, contenir des outliers, etc.</p>
 </div>
-<div id="les-étapes-de-lanalyse-bivariée" class="section level3" number="5.1.5">
-<h3><span class="header-section-number">5.1.5</span> Les étapes de l’analyse bivariée</h3>
+<div id="les-étapes-de-lanalyse-bivariée" class="section level3 hasAnchor" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Les étapes de l’analyse bivariée<a href="bivariee.html#les-étapes-de-lanalyse-bivariée" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On peut résumer la démarche ‘mentale’ à adopter devant un jeu de données par cette séquence:</p>
 <ol style="list-style-type: decimal">
 <li>Tracer le nuage de points</li>
@@ -460,8 +483,8 @@ cf le blog de Lise Vaudor [<a href="http://perso.ens-lyon.fr/lise.vaudor/regress
 <p><img src="decisionTreeCorr.svg"/></p>
 </div>
 </div>
-<div id="contenu-du-chapitre" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Contenu du chapitre</h2>
+<div id="contenu-du-chapitre" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Contenu du chapitre<a href="bivariee.html#contenu-du-chapitre" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Lien entre deux variables quantitatives</strong></p>
 <p>La section <a href="bivariee.html#reglin">5.3</a> traite de la régression linéaire, la section <a href="bivariee.html#correlation">5.4</a> traite de la corrélation, la section <a href="bivariee.html#manipR">5.5</a> montre comment réaliser ces opérations avec R
 la section <a href="bivariee.html#lineariser">5.6</a> montrer quelques astuces pour linéariser des dépendances de formes connues</p>
@@ -470,27 +493,27 @@ la section <a href="bivariee.html#lineariser">5.6</a> montrer quelques astuces p
 <p><strong>Lien entre une variable qualitative et une variable quantitative</strong></p>
 <p>la section <a href="bivariee.html#qualiquanti">5.8</a> montre quelques représentations graphique faisant intervenir une variable qualitative et une variable quantitative.</p>
 </div>
-<div id="reglin" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Régression linéaire</h2>
-<div id="avant-toute-chose" class="section level3" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Avant toute chose</h3>
+<div id="reglin" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Régression linéaire<a href="bivariee.html#reglin" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="avant-toute-chose" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Avant toute chose<a href="bivariee.html#avant-toute-chose" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Vous devriez commencer à avoir l’habitude de ce mantra, encore plus valable dans le cas d’une analyse bivariée :</p>
 <p><span style="color:red; font-size: 1.5em;">Toujours en premier: Regarder l’aspect des données avec des graphiques </span></p>
 <p>Si le nuage de point n’est pas allongé, si vous “voyez” clairement qu’une droite ne le résulera pas, ou alors très mal, il n’est pas nécessaire d’entreprendre une rregression linéaire, qui sera de toute façon décevante!</p>
 <p>La regression linéaire ne concerne que les <strong>variables quantitatives</strong>.</p>
 </div>
-<div id="principe-et-vocabulaire" class="section level3" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Principe et Vocabulaire</h3>
-<div id="droite-de-régression" class="section level4" number="5.3.2.1">
-<h4><span class="header-section-number">5.3.2.1</span> Droite de régression</h4>
+<div id="principe-et-vocabulaire" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Principe et Vocabulaire<a href="bivariee.html#principe-et-vocabulaire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="droite-de-régression" class="section level4 hasAnchor" number="5.3.2.1">
+<h4><span class="header-section-number">5.3.2.1</span> Droite de régression<a href="bivariee.html#droite-de-régression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Si la forme du nuage de points s’y prête, c’est-à-dire bien allongée, rectiligne, on peut entreprendre une <strong>régression linéaire</strong> (aussi appelé <strong>ajustement</strong> linéaire).</p>
 <p>Cela consiste à trouver la droite qui passe «<strong>au mieux</strong>» dans le nuage de points de deux variables quantitatives <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span>, celle qui <strong>résume</strong> le nuage de points d’une façon satisfaisante.</p>
 <p>«<strong>au mieux</strong>» est ici employé au sens des <strong>moindres carrés</strong>, c’est-à-dire que parmi toutes les droites qui peuvent passer au milieu du nuage de points, on va choisir celle pour laquelle l’erreur commise est la plus faible.</p>
 <p>On cherche la droite (en fait on cherche les deux coefficients <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> de son équation <span class="math inline">\(y=ax+b\)</span>) qui minimise la somme des carrés des écarts, d’où le nom d’estimation MCO (Moindres Carrés Ordinaires) ou OLS (Ordinary Least Squares in english).</p>
 <p>Si le nuage de points n’est pas amorphe, sans forme, et que les deux variables ne sont pas totalement indépendantes, ou constantes, alors cette droite est <strong>unique</strong>.</p>
 </div>
-<div id="modèle-linéaire" class="section level4" number="5.3.2.2">
-<h4><span class="header-section-number">5.3.2.2</span> Modèle linéaire</h4>
+<div id="modèle-linéaire" class="section level4 hasAnchor" number="5.3.2.2">
+<h4><span class="header-section-number">5.3.2.2</span> Modèle linéaire<a href="bivariee.html#modèle-linéaire" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>En réalisant une régression linéaire, on cherche à <strong>expliquer</strong> une variable à partir d’une autre. «Expliquer» signifie ici «avoir un <strong>modèle</strong> pour calculer une valeur de la variable à partir d’une autre».</p>
 <p>Dans le cas d’une régression linéaire, le modèle est l’équation de <strong>la</strong> droite ajustée, de la forme <span class="math inline">\(y=ax +b\)</span>, celle qui minimise la somme des écarts au carré.</p>
 <p>On cherche donc les valeurs de <span class="math inline">\(a\)</span> et de <span class="math inline">\(b\)</span> (les coefficients du modèles linéaire) qui nous permettrait de calculer la valeur d’une variable (la variable dite <strong>expliquée</strong>) à partir d’une autre (la variable dite <strong>explicative</strong> ), que l’on peut écrire naïvement de cette façon :</p>
@@ -503,16 +526,16 @@ C’est celle qui est utilisée par le modèle pour calculer les valeurs de la v
 <p><strong>Variable expliquée</strong> :
 C’est la variable pour laquelle le modèle propose des valeurs: dans notre exemple c’est <span class="math inline">\(V_2\)</span>. Par convention on la met sur l’axe des <span class="math inline">\(y\)</span> dans les graphes.</p>
 </div>
-<div id="estimation-prédiction-résidu" class="section level4" number="5.3.2.3">
-<h4><span class="header-section-number">5.3.2.3</span> Estimation, Prédiction, Résidu</h4>
+<div id="estimation-prédiction-résidu" class="section level4 hasAnchor" number="5.3.2.3">
+<h4><span class="header-section-number">5.3.2.3</span> Estimation, Prédiction, Résidu<a href="bivariee.html#estimation-prédiction-résidu" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>On peut utiliser le modèle, pour <strong>estimer</strong> (=calculer, prédire) les valeurs de <span class="math inline">\(V_2\)</span>, avec les valeurs de <span class="math inline">\(V_1\)</span> et à l’aide de l’équation de droite. On note souvent les valeurs prédites <span class="math inline">\(\hat{V_2}\)</span>.</p>
 <p>L’écart entre <span class="math inline">\(\hat{V_2}\)</span> et <span class="math inline">\(V_2\)</span> est appelé <strong>résidu</strong>.</p>
 <p>Ainsi pour toutes les observations du jeu de données, on a :</p>
 <p><span class="math display">\[V_2 =  prediction(V_1) + residu\]</span>
 <span class="math display">\[V_2 =  \hat{V_2} + residu\]</span></p>
 </div>
-<div id="lerreur-commise-par-le-modèle" class="section level4" number="5.3.2.4">
-<h4><span class="header-section-number">5.3.2.4</span> L’erreur commise par le modèle</h4>
+<div id="lerreur-commise-par-le-modèle" class="section level4 hasAnchor" number="5.3.2.4">
+<h4><span class="header-section-number">5.3.2.4</span> L’erreur commise par le modèle<a href="bivariee.html#lerreur-commise-par-le-modèle" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>L’erreur commise par la droite, c’est la somme des écarts entre les points du nuage et la droite, les <strong>résidus</strong>, ces écarts sont élevés au carré avant d’être sommés pour que les erreurs positives et négatives ne se compensent pas. On appelle parfois cette somme la SSE (Sum of Square Erros in english) ou la RSS (Residuals Sum of Squares in english).</p>
 <p>On peut l’écrire avec des notations différentes, mais la signification est toujours la même :</p>
 <p><span class="math display">\[SSE = \sum_i (prediction_i - observation_i)^2\]</span>
@@ -526,8 +549,8 @@ C’est la variable pour laquelle le modèle propose des valeurs: dans notre exe
 <p>Nous reviendrons dans la section bonus @ref{residuslm} sur la façon de qualifier les erreurs commises par un modèle linaire avec R.</p>
 </div>
 </div>
-<div id="interpréter-la-droite-de-régression" class="section level3" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Interpréter la droite de régression</h3>
+<div id="interpréter-la-droite-de-régression" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Interpréter la droite de régression<a href="bivariee.html#interpréter-la-droite-de-régression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’objectif de la régression linéaire est trouver le meilleur modèle linéaire entre deux variables. Ce modèle est l’équation d’une droite, qu’on appelle <strong>droite de régression</strong> et qui permet de visualiser:</p>
 <ul>
 <li>l’<strong>intensité</strong> de la dépendance, suivant que les points sont proches de la droite ou non</li>
@@ -537,8 +560,8 @@ C’est la variable pour laquelle le modèle propose des valeurs: dans notre exe
 <p><img src="bookdown_cours_stats_files/figure-html/regline-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Dans cet exemple, le nuage de point est assez allongé, on constate une dépendance linaire négative. Les points sont relativement proches de la droite.</p>
 </div>
-<div id="utiliser-un-modèle-linéaire" class="section level3" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Utiliser un modèle linéaire</h3>
+<div id="utiliser-un-modèle-linéaire" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Utiliser un modèle linéaire<a href="bivariee.html#utiliser-un-modèle-linéaire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’<strong>équation</strong> de la droite est un <strong>modèle linéaire</strong> de la relation statistique qui lie <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span>;</p>
 <p>Ici le modèle est : <span class="math inline">\(\hat{V_2}=aV_1+b\)</span></p>
 <p>Si la régression linéaire est réussie, alors pour un individu <span class="math inline">\(i\)</span> dont on connait <span class="math inline">\(V1_i\)</span>, on infère la valeur <span class="math inline">\(V_{2i}\)</span> par le modèle : <span class="math inline">\(\hat{V_{2i}} = aV_{1i} +b\)</span></p>
@@ -547,8 +570,8 @@ C’est la variable pour laquelle le modèle propose des valeurs: dans notre exe
 <p>Imaginez que des observations de <span class="math inline">\(V_2\)</span> soient particulièrement coûteuses à recueillir, et les observations de <span class="math inline">\(V_1\)</span> particulièrement peu coûteuses, par exemple la production de salive d’un tigre adulte en colère (<span class="math inline">\(V_2\)</span>) et la largeur de ses empreintes (<span class="math inline">\(V_1\)</span>).
 En cas de bonne qualité de régressions, le.la zoologiste sera ravi.e de mesurer les largeurs d’empreintes.</p>
 </div>
-<div id="évaluer-la-qualité-dune-régression-linaire-le-r2" class="section level3" number="5.3.5">
-<h3><span class="header-section-number">5.3.5</span> Évaluer la qualité d’une régression linaire : le <span class="math inline">\(R^2\)</span></h3>
+<div id="évaluer-la-qualité-dune-régression-linaire-le-r2" class="section level3 hasAnchor" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Évaluer la qualité d’une régression linaire : le <span class="math inline">\(R^2\)</span><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire-le-r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>En pratique, pour considérer qu’une régression linéaire est de bonne qualité, i.e. que le modèle linéaire qui lie les deux variables décrit (explique, prédit, ..) bien les données, il faut réunir deux critères :</p>
 <ul>
 <li>des coefficients avec des <strong>p-values</strong> associées <strong>faibles</strong> (e.g. &lt;0.05) qu’on peut grossièrement traduire par “on a peu de chances de se tromper”</li>
@@ -556,8 +579,8 @@ En cas de bonne qualité de régressions, le.la zoologiste sera ravi.e de mesure
 </ul>
 <p>D’autres critères sont donnés en bonus à la section <a href="bivariee.html#residuslm">5.5.3</a>.</p>
 <p>On commence par le <span class="math inline">\(R^2\)</span>.</p>
-<div id="le-r2" class="section level4" number="5.3.5.1">
-<h4><span class="header-section-number">5.3.5.1</span> le <span class="math inline">\(R^2\)</span></h4>
+<div id="le-r2" class="section level4 hasAnchor" number="5.3.5.1">
+<h4><span class="header-section-number">5.3.5.1</span> le <span class="math inline">\(R^2\)</span><a href="bivariee.html#le-r2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Le <strong>coefficient de détermination linéaire</strong> , noté <span class="math inline">\(R^2\)</span> est une valeur qui décrit la <strong>qualité de prédiction</strong> de la régression, c’est-à-dire à quel point la droite de régression estime correctement les valeurs de la variable expliquée.</p>
 <p>Il est défini par :
 <span class="math display">\[R^2  = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span></p>
@@ -573,8 +596,8 @@ De la même manière, pour un bon modèle, qui prédit bien les valeurs de <span
 <p><span class="math display">\[R^2 \approx 1- \frac{résidus^2}{variance\ de\ y}\]</span></p>
 <p><span class="math display">\[R^2 \approx 1- (erreur\ commise\ normalisée)\]</span></p>
 </div>
-<div id="propriétés-et-interprétation-additionnelles-du-r2" class="section level4" number="5.3.5.2">
-<h4><span class="header-section-number">5.3.5.2</span> Propriétés et interprétation additionnelles du <span class="math inline">\(R^2\)</span></h4>
+<div id="propriétés-et-interprétation-additionnelles-du-r2" class="section level4 hasAnchor" number="5.3.5.2">
+<h4><span class="header-section-number">5.3.5.2</span> Propriétés et interprétation additionnelles du <span class="math inline">\(R^2\)</span><a href="bivariee.html#propriétés-et-interprétation-additionnelles-du-r2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Le <span class="math inline">\(R^2\)</span> peut s’écrire de plusieurs façons, notamment ainsi :</p>
 <p><span class="math display">\[R^2  =  \frac{\sum_{i=1}^{n} (\hat{y_i} -\bar{y} )^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span></p>
 <p>Cette expression est intéressante pour nous car on reconnait encore une fois une fraction de <em>variances</em> (cf. section <a href="univariee.html#variance">2.6.1</a>) :</p>
@@ -586,8 +609,8 @@ De la même manière, pour un bon modèle, qui prédit bien les valeurs de <span
 <p>On peut donc voir le <span class="math inline">\(R^2\)</span> comme un ratio de variances : celles des estimations et celles des observations.
 En faisant une regression, on cherche à «capturer» la variance de la variable expliquée à l’aide de la variance de la variable estimée par le modèle, d’où une valeur de <span class="math inline">\(R^2\)</span> proche de 1 lorsque la variance des estimations est proche de la variance des observations</p>
 </div>
-<div id="exemples-avec-différentes-valeurs-de-r2" class="section level4" number="5.3.5.3">
-<h4><span class="header-section-number">5.3.5.3</span> Exemples avec différentes valeurs de <span class="math inline">\(R^2\)</span></h4>
+<div id="exemples-avec-différentes-valeurs-de-r2" class="section level4 hasAnchor" number="5.3.5.3">
+<h4><span class="header-section-number">5.3.5.3</span> Exemples avec différentes valeurs de <span class="math inline">\(R^2\)</span><a href="bivariee.html#exemples-avec-différentes-valeurs-de-r2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Voici des exemples de régression linéaire de différentes qualités avec la valeurs correspondante de <span class="math inline">\(R^2\)</span>, on donne aussi la valeur de la p-value, que nous aborderons juste après.</p>
 <p><img src="bookdown_cours_stats_files/figure-html/expleR2_1-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Cette première régression est de bonne qualité: le <span class="math inline">\(R^2\)</span> est proche de 1, la droite décrit bien les données : peu de point s’en écartent significativement.</p>
@@ -600,10 +623,10 @@ Certes, le nuages de points à une forme suffisamment “allongée” pour qu’
 On notera que les p-value sont très faibles, ce qui on va le voir, indique qu’on est à peu près certains de l<em>’équation de la droite</em>, c’est bien celle-ci qui passe “au mieux” dans le nuage de points. Le problème, c’est que ce nuage de points est tout simplement «mal» décrit par une droite, vu sa forme !</p>
 </div>
 </div>
-<div id="interpval" class="section level3" number="5.3.6">
-<h3><span class="header-section-number">5.3.6</span> Évaluer la qualité d’une régression linaire : la p-value</h3>
-<div id="la-p-value-et-lhypothèse-nulle" class="section level4" number="5.3.6.1">
-<h4><span class="header-section-number">5.3.6.1</span> la p-value et l’hypothèse nulle</h4>
+<div id="interpval" class="section level3 hasAnchor" number="5.3.6">
+<h3><span class="header-section-number">5.3.6</span> Évaluer la qualité d’une régression linaire : la p-value<a href="bivariee.html#interpval" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="la-p-value-et-lhypothèse-nulle" class="section level4 hasAnchor" number="5.3.6.1">
+<h4><span class="header-section-number">5.3.6.1</span> la p-value et l’hypothèse nulle<a href="bivariee.html#la-p-value-et-lhypothèse-nulle" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La p-value est la seconde quantité qui nous renseigne sur la qualité d’une régression linéaire.
 Le <span class="math inline">\(R^2\)</span> mesurait la qualité de prédiction du modèle linéaire, la <strong>p-value</strong> est plutôt associée avec la notion de confiance qu’on peut placer dans les coefficients du modèle linéaire que l’on obtient.</p>
 <p>La façon d’interpréter correctement une p-value fait l’objet de nombreux débats, on en propose une ici, mais il y en a de nombreuses autres.</p>
@@ -621,8 +644,8 @@ Ici , l’hypothèse nulle <span class="math inline">\(H_0\)</span> est <strong>
 <p>Quand on rejette <span class="math inline">\(H_0\)</span> et qu’on a formulé une hypothèse alternative , on accepte <em>de facto</em> <span class="math inline">\(H_1\)</span>.</p>
 <p><span class="math inline">\(H_0\)</span>, est l’hypothèse à formuler dans le cas <strong>le plus général possible</strong>, quand on ne sait rien du tout sur les données. Dans ce cas là, étant donné deux variables, on pose l’hypothèse qu’elles sont indépendantes, tout simplement parce qu’il n’y a aucune raison qu’elles soient liées.</p>
 </div>
-<div id="approximation-moins-grossière-à-propos-de-la-p-value" class="section level4" number="5.3.6.2">
-<h4><span class="header-section-number">5.3.6.2</span> Approximation moins grossière à propos de la p-value</h4>
+<div id="approximation-moins-grossière-à-propos-de-la-p-value" class="section level4 hasAnchor" number="5.3.6.2">
+<h4><span class="header-section-number">5.3.6.2</span> Approximation moins grossière à propos de la p-value<a href="bivariee.html#approximation-moins-grossière-à-propos-de-la-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La p-value peut s’interpréter comme «la probabilité d’avoir un résultat au moins aussi marqué étant donné l’hypothèse nulle»</p>
 <p>Imaginez que vous ayez un jeu de données <span class="math inline">\(D_{ini}\)</span> constitué de 2 variables quantitatives pour 500 individus.
 Le nuage de points est suffisamment allongé pour que vous entrepreniez une régression linéaire.
@@ -640,16 +663,16 @@ On s’est donc trompés, pour tous les jeux de données étiquetés <span class
 <p>Évidemment cette proportion est très faible pour des cas où le lien entre les deux variables est marquée, mais comme on raisonne à l’infini elle ne sera jamais nulle !</p>
 </blockquote>
 </div>
-<div id="le-seuil-de-significativité" class="section level4" number="5.3.6.3">
-<h4><span class="header-section-number">5.3.6.3</span> le seuil de significativité</h4>
+<div id="le-seuil-de-significativité" class="section level4 hasAnchor" number="5.3.6.3">
+<h4><span class="header-section-number">5.3.6.3</span> le seuil de significativité<a href="bivariee.html#le-seuil-de-significativité" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Il est d’usage de <strong>rejeter</strong> <span class="math inline">\(H_1\)</span> , l’hypothèse alternative qui considère que les deux variables ne sont pas indépendantes lorsque la p-value associée aux coefficients de la régression linéaire dépasse un certain <strong>seuil</strong>.</p>
-<p>Il n’y a pas de valeur absolue de ce seuil, par une sorte de “tradition” scientifique, le seuil est fixé à 5% (<span class="math inline">\(p \leq 0.05\)</span>) en sciences expérimentales et en sciences sociales.</p>
-<p>Dans certains cas il est tout-à-fait acceptable d’augmenter ce score. Cela se comprend d’autant mieux si on interprète la p-value comme une estimation de <strong>la plausibilité de la compatibilité des données avec l’hypothèse nulle</strong>, et surtout si on se rappelle bien que ce n’est pas parce qu’un test est significatif qu’on a démontré quoique ce soit : on a juste chiffré ce qui sépare notre cas d’étude des cas de même taille dont les valeurs seraient purement dues au hasard.</p>
+<p>Il n’y a pas de valeur absolue de ce seuil, par une sorte de “tradition” scientifique, le seuil est fixé à 5% (<span class="math inline">\(p \leq 0.05\)</span>) en sciences expérimentales et des valeurs plus élevées en sciences sociales.
+Dans certains cas il est tout-à-fait acceptable d’augmenter ce score. Cela se comprend d’autant mieux si on interprète la p-value comme une estimation de <strong>la plausibilité de la compatibilité des données avec l’hypothèse nulle</strong>, et surtout si on se rappelle bien que ce n’est pas parce qu’un test est significatif qu’on a démontré quoique ce soit : on a juste chiffré ce qui sépare notre cas d’étude des cas de même taille dont les valeurs seraient purement dues au hasard.</p>
 </div>
-<div id="ce-quil-faut-retenir-de-la-p-value" class="section level4" number="5.3.6.4">
-<h4><span class="header-section-number">5.3.6.4</span> Ce qu’il faut retenir de la p-value</h4>
+<div id="ce-quil-faut-retenir-de-la-p-value" class="section level4 hasAnchor" number="5.3.6.4">
+<h4><span class="header-section-number">5.3.6.4</span> Ce qu’il faut retenir de la p-value<a href="bivariee.html#ce-quil-faut-retenir-de-la-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li>«plus elle est petite, mieux c’est»</li>
+<li>«plus elle est proche de zéro, mieux c’est»</li>
 <li>le seuil usuel de significativité est bas (~5%),</li>
 <li>elle s’interprète comme un pourcentage de chances de se tromper en première approximation</li>
 <li>il faut plutôt le voir comme la probabilité d’obtenir par chance des résultats de régression linéaire aussi bons, pour une jeu de données de variables indépendantes de même taille.</li>
@@ -657,8 +680,8 @@ On s’est donc trompés, pour tous les jeux de données étiquetés <span class
 </div>
 </div>
 </div>
-<div id="correlation" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Corrélation</h2>
+<div id="correlation" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Corrélation<a href="bivariee.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Dans le cas d’une liaison entre deux variables, on peut calculer l’«intensité» et le sens de ce lien sans nécessairement que la dépendance soit linéaire, ni trouver les coefficients du modèle linéaire : c’est ce que nous décrit la valeur de <strong>corrélation</strong>.</p>
 <p><span class="math inline">\(cor(x,y) \in [-1;1]\)</span> entre deux variables <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> .</p>
 <ul>
@@ -672,16 +695,16 @@ On s’est donc trompés, pour tous les jeux de données étiquetés <span class
 <blockquote>
 <p><strong>monotone</strong> signifie que le sens de variation de la variable est constant: uniquement croissante ou uniquement décroissante.</p>
 </blockquote>
-<div id="calcul-direct-du-coefficient-de-corrélation-de-pearson" class="section level3" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Calcul direct du coefficient de corrélation (de Pearson)</h3>
+<div id="calcul-direct-du-coefficient-de-corrélation-de-pearson" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Calcul direct du coefficient de corrélation (de Pearson)<a href="bivariee.html#calcul-direct-du-coefficient-de-corrélation-de-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Soient deux variables <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span></p>
 <p>Le coefficient de corrélation <span class="math inline">\(r\)</span> de <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span> est la normalisation de la covariance ce <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span> par le produit des écart-types des variables.</p>
 <p><span class="math inline">\(r= \frac{cov(V_1,V_2)}{\sigma_{V_1}\sigma_{V_2}}\)</span></p>
 <p>La covariance est la <strong>moyenne du produit des écarts à la moyenne</strong></p>
 <p><span class="math inline">\(cov(V_1,V_2)= E[(V_1-E[V_1])(V_2-E[V_2])]\)</span></p>
 <p>Dans cette formule, et de façon courante en statistique, on note <span class="math inline">\(E[X]\)</span> l’<strong>espérance</strong> de la variable <span class="math inline">\(X\)</span>, ce qui revient dans ce cas à sa moyenne.</p>
-<div id="lien-entre-corrélation-et-le-r2-dune-régression" class="section level4" number="5.4.1.1">
-<h4><span class="header-section-number">5.4.1.1</span> Lien entre corrélation et le <span class="math inline">\(R^2\)</span> d’une régression</h4>
+<div id="lien-entre-corrélation-et-le-r2-dune-régression" class="section level4 hasAnchor" number="5.4.1.1">
+<h4><span class="header-section-number">5.4.1.1</span> Lien entre corrélation et le <span class="math inline">\(R^2\)</span> d’une régression<a href="bivariee.html#lien-entre-corrélation-et-le-r2-dune-régression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Si on fait une régression linéaire entre deux variables <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> , <span class="math inline">\(y\)</span> étant la variable expliquée, alors</p>
 <p><span class="math inline">\(R^2=cor(x,y)^2= r^2\)</span></p>
 <p>et</p>
@@ -694,8 +717,8 @@ On s’est donc trompés, pour tous les jeux de données étiquetés <span class
 </ul>
 </div>
 </div>
-<div id="le-coefficient-de-corrélation-de-spearman" class="section level3" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Le coefficient de corrélation de Spearman</h3>
+<div id="le-coefficient-de-corrélation-de-spearman" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Le coefficient de corrélation de Spearman<a href="bivariee.html#le-coefficient-de-corrélation-de-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Quand les deux variables sembles corrélées , de façon <strong>monotone</strong> mais <strong>non linéaire</strong>, on utilise le coefficient de corrélation de <strong>Spearman</strong>, basé sur le <strong>rang</strong> des individus.</p>
 <center>
 <span class="math inline">\(\rho = 1 - \frac{6\sum_{i=1}^{n}(rg(X_i)-rg(Y_i))^2 }{n^3 -n}\)</span>
@@ -704,8 +727,8 @@ On s’est donc trompés, pour tous les jeux de données étiquetés <span class
 <p><span class="math inline">\(rg(X_i)\)</span> le <em>rang</em> de <span class="math inline">\(X_i\)</span> (le classement de sa valeur) dans la distribution de <span class="math inline">\(X\)</span> et <span class="math inline">\(n\)</span> le nombre d’individus.</p>
 <p>Les valeurs et les interprétations du coefficient de Spearman sont les mêmes que pour le coefficient de corrélation de Pearson.</p>
 </div>
-<div id="pearson-ou-spearman" class="section level3" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Pearson ou Spearman ?</h3>
+<div id="pearson-ou-spearman" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Pearson ou Spearman ?<a href="bivariee.html#pearson-ou-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Les coefficients <span class="math inline">\(r\)</span> (Pearson) et <span class="math inline">\(\rho\)</span> (Spearman) sont deux moyens d’estimer la corrélation: lequel choisir ?</p>
 <ul>
 <li>si <span class="math inline">\(r = \rho\)</span>: on garde <span class="math inline">\(r\)</span> (plus simple à interpréter)</li>
@@ -714,10 +737,10 @@ On s’est donc trompés, pour tous les jeux de données étiquetés <span class
 </ul>
 <p>… et surtout toujours <strong>tracer le nuage de points</strong> pour examiner la nature de la relation.</p>
 </div>
-<div id="matrice-de-corrélations" class="section level3" number="5.4.4">
-<h3><span class="header-section-number">5.4.4</span> Matrice de corrélations</h3>
+<div id="matrice-de-corrélations" class="section level3 hasAnchor" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Matrice de corrélations<a href="bivariee.html#matrice-de-corrélations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>En présence de plusieurs variables, on peut rassembler les valeurs de coefficient de corrélations calculés sur toues les variables deux à deux, dans une <strong>matrice de corrélations</strong></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bivariee.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bivariee.html#cb58-1" tabindex="-1"></a><span class="fu">cor</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
 ## Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
@@ -725,57 +748,57 @@ On s’est donc trompés, pour tous les jeux de données étiquetés <span class
 ## Petal.Width     0.8179411  -0.3661259    0.9628654   1.0000000</code></pre>
 <p>Cette matrice de corrélation est symétrique, et sa diagonale est constituée de 1.</p>
 </div>
-<div id="sensibilité-aux-valeurs-extrêmes" class="section level3" number="5.4.5">
-<h3><span class="header-section-number">5.4.5</span> Sensibilité aux valeurs extrêmes</h3>
+<div id="sensibilité-aux-valeurs-extrêmes" class="section level3 hasAnchor" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> Sensibilité aux valeurs extrêmes<a href="bivariee.html#sensibilité-aux-valeurs-extrêmes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La corrélation de Pearson est un indicateur assez sensible aux valeurs extrêmes.
 Prenons ce dataset particulier, que j’ai choisi pour qu’il ne présente aucune corrélation:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="bivariee.html#cb60-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
-<span id="cb60-2"><a href="bivariee.html#cb60-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb60-3"><a href="bivariee.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X, Y, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="at">ylim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="bivariee.html#cb60-1" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
+<span id="cb60-2"><a href="bivariee.html#cb60-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb60-3"><a href="bivariee.html#cb60-3" tabindex="-1"></a><span class="fu">plot</span>(X, Y, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="at">ylim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/sensitiveOut1-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="bivariee.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="bivariee.html#cb61-1" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate</span></code></pre></div>
 <pre><code>## cor 
 ##   0</code></pre>
 <p>Si on perturbe ce dataset en ajoutant le point <span class="math inline">\((x=15, y=15)\)</span> et qu’on recalcule la corrélation :</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="bivariee.html#cb63-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(X, <span class="dv">15</span>)</span>
-<span id="cb63-2"><a href="bivariee.html#cb63-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(Y,<span class="dv">15</span>)</span>
-<span id="cb63-3"><a href="bivariee.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X, Y, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="at">ylim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="bivariee.html#cb63-1" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(X, <span class="dv">15</span>)</span>
+<span id="cb63-2"><a href="bivariee.html#cb63-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(Y,<span class="dv">15</span>)</span>
+<span id="cb63-3"><a href="bivariee.html#cb63-3" tabindex="-1"></a><span class="fu">plot</span>(X, Y, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>), <span class="at">ylim=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">16</span>))</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/sensitiveOut2-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="bivariee.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="bivariee.html#cb64-1" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate</span></code></pre></div>
 <pre><code>##       cor 
 ## 0.9052224</code></pre>
 <p>À lui tout seul, ce point transforme la corrélation du jeu de données, le faisant passer d’une corrélation nulle à une corrrélation très forte et positive.</p>
 <blockquote>
 <p>Par ses valeurs éloignées des autres, ce point exerce une sorte de <em>bras de levier</em> sur tous les autres, et pourrait faire croire à une tendance linéaire dans le groupe entier.
-Avant qu’il n’arrive , tous les liens entre les points se compensaient, s’annulaient en quelques sorte. A son arrivée, ce point crée un “petit bout de linéarité”" avec tous les autres, ces petits bouts vont tous globalement dans le même sens puisqu’il est loin de la masse de point, et l’écart numérique entre ce point et la moyenne des autres fait le reste: cela suffit à passer pour de la corrélation.</p>
+Avant qu’il n’arrive , tous les liens entre les points se compensaient, s’annulaient en quelques sorte. A son arrivée, ce point crée un “petit bout de linéarité”” avec tous les autres, ces petits bouts vont tous globalement dans le même sens puisqu’il est loin de la masse de point, et l’écart numérique entre ce point et la moyenne des autres fait le reste: cela suffit à passer pour de la corrélation.</p>
 </blockquote>
 <p>Cet exemple est volontairement exagéré : il y a seulement 13 individus dans le jeu de données avant la perturbation, ce qui est vraiment peu. Mais c’est l’occasion de rappeler qu’après l’affichage des données brutes, il est utile de s’interroger sur la nécessité de nettoyer/filter les données et des conséquences de ce nettoyage sur le reste des analyses.</p>
 <p>Voyons ce qui se passerait avec un jeu de données plus conséquent : 1000 points dont les valeurs <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> sont échantillonnées chacune selon une loi normale<span class="math inline">\(\mathscr{N}(0,1)\)</span> , perturbés par un outlier en <span class="math inline">\((x=15,y=15)\)</span>:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="bivariee.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
-<span id="cb66-2"><a href="bivariee.html#cb66-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb66-3"><a href="bivariee.html#cb66-3" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span>  <span class="fu">rnorm</span>(<span class="dv">1000</span>) </span>
-<span id="cb66-4"><a href="bivariee.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate <span class="co"># Pearson sans perturbation</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="bivariee.html#cb66-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb66-2"><a href="bivariee.html#cb66-2" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb66-3"><a href="bivariee.html#cb66-3" tabindex="-1"></a>Y <span class="ot">&lt;-</span>  <span class="fu">rnorm</span>(<span class="dv">1000</span>) </span>
+<span id="cb66-4"><a href="bivariee.html#cb66-4" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate <span class="co"># Pearson sans perturbation</span></span></code></pre></div>
 <pre><code>##        cor 
 ## -0.0420421</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="bivariee.html#cb68-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(X, <span class="dv">15</span>)</span>
-<span id="cb68-2"><a href="bivariee.html#cb68-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(Y,<span class="dv">15</span>)</span>
-<span id="cb68-3"><a href="bivariee.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(X,Y), <span class="fu">aes</span>(X,Y))<span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span>.<span class="dv">2</span>)<span class="sc">+</span><span class="fu">theme_light</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="bivariee.html#cb68-1" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(X, <span class="dv">15</span>)</span>
+<span id="cb68-2"><a href="bivariee.html#cb68-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(Y,<span class="dv">15</span>)</span>
+<span id="cb68-3"><a href="bivariee.html#cb68-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(X,Y), <span class="fu">aes</span>(X,Y))<span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span>.<span class="dv">2</span>)<span class="sc">+</span><span class="fu">theme_light</span>()</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/sensitiveOut3-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="bivariee.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate <span class="co"># Pearson après perturbation</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="bivariee.html#cb69-1" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate <span class="co"># Pearson après perturbation</span></span></code></pre></div>
 <pre><code>##     cor 
 ## 0.15278</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="bivariee.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">exact =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>estimate <span class="co">#Spearman après perturbation</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="bivariee.html#cb71-1" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">exact =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>estimate <span class="co">#Spearman après perturbation</span></span></code></pre></div>
 <pre><code>##         rho 
 ## -0.04201555</code></pre>
 <p>La perturbation par l’ajout d’un point (un millième de l’effectif seulement) fait passer la corrélation de pearson de -0.04 à 0.15 !</p>
 <p>On peut remarquer que le coefficient de Spearman, puisqu’il prend en compte le rang des individus et non leurs valeurs de variables est bien plus robuste à ce type de perturbations.</p>
 <p>Ajoutons une deuxième perturbation en (16,16) pour finir de s’en convaincre :</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="bivariee.html#cb73-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(X, <span class="dv">16</span>)</span>
-<span id="cb73-2"><a href="bivariee.html#cb73-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(Y,<span class="dv">16</span>)</span>
-<span id="cb73-3"><a href="bivariee.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate <span class="co"># Pearson après 2 perturbations</span></span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="bivariee.html#cb73-1" tabindex="-1"></a>X <span class="ot">&lt;-</span>  <span class="fu">c</span>(X, <span class="dv">16</span>)</span>
+<span id="cb73-2"><a href="bivariee.html#cb73-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(Y,<span class="dv">16</span>)</span>
+<span id="cb73-3"><a href="bivariee.html#cb73-3" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y)<span class="sc">$</span>estimate <span class="co"># Pearson après 2 perturbations</span></span></code></pre></div>
 <pre><code>##       cor 
 ## 0.3011541</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="bivariee.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">exact =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>estimate <span class="co">#Spearman après 2 perturbations</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="bivariee.html#cb75-1" tabindex="-1"></a><span class="fu">cor.test</span>(X,Y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">exact =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>estimate <span class="co">#Spearman après 2 perturbations</span></span></code></pre></div>
 <pre><code>##         rho 
 ## -0.03889886</code></pre>
 <p>La corrélation de Pearson a doublé !</p>
@@ -784,14 +807,14 @@ Avant qu’il n’arrive , tous les liens entre les points se compensaient, s’
 </blockquote>
 </div>
 </div>
-<div id="manipR" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> Régression linéaire et corrélation avec R</h2>
-<div id="la-commande-lm" class="section level3" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> La commande <code>lm</code></h3>
+<div id="manipR" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Régression linéaire et corrélation avec R<a href="bivariee.html#manipR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="la-commande-lm" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> La commande <code>lm</code><a href="bivariee.html#la-commande-lm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La régression linéaire entre deux variables <code>x</code> et <code>y</code> s’obtient avec la fonction <code>lm()</code> et s’écrit <code>lm(y ~ x)</code> pour expliquer la variable <code>y</code> par la variable <code>x</code>.</p>
 <p>Le premier argument est sous une forme particulière d’expression en R :une <strong>formule</strong>.</p>
 <p>Elle s’écrit <code>Variable expliquée ~ Variable explicative</code> dans notre cas, puisque nous faisons une régression <em>univariée</em> , c’est-à-dire qu’on essaye d’expliquer une variable à l’aide d’<strong>une</strong> seule autre variable.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="bivariee.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span>iris<span class="sc">$</span>Petal.Width)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="bivariee.html#cb77-1" tabindex="-1"></a><span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span>iris<span class="sc">$</span>Petal.Width)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = iris$Petal.Length ~ iris$Petal.Width)
@@ -800,12 +823,12 @@ Avant qu’il n’arrive , tous les liens entre les points se compensaient, s’
 ##      (Intercept)  iris$Petal.Width  
 ##            1.084             2.230</code></pre>
 </div>
-<div id="format-des-résultats" class="section level3" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Format des résultats</h3>
+<div id="format-des-résultats" class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Format des résultats<a href="bivariee.html#format-des-résultats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La fonction <code>lm</code> renvoie une objet complexe, qui contient beaucoup d’informations.
 Elles sont heureusement résumées sous une forme lisible en console par la fonction <code>summary()</code></p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="bivariee.html#cb79-1" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span>iris<span class="sc">$</span>Petal.Width)</span>
-<span id="cb79-2"><a href="bivariee.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="bivariee.html#cb79-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span>iris<span class="sc">$</span>Petal.Width)</span>
+<span id="cb79-2"><a href="bivariee.html#cb79-2" tabindex="-1"></a><span class="fu">summary</span>(regression)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = iris$Petal.Length ~ iris$Petal.Width)
@@ -834,8 +857,8 @@ Elles sont heureusement résumées sous une forme lisible en console par la fonc
 <p>Ce premier niveau de résultats nous suffit dans le cadre de ce cours : nous avons le <span class="math inline">\(R^2\)</span> et la p-value.
 D’autres critères sont sont disponibles pour renforcer l’analyse, ils sont donnés dans les sections suivantes à titre indicatifs.</p>
 </div>
-<div id="residuslm" class="section level3" number="5.5.3">
-<h3><span class="header-section-number">5.5.3</span> Bonus: Critères de significativité du lien linéaire</h3>
+<div id="residuslm" class="section level3 hasAnchor" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Bonus: Critères de significativité du lien linéaire<a href="bivariee.html#residuslm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ces critères portent sur les <strong>résidus</strong> <span class="math inline">\(\epsilon_i\)</span>, i.e. l’écart entre valeur observée et valeur prédite de la variable <span class="math inline">\(y\)</span> pour l’individu <span class="math inline">\(i\)</span></p>
 <p><span class="math display">\[\epsilon_i= y_i - \hat{y_i}\]</span></p>
 <p>Les résidus doivent:</p>
@@ -846,63 +869,63 @@ D’autres critères sont sont disponibles pour renforcer l’analyse, ils sont 
 </ul>
 <p>On peut vérifier une partie de ces critères à l’aide des quartiles que donne R dans les résultats de régression.</p>
 <p>R nous aide avec plusieurs fonctions :</p>
-<div id="évaluation-de-lindépendance-des-résidus-avec-r" class="section level4" number="5.5.3.1">
-<h4><span class="header-section-number">5.5.3.1</span> Évaluation de l’indépendance des résidus avec R</h4>
+<div id="évaluation-de-lindépendance-des-résidus-avec-r" class="section level4 hasAnchor" number="5.5.3.1">
+<h4><span class="header-section-number">5.5.3.1</span> Évaluation de l’indépendance des résidus avec R<a href="bivariee.html#évaluation-de-lindépendance-des-résidus-avec-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>On utilise les graphique de la fonction <code>acf</code>.</p>
 <p>Si une barre exceptée la première dépasse la ligne en pointillés, on peut remettre en cause l’indépendance des résidus. Ici, c’est le cas. Cela ne veut pas pour autant dire que le modèle linéaire est à mettre à la poubelle, simplement qu’il y a une erreur systématique dans ses résidus, qui ne sont pas assez indépendants.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="bivariee.html#cb81-1" aria-hidden="true" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
-<span id="cb81-2"><a href="bivariee.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(<span class="fu">residuals</span>(modele1))</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="bivariee.html#cb81-1" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
+<span id="cb81-2"><a href="bivariee.html#cb81-2" tabindex="-1"></a><span class="fu">acf</span>(<span class="fu">residuals</span>(modele1))</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSigni3-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="les-4-graphiques-résultats-de-la-fonction-lm" class="section level4" number="5.5.3.2">
-<h4><span class="header-section-number">5.5.3.2</span> Les 4 graphiques résultats de la fonction <code>lm</code></h4>
+<div id="les-4-graphiques-résultats-de-la-fonction-lm" class="section level4 hasAnchor" number="5.5.3.2">
+<h4><span class="header-section-number">5.5.3.2</span> Les 4 graphiques résultats de la fonction <code>lm</code><a href="bivariee.html#les-4-graphiques-résultats-de-la-fonction-lm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La fonction <code>lm</code> de R et ses résultats permettent de tracer 4 graphiques pour évaluer certains des critères de significativité.
 Pour cela il suffit d’appeler la fonction <code>plot</code> sur l’objet résultat de la régression.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bivariee.html#cb82-1" aria-hidden="true" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
-<span id="cb82-2"><a href="bivariee.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># pour avoir une matrice de graphes</span></span>
-<span id="cb82-3"><a href="bivariee.html#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modele1)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bivariee.html#cb82-1" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
+<span id="cb82-2"><a href="bivariee.html#cb82-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># pour avoir une matrice de graphes</span></span>
+<span id="cb82-3"><a href="bivariee.html#cb82-3" tabindex="-1"></a><span class="fu">plot</span>(modele1)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="évaluer-lhomogénéité-des-résidus-avec-r" class="section level4" number="5.5.3.3">
-<h4><span class="header-section-number">5.5.3.3</span> Évaluer l’homogénéité des résidus avec R</h4>
+<div id="évaluer-lhomogénéité-des-résidus-avec-r" class="section level4 hasAnchor" number="5.5.3.3">
+<h4><span class="header-section-number">5.5.3.3</span> Évaluer l’homogénéité des résidus avec R<a href="bivariee.html#évaluer-lhomogénéité-des-résidus-avec-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Le premier graphique sert à vérifier que le nuage de points est homogène c’est-à-dire qu’il n’y a pas de relation non-linéaire entre résidus et valeurs prédites.</p>
 <p>Une éventuelle relation non-linéaire pourrait se retrouver dans les résidus, et c’est normal. C’est «normal» puisqu’un modèle linéaire ne va capturer que des structures, des tendances <strong>linéaires</strong> entre deux variables. En cas de structure trop marquée dans les résidus, il faut peut être proposer un modèle non-linéaire, plus délicat à ajuster mais qui capturera plus de variance et laissera des résidus moins marqués.</p>
 <p>Ici on observe une légère structure parabolique:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="bivariee.html#cb83-1" aria-hidden="true" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
-<span id="cb83-2"><a href="bivariee.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modele1,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="bivariee.html#cb83-1" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
+<span id="cb83-2"><a href="bivariee.html#cb83-2" tabindex="-1"></a><span class="fu">plot</span>(modele1,<span class="dv">1</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif1-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="évaluer-la-normalité-de-la-distribution-des-résidus" class="section level4" number="5.5.3.4">
-<h4><span class="header-section-number">5.5.3.4</span> Évaluer la normalité de la distribution des résidus</h4>
+<div id="évaluer-la-normalité-de-la-distribution-des-résidus" class="section level4 hasAnchor" number="5.5.3.4">
+<h4><span class="header-section-number">5.5.3.4</span> Évaluer la normalité de la distribution des résidus<a href="bivariee.html#évaluer-la-normalité-de-la-distribution-des-résidus" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Le deuxième graphique appelé “Q-Q plot” nous permet de vérifier l’<strong>hypothèse de normalité des résidus</strong>.</p>
 <p>Pour cela, on compare donc les valeurs de quantiles des résidus <span class="math inline">\(\epsilon_i\)</span> avec des quantiles de la distribution de loi Normale.</p>
 <p>On représente le nuage de points <span class="math inline">\((Q_{theo}, Q_{obs})\)</span> , avec <span class="math inline">\(Q_{obs}\)</span> les valeurs de quantiles des résidus en ordonnée et <span class="math inline">\(Q_{theo}\)</span> les quantiles de la distribution théorique (une Gaussienne donc) en abscisse.</p>
 <p>Si les résidus suivent une loi normale , les points seront être proches de la bissectrice , puisque leurs valeurs de quantiles seront proches.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="bivariee.html#cb84-1" aria-hidden="true" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
-<span id="cb84-2"><a href="bivariee.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modele1,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="bivariee.html#cb84-1" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
+<span id="cb84-2"><a href="bivariee.html#cb84-2" tabindex="-1"></a><span class="fu">plot</span>(modele1,<span class="dv">2</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif2-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="évaluer-lhomoscédasticité-des-résidus" class="section level4" number="5.5.3.5">
-<h4><span class="header-section-number">5.5.3.5</span> Évaluer l’homoscédasticité des résidus</h4>
-<p>Le troisième graphique intitulé “Scale location” indique si les résidus sont distribués de façon homogène suivant les valeurs “fittées,” par rapport à une droite.
+<div id="évaluer-lhomoscédasticité-des-résidus" class="section level4 hasAnchor" number="5.5.3.5">
+<h4><span class="header-section-number">5.5.3.5</span> Évaluer l’homoscédasticité des résidus<a href="bivariee.html#évaluer-lhomoscédasticité-des-résidus" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Le troisième graphique intitulé “Scale location” indique si les résidus sont distribués de façon homogène suivant les valeurs “fittées”, par rapport à une droite.
 Dans ce cas la droite est plutôt horizontale et les points sont disposés de façon homogène autour.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="bivariee.html#cb85-1" aria-hidden="true" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
-<span id="cb85-2"><a href="bivariee.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modele1,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="bivariee.html#cb85-1" tabindex="-1"></a>modele1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Petal.Length<span class="sc">~</span> iris<span class="sc">$</span>Petal.Width)</span>
+<span id="cb85-2"><a href="bivariee.html#cb85-2" tabindex="-1"></a><span class="fu">plot</span>(modele1,<span class="dv">3</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/residualSignif3-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Dans cet exemple: on voit une légère pente mais les points sont distribués de façon relativement homogène autour de la droite</p>
 </div>
-<div id="todo-residual-vs.-leverage" class="section level4" number="5.5.3.6">
-<h4><span class="header-section-number">5.5.3.6</span> TODO residual vs. leverage</h4>
+<div id="todo-residual-vs.-leverage" class="section level4 hasAnchor" number="5.5.3.6">
+<h4><span class="header-section-number">5.5.3.6</span> TODO residual vs. leverage<a href="bivariee.html#todo-residual-vs.-leverage" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Pour le moment je ne sais pas comment interpréter le dernier des quatre graphiques. À suivre !</p>
 </div>
 </div>
-<div id="tests-de-corrélation-avec-r" class="section level3" number="5.5.4">
-<h3><span class="header-section-number">5.5.4</span> Tests de corrélation avec R</h3>
+<div id="tests-de-corrélation-avec-r" class="section level3 hasAnchor" number="5.5.4">
+<h3><span class="header-section-number">5.5.4</span> Tests de corrélation avec R<a href="bivariee.html#tests-de-corrélation-avec-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>la corrélation peut être obtenue avec la fonction <code>cor()</code>, dont les deux premiers arguments sont des listes (ou vecteurs) de valeurs de même taille.</p>
 <p>La fonction <code>cor.test</code> est plus complète : comme c’est un <strong>test</strong>, on a plusieurs indicateurs statistiques sur ce test, notamment la <strong>p-value</strong> et <strong>l’intervalle de confiance</strong>, qui est l’intervalle dans lequel on encadre la valeur de la corrélation.
 On peut spécifier le niveau de confiance qu’on désire obtenir pour cet intervalle avec l’argument <code>conf.level</code> .</p>
 <p>PLus le niveau de confiance est élevée , plus l’intervalle est grand, plus il est bas, plus l’intervalle est étroit.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="bivariee.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Petal.Width, <span class="at">conf.level=</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="bivariee.html#cb86-1" tabindex="-1"></a><span class="fu">cor.test</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Petal.Width, <span class="at">conf.level=</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -914,7 +937,7 @@ On peut spécifier le niveau de confiance qu’on désire obtenir pour cet inter
 ## sample estimates:
 ##       cor 
 ## 0.9628654</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="bivariee.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Petal.Width, <span class="at">conf.level=</span> <span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="bivariee.html#cb88-1" tabindex="-1"></a><span class="fu">cor.test</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Petal.Width, <span class="at">conf.level=</span> <span class="fl">0.75</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -930,77 +953,77 @@ On peut spécifier le niveau de confiance qu’on désire obtenir pour cet inter
 Elle s’interprète de la même façon que pour celles associées aux coefficients de la régression linéaire ( cf. section <a href="bivariee.html#interpval">5.3.6</a>)</p>
 <p>la fonction <code>cor.test</code> R donne le coefficient de Pearson par defaut, l’argument <code>method</code> de la fonction permet de spécifier deux autres coefficients : Kendall et Spearman.</p>
 <p>Pour extraire uniquement la valeur des coefficient , il faut utiliser l’attribut <code>estimate</code> de l’objet renvoyé par la fonction.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="bivariee.html#cb90-1" aria-hidden="true" tabindex="-1"></a>my_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Sepal.Width, <span class="at">method=</span><span class="st">&quot;spearman&quot;</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb90-2"><a href="bivariee.html#cb90-2" aria-hidden="true" tabindex="-1"></a>my_test<span class="sc">$</span>estimate</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="bivariee.html#cb90-1" tabindex="-1"></a>my_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Sepal.Width, <span class="at">method=</span><span class="st">&quot;spearman&quot;</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb90-2"><a href="bivariee.html#cb90-2" tabindex="-1"></a>my_test<span class="sc">$</span>estimate</span></code></pre></div>
 <pre><code>##        rho 
 ## -0.1667777</code></pre>
 <p>l’argument <code>exact</code> doit être précisé en cas de valeurs ex-aequo dans les données.</p>
 </div>
 </div>
-<div id="lineariser" class="section level2" number="5.6">
-<h2><span class="header-section-number">5.6</span> “trucs” pour linéariser des relations non-linéaires</h2>
+<div id="lineariser" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> “trucs” pour linéariser des relations non-linéaires<a href="bivariee.html#lineariser" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Les techniques que nous avons abordées sont faites pour les relations linéaires. Tout est plus compliqué lorsque la dépendance entre deux variables est avérée, mais ne suit pas une forme linéaire : elle est mal décrite par le modèle linéaire d’une régression, ou la corrélation de Pearson est peu précise, etc.</p>
 <p>Quand on a de la chance , on peut néanmoins reconnaître dans les nuages de points quelques formes de dépendances «connues», qui peuvent être issus de lois ou provenir de phénomènes décrits par des lois usuelles.</p>
 <p>On va donner un exemples de ces relations connues, avec l’effet de leur linéarisation.
 Les exemples sont volontairement exagérés pour mieux cataloguer les formes. Évidemment en pratique les données sont beaucoup moins propres, et une linéarisation «aveugle» n’améliore pas toujours les choses.</p>
-<div id="relation-log-linéaire" class="section level3" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Relation log-linéaire</h3>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="bivariee.html#cb92-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">500</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max=</span><span class="dv">10</span>) </span>
-<span id="cb92-2"><a href="bivariee.html#cb92-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fl">1.5</span><span class="sc">*</span>x<span class="sc">^</span><span class="fl">4.5</span>   </span>
-<span id="cb92-3"><a href="bivariee.html#cb92-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">500</span>) <span class="co">#on ajoute du bruit sur x </span></span>
-<span id="cb92-4"><a href="bivariee.html#cb92-4" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(x, y1)</span>
-<span id="cb92-5"><a href="bivariee.html#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb92-6"><a href="bivariee.html#cb92-6" aria-hidden="true" tabindex="-1"></a>plo2 <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(data2, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y1))<span class="sc">+</span></span>
-<span id="cb92-7"><a href="bivariee.html#cb92-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;#0FAF96&quot;</span>, <span class="at">alpha=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
-<span id="cb92-8"><a href="bivariee.html#cb92-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot; x &quot;</span>)<span class="sc">+</span></span>
-<span id="cb92-9"><a href="bivariee.html#cb92-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot; y &quot;</span>)</span>
-<span id="cb92-10"><a href="bivariee.html#cb92-10" aria-hidden="true" tabindex="-1"></a>plo2</span></code></pre></div>
+<div id="relation-log-linéaire" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Relation log-linéaire<a href="bivariee.html#relation-log-linéaire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="bivariee.html#cb92-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">500</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max=</span><span class="dv">10</span>) </span>
+<span id="cb92-2"><a href="bivariee.html#cb92-2" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fl">1.5</span><span class="sc">*</span>x<span class="sc">^</span><span class="fl">4.5</span>   </span>
+<span id="cb92-3"><a href="bivariee.html#cb92-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">500</span>) <span class="co">#on ajoute du bruit sur x </span></span>
+<span id="cb92-4"><a href="bivariee.html#cb92-4" tabindex="-1"></a>data2 <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(x, y1)</span>
+<span id="cb92-5"><a href="bivariee.html#cb92-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb92-6"><a href="bivariee.html#cb92-6" tabindex="-1"></a>plo2 <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(data2, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y1))<span class="sc">+</span></span>
+<span id="cb92-7"><a href="bivariee.html#cb92-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;#0FAF96&quot;</span>, <span class="at">alpha=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
+<span id="cb92-8"><a href="bivariee.html#cb92-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot; x &quot;</span>)<span class="sc">+</span></span>
+<span id="cb92-9"><a href="bivariee.html#cb92-9" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot; y &quot;</span>)</span>
+<span id="cb92-10"><a href="bivariee.html#cb92-10" tabindex="-1"></a>plo2</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/loglin-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Cette forme est observée lorsque les variables sont liées par une relation de type <span class="math inline">\(y=ax^b\)</span>.
 Elle se linéarise par <span class="math inline">\(ln(y)=bln(x) + ln(a)\)</span></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="bivariee.html#cb93-1" aria-hidden="true" tabindex="-1"></a>x_transform <span class="ot">&lt;-</span> <span class="fu">log</span>(x)</span></code></pre></div>
-<pre><code>## Warning in log(x): production de NaN</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="bivariee.html#cb95-1" aria-hidden="true" tabindex="-1"></a>y_transform <span class="ot">&lt;-</span> <span class="fu">log</span>(y1)</span>
-<span id="cb95-2"><a href="bivariee.html#cb95-2" aria-hidden="true" tabindex="-1"></a>data_transform <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(x_transform, y_transform)</span>
-<span id="cb95-3"><a href="bivariee.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb95-4"><a href="bivariee.html#cb95-4" aria-hidden="true" tabindex="-1"></a>plo2 <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(data_transform, <span class="fu">aes</span>(<span class="at">x=</span>x_transform, <span class="at">y=</span>y_transform))<span class="sc">+</span></span>
-<span id="cb95-5"><a href="bivariee.html#cb95-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;#0FAF96&quot;</span>, <span class="at">alpha=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
-<span id="cb95-6"><a href="bivariee.html#cb95-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot; x &quot;</span>)<span class="sc">+</span></span>
-<span id="cb95-7"><a href="bivariee.html#cb95-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot; y &quot;</span>)</span>
-<span id="cb95-8"><a href="bivariee.html#cb95-8" aria-hidden="true" tabindex="-1"></a>plo2</span></code></pre></div>
-<pre><code>## Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="bivariee.html#cb93-1" tabindex="-1"></a>x_transform <span class="ot">&lt;-</span> <span class="fu">log</span>(x)</span></code></pre></div>
+<pre><code>## Warning in log(x): Production de NaN</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="bivariee.html#cb95-1" tabindex="-1"></a>y_transform <span class="ot">&lt;-</span> <span class="fu">log</span>(y1)</span>
+<span id="cb95-2"><a href="bivariee.html#cb95-2" tabindex="-1"></a>data_transform <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(x_transform, y_transform)</span>
+<span id="cb95-3"><a href="bivariee.html#cb95-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb95-4"><a href="bivariee.html#cb95-4" tabindex="-1"></a>plo2 <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(data_transform, <span class="fu">aes</span>(<span class="at">x=</span>x_transform, <span class="at">y=</span>y_transform))<span class="sc">+</span></span>
+<span id="cb95-5"><a href="bivariee.html#cb95-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;#0FAF96&quot;</span>, <span class="at">alpha=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
+<span id="cb95-6"><a href="bivariee.html#cb95-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot; x &quot;</span>)<span class="sc">+</span></span>
+<span id="cb95-7"><a href="bivariee.html#cb95-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot; y &quot;</span>)</span>
+<span id="cb95-8"><a href="bivariee.html#cb95-8" tabindex="-1"></a>plo2</span></code></pre></div>
+<pre><code>## Warning: Removed 6 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="bookdown_cours_stats_files/figure-html/loglin2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Le nuage de points fait un peu peur, mais cette transformation améliorerait la qualité d’une régression linéaire :</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="bivariee.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y1<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="bivariee.html#cb97-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y1<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.6663273</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="bivariee.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="bivariee.html#cb99-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7611062</code></pre>
 </div>
-<div id="relation-géométrique-exponentielle" class="section level3" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Relation géométrique (exponentielle)</h3>
+<div id="relation-géométrique-exponentielle" class="section level3 hasAnchor" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Relation géométrique (exponentielle)<a href="bivariee.html#relation-géométrique-exponentielle" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="bookdown_cours_stats_files/figure-html/expolin-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Relation de type <span class="math inline">\(y=e^{ax+b}\)</span> , qui se se linéarise par <span class="math inline">\(ln(y)=ax + ln(b)\)</span></p>
 <p><img src="bookdown_cours_stats_files/figure-html/expolin2-1.png" width="768" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="bivariee.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y2<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="bivariee.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y2<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.530431</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bivariee.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="bivariee.html#cb103-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.9896698</code></pre>
 <p>On a logiquement un bien meilleur coefficient de détermination</p>
 </div>
-<div id="relation-logarithmique" class="section level3" number="5.6.3">
-<h3><span class="header-section-number">5.6.3</span> Relation logarithmique</h3>
+<div id="relation-logarithmique" class="section level3 hasAnchor" number="5.6.3">
+<h3><span class="header-section-number">5.6.3</span> Relation logarithmique<a href="bivariee.html#relation-logarithmique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="bookdown_cours_stats_files/figure-html/logar-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Cette forme est celle d’une relation de type <span class="math inline">\(y=a*ln(x)+b\)</span> .
 Ici , un changement de variable suffit : on pose <span class="math inline">\(x&#39; = ln(x)\)</span></p>
 <p><img src="bookdown_cours_stats_files/figure-html/logar2-1.png" width="768" style="display: block; margin: auto;" />
 La regression linéaire était déjà de bonne qualité , la transformation l’améliore encore :</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="bivariee.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y3<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="bivariee.html#cb105-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y3<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.6940743</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="bivariee.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="bivariee.html#cb107-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.9242306</code></pre>
 </div>
-<div id="relation-logistique" class="section level3" number="5.6.4">
-<h3><span class="header-section-number">5.6.4</span> Relation logistique</h3>
+<div id="relation-logistique" class="section level3 hasAnchor" number="5.6.4">
+<h3><span class="header-section-number">5.6.4</span> Relation logistique<a href="bivariee.html#relation-logistique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Cette forme en ‘S’ est bien connue : c’est une courbe dite “logistique”
 La fonction qui la décrit est par exemple : <span class="math inline">\(y= K \frac{1}{1+ae^{rx}}\)</span> avec <span class="math inline">\(a&gt;0\)</span> et <span class="math inline">\(r&gt;0\)</span>.</p>
@@ -1016,17 +1039,17 @@ La fonction qui la décrit est par exemple : <span class="math inline">\(y= K \f
 <p>Donc en appliquant la fonction <span class="math inline">\(logit\)</span> à <span class="math inline">\(y/K\)</span>, on a pu linéariser la relation entre <span class="math inline">\(y\)</span> et <span class="math inline">\(x\)</span></p>
 <p><img src="bookdown_cours_stats_files/figure-html/logistic2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>à la vue du graphique, on s’attend à améliorer la régression linéaire, ce qui est le cas :</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="bivariee.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y4<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="bivariee.html#cb109-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y4<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7931215</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="bivariee.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="bivariee.html#cb111-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y_transform<span class="sc">~</span>x_transform))<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.9897749</code></pre>
 <p>On a donc pu estimer par régression (linéaire) les coefficients <span class="math inline">\(r\)</span> et <span class="math inline">\(ln(a)\)</span> !</p>
 </div>
 </div>
-<div id="chi2" class="section level2" number="5.7">
-<h2><span class="header-section-number">5.7</span> Lien entre deux variables qualitatives</h2>
-<div id="table-de-contingence" class="section level3" number="5.7.1">
-<h3><span class="header-section-number">5.7.1</span> Table de contingence</h3>
+<div id="chi2" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Lien entre deux variables qualitatives<a href="bivariee.html#chi2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="table-de-contingence" class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Table de contingence<a href="bivariee.html#table-de-contingence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pour deux variables qualitatives, on ne peut pas produire de nuages de points dans un repère <span class="math inline">\((x,y)\)</span>, ni calculer de corrélation, encore moins de droite de régression.</p>
 <p>La seule chose qu’on puisse faire avec deux variables qualitatives décrivant les individus d’une population , c’est <strong>compter le nombre d’individus</strong> pour des combinaisons de modalités des deux variables.</p>
 <p>C’est ce que fait la fonction <code>table()</code> de R, lorsqu’on lui donne deux séries de variables qualitatives (de même taille).</p>
@@ -1045,14 +1068,14 @@ La fonction qui la décrit est par exemple : <span class="math inline">\(y= K \f
 <p>La visualisation de l’effectif par modalités croisées peut nous donner des intuitions sur le lien qui pourrait exister entre deux variables qualitatives. Par exemple dans le cas des passagers du Titanic, il semble y avoir un lien entre la classe des passagers et leur survie.
 Pour confirmer cette intuition on utilise un test statistique appelé test du <span class="math inline">\(\chi^2\)</span> ( qui se prononce “ki deux” ou “ki carré”)</p>
 </div>
-<div id="test-statistique-du-chi2-ou-khi-carré" class="section level3" number="5.7.2">
-<h3><span class="header-section-number">5.7.2</span> Test statistique du <span class="math inline">\(\chi^2\)</span> ou “Khi carré”</h3>
+<div id="test-statistique-du-chi2-ou-khi-carré" class="section level3 hasAnchor" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Test statistique du <span class="math inline">\(\chi^2\)</span> ou “Khi carré”<a href="bivariee.html#test-statistique-du-chi2-ou-khi-carré" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Le test du <span class="math inline">\(\chi ^2\)</span> est un <strong>test d’indépendance</strong>, il mesure l’<strong>écart</strong>, la différence, entre deux distributions de <strong>variables qualitatives</strong></p>
 <p>Il répond à la question : “Existe-t-il un lien statistique entre deux séries de valeurs qualitatives ?”</p>
 <p>La réponse qu’il donne est de type OUI/NON , le <span class="math inline">\(\chi^2\)</span> ne donne pas l’<strong>intensité</strong> du lien.</p>
 <p>Comme tout test, il a son <strong>hypothèse nulle</strong>, qu’on rejette ou non en fonction du résultat. Sans surprise, <span class="math inline">\(H_0\)</span> est «les deux distributions sont indépendantes.»</p>
-<div id="principe-du-chi2" class="section level4" number="5.7.2.1">
-<h4><span class="header-section-number">5.7.2.1</span> Principe du <span class="math inline">\(\chi^2\)</span></h4>
+<div id="principe-du-chi2" class="section level4 hasAnchor" number="5.7.2.1">
+<h4><span class="header-section-number">5.7.2.1</span> Principe du <span class="math inline">\(\chi^2\)</span><a href="bivariee.html#principe-du-chi2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Le test du <span class="math inline">\(\chi^2\)</span> que nous abordons ici est le plus simple : il s’agit du <strong>test d’indépendance</strong>.</p>
 <p>Son principe est assez simple et se résume en quelques étapes :</p>
 <ul>
@@ -1062,32 +1085,32 @@ Pour confirmer cette intuition on utilise un test statistique appelé test du <s
 <li>la comparaison de cet écart avec une table de valeurs de référence nous indique si peut rejeter l’hypothèse nulle.</li>
 </ul>
 </div>
-<div id="tableau-de-contingence" class="section level4" number="5.7.2.2">
-<h4><span class="header-section-number">5.7.2.2</span> Tableau de contingence</h4>
+<div id="tableau-de-contingence" class="section level4 hasAnchor" number="5.7.2.2">
+<h4><span class="header-section-number">5.7.2.2</span> Tableau de contingence<a href="bivariee.html#tableau-de-contingence" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>C’est un tableau à double entrée qui croise deux <strong>variables qualitatives</strong>.
 Dans une case on trouve l’<strong>effectif</strong> (= le nombre) des individus caractérisés par la conjonction des modalités en ligne et en colonnes.</p>
 <p>Prenons un exemple sur des formes géométriques de couleurs blanches ou noires :</p>
 <p><span class="math display">\[\begin{array}{c|c|c}
-   &amp; blanc &amp; noir \\ 
+   &amp; blanc &amp; noir \\
    \hline
-carré &amp;  22 &amp;   12 \\ 
+carré &amp;  22 &amp;   12 \\
   \hline
-  rond &amp;   10 &amp;  30 \\ 
+  rond &amp;   10 &amp;  30 \\
     \hline
-  triangle &amp;  26 &amp;   5 \\ 
+  triangle &amp;  26 &amp;   5 \\
 \end{array}\]</span></p>
 <p>Dans R on obtient cette table avec la fonction <code>table()</code>, cf. l’exemple en introduction de cette partie.</p>
 </div>
-<div id="calcul-de-la-valeur-du-chi2" class="section level4" number="5.7.2.3">
-<h4><span class="header-section-number">5.7.2.3</span> Calcul de la valeur du <span class="math inline">\(\chi^2\)</span></h4>
+<div id="calcul-de-la-valeur-du-chi2" class="section level4 hasAnchor" number="5.7.2.3">
+<h4><span class="header-section-number">5.7.2.3</span> Calcul de la valeur du <span class="math inline">\(\chi^2\)</span><a href="bivariee.html#calcul-de-la-valeur-du-chi2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Étape 1</strong></p>
 <p>On commence par sommer les effectifs de la population observée selon les modalités. (On fait donc la somme en ligne et en colonne)</p>
 <p><span class="math display">\[\begin{array}{c|c|c|c}
-   &amp; blanc &amp; noir &amp; \texttt{total}\\ 
+   &amp; blanc &amp; noir &amp; \texttt{total}\\
    \hline
-carré &amp;  22 &amp;   12 &amp; 34\\ 
+carré &amp;  22 &amp;   12 &amp; 34\\
   \hline
-  rond &amp;   10 &amp;  30 &amp;  40  \\ 
+  rond &amp;   10 &amp;  30 &amp;  40  \\
     \hline
   triangle &amp;  26 &amp;   5 &amp;  31\\
   \hline
@@ -1097,11 +1120,11 @@ carré &amp;  22 &amp;   12 &amp; 34\\
 <p><strong>Étape 2</strong></p>
 <p>On divise toutes les valeurs du tableau par la taille de la population. On appelle ces valeurs les <strong>fréquences observées</strong>.</p>
 <p><span class="math display">\[\begin{array}{c|c|c|c}
-   &amp; blanc &amp; noir &amp; \texttt{total}\\ 
+   &amp; blanc &amp; noir &amp; \texttt{total}\\
    \hline
-carré &amp;  0.20952381&amp;  0.11428571 &amp;  0.3238095\\ 
+carré &amp;  0.20952381&amp;  0.11428571 &amp;  0.3238095\\
   \hline
-  rond &amp;    0.09523810 &amp; 0.28571429 &amp; 0.3809524  \\ 
+  rond &amp;    0.09523810 &amp; 0.28571429 &amp; 0.3809524  \\
     \hline
   triangle &amp; 0.24761905 &amp; 0.04761905 &amp;   0.2952381\\
   \hline
@@ -1114,11 +1137,11 @@ Ce pourcentage est également la <strong>probabilité</strong> qu’un individu 
 <p><strong>Étape 3</strong></p>
 <p>On crée un second tableau, dont chaque case vaut le <strong>produit des fréquences marginales</strong> correspondantes (en gras ici), calculées sur le tableau des observations.</p>
 <p><span class="math display">\[\begin{array}{c|c|c|c}
-   &amp; blanc &amp; noir &amp; \texttt{total}\\ 
+   &amp; blanc &amp; noir &amp; \texttt{total}\\
    \hline
-carré &amp;  0.1788662 &amp;   0.1449433 &amp;  \textbf{0.3238095}\\ 
+carré &amp;  0.1788662 &amp;   0.1449433 &amp;  \textbf{0.3238095}\\
   \hline
-  rond &amp;    0.2104309 &amp;0.1705215 &amp; \textbf{0.3809524}  \\ 
+  rond &amp;    0.2104309 &amp;0.1705215 &amp; \textbf{0.3809524}  \\
     \hline
   triangle &amp;  0.1630839 &amp; 0.1321542 &amp;   \textbf{0.2952381}\\
   \hline
@@ -1130,11 +1153,11 @@ Pour savoir pourquoi on les obtient par un produit , voir la section <a href="bi
 <p>On multiplie les fréquences théoriques par la taille de la population observée (ici 105)
 On obtient le <strong>tableau des effectifs théoriques</strong>.</p>
 <p><span class="math display">\[\begin{array}{c|c|c}
-   &amp; blanc &amp; noir \\ 
+   &amp; blanc &amp; noir \\
    \hline
-carré &amp;  18.78095 &amp;  15.21905 \\ 
+carré &amp;  18.78095 &amp;  15.21905 \\
   \hline
-  rond &amp;   22.09524 &amp; 17.90476    \\ 
+  rond &amp;   22.09524 &amp; 17.90476    \\
     \hline
   triangle &amp; 17.12381 &amp; 13.87619   \\
   \end{array}\]</span></p>
@@ -1151,8 +1174,8 @@ carré &amp;  18.78095 &amp;  15.21905 \\
 <p>Dans notre exemple avec les formes géométriques <span class="math inline">\(\chi^2 = 26.30\)</span></p>
 </div>
 </div>
-<div id="interprétation-de-la-valeur-du-chi2" class="section level3" number="5.7.3">
-<h3><span class="header-section-number">5.7.3</span> Interprétation de la valeur du <span class="math inline">\(\chi^2\)</span></h3>
+<div id="interprétation-de-la-valeur-du-chi2" class="section level3 hasAnchor" number="5.7.3">
+<h3><span class="header-section-number">5.7.3</span> Interprétation de la valeur du <span class="math inline">\(\chi^2\)</span><a href="bivariee.html#interprétation-de-la-valeur-du-chi2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Il faut comparer la valeur du <span class="math inline">\(\chi^2\)</span> calculée avec une <strong>valeur critique</strong> qu’on trouve dans une <strong>table de loi de Student</strong> (ou table de loi du <span class="math inline">\(\chi^2\)</span>).</p>
 <p>C’est un tableau à double entrée :</p>
 <ul>
@@ -1168,8 +1191,8 @@ Le degré de liberté est obtenu en calculant la valeur <span class="math inline
 <p>Pour notre exemple: On rejette <span class="math inline">\(H_0\)</span> : les deux variables ne sont pas <strong>indépendantes</strong>, car <span class="math inline">\(\chi ^2 \approx 26 &gt; 4.303\)</span></p>
 <p>Interprétation: «la forme est liée à la couleur dans cette population, nous pouvons l’affirmer avec un risque d’erreur d’au moins 5%»</p>
 </div>
-<div id="résumé-des-étapes-du-chi-2" class="section level3" number="5.7.4">
-<h3><span class="header-section-number">5.7.4</span> Résumé des étapes du <span class="math inline">\(\chi ^2\)</span></h3>
+<div id="résumé-des-étapes-du-chi-2" class="section level3 hasAnchor" number="5.7.4">
+<h3><span class="header-section-number">5.7.4</span> Résumé des étapes du <span class="math inline">\(\chi ^2\)</span><a href="bivariee.html#résumé-des-étapes-du-chi-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>faire un tableau de contingence</li>
 <li>calculer les sommes marginales et diviser par l’effectif
@@ -1182,8 +1205,8 @@ Le degré de liberté est obtenu en calculant la valeur <span class="math inline
 <li>comparaison avec les valeurs de la table de Student</li>
 </ul>
 </div>
-<div id="probaproduit" class="section level3" number="5.7.5">
-<h3><span class="header-section-number">5.7.5</span> Fréquences théoriques et fréquences marginales</h3>
+<div id="probaproduit" class="section level3 hasAnchor" number="5.7.5">
+<h3><span class="header-section-number">5.7.5</span> Fréquences théoriques et fréquences marginales<a href="bivariee.html#probaproduit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>À partir des <strong>fréquences marginales</strong> , on obtient pour chaque couple de modalités, la probabilité <strong>théorique</strong>, celle qui suppose <span class="math inline">\(H_0\)</span>, par un simple <strong>produit</strong>.</p>
 <p>Cela découle du fait que la probabilité conjointe de deux évènements <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> <strong>indépendants</strong> est donné par leur produit.
 <span class="math inline">\(P(A \cap B) = P(A) \times P(B)\)</span></p>
@@ -1194,8 +1217,8 @@ Le degré de liberté est obtenu en calculant la valeur <span class="math inline
 <p>La probabilité théorique d’observer un triangle noir est de 13,2%</p>
 </div>
 </div>
-<div id="qualiquanti" class="section level2" number="5.8">
-<h2><span class="header-section-number">5.8</span> Lien entre une variable qualitative et une variable quantitative.</h2>
+<div id="qualiquanti" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Lien entre une variable qualitative et une variable quantitative.<a href="bivariee.html#qualiquanti" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Il n’existe malheureusement pas de moyen <strong>simple</strong> de calculer le lien entre une variable qualitative et une variable quantitative.
 Des possibilités sont offertes par les techniques suivantes, qui ne sont pas au programme de ce cours :</p>
 <ul>
@@ -1212,36 +1235,36 @@ Des possibilités sont offertes par les techniques suivantes, qui ne sont pas au
 <li>la superposition d’ histogrammes ou de densités</li>
 </ul>
 <p>Nous avons déjà vu les quartiles dans la section <a href="univariee.html#quantiles">2.6.2</a></p>
-<p><img src="bookdown_cours_stats_files/figure-html/unnamed-chunk-1-1.png" width="768" style="display: block; margin: auto;" /></p>
-<div id="boxplot-par-catégories" class="section level3" number="5.8.1">
-<h3><span class="header-section-number">5.8.1</span> Boxplot par catégories</h3>
+<p><img src="bookdown_cours_stats_files/figure-html/unnamed-chunk-2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div id="boxplot-par-catégories" class="section level3 hasAnchor" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> Boxplot par catégories<a href="bivariee.html#boxplot-par-catégories" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Par exemple, voici comment obtenir la consommation de véhicules par type (dataset <code>mpg</code> de R)</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="bivariee.html#cb114-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy))</span>
-<span id="cb114-2"><a href="bivariee.html#cb114-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;type de véhicule (var. qualitative)&quot;</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;consommation (var. quantitative&quot;</span>)<span class="sc">+</span><span class="fu">theme_light</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="bivariee.html#cb114-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy))</span>
+<span id="cb114-2"><a href="bivariee.html#cb114-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;type de véhicule (var. qualitative)&quot;</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;consommation (var. quantitative&quot;</span>)<span class="sc">+</span><span class="fu">theme_light</span>()</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/distribboxplot-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
-<div id="superpositions-de-distributions" class="section level3" number="5.8.2">
-<h3><span class="header-section-number">5.8.2</span> Superpositions de distributions</h3>
+<div id="superpositions-de-distributions" class="section level3 hasAnchor" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> Superpositions de distributions<a href="bivariee.html#superpositions-de-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Nous avons donné dans la section <a href="visudistrib.html#visudistrib">4</a> des exemples de visualisation de distributions par modalité d’une variable qualitative.</p>
 <p>Voici comment réaliser la superposition de distribution en R avec le package <code>ggplot</code> .</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="bivariee.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb115-2"><a href="bivariee.html#cb115-2" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">group=</span>species))<span class="sc">+</span></span>
-<span id="cb115-3"><a href="bivariee.html#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species, <span class="at">color=</span>species), <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb115-4"><a href="bivariee.html#cb115-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
-<span id="cb115-5"><a href="bivariee.html#cb115-5" aria-hidden="true" tabindex="-1"></a>myplot</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="bivariee.html#cb115-1" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb115-2"><a href="bivariee.html#cb115-2" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">group=</span>species))<span class="sc">+</span></span>
+<span id="cb115-3"><a href="bivariee.html#cb115-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species, <span class="at">color=</span>species), <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb115-4"><a href="bivariee.html#cb115-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb115-5"><a href="bivariee.html#cb115-5" tabindex="-1"></a>myplot</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/distribcategories-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>L’équivalent en histogrammes, est illisible et à proscrire :</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="bivariee.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb116-2"><a href="bivariee.html#cb116-2" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">group=</span>species))<span class="sc">+</span></span>
-<span id="cb116-3"><a href="bivariee.html#cb116-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species, <span class="at">color=</span>species), <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb116-4"><a href="bivariee.html#cb116-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
-<span id="cb116-5"><a href="bivariee.html#cb116-5" aria-hidden="true" tabindex="-1"></a>myplot</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="bivariee.html#cb116-1" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb116-2"><a href="bivariee.html#cb116-2" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">group=</span>species))<span class="sc">+</span></span>
+<span id="cb116-3"><a href="bivariee.html#cb116-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species, <span class="at">color=</span>species), <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb116-4"><a href="bivariee.html#cb116-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb116-5"><a href="bivariee.html#cb116-5" tabindex="-1"></a>myplot</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="bookdown_cours_stats_files/figure-html/histogramcategories-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="références-supplémentaires" class="section level2" number="5.9">
-<h2><span class="header-section-number">5.9</span> Références supplémentaires</h2>
+<div id="références-supplémentaires" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Références supplémentaires<a href="bivariee.html#références-supplémentaires" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Cours complet sur les modèles linéaires : [<a href="https://www.math.univ-toulouse.fr/~barthe/M1modlin/poly.pdf" class="uri">https://www.math.univ-toulouse.fr/~barthe/M1modlin/poly.pdf</a>]</p>
 <p>Interprétation des graphique de <code>lm</code> en R : [<a href="https://data.library.virginia.edu/diagnostic-plots/" class="uri">https://data.library.virginia.edu/diagnostic-plots/</a>]</p>
 
@@ -1257,7 +1280,6 @@ Des possibilités sont offertes par les techniques suivantes, qui ne sont pas au
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1297,6 +1319,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdown_cours_stats.pdf", "bookdown_cours_stats.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -1310,7 +1336,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

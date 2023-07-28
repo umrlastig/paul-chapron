@@ -4,29 +4,30 @@
 **Contexte** : on veut faire une carte choroplèthe d'une variable sur une couche vecteur.  
 
 
-Pour une variable quantitative continue qu'on souhaite représenter par une couleur, il n'est pas toujours possible d'avoir la possibilité d'afficher en légende un gradient couleur (d'ailleurs pas toujours lisible). 
+Pour une variable quantitative continue qu'on souhaite représenter par une couleur, il n'est pas toujours possible d'afficher en légende un gradient couleur (d'ailleurs pas toujours lisible). 
 
-Il faut (souvent) classer les valeurs en catégories, et les logiciels proposent diverses méthodes de classifications (on dit aussi discrétisation) où le **nombre** $k$ de classes de valeurs (et donc de couleurs) et les **méthodes** de classification pour fixer leurs bornes varient. 
-
+Il faut (souvent) classer les valeurs en catégories, et les logiciels proposent diverses méthodes de **classification** (on dit aussi discrétisation). 
 En général on propose 5,7 ou 9 classes :
-
+ 
   - pour $k<5$ trop peu de détails  
   - pour $k>9$ difficile de distinguer les classes proches
 
 
-
+:::{.note}
 Il existe également une règle purement indicative : l’indice de Huntsberger, qui fixe le nombre de casse "optimum" :
 
 $$k = 1 + 3.3 log_{10}(N)$$
 
 Avec $N$ , le nombre d’observations et $k$ le nombre de classe.
+:::
 
 
-
-**Priorité au cartographe:** 
+**Priorité au cartographe et à la lisibilté:** 
 
 C'est le cartographe qui décide en dernière instance du nombre de classes et de leurs bornes. Tout dépend de la question (ou des questions) que le cartographe souhaite aborder avec sa carte. Les valeurs de bornes calculées par des méthodes générales peuvent ne pas être pertinentes. 
-Par exemple , si je devais cartographier des vitesses d'automobilistes sur un réseau routier , je choisirais certainement des bornes égales aux limitations de vitesses : 30, 50 , 90 , 110 et 130, au lieu des bornes proposées par la méthodes des ruptures naturelles ! Tout est question d'intelligibilité pour les gens qui liront la carte.
+Par exemple , si je devais cartographier des vitesses d'automobilistes sur un réseau routier , je choisirais certainement des bornes égales aux limitations de vitesses : 30, 50 , 90 , 110 et 130, au lieu des bornes proposées par la méthodes des ruptures naturelles si celle ci me propose des vitesse comme 28.45, 54, 75 , 98.3.
+
+Tout est question d'intelligibilité pour les gens qui liront la carte.
 
 
 ## Méthodes usuelles de discrétisation
@@ -78,7 +79,7 @@ On peut en déduire qu'une classification par intervalle égaux produira des cla
 
 ### Classification par défaut 
 
-Par defaut la fonction `plot`  du package `sf`  utilise la méthode `pretty()` avec 10 ruptures ($9\pm1$ classes) :  ce sont des intervalles égaux. 
+Par defaut la fonction `plot`  du package `sf`  utilise la méthode `pretty()` avec 10 ruptures ($9\pm1$ classes) :  ce sont des **intervalles égaux**. 
 
 
 ```{r quartierparis4, eval=TRUE, cache=TRUE, fig.width=8, fig.height=4}
@@ -87,7 +88,7 @@ plot(quartiers["surface"])
 ```
 
 
-À la lecture de cette carte, on retrouve les défauts de la classification par intervalle égaux. On voit que les quartiers du centre, nombreux et petits, sont tous dans la même classe , ici en bleu, et visuellement peu discriminés: les autres couleurs que le bleu sont affectés aux grands quartiers, peu nombreux.
+À la lecture de cette carte, on retrouve les défauts de la classification par intervalle égaux. On voit que les quartiers du centre, nombreux et petits, sont tous dans la même classe , ici en bleu, et visuellement peu discriminés: les autres couleurs que le bleu sont affectées aux grands quartiers, peu nombreux.
 
 
 ### Méthode Jenks à 5 , 7 et 9 classes
@@ -128,7 +129,7 @@ plot(quartiers["surface"], breaks=mybreaks, main = "Effectifs égaux, 4 classes"
 ```
 
 
-Cette carte affiche donc les quartier répartis dans 4 classes , chacune contenant 25% des quartier de Paris. Elle est forcément un peu grossière, mais très discriminante : les quartiers du centre ne sont plus d'une couleur homogène, et les frontières entre les classes sont plus accidentées, moins douces que pour Jenks par exemple. 
+Cette carte affiche donc les quartier répartis dans 4 classes , chacune contenant 25% des quartiers de Paris. Elle est forcément un peu grossière, mais très discriminante : les quartiers du centre ne sont plus d'une couleur homogène, et les frontières entre les classes sont plus accidentées, moins douces que pour Jenks par exemple. 
 
 Essayons avec 5 classes de 20% de l'effectif (on modifie la séquence de proportions dans la fonction `quantile`) :
 
@@ -144,7 +145,7 @@ plot(quartiers["surface"], breaks=mybreaks, main = "Effectifs égaux, 5 classes"
 
 ### Intervalles égaux 
 
-Comme pour la méthode par défaut (pretty), qui est grosso modo la même chose, on enpeut pas s'attendre, étant donné l'allure asymétrique de la distribution des surfaces, que la méthode des effectifs égaux soit très adaptée.
+Comme pour la méthode par défaut (`pretty`), qui est grosso modo la même chose, on ne peut pas s'attendre, étant donné l'allure asymétrique de la distribution des surfaces, à ce que la méthode des effectifs égaux soit très adaptée.
 
 ```{r quartierparis8, eval=TRUE, cache=TRUE, echo=TRUE, fig.width=12, fig.height=6}
 par(mar=c(0,0,0,0))
@@ -178,7 +179,7 @@ plot(quartiers["surfCR"], breaks="pretty",main = "Jolies ruptures", reset=F, key
 ```
 
 
-Effectivement , c'est très proche !
+Effectivement, c'est identique. 
 
 
 ## Quelle méthode de classification choisir ? 
@@ -190,9 +191,13 @@ Il faut tester, bidouiller, tester, jusqu'à converger vers une solution satisfa
 
 Si on décide de discrétiser les valeurs soi-même, il y a tout de même quelques principes à respecter : 
 
-- les classes **doivent** contenir toutes les valeurs, être sans recouvrement, contigües et distinctes.
+
+::: attention
+- les classes doivent **contenir toutes les valeurs**, être **sans recouvrement**, **contigües et distinctes**.
 - attention aux décimales et aux extrémités ! 
-- Il faut matérialiser **la structure interne des données**, c'est-à-dire les caractéristiques de la forme de sa distribution :  seuils naturels, bi-modalités, queus de distribution etc... 
+- Il faut matérialiser **la structure interne des données**, c'est-à-dire les caractéristiques de la forme de sa distribution :  seuils naturels, bi-modalités, queues de distribution etc... 
+:::
+
 
 On peut donc en déduire des principes spécialisés :  
 

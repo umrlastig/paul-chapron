@@ -113,7 +113,9 @@ Avec la distance euclidienne, il ne peut pas se calculer directement , et s'obti
 
 :::{.note}
 Ces deux indicateurs n'ont de sens que dans une référentiel **euclidien**.
-Dans un espace rectilinéaire, i.e. où on utilise la **distance de Manhattan**, son calcul est plus direct: 
+Dans un espace rectilinéaire, i.e. où on utilise la **distance de Manhattan**: 
+$$d(A,B)= \sum_{i}|A_i-B_i| \in \mathbb{R}$$
+Avec A et B deux points, et $A_i$ la ième coordonnée du point A.
 :::
 
 ### Dispersion et concentration d'un semis
@@ -157,9 +159,9 @@ La configuration de gauche est plus agrégée/polarisée , du fait de la différ
 Celle de droite est plus homogène, même si ce terme n'a pas beaucoup de sens puisqu'on n'évalue pas -encore- la concentration des points. 
 
 
-# Autocorrélation spatiale : Moran et Geary
+## Autocorrélation spatiale : Moran et Geary
 
-## L'autocorrélation spatiale 
+### L'autocorrélation spatiale 
 
 La **concentration** d'un semis est mesurée par l'**indice de concentration**, qui décrit la régularité des positions des points.
 
@@ -207,7 +209,7 @@ Dans un espace découpé en zones, on estime la probabilité d'avoir un nombre d
 
 
 
-## Auto-corrélation spatiale : Moran et Geary
+### Auto-corrélation spatiale : Moran et Geary
 
 
 
@@ -317,22 +319,23 @@ package `flows` de R : https://cran.r-project.org/web/packages/flows/vignettes/f
 ```{r flow, echo=F, fig.height=5.5, fig.width=6}
 # Import data
 library(flows)
+library(mapsf)
 # installer le package à partir du dépot si ça ne fonctionne pas : 
 #devtools::install_github("rCarto/flows")
-data(nav)
-myflows <- prepflows(mat = nav, i = "i", j = "j", fij = "fij")
+nav <- read.csv(system.file("csv/nav.csv", package = "flows"))
+myflows <- prepare_mat(nav, i = "i", j = "j", fij = "fij")
 
 # Remove the matrix diagonal
 diag(myflows) <- 0
 
 # Select flows that represent at least 20% of the sum of outgoing flows for 
 # each urban area.
-flowSel1 <- firstflows(mat = myflows/rowSums(myflows)*100, method = "xfirst", 
+flowSel1 <- select_flows(mat = myflows/rowSums(myflows)*100,  method="xfirst",
                        k = 20)
 
 
 # Select the dominant flows (incoming flows criterion)
-flowSel2 <- domflows(mat = myflows, w = colSums(myflows), k = 1)
+flowSel2 <- select_flows(mat = myflows, method="dominant",w = colSums(myflows), k = 1)
 
 # Combine selections
 flowSel <- myflows * flowSel1 * flowSel2
@@ -342,12 +345,20 @@ inflows <- data.frame(id = colnames(myflows), w = colSums(myflows))
 
 # Plot dominant flows map
 opar <- par(mar = c(0,0,2,0))
+UA <- st_read(system.file("gpkg/GE.gpkg", package = "flows"), layer = "urban_area")
+GE <- st_read(system.file("gpkg/GE.gpkg", package = "flows"), layer = "region")
+mf_map(GE)
 sp::plot(GE, col = "#cceae7", border = "gray")
-plotMapDomFlows(mat = flowSel, spdf = UA, spdfid = "ID", w = inflows, wid = "id",
-                wvar = "w", wcex = 0.05, add = TRUE,
-                legend.flows.pos = "topright",
-                legend.flows.title = "Nb. of commuters")
-title("Dominant Flows of Commuters in the French Grand Est")
+#map_nodal_flows(mat = flowSel, x = UA, spdfid = "ID", w = inflows, wid = "id",
+#                wvar = "w", wcex = 0.05, add = TRUE,
+#                legend.flows.pos = "topright",
+#                legend.flows.title = "Nb. of commuters")
+map_nodal_flows(mat =  flowSel, x = UA,
+                 col_node = c('red', 'orange', 'yellow'),
+                 col_flow = "grey30",
+                 breaks = c(4,100,1000,2500,8655),
+                 lwd = c(1,4,8,16), add = TRUE)
+mf_title("Dominant flows of Commuters in the French Grand Est")
 mtext(text = "INSEE, 2011", side = 4, line = -1, adj = 0.01, cex = 0.8)
 ```
 
@@ -466,7 +477,7 @@ Modèle de ségrégation de Schelling
 <img src="./schelling.gif" style="display: inline-block; margin: 0; width:50%;" />
 
 
-### Principe d'un modèle complexe de mobilité
+### Principe d'un modèle  de mobilité
 
 Modèle à 4 étapes 
 

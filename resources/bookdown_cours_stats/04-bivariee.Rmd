@@ -511,8 +511,7 @@ C'est la proportion de fois où on s'est trompés en affirmant à propos de $\Ga
 
 Il est d'usage de **rejeter** $H_1$ , l'hypothèse alternative qui considère que les deux variables ne sont pas indépendantes lorsque la p-value associée aux coefficients de la régression linéaire dépasse un certain **seuil**. 
 
-Il n'y a pas de valeur absolue de ce seuil, par une sorte de "tradition" scientifique, le seuil est fixé à 5% ($p \leq 0.05$) en sciences expérimentales et en sciences sociales.
-
+Il n'y a pas de valeur absolue de ce seuil, par une sorte de "tradition" scientifique, le seuil est fixé à 5% ($p \leq 0.05$) en sciences expérimentales et des valeurs plus élevées en sciences sociales.
 Dans certains cas il est tout-à-fait acceptable d'augmenter ce score. Cela se comprend d'autant mieux si on interprète la p-value comme une estimation de **la plausibilité de la compatibilité des données avec l'hypothèse nulle**, et surtout si on se rappelle bien que ce n'est pas parce qu'un test est significatif qu'on a démontré quoique ce soit : on a juste chiffré ce qui sépare notre cas d'étude des cas de même taille dont les valeurs seraient purement dues au hasard.
 
 
@@ -520,7 +519,7 @@ Dans certains cas il est tout-à-fait acceptable d'augmenter ce score. Cela se c
 ####  Ce qu'il faut retenir de la p-value
 
 
-- «plus elle est petite, mieux c'est»
+- «plus elle est proche de zéro, mieux c'est»
 - le seuil usuel de significativité est bas (~5%), 
 - elle s'interprète comme un pourcentage de chances de se tromper en première approximation
 - il faut plutôt le voir comme la probabilité d'obtenir par chance des résultats de régression linéaire aussi bons, pour une jeu de données de variables indépendantes de même taille. 

@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 1 Introduction générale | Analyse Statistique M2 IGAST</title>
+  <title>Chapitre 1 Introduction générale | Analyse Statistique M2 IGAST, et DESIGEO</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34.2 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 1 Introduction générale | Analyse Statistique M2 IGAST" />
+  <meta property="og:title" content="Chapitre 1 Introduction générale | Analyse Statistique M2 IGAST, et DESIGEO" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 1 Introduction générale | Analyse Statistique M2 IGAST" />
+  <meta name="twitter:title" content="Chapitre 1 Introduction générale | Analyse Statistique M2 IGAST, et DESIGEO" />
   
   <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2021-06-11" />
+<meta name="date" content="2023-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="univariee.html"/>
-<script src="book_assets/header-attrs-2.8/header-attrs.js"></script>
-<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="book_assets/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="book_assets/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -181,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="univariee.html"><a href="univariee.html#densite"><i class="fa fa-check"></i><b>2.1</b> Le concept de distribution</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="univariee.html"><a href="univariee.html#interpret_dens"><i class="fa fa-check"></i><b>2.1.1</b> Interpréter la courbe de densité</a></li>
+<li class="chapter" data-level="2.1.1" data-path="univariee.html"><a href="univariee.html#interpretdens"><i class="fa fa-check"></i><b>2.1.1</b> Interpréter la courbe de densité</a></li>
 <li class="chapter" data-level="2.1.2" data-path="univariee.html"><a href="univariee.html#bonus-estimation-la-probabilité-à-partir-de-la-densité-de-probabilité"><i class="fa fa-check"></i><b>2.1.2</b> Bonus: Estimation la probabilité à partir de la densité de probabilité</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="univariee.html"><a href="univariee.html#exemples-de-distributions-de-lois-connues"><i class="fa fa-check"></i><b>2.2</b> Exemples de distributions de lois connues</a>
@@ -219,23 +223,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.4" data-path="univariee.html"><a href="univariee.html#fat-tail-distributions-un-exemple"><i class="fa fa-check"></i><b>2.7.4</b> Fat-tail distributions : un exemple</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="carto-discretis.html"><a href="carto-discretis.html"><i class="fa fa-check"></i><b>3</b> Cartographie, Distribution et Échelle de couleurs</a>
+<li class="chapter" data-level="3" data-path="carto_discretis.html"><a href="carto_discretis.html"><i class="fa fa-check"></i><b>3</b> Cartographie, Distribution et Échelle de couleurs</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="carto-discretis.html"><a href="carto-discretis.html#méthodes-usuelles-de-discrétisation"><i class="fa fa-check"></i><b>3.1</b> Méthodes usuelles de discrétisation</a></li>
-<li class="chapter" data-level="3.2" data-path="carto-discretis.html"><a href="carto-discretis.html#les-données"><i class="fa fa-check"></i><b>3.2</b> Les données</a>
+<li class="chapter" data-level="3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#méthodes-usuelles-de-discrétisation"><i class="fa fa-check"></i><b>3.1</b> Méthodes usuelles de discrétisation</a></li>
+<li class="chapter" data-level="3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#les-données"><i class="fa fa-check"></i><b>3.2</b> Les données</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="carto-discretis.html"><a href="carto-discretis.html#géométrie-des-quartiers-de-paris"><i class="fa fa-check"></i><b>3.2.1</b> Géométrie des quartiers de Paris</a></li>
-<li class="chapter" data-level="3.2.2" data-path="carto-discretis.html"><a href="carto-discretis.html#distribution-des-surfaces-des-quartiers"><i class="fa fa-check"></i><b>3.2.2</b> Distribution des surfaces des quartiers</a></li>
+<li class="chapter" data-level="3.2.1" data-path="carto_discretis.html"><a href="carto_discretis.html#géométrie-des-quartiers-de-paris"><i class="fa fa-check"></i><b>3.2.1</b> Géométrie des quartiers de Paris</a></li>
+<li class="chapter" data-level="3.2.2" data-path="carto_discretis.html"><a href="carto_discretis.html#distribution-des-surfaces-des-quartiers"><i class="fa fa-check"></i><b>3.2.2</b> Distribution des surfaces des quartiers</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="carto-discretis.html"><a href="carto-discretis.html#résultats-des-méthodes-de-classification"><i class="fa fa-check"></i><b>3.3</b> Résultats des méthodes de classification</a>
+<li class="chapter" data-level="3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#résultats-des-méthodes-de-classification"><i class="fa fa-check"></i><b>3.3</b> Résultats des méthodes de classification</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="carto-discretis.html"><a href="carto-discretis.html#classification-par-défaut"><i class="fa fa-check"></i><b>3.3.1</b> Classification par défaut</a></li>
-<li class="chapter" data-level="3.3.2" data-path="carto-discretis.html"><a href="carto-discretis.html#méthode-jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>3.3.2</b> Méthode Jenks à 5 , 7 et 9 classes</a></li>
-<li class="chapter" data-level="3.3.3" data-path="carto-discretis.html"><a href="carto-discretis.html#effectifs-égaux"><i class="fa fa-check"></i><b>3.3.3</b> Effectifs égaux</a></li>
-<li class="chapter" data-level="3.3.4" data-path="carto-discretis.html"><a href="carto-discretis.html#intervalles-égaux"><i class="fa fa-check"></i><b>3.3.4</b> Intervalles égaux</a></li>
-<li class="chapter" data-level="3.3.5" data-path="carto-discretis.html"><a href="carto-discretis.html#écart-types"><i class="fa fa-check"></i><b>3.3.5</b> Écart-types</a></li>
+<li class="chapter" data-level="3.3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#classification-par-défaut"><i class="fa fa-check"></i><b>3.3.1</b> Classification par défaut</a></li>
+<li class="chapter" data-level="3.3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#méthode-jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>3.3.2</b> Méthode Jenks à 5 , 7 et 9 classes</a></li>
+<li class="chapter" data-level="3.3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#effectifs-égaux"><i class="fa fa-check"></i><b>3.3.3</b> Effectifs égaux</a></li>
+<li class="chapter" data-level="3.3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#intervalles-égaux"><i class="fa fa-check"></i><b>3.3.4</b> Intervalles égaux</a></li>
+<li class="chapter" data-level="3.3.5" data-path="carto_discretis.html"><a href="carto_discretis.html#écart-types"><i class="fa fa-check"></i><b>3.3.5</b> Écart-types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="carto-discretis.html"><a href="carto-discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>3.4</b> Quelle méthode de classification choisir ?</a></li>
+<li class="chapter" data-level="3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>3.4</b> Quelle méthode de classification choisir ?</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="visudistrib.html"><a href="visudistrib.html"><i class="fa fa-check"></i><b>4</b> Visualiser une distribution avec R</a>
 <ul>
@@ -319,45 +323,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="anaspat.html"><a href="anaspat.html#point-moyen-et-point-médian"><i class="fa fa-check"></i><b>6.3.1</b> Point moyen et point médian</a></li>
 <li class="chapter" data-level="6.3.2" data-path="anaspat.html"><a href="anaspat.html#dispersion-et-concentration-dun-semis"><i class="fa fa-check"></i><b>6.3.2</b> Dispersion et concentration d’un semis</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html"><i class="fa fa-check"></i><b>7</b> Autocorrélation spatiale : Moran et Geary</a>
+<li class="chapter" data-level="6.4" data-path="anaspat.html"><a href="anaspat.html#autocorrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>6.4</b> Autocorrélation spatiale : Moran et Geary</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#lautocorrélation-spatiale"><i class="fa fa-check"></i><b>7.1</b> L’autocorrélation spatiale</a>
+<li class="chapter" data-level="6.4.1" data-path="anaspat.html"><a href="anaspat.html#lautocorrélation-spatiale"><i class="fa fa-check"></i><b>6.4.1</b> L’autocorrélation spatiale</a></li>
+<li class="chapter" data-level="6.4.2" data-path="anaspat.html"><a href="anaspat.html#le-modèle-nul-pour-un-semis-de-points"><i class="fa fa-check"></i><b>6.4.2</b> Le modèle nul pour un semis de points</a></li>
+<li class="chapter" data-level="6.4.3" data-path="anaspat.html"><a href="anaspat.html#auto-corrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>6.4.3</b> Auto-corrélation spatiale : Moran et Geary</a></li>
+<li class="chapter" data-level="6.4.4" data-path="anaspat.html"><a href="anaspat.html#lindice-de-moran"><i class="fa fa-check"></i><b>6.4.4</b> L’indice de Moran</a></li>
+<li class="chapter" data-level="6.4.5" data-path="anaspat.html"><a href="anaspat.html#lindice-de-geary"><i class="fa fa-check"></i><b>6.4.5</b> L’indice de Geary</a></li>
+<li class="chapter" data-level="6.4.6" data-path="anaspat.html"><a href="anaspat.html#commandes-r"><i class="fa fa-check"></i><b>6.4.6</b> Commandes R</a></li>
+<li class="chapter" data-level="6.4.7" data-path="anaspat.html"><a href="anaspat.html#interprétation-de-lindice-de-moran"><i class="fa fa-check"></i><b>6.4.7</b> Interprétation de l’indice de Moran</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="anaspat.html"><a href="anaspat.html#les-flux"><i class="fa fa-check"></i><b>6.5</b> Les flux</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-nul-pour-un-semis-de-points"><i class="fa fa-check"></i><b>7.1.1</b> Le modèle nul pour un semis de points</a></li>
+<li class="chapter" data-level="6.5.1" data-path="anaspat.html"><a href="anaspat.html#matrice-de-flux"><i class="fa fa-check"></i><b>6.5.1</b> Matrice de flux</a></li>
+<li class="chapter" data-level="6.5.2" data-path="anaspat.html"><a href="anaspat.html#indices"><i class="fa fa-check"></i><b>6.5.2</b> Indices</a></li>
+<li class="chapter" data-level="6.5.3" data-path="anaspat.html"><a href="anaspat.html#cartographie-des-flux"><i class="fa fa-check"></i><b>6.5.3</b> Cartographie des flux</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#auto-corrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>7.2</b> Auto-corrélation spatiale : Moran et Geary</a>
+<li class="chapter" data-level="6.6" data-path="anaspat.html"><a href="anaspat.html#exemple"><i class="fa fa-check"></i><b>6.6</b> Exemple</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#lindice-de-moran"><i class="fa fa-check"></i><b>7.2.1</b> L’indice de Moran</a></li>
-<li class="chapter" data-level="7.2.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#lindice-de-geary"><i class="fa fa-check"></i><b>7.2.2</b> L’indice de Geary</a></li>
-<li class="chapter" data-level="7.2.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#commandes-r"><i class="fa fa-check"></i><b>7.2.3</b> Commandes R</a></li>
-<li class="chapter" data-level="7.2.4" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#interprétation-de-lindice-de-moran"><i class="fa fa-check"></i><b>7.2.4</b> Interprétation de l’indice de Moran</a></li>
+<li class="chapter" data-level="6.6.1" data-path="anaspat.html"><a href="anaspat.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>6.6.1</b> Pour aller plus loin</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#les-flux"><i class="fa fa-check"></i><b>7.3</b> Les flux</a>
+<li class="chapter" data-level="6.7" data-path="anaspat.html"><a href="anaspat.html#le-modèle-gravitaire"><i class="fa fa-check"></i><b>6.7</b> Le modèle gravitaire</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#matrice-de-flux"><i class="fa fa-check"></i><b>7.3.1</b> Matrice de flux</a></li>
-<li class="chapter" data-level="7.3.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#indices"><i class="fa fa-check"></i><b>7.3.2</b> Indices</a></li>
-<li class="chapter" data-level="7.3.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#cartographie-des-flux"><i class="fa fa-check"></i><b>7.3.3</b> Cartographie des flux</a></li>
+<li class="chapter" data-level="6.7.1" data-path="anaspat.html"><a href="anaspat.html#fin-xixe-les-lois-de-ravenstein"><i class="fa fa-check"></i><b>6.7.1</b> Fin XIX<sup>e</sup> : Les lois de Ravenstein</a></li>
+<li class="chapter" data-level="6.7.2" data-path="anaspat.html"><a href="anaspat.html#le-modèle-gravitaire-1"><i class="fa fa-check"></i><b>6.7.2</b> Le modèle gravitaire</a></li>
+<li class="chapter" data-level="6.7.3" data-path="anaspat.html"><a href="anaspat.html#distance-et-interaction"><i class="fa fa-check"></i><b>6.7.3</b> Distance et interaction</a></li>
+<li class="chapter" data-level="6.7.4" data-path="anaspat.html"><a href="anaspat.html#utilisation-du-modèle-gravitaire"><i class="fa fa-check"></i><b>6.7.4</b> Utilisation du modèle gravitaire</a></li>
+<li class="chapter" data-level="6.7.5" data-path="anaspat.html"><a href="anaspat.html#variantes-du-modèles-gravitaires"><i class="fa fa-check"></i><b>6.7.5</b> Variantes du modèles gravitaires</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#exemple"><i class="fa fa-check"></i><b>7.4</b> Exemple</a>
+<li class="chapter" data-level="6.8" data-path="anaspat.html"><a href="anaspat.html#létape-daprès-modèles-dynamiques"><i class="fa fa-check"></i><b>6.8</b> L’étape d’après : modèles dynamiques</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>7.4.1</b> Pour aller plus loin</a></li>
+<li class="chapter" data-level="6.8.1" data-path="anaspat.html"><a href="anaspat.html#modèles-simples-les-automates-cellulaires"><i class="fa fa-check"></i><b>6.8.1</b> Modèles simples : les automates cellulaires</a></li>
+<li class="chapter" data-level="6.8.2" data-path="anaspat.html"><a href="anaspat.html#principe-dun-modèle-de-mobilité"><i class="fa fa-check"></i><b>6.8.2</b> Principe d’un modèle de mobilité</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-gravitaire"><i class="fa fa-check"></i><b>7.5</b> Le modèle gravitaire</a>
+</ul></li>
+<li class="chapter" data-level="7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html"><i class="fa fa-check"></i><b>7</b> Galerie de graphiques avec ggplot</a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#fin-xixe-les-lois-de-ravenstein"><i class="fa fa-check"></i><b>7.5.1</b> Fin XIX<sup>e</sup> : Les lois de Ravenstein</a></li>
-<li class="chapter" data-level="7.5.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#le-modèle-gravitaire-1"><i class="fa fa-check"></i><b>7.5.2</b> Le modèle gravitaire</a></li>
-<li class="chapter" data-level="7.5.3" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#distance-et-interaction"><i class="fa fa-check"></i><b>7.5.3</b> Distance et interaction</a></li>
-<li class="chapter" data-level="7.5.4" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#utilisation-du-modèle-gravitaire"><i class="fa fa-check"></i><b>7.5.4</b> Utilisation du modèle gravitaire</a></li>
-<li class="chapter" data-level="7.5.5" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#variantes-du-modèles-gravitaires"><i class="fa fa-check"></i><b>7.5.5</b> Variantes du modèles gravitaires</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#létape-daprès-modèles-dynamiques"><i class="fa fa-check"></i><b>7.6</b> L’étape d’après : modèles dynamiques</a>
+<li class="chapter" data-level="7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#représenter-le-lien-entre-deux-variables"><i class="fa fa-check"></i><b>7.1</b> Représenter le lien entre deux variables</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#modèles-simples-les-automates-cellulaires"><i class="fa fa-check"></i><b>7.6.1</b> Modèles simples : les automates cellulaires</a></li>
-<li class="chapter" data-level="7.6.2" data-path="autocorrélation-spatiale-moran-et-geary.html"><a href="autocorrélation-spatiale-moran-et-geary.html#principe-dun-modèle-complexe-de-mobilité"><i class="fa fa-check"></i><b>7.6.2</b> Principe d’un modèle complexe de mobilité</a></li>
+<li class="chapter" data-level="7.1.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-simple"><i class="fa fa-check"></i><b>7.1.1</b> Nuage de points simple</a></li>
+<li class="chapter" data-level="7.1.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-un-titre-étiqueter-les-axes"><i class="fa fa-check"></i><b>7.1.2</b> Ajouter un titre , étiqueter les axes</a></li>
+<li class="chapter" data-level="7.1.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-continue-quantitative"><i class="fa fa-check"></i><b>7.1.3</b> Nuage de points colorés par variable continue (quantitative)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-discrète-qualitative"><i class="fa fa-check"></i><b>7.1.4</b> Nuage de points colorés par variable discrète (qualitative)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-et-droite-de-regression-de-lissage"><i class="fa fa-check"></i><b>7.1.5</b> Nuage de points et droite de regression / de lissage</a></li>
+<li class="chapter" data-level="7.1.6" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#à-ne-pas-faire"><i class="fa fa-check"></i><b>7.1.6</b> À ne pas faire</a></li>
+<li class="chapter" data-level="7.1.7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-les-histogrammes-marginaux"><i class="fa fa-check"></i><b>7.1.7</b> Ajouter les histogrammes marginaux</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-plusieurs-variables"><i class="fa fa-check"></i><b>7.2</b> Lien entre plusieurs variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-simple-avec-ggally"><i class="fa fa-check"></i><b>7.2.1</b> Correlogramme simple avec <code>GGally</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-plus-complexe-avec-ggally"><i class="fa fa-check"></i><b>7.2.2</b> Correlogramme plus complexe avec <code>GGally</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
+<ul>
+<li class="chapter" data-level="7.3" data-path="references.html"><a href="references.html#apprendre-r"><i class="fa fa-check"></i><b>7.3</b> Apprendre R</a></li>
+<li class="chapter" data-level="7.4" data-path="references.html"><a href="references.html#visualisation"><i class="fa fa-check"></i><b>7.4</b> Visualisation</a></li>
+<li class="chapter" data-level="7.5" data-path="references.html"><a href="references.html#r-visualisation-et-données-spatiales"><i class="fa fa-check"></i><b>7.5</b> R, visualisation et données spatiales</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank"> Published with bookdown</a></li>
 
@@ -370,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST, et DESIGEO</a>
           </h1>
         </div>
 
@@ -378,133 +401,230 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1" number="1">
-<h1><span class="header-section-number">Chapitre 1</span> Introduction générale</h1>
+<div id="intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapitre 1</span> Introduction générale<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Commençons par le plus important :</p>
 <div class="attention">
-<p>En présence de données, , avant tout calcul, la première chose à faire est de les <strong>visualiser</strong>.</p>
+<p>En présence de données, , avant tout calcul, la première chose à faire
+est de les <strong>visualiser</strong>.</p>
 </div>
-<p><br>
-Cette exploration visuelle permet:</p>
+<p><br></p>
+<p>Cette exploration visuelle permet:</p>
 <ul>
-<li>d’identifier les intervalles de valeurs des variables, ou leur modalités</li>
-<li>de se faire une idée de la répartition des valeurs des variables à l’intérieur de leurs intervalles</li>
+<li>d’identifier les intervalles de valeurs des variables, ou leur
+modalités</li>
+<li>de se faire une idée de la répartition des valeurs des variables à
+l’intérieur de leurs intervalles</li>
 <li>d’identifier des valeurs aberrantes</li>
-<li>d’observer pour les variables spatialisées , leur répartition dans l’espace</li>
+<li>d’observer pour les variables spatialisées , leur répartition dans
+l’espace</li>
 </ul>
-<p>en R, pour tracer directement tout un dataframe (=jeu de données) , on utilise la commande <code>plot</code></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co">#charge un jeu de données nommé &#39;penguins&#39;</span></span>
-<span id="cb1-2"><a href="intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penguins) <span class="co">#affiche une matrice de graphique </span></span></code></pre></div>
+<p>en R, pour tracer directement tout un dataframe (=jeu de données) , on
+utilise la commande <code>plot</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co">#charge un jeu de données nommé &#39;penguins&#39;</span></span>
+<span id="cb1-2"><a href="intro.html#cb1-2" tabindex="-1"></a><span class="fu">plot</span>(penguins) <span class="co">#affiche une matrice de graphique </span></span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/plotplotplot-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>Avec un peu d’expérience, on identifie rapidement des caractéristiques utiles. par exemple ici :</p>
+<p>Avec un peu d’expérience, on identifie rapidement des caractéristiques
+utiles. par exemple ici :</p>
 <ul>
-<li>les deux premières variables sont des variables qualitatives à trois modalités</li>
-<li>les variables suivantes sont quantitatives, les deux dernières semblent corrélées positivement</li>
-<li>les deux dernières variables sont qualitatives, à deux et trois modalités</li>
+<li>les deux premières variables sont des variables qualitatives à trois
+modalités</li>
+<li>les variables suivantes sont quantitatives, les deux dernières
+semblent corrélées positivement</li>
+<li>les deux dernières variables sont qualitatives, à deux et trois
+modalités</li>
 </ul>
-<p><strong>Ce cours a pour but de vous donner le vocabulaire et les outils nécessaires à préciser le sens de ces caractéristiques, et d’en chiffrer certaines propriétés.</strong></p>
-<p>L’analyse statistique ne se confond pas avec l’analyse spatiale, bien qu’elles soient parfois cousines. Nous allons commencer par préciser ce qu’on entend par analyse spatiale et statistique, sachant que ce support de cours se concentre sur les prémices de l’analyse statistique : l’analyse <strong>univariée</strong> (cf section <a href="univariee.html#univariee">2</a>) et l’analyse <strong>bivariée</strong> (cf. section <a href="bivariee.html#bivariee">5</a>)</p>
-<div id="analyse-spatiale-définition" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Analyse spatiale : définition</h2>
-<p>L’analyse spatiale étudie la <strong>répartition</strong> et l’<strong>organisation</strong> d’objets <strong>localisés</strong></p>
+<p><strong>Ce cours a pour but de vous donner le vocabulaire et les outils
+nécessaires à préciser le sens de ces caractéristiques, et d’en chiffrer
+certaines propriétés.</strong></p>
+<p>L’analyse statistique ne se confond pas avec l’analyse spatiale, bien
+qu’elles soient parfois cousines. Nous allons commencer par préciser ce
+qu’on entend par analyse spatiale et statistique, sachant que ce support
+de cours se concentre sur les prémices de l’analyse statistique :
+l’analyse <strong>univariée</strong> (cf section <a href="univariee.html#univariee">2</a>) et l’analyse
+<strong>bivariée</strong> (cf. section <a href="bivariee.html#bivariee">5</a>)</p>
+<div id="analyse-spatiale-définition" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Analyse spatiale : définition<a href="intro.html#analyse-spatiale-définition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>L’analyse spatiale étudie la <strong>répartition</strong> et l’<strong>organisation</strong>
+d’objets <strong>localisés</strong></p>
 <p>L’objectif est de :</p>
 <blockquote>
-<em>«déceler en quoi la localisation apporte un élément utile à la connaissances des objets étudiés et peut en expliquer les caractéristiques»</em>
+<em>«déceler en quoi la localisation apporte un élément utile à la
+connaissances des objets étudiés et peut en expliquer les
+caractéristiques»</em>
 <footer>
 — [Pumain, Saint-Julien 97]
 </footer>
 </blockquote>
 </div>
-<div id="analyse-spatiale-analyse-statistique" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Analyse spatiale &amp; Analyse Statistique</h2>
-<p>L’analyse statistique peut être vue comme l’utilisation de méthodes de calcul pour <em>résumer</em> et <em>généraliser</em> des observations. Ces observations constituent les <strong>données</strong>.</p>
+<div id="analyse-spatiale-analyse-statistique" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Analyse spatiale &amp; Analyse Statistique<a href="intro.html#analyse-spatiale-analyse-statistique" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>L’analyse statistique peut être vue comme l’utilisation de méthodes de
+calcul pour <em>résumer</em> et <em>généraliser</em> des observations. Ces
+observations constituent les <strong>données</strong>.</p>
 <p>En analyse statistique :</p>
 <ul>
-<li>On suppose <em>a priori</em> que les unités d’analyse sont des éléments indépendants, et on examine avec des outils statistiques, si les <strong>variables</strong> qui les décrivent sont elles-aussi indépendantes.<br />
+<li>On suppose <em>a priori</em> que les unités d’analyse sont des éléments
+indépendants, et on examine avec des outils statistiques, si les
+<strong>variables</strong> qui les décrivent sont elles-aussi indépendantes.<br />
 </li>
-<li>On ne s’intéresse pas à la localisation de ces unités d’observation, ni à leur <strong>interactions spatiales</strong>.</li>
+<li>On ne s’intéresse pas à la localisation de ces unités d’observation,
+ni à leur <strong>interactions spatiales</strong>.</li>
 </ul>
 <p>En analyse <strong>spatiale</strong> statistique, au contraire :</p>
 <ul>
-<li>Les unités d’analyse sont localisables, et donc ne sont pas toujours indépendants du point de vue spatial.</li>
-<li>On s’intéresse à leur propriétés y compris et surtout leur localisation et l’effet de celle-ci : on fait l’hypothèse que la localisation des unités peut influencer les valeurs des variables des unités observées.</li>
+<li>Les unités d’analyse sont localisables, et donc ne sont pas toujours
+indépendants du point de vue spatial.</li>
+<li>On s’intéresse à leur propriétés y compris et surtout leur
+localisation et l’effet de celle-ci : on fait l’hypothèse que la
+localisation des unités peut influencer les valeurs des variables
+des unités observées.</li>
 </ul>
 <p>Prenons des exemples volontairement simplistes:</p>
-<p>En statistiques «normales», on peut examiner le lien entre revenu mensuel et la pointure d’une population: ce lien existe-t-il ? Si oui, quelle est son intensité ?</p>
-<p>En statistiques spatiales, on peut examiner la répartition des personnes de pointure supérieur à 42 dans les zones littorales : cette répartition a-t-elle une répartition particulière ou au contraire aléatoire ? Quelles régularités peut-on observer dans cette répartition ? , etc.</p>
+<p>En statistiques «normales», on peut examiner le lien entre revenu
+mensuel et la pointure d’une population: ce lien existe-t-il ? Si oui,
+quelle est son intensité ?</p>
+<p>En statistiques spatiales, on peut examiner la répartition des personnes
+de pointure supérieur à 42 dans les zones littorales : cette répartition
+a-t-elle une répartition particulière ou au contraire aléatoire ?
+Quelles régularités peut-on observer dans cette répartition ? , etc.</p>
 </div>
-<div id="deux-approches-en-analyse-spatiale" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Deux approches en analyse spatiale</h2>
-<p>L’analyse spatiale peut désigner deux sortes d’analyse : l’analyse géométrique et l’analyse de données spatiales.</p>
-<p>L’ <strong>analyse géométrique</strong> se concentre sur la géométrie (i.e. la forme) des représentations numériques qui décrivent les objets du monde réel :</p>
+<div id="deux-approches-en-analyse-spatiale" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Deux approches en analyse spatiale<a href="intro.html#deux-approches-en-analyse-spatiale" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>L’analyse spatiale peut désigner deux sortes d’analyse : l’analyse
+géométrique et l’analyse de données spatiales.</p>
+<p>L’ <strong>analyse géométrique</strong> se concentre sur la géométrie (i.e. la forme)
+des représentations numériques qui décrivent les objets du monde réel :</p>
 <ul>
 <li>analyse de forme : aire , périmètre, compacité, etc.</li>
-<li>analyse de réseaux : densité, centralité des nœuds, indice de Shimbel, (voir par exemple <a href="https://groupefmr.hypotheses.org/3740" class="uri">https://groupefmr.hypotheses.org/3740</a>)</li>
-<li>calculs de proximité (distance euclidienne, grands cercles, distance sur réseau, isochrones)</li>
+<li>analyse de réseaux : densité, centralité des nœuds, indice de
+Shimbel, (voir par exemple <a href="https://groupefmr.hypotheses.org/3740" class="uri">https://groupefmr.hypotheses.org/3740</a>)</li>
+<li>calculs de proximité (distance euclidienne, grands cercles, distance
+sur réseau, isochrones)</li>
 </ul>
-<p>Par extension l’analyse géométrique concerne également la création d’objets géométriques : buffers , intersections , unions, etc.</p>
-<p>L’<strong>analyse de données (spatiales)</strong> , elle , s’attache à découvrir des <strong>relations</strong> (des groupes, des lois, des régularités) dans des données spatiales pour aider l’étude de certains phénomènes. En guise d’exemple, on pourra se référer à ce qui est peut être la toute première analyse spatiale par cartographie : l’ <a href="https://fr.wikipedia.org/wiki/John_Snow#Propagation_du_chol%C3%A9ra">étude de la propagation du choléra par John Snow</a></p>
-<div class="figure" style="text-align: center">
+<p>Par extension l’analyse géométrique concerne également la création
+d’objets géométriques : buffers , intersections , unions, etc.</p>
+<p>L’<strong>analyse de données (spatiales)</strong> , elle , s’attache à découvrir des
+<strong>relations</strong> (des groupes, des lois, des régularités) dans des données
+spatiales pour aider l’étude de certains phénomènes. En guise d’exemple,
+on pourra se référer à ce qui est peut être la toute première analyse
+spatiale par cartographie : l’ <a href="https://fr.wikipedia.org/wiki/John_Snow#Propagation_du_chol%C3%A9ra">étude de la propagation du choléra par
+John
+Snow</a></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Snow-cholera-map-1.jpg/512px-Snow-cholera-map-1.jpg" alt="Original map made by John Snow in 1854. Cholera cases are highlighted in black"  />
 <p class="caption">
-(#fig:img_john_snow)Original map made by John Snow in 1854. Cholera cases are highlighted in black
+Figure 1.1: Original map made by John Snow in 1854. Cholera cases are highlighted in black
 </p>
 </div>
-<p>Dans ce cours, nous n’aborderons ni l’une ni l’autre. Nous donnerons des bases d’analyse statistique (donc <em>a-spatiale</em>), dont pourra dépendre une partie de l’analyse de données spatiales</p>
+<p>Dans ce cours, nous n’aborderons ni l’une ni l’autre. Nous donnerons des
+bases d’analyse statistique (donc <em>a-spatiale</em>), dont pourra dépendre
+une partie de l’analyse de données spatiales</p>
 </div>
-<div id="deux-familles-statistiques" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Deux familles statistiques</h2>
-<p>On peut distinguer dans les statistique les statistiques <strong>inférentielles</strong> et les statistiques <strong>descriptives</strong> .</p>
-<div id="statistiques-inférentielles" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Statistiques inférentielles</h3>
-<p>Les statistiques inférentielles cherchent à caractériser une population (=ensemble d’unités) à partir des caractéristiques d’un échantillon pour lequel on a recueilli des <strong>données</strong> : par des mesures, des observations, des enquêtes.</p>
-<p>Les statistiques inférentielles cherchent à répondre de façon mathématiquement rigoureuse à la question suivante :</p>
+<div id="deux-familles-statistiques" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Deux familles statistiques<a href="intro.html#deux-familles-statistiques" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>On peut distinguer dans les statistique les statistiques
+<strong>inférentielles</strong> et les statistiques <strong>descriptives</strong> .</p>
+<div id="statistiques-inférentielles" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Statistiques inférentielles<a href="intro.html#statistiques-inférentielles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les statistiques inférentielles cherchent à caractériser une population
+(=ensemble d’unités) à partir des caractéristiques d’un échantillon pour
+lequel on a recueilli des <strong>données</strong> : par des mesures, des
+observations, des enquêtes.</p>
+<p>Les statistiques inférentielles cherchent à répondre de façon rigoureuse à la question suivante :</p>
 <blockquote>
-<p>« A partir d’un échantillon , que peut-on attendre (=<strong>inférer</strong>) de la population ? »</p>
+<p>« A partir d’un échantillon , que peut-on attendre (=<strong>inférer</strong>) de
+la population ? »</p>
 </blockquote>
-<p>Cette famille de statistiques emploie des <strong>modèles</strong> et des <strong>estimateurs</strong> pour
-réaliser des <strong>régressions</strong>, des <strong>estimations</strong>, des <strong>extrapolations</strong>, voire des <strong>prévisions</strong>.</p>
-<p>Ce sont les statistiques qui sont utilisées lors des sondages, des recensements, mais aussi dans l’analyse de résultats expérimentaux (par ex. efficacité d’un médicament). La plupart du temps quand on emploie le terme «statistiques» dans le langage courant, c’est de statistiques inférentielles qu’il s’agit.</p>
+<p>Cette famille de statistiques emploie des <strong>modèles</strong> et des
+<strong>estimateurs</strong> pour réaliser des <strong>régressions</strong>, des <strong>estimations</strong>,
+des <strong>extrapolations</strong>, voire des <strong>prévisions</strong>.</p>
+<p>Ce sont les statistiques qui sont utilisées lors des sondages, des
+recensements, mais aussi dans l’analyse de résultats expérimentaux (par
+exemple pour décrire l’efficacité d’un médicament). La plupart du temps quand on emploie le
+terme «statistiques» dans le langage courant, c’est de statistiques
+inférentielles qu’il s’agit.</p>
 </div>
-<div id="statistiques-inférentielles-lexemple-des-pingouins" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Statistiques inférentielles : l’exemple des pingouins</h3>
+<div id="statistiques-inférentielles-lexemple-des-pingouins" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Statistiques inférentielles : l’exemple des pingouins<a href="intro.html#statistiques-inférentielles-lexemple-des-pingouins" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="bookdown_cours_stats_files/figure-html/reglinexple-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p><small>
-Penguins data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network.
-[<a href="https://github.com/allisonhorst/palmerpenguins" class="uri">https://github.com/allisonhorst/palmerpenguins</a>]
-</small></p>
-<p>Dans cet exemple, une régression linaire a été réalisée entre deux variables : la masse du corps de pingouins et la longueur de leurs nageoires. Pour autant que cette régression linaire soit de bonne qualité (cf la section dédiée dans le chapitre <a href="bivariee.html#bivariee">5</a>), la droite de régression, ici en bleu, est un modèle <strong>linéaire</strong> qui permet , à partir de la valeur d’une des deux variables, de déduire la valeur de l’autre.</p>
-<p>Par exemple, si on était en présence d’un pingouin avec une règle graduée , mais sans balance, et qu’on mesurait sa nageoire à 197mm, on peut se servir de la droite de régression pour postuler que ce pingouin pèse 4000g. C’est ce calcul qui est appelé parfois <strong>prédiction</strong> : le modèle linéaire, s’il est bien ajusté au nuage de points , permet de prédire la valeur de la masse du pingouin.</p>
+<p><small> Penguins data were collected and made available by Dr. Kristen
+Gorman and the Palmer Station, Antarctica LTER, a member of the Long
+Term Ecological Research Network.
+[<a href="https://github.com/allisonhorst/palmerpenguins" class="uri">https://github.com/allisonhorst/palmerpenguins</a>] </small></p>
+<p>Dans cet exemple, une régression linaire a été réalisée entre deux
+variables : la masse du corps de pingouins et la longueur de leurs
+nageoires. Pour autant que cette régression linaire soit de bonne
+qualité (cf la section dédiée dans le chapitre <a href="bivariee.html#bivariee">5</a>), la
+droite de régression, ici en bleu, est un modèle <strong>linéaire</strong> qui permet
+, à partir de la valeur d’une des deux variables, de déduire la valeur
+de l’autre, par une combinaison linéaire de type <span class="math inline">\(Variabel1 = \alpha * Variable2 + \beta\)</span>, avec <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span>, deux réels.</p>
+<p>Par exemple, si on était en présence d’un pingouin avec une règle
+graduée , mais sans balance, et qu’on mesurait sa nageoire à 197mm, on
+peut se servir de la droite de régression pour postuler que ce pingouin
+pèse autour de 4000g. C’est ce calcul qui est appelé parfois <strong>prédiction</strong> : le
+modèle linéaire, s’il est bien ajusté au nuage de points , permet de
+prédire la valeur de la masse du pingouin.</p>
 </div>
-<div id="statistiques-descriptives" class="section level3" number="1.4.3">
-<h3><span class="header-section-number">1.4.3</span> Statistiques descriptives</h3>
-<p>Les statistiques descriptives ont pour but de décrire, résumer, synthétiser les propriétés d’une <strong>population</strong>, potentiellement très nombreuse, à partir des <strong>variables</strong> qui décrivent ses individus.
-Ce résumé peut prendre plusieurs formes :</p>
+<div id="statistiques-descriptives" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Statistiques descriptives<a href="intro.html#statistiques-descriptives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les statistiques descriptives ont pour but de décrire, résumer,
+synthétiser les propriétés d’une <strong>population</strong>, potentiellement très
+nombreuse, à partir des <strong>variables</strong> qui décrivent ses individus. Ce
+résumé peut prendre plusieurs formes :</p>
 <ul>
-<li><strong>Graphiques</strong> : nuages de points , histogrammes, distributions, camemberts…</li>
-<li><strong>Mesures agrégées</strong> : moyenne , médiane, fréquences, caractéristiques des distributions, par exemple leur symétrie, leur aplatissement … calculées à partir des valeurs des variables</li>
-<li><strong>Liaisons statistiques</strong> entre variables : corrélation, covariance, qui sont des mesures de l’intensité du lien qui peut exister entre deux variables</li>
-<li><strong>Forme et structure</strong> des données, particulièrement les regroupements, détectées par classification (k-means, Random Forest, DBSCAN), ou la réduction de la dimensionalité des données (Analyse en Composantes Principale),…</li>
+<li><strong>Graphiques</strong> : nuages de points , histogrammes, distributions,
+camemberts…</li>
+<li><strong>Mesures agrégées</strong> : moyenne , médiane, fréquences,
+caractéristiques des distributions, par exemple leur symétrie, leur
+aplatissement … calculées à partir des valeurs des variables</li>
+<li><strong>Liaisons statistiques</strong> entre variables : corrélation, covariance,
+qui sont des mesures de l’intensité du lien qui peut exister entre
+deux variables</li>
+<li><strong>Forme et structure</strong> des données, particulièrement les
+regroupements, détectées par classification (k-means, Random Forest,
+DBSCAN), ou la réduction de la dimensionalité des données (Analyse
+en Composantes Principale),…</li>
 </ul>
 <p>Voici des exemples de graphiques habituels :</p>
-<p><img src="bookdown_cours_stats_files/figure-html/exple_nuage-1.png" width="576" style="display: block; margin: auto;" />
-Le nuage de points est la représentation la plus courrante pour observer deux variables d’une population.</p>
+<p><img src="bookdown_cours_stats_files/figure-html/exple_nuage-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Le nuage de points est la représentation la plus courrante pour observer
+deux variables d’une population.</p>
 <p><img src="bookdown_cours_stats_files/figure-html/exple_hist-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>L’histogramme est utilisé pour observer la répartition des valeurs d’une variable. Il est recommandé de faire varier le nombre ou l’épaisseur des barres qui le constituent pour ne pas «manquer» des phénomènes dans la distribution de valeurs (par ex. plusieurs modalités fondues en une seule du fait d’une résolution trop grossière)</p>
-<p><img src="bookdown_cours_stats_files/figure-html/exple_dist2-1.png" width="576" style="display: block; margin: auto;" />
-la densité d’une distribution est un autre moyen de représenter la répartition des valeurs d’une variable quantitative? Pour l’interprétation d’un tel graphique, reportez-vous à la section dédiée @ref(interpret_dens) du chapitre <a href="univariee.html#univariee">2</a></p>
+<p>L’histogramme est utilisé pour observer la répartition des valeurs d’une
+variable. Il est recommandé de faire varier le nombre ou l’épaisseur des
+barres qui le constituent pour ne pas «manquer» des phénomènes dans la
+distribution de valeurs (par ex. plusieurs modalités fondues en une
+seule du fait d’une résolution trop grossière)</p>
+<p><img src="bookdown_cours_stats_files/figure-html/exple_dist2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>la densité d’une distribution est un autre moyen de représenter la
+répartition des valeurs d’une variable quantitative? Pour
+l’interprétation d’un tel graphique, reportez-vous à la section dédiée <a href="univariee.html#interpretdens">2.1.1</a> du chapitre <a href="univariee.html#univariee">2</a></p>
 <p><img src="bookdown_cours_stats_files/figure-html/exple_pie-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>Ce type de représentation est très populaire malgré des défauts certains (voir par exemple ; <a href="https://www.data-to-viz.com/caveat/pie.html" class="uri">https://www.data-to-viz.com/caveat/pie.html</a>) , il est à utiliser avec parcimonie!</p>
-<p>Dans ce module, nous ferons majoritairement de la statistique <strong>descriptive</strong>, notamment dans le chapitre d’Analyse Univariée <a href="univariee.html#univariee">2</a>.</p>
-<p>Dans le chapitre d’Analyse Bivariée <a href="bivariee.html#bivariee">5</a>, nous verrons la régression linéaire, qui, lorsque qu’elle est «utile» – c’est à dire que les deux variables présentent effectivement une dépendance suffisamment linéaire pour être bien décrite par une droite– peut être considérée comme une technique de statistique <strong>inférentielle</strong> , et utilisée pour «prédire» des valeurs, même si nous préférerons parler d’<em>explication</em> plutôt que de <em>prédiction</em>.</p>
+<p>Ce type de représentation est très populaire malgré des défauts certains
+(voir par exemple ; <a href="https://www.data-to-viz.com/caveat/pie.html" class="uri">https://www.data-to-viz.com/caveat/pie.html</a>) , il
+est à utiliser avec parcimonie!</p>
+<p>Dans ce module, nous ferons majoritairement de la statistique
+<strong>descriptive</strong>, notamment dans le chapitre d’Analyse Univariée
+<a href="univariee.html#univariee">2</a>.</p>
+<p>Dans le chapitre d’Analyse Bivariée <a href="bivariee.html#bivariee">5</a>, nous verrons la
+régression linéaire, qui, lorsque qu’elle est «utile» – c’est à dire
+que les deux variables présentent effectivement une dépendance
+suffisamment linéaire pour être bien décrite par une droite– peut être
+considérée comme une technique de statistique <strong>inférentielle</strong> , et
+utilisée pour «prédire» des valeurs, même si nous préférerons parler
+d’<em>explication</em> plutôt que de <em>prédiction</em>.</p>
 </div>
-<div id="les-formats-de-données-wide-et-long" class="section level3" number="1.4.4">
-<h3><span class="header-section-number">1.4.4</span> Les formats de données <em>wide</em> et <em>long</em></h3>
-<p>Les données sont la plupart du temps tabulaires, et peuvent apparaître sous deux formats :</p>
+<div id="les-formats-de-données-wide-et-long" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Les formats de données <em>wide</em> et <em>long</em><a href="intro.html#les-formats-de-données-wide-et-long" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les données sont la plupart du temps <strong>tabulaires</strong>, (i.e. qu’on peut ranger dans un tableau de taille fixée) et peuvent apparaître
+sous deux formats :</p>
 <ul>
-<li>le format dit <em>long</em>, où chaque observation d’un même individu occupe une ligne<br />
+<li>le format dit <em>long</em>, où chaque observation d’un même individu
+occupe une ligne<br />
 </li>
-<li>le format dit <em>wide</em>, où chaque observation d’un même individu occupe une colonne</li>
+<li>le format dit <em>wide</em>, où chaque observation d’un même individu
+occupe une colonne</li>
 </ul>
 <p>Exemple de données au format <em>wide</em>:</p>
 <pre><code>##   subject_ID sex mass measure_t1 measure_t2
@@ -528,59 +648,93 @@ la densité d’une distribution est un autre moyen de représenter la répartit
 ## 12          4   M measure_t2  12.9</code></pre>
 </div>
 </div>
-<div id="vocabulaire" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Vocabulaire</h2>
+<div id="vocabulaire" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Vocabulaire<a href="intro.html#vocabulaire" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Population : Ensemble d’<strong>individus</strong>. Le nombre d’individus d’une population est appelé l’<strong>effectif</strong>.</li>
+<li>Population : Ensemble d’<strong>individus</strong>. Le nombre d’individus d’une
+population est appelé l’<strong>effectif</strong>.</li>
 </ul>
-<p>On parle aussi de “données,” “corpus,” “échantillon,” “data,” “dataset” .</p>
+<p>On parle aussi de “données”, “corpus”, “échantillon”, “data”, “dataset”
+.</p>
 <ul>
-<li>Individus : l’<strong>individu</strong> est l’unité statistique élémentaire. On parle parfois d’<strong>observations</strong>, en particuliers lorsqu’on mesure une évolution de quelque chose dans le temps.</li>
+<li>Individus : l’<strong>individu</strong> est l’unité statistique élémentaire. On
+parle parfois d’<strong>observations</strong>, en particuliers lorsqu’on mesure
+une évolution de quelque chose dans le temps.</li>
 </ul>
 <p>Très souvent, les individus sont les <strong>lignes</strong> du tableau des données</p>
 <ul>
-<li>Variables : les <strong>variables</strong> sont les caractéristiques d’un individu. On obtient les valeurs des variables par des mesures, des enquêtes, des observations…</li>
+<li>Variables : les <strong>variables</strong> sont les caractéristiques d’un
+individu. On obtient les valeurs des variables par des mesures, des
+enquêtes, des observations…</li>
 </ul>
-<p>Très souvent, les variables sont les <strong>colonnes</strong> du tableau des données. On distingues deux types de variables : les variables <strong>quantitatives</strong> et les variables <strong>qualitatives</strong></p>
-<div id="variables-quantitatives" class="section level3" number="1.5.1">
-<h3><span class="header-section-number">1.5.1</span> Variables quantitatives</h3>
-<p>Ce sont des variables qui représentent une <strong>quantité</strong>, une grandeur. Ce sont des nombres , et ils sont parfois accompagnés d’une <strong>unité</strong>. Par exemple : la taille, la masse, le revenu mensuel, la surface, les points de vie,etc.</p>
-<p>Les variables quantitatives peuvent être <strong>continues</strong> i.e. prendre des valeurs réelles: <span class="math inline">\(var \in \mathbb{R}\)</span> , ou <strong>discrètes</strong> i.e. prendre des valeurs entières : <span class="math inline">\(var \in \mathbb{N}\)</span> .</p>
+<p>Très souvent, les variables sont les <strong>colonnes</strong> du tableau des
+données. On distingues deux types de variables : les variables
+<strong>quantitatives</strong> et les variables <strong>qualitatives</strong></p>
+<div id="variables-quantitatives" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Variables quantitatives<a href="intro.html#variables-quantitatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ce sont des variables qui représentent une <strong>quantité</strong>, une grandeur.
+Ce sont des nombres , et ils sont parfois accompagnés d’une <strong>unité</strong>.
+Par exemple : la taille, la masse, le revenu mensuel, la surface, les
+points de vie,etc.</p>
+<p>Les variables quantitatives peuvent être <strong>continues</strong> i.e. prendre des
+valeurs réelles: <span class="math inline">\(var \in \mathbb{R}\)</span> , ou <strong>discrètes</strong> i.e. prendre
+des valeurs entières : <span class="math inline">\(var \in \mathbb{N}\)</span> .</p>
 </div>
-<div id="variables-qualitatives" class="section level3" number="1.5.2">
-<h3><span class="header-section-number">1.5.2</span> Variables qualitatives</h3>
+<div id="variables-qualitatives" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Variables qualitatives<a href="intro.html#variables-qualitatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>appelées aussi <strong>facteurs</strong> ou <strong>variables catégorielles</strong>.</p>
-<p>Ce sont des variables dont les valeurs ne sont pas en général des nombres, mais des catégories, qu’on appelle <strong>modalités</strong>. Par exemple : la couleur des yeux , le genre, la catégorie socio-professionnelle, le type de pokemon, etc.</p>
-<p>Une variable qualitative ne peut prendre qu’un nombre fini de modalités, qui sont définies par extension (i.e. on donne la liste des valeurs possibles)
-Il peut arriver qu’une variable qualitative soit codée avec des valeurs numériques, par exemple le niveau d’une alerte ou le code postal d’un département.</p>
-<div id="variables-qualitatives-nominales" class="section level4" number="1.5.2.1">
-<h4><span class="header-section-number">1.5.2.1</span> variables qualitatives <strong>nominales</strong></h4>
+<p>Ce sont des variables dont les valeurs ne sont pas en général des
+nombres, mais des catégories, qu’on appelle <strong>modalités</strong>. Par exemple :
+la couleur des yeux , le genre, la catégorie socio-professionnelle, le
+type de pokemon, etc.</p>
+<p>Une variable qualitative ne peut prendre qu’un nombre fini de modalités,
+qui sont définies par extension (i.e. on donne la liste des valeurs
+possibles) Il peut arriver qu’une variable qualitative soit codée avec
+des valeurs numériques, par exemple le niveau d’une alerte ou le code
+postal d’un département.</p>
+<div id="variables-qualitatives-nominales" class="section level4 hasAnchor" number="1.5.2.1">
+<h4><span class="header-section-number">1.5.2.1</span> variables qualitatives <strong>nominales</strong><a href="intro.html#variables-qualitatives-nominales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Les modalités ne sont <strong>pas ordonnées</strong> explicitement</p>
 <p>e.g. situation matrimoniale <span class="math inline">\(\in\)</span> {marié·e, célibataire, veuf·ve}</p>
 </div>
-<div id="variables-qualitatives-ordinales" class="section level4" number="1.5.2.2">
-<h4><span class="header-section-number">1.5.2.2</span> variables qualitatives <strong>ordinales</strong></h4>
+<div id="variables-qualitatives-ordinales" class="section level4 hasAnchor" number="1.5.2.2">
+<h4><span class="header-section-number">1.5.2.2</span> variables qualitatives <strong>ordinales</strong><a href="intro.html#variables-qualitatives-ordinales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Les modalités sont <strong>ordonnées</strong> selon un ordre <strong>total</strong> et non-ambigu.</p>
 <p>e.g. Echelle de Likert (5 ou 7 valeurs, dont une neutre)</p>
-<p>satisfaction <span class="math inline">\(\in\)</span> {Très satisfait, Satisfait, Ni satisfait ni insatisfait, Peu satisfait, Pas du tout satisfait}</p>
+<p>satisfaction <span class="math inline">\(\in\)</span> {Très satisfait, Satisfait, Ni satisfait ni
+insatisfait, Peu satisfait, Pas du tout satisfait}</p>
 </div>
 </div>
-<div id="valeur-et-nature-des-variables" class="section level3" number="1.5.3">
-<h3><span class="header-section-number">1.5.3</span> Valeur et Nature des variables</h3>
-<p>Les données étant stockées sous la forme de caractères dans des fichiers par exemple CSV, un même caractère ou suite de caractères pourra être interprété de différentes façons à la lecture de ce fichier.
-<small>Ce n’est pas le cas dans d’autres systèmes comme les bases de données, où les colonnes sont typées à la création.</small></p>
-<p>Ainsi la <strong>valeur</strong> «trois» peut être exprimée dans des variables de <strong>nature</strong> différentes. Cela peut-être :</p>
+<div id="valeur-et-nature-des-variables" class="section level3 hasAnchor" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> Valeur et Nature des variables<a href="intro.html#valeur-et-nature-des-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les données étant stockées sous la forme de caractères dans des fichiers
+par exemple CSV, un même caractère ou suite de caractères pourra être
+interprété de différentes façons à la lecture de ce fichier. <small>Ce
+n’est pas le cas dans d’autres systèmes comme les bases de données, où
+les colonnes sont typées à la création.</small></p>
+<p>Ainsi la <strong>valeur</strong> «trois» peut être exprimée dans des variables de
+<strong>nature</strong> différentes. Cela peut-être :</p>
 <ul>
-<li>la valeur numérique ‘3’ , d’une variable quantitative, par exemple une hauteur en mètres.</li>
-<li>la valeur caractère ‘3,’ d’une variable qualitative, par exemple l’arrondissement de paris où se trouve une adresse.</li>
+<li>la valeur numérique ‘3’ , d’une variable quantitative, par exemple
+une hauteur en mètres.</li>
+<li>la valeur caractère ‘3’, d’une variable qualitative, par exemple
+l’arrondissement de paris où se trouve une adresse.</li>
 </ul>
-<p>Un logiciel ne peut pas trancher seul entre ces deux alternatives, on doit lui indiquer la nature des variables, en l’occurence pour un logiciel de statistiques , indiquer si la variable est quantitative (de type <code>numeric</code> ou <code>integer</code> en R) ou qualitative (de type <code>character</code> ou <code>factor</code> en R).</p>
-<p>Également, les valeurs manquantes d’un dataset sont parfois exprimées avec les caractères <code>NA</code> (qui signifie “non attribué”), parfois avec <code>NULL</code> , parfois avec rien.</p>
-<p>Il revient à la personne qui traite les données d’identifier ces valeurs manquantes et de les traiter de façon adéquate.</p>
+<p>Un logiciel ne peut pas trancher seul entre ces deux alternatives, on
+doit lui indiquer la nature des variables, en l’occurence pour un
+logiciel de statistiques , indiquer si la variable est quantitative (de
+type <code>numeric</code> ou <code>integer</code> en R) ou qualitative (de type <code>character</code> ou
+<code>factor</code> en R).</p>
+<p>Également, les valeurs manquantes d’un dataset sont parfois exprimées
+avec les caractères <code>NA</code> (qui signifie “non attribué”), parfois avec
+<code>NULL</code> , parfois avec rien.</p>
+<p>Il revient à la personne qui traite les données d’identifier ces valeurs
+manquantes et de les traiter de façon adéquate.</p>
 </div>
-<div id="types-de-variables-et-représentations" class="section level3" number="1.5.4">
-<h3><span class="header-section-number">1.5.4</span> Types de variables et représentations</h3>
-<p>La représentation des données doit être adaptées au type de variables. La table suivante indique les choix de représentations conventionnels.</p>
+<div id="types-de-variables-et-représentations" class="section level3 hasAnchor" number="1.5.4">
+<h3><span class="header-section-number">1.5.4</span> Types de variables et représentations<a href="intro.html#types-de-variables-et-représentations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La représentation des données doit être adaptées au type de variables.
+La table suivante indique les choix de représentations conventionnels.</p>
 <table>
 <thead>
 <tr class="header">
@@ -615,20 +769,21 @@ Il peut arriver qu’une variable qualitative soit codée avec des valeurs numé
 </tr>
 </tbody>
 </table>
-<p><small>
-tiré de
-Fundamentals of Data Visualization
-Claus O. Wilke [<a href="https://serialmentor.com/dataviz/" class="uri">https://serialmentor.com/dataviz/</a>]
-</small></p>
+<p><small> tiré de Fundamentals of Data Visualization Claus O. Wilke
+[<a href="https://serialmentor.com/dataviz/" class="uri">https://serialmentor.com/dataviz/</a>] </small></p>
 </div>
 </div>
-<div id="difficultés-de-la-statistique" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> Difficultés de la statistique</h2>
-<p>Nous donnons ci-dessous quelques exemples de difficultés inhérentes à l’analyse statistique.</p>
-<div id="plusieurs-discours-sont-possibles" class="section level3" number="1.6.1">
-<h3><span class="header-section-number">1.6.1</span> Plusieurs discours sont possibles</h3>
-<p>Les statistiques sont délicates parce qu’un.e statisticien.ne ne peut pas se limiter à des calculs et à la représentation graphique de ses données, mais doit également les décrire <strong>et</strong> les interpréter.</p>
-<p>Cette interprétation est elle-même difficile car des discours différents peuvent être produits sur la base de chiffres identiques.</p>
+<div id="difficultés-de-la-statistique" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Difficultés de la statistique<a href="intro.html#difficultés-de-la-statistique" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nous donnons ci-dessous quelques exemples de difficultés inhérentes à
+l’analyse statistique.</p>
+<div id="plusieurs-discours-sont-possibles" class="section level3 hasAnchor" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Plusieurs discours sont possibles<a href="intro.html#plusieurs-discours-sont-possibles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les statistiques sont délicates parce qu’un.e statisticien.ne ne peut
+pas se limiter à des calculs et à la représentation graphique de ses
+données, mais doit également les décrire <strong>et</strong> les interpréter.</p>
+<p>Cette interprétation est elle-même difficile car des discours différents
+peuvent être produits sur la base de chiffres identiques.</p>
 <p>Considérons cet exemple, tiré du cours d’Ana-Maria Olteanu-Raimond :</p>
 <p>Voici les chiffres du bilan d’une entreprise en 2013 et 2014</p>
 <table>
@@ -666,151 +821,255 @@ Claus O. Wilke [<a href="https://serialmentor.com/dataviz/" class="uri">https://
 <li>Mme. AAA : «tous les salaires ont baissé de 10%»</li>
 <li>Mme. BBB : «le salaire moyen a augmenté d’environ 18%»</li>
 </ul>
-<p>Ces deux phrases sont justes, et il n’y a pas lieu d’en choisir une plus que l’autre. Un.e analyste consciencieux.se se devrait de mentionner les deux à la fois !</p>
+<p>Ces deux phrases sont justes, et il n’y a pas lieu d’en choisir une plus
+que l’autre. Un.e analyste consciencieux.se se devrait de mentionner les
+deux à la fois .</p>
 </div>
-<div id="taille-et-représentativité-de-léchantillon" class="section level3" number="1.6.2">
-<h3><span class="header-section-number">1.6.2</span> Taille et représentativité de l’échantillon</h3>
-<p>Les données ne sont jamais exhaustives: elles sont le résultats de mesures, d’enquête et ne captent qu’une partie, un <strong>échantillon</strong> de l’ensemble des objets qu’elles décrivent.</p>
-<p>La taille et la représentativité de cet échantillon sont critiques, et il est évident qu’on ne dit pas les mêmes choses à partir d’un petit échantillon partial qu’à partir d’un vaste échantillon représentatif.</p>
-<p>Quand on en a la possibilité, il faut toujours privilégier les données les plus nombreuses et les plus représentatives du phénomène étudié.</p>
-<div id="exemple-de-leffet-de-la-taille" class="section level4" number="1.6.2.1">
-<h4><span class="header-section-number">1.6.2.1</span> Exemple de l’effet de la taille</h4>
-<p>Prenons un exemple avec des données “réelles” , on va calculer la hauteur moyenne des arbres de paris , dont le jeu de données est disponible <a href="https://opendata.paris.fr/explore/dataset/les-arbres/information/?disjunctive.typeemplacement&amp;disjunctive.arrondissement&amp;disjunctive.libellefrancais&amp;disjunctive.genre&amp;disjunctive.espece&amp;disjunctive.varieteoucultivar&amp;disjunctive.stadedeveloppement&amp;disjunctive.remarquable">ici</a></p>
-<p>Après filtrage des données pour ne considérer que les arbres entre 1 et 40 mètres de hauteur, on va calculer la hauteur moyennes des arbres du dataset:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geojsonsf)</span>
-<span id="cb4-2"><a href="intro.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb4-3"><a href="intro.html#cb4-3" aria-hidden="true" tabindex="-1"></a>arbres <span class="ot">&lt;-</span> <span class="fu">geojson_sf</span>(<span class="st">&quot;./data/les-arbres.geojson&quot;</span>)</span>
-<span id="cb4-4"><a href="intro.html#cb4-4" aria-hidden="true" tabindex="-1"></a>arbres <span class="ot">&lt;-</span>  <span class="fu">filter</span>(arbres, hauteurenm <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">&amp;</span> hauteurenm <span class="sc">&gt;</span> <span class="dv">1</span> )</span>
-<span id="cb4-5"><a href="intro.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(arbres<span class="sc">$</span>hauteurenm)</span></code></pre></div>
+<div id="taille-et-représentativité-de-léchantillon" class="section level3 hasAnchor" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Taille et représentativité de l’échantillon<a href="intro.html#taille-et-représentativité-de-léchantillon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les données ne sont jamais exhaustives: elles sont le résultats de
+mesures, d’enquête et ne captent qu’une partie, un <strong>échantillon</strong> de
+l’ensemble des objets qu’elles décrivent.</p>
+<p>La taille et la représentativité de cet échantillon sont critiques, et
+il est évident qu’on ne dit pas les mêmes choses à partir d’un petit
+échantillon partial qu’à partir d’un vaste échantillon représentatif.</p>
+<p>Quand on en a la possibilité, il faut toujours privilégier les données
+les plus nombreuses et les plus représentatives du phénomène étudié.</p>
+<div id="exemple-de-leffet-de-la-taille" class="section level4 hasAnchor" number="1.6.2.1">
+<h4><span class="header-section-number">1.6.2.1</span> Exemple de l’effet de la taille<a href="intro.html#exemple-de-leffet-de-la-taille" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Prenons un exemple avec des données “réelles” , on va calculer la
+hauteur moyenne des arbres de paris , dont le jeu de données est
+disponible
+<a href="https://opendata.paris.fr/explore/dataset/les-arbres/information/?disjunctive.typeemplacement&amp;disjunctive.arrondissement&amp;disjunctive.libellefrancais&amp;disjunctive.genre&amp;disjunctive.espece&amp;disjunctive.varieteoucultivar&amp;disjunctive.stadedeveloppement&amp;disjunctive.remarquable">ici</a></p>
+<p>Après filtrage des données pour ne considérer que les arbres entre 1 et
+40 mètres de hauteur, on va calculer la hauteur moyennes des arbres du
+dataset:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1" tabindex="-1"></a><span class="fu">library</span>(geojsonsf)</span>
+<span id="cb4-2"><a href="intro.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb4-3"><a href="intro.html#cb4-3" tabindex="-1"></a>arbres <span class="ot">&lt;-</span> <span class="fu">geojson_sf</span>(<span class="st">&quot;./data/les-arbres.geojson&quot;</span>)</span>
+<span id="cb4-4"><a href="intro.html#cb4-4" tabindex="-1"></a>arbres <span class="ot">&lt;-</span>  <span class="fu">filter</span>(arbres, hauteurenm <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">&amp;</span> hauteurenm <span class="sc">&gt;</span> <span class="dv">1</span> )</span>
+<span id="cb4-5"><a href="intro.html#cb4-5" tabindex="-1"></a><span class="fu">mean</span>(arbres<span class="sc">$</span>hauteurenm)</span></code></pre></div>
 <pre><code>## [1] 10.28588</code></pre>
-<p>On va maintenant opérer une selection sur les données et ne considérer que les arbres étiquettés comme “jeunes” (variable <code>statdedeveloppement</code>), et calculer leur hauteur moyenne :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a>arbresJeunes <span class="ot">&lt;-</span>   arbres <span class="sc">%&gt;%</span>  <span class="fu">filter</span>( stadedeveloppement <span class="sc">==</span><span class="st">&quot;J&quot;</span>) </span>
-<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(arbresJeunes<span class="sc">$</span>hauteurenm)</span></code></pre></div>
+<p>On va maintenant opérer une selection sur les données et ne considérer
+que les arbres étiquettés comme “jeunes” (variable
+<code>statdedeveloppement</code>), et calculer leur hauteur moyenne :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" tabindex="-1"></a>arbresJeunes <span class="ot">&lt;-</span>   arbres <span class="sc">%&gt;%</span>  <span class="fu">filter</span>( stadedeveloppement <span class="sc">==</span><span class="st">&quot;J&quot;</span>) </span>
+<span id="cb6-2"><a href="intro.html#cb6-2" tabindex="-1"></a><span class="fu">mean</span>(arbresJeunes<span class="sc">$</span>hauteurenm)</span></code></pre></div>
 <pre><code>## [1] 5.691254</code></pre>
-<p>Évidemment , la hauteur moyenne des jeunes arbres n’est pas la même que la hauteur moyenne des arbres en général!</p>
-<p>Observons maintenant l’effet que peut avoir la taille de l’échantillon sur un calcul de moyenne :</p>
-<p>On va prendre des échantillons du dataset des arbres de Paris de plus en plus petits (on divise par deux la taille de l’échantillons à chaque fois) et on va observer la variation de la hauteur moyenne des arbres en fonction de la taille de l’échantillon sur lequel on calcule.</p>
-<p>Pour chaque taille d’échantillon, on réalise plusieurs tirages (50) et on observe la dispersion des valeurs moyennes de la hauteur en mètres sur 50 tirages , pour montrer la <strong>variabilité de la valeur moyenne</strong></p>
-<p>A titre indicatif, voici un moyen de coder simplement cette expérience en R :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a>nb_samples <span class="ot">&lt;-</span>  <span class="fu">nrow</span>(arbres)</span>
-<span id="cb8-2"><a href="intro.html#cb8-2" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span>  <span class="fu">c</span>()</span>
-<span id="cb8-3"><a href="intro.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(nb_samples <span class="sc">&gt;</span> <span class="dv">1</span>){</span>
-<span id="cb8-4"><a href="intro.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  nb_samples <span class="ot">&lt;-</span>  <span class="fu">floor</span>(nb_samples<span class="sc">/</span><span class="dv">2</span>)</span>
-<span id="cb8-5"><a href="intro.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  samples <span class="ot">&lt;-</span>  <span class="fu">c</span>(samples, nb_samples) <span class="co"># concaténation des listes</span></span>
-<span id="cb8-6"><a href="intro.html#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-7"><a href="intro.html#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="intro.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fonction qui tire un échantillon d&#39;une certaine taille dans une liste</span></span>
-<span id="cb8-9"><a href="intro.html#cb8-9" aria-hidden="true" tabindex="-1"></a>myfunction<span class="ot">&lt;-</span> <span class="cf">function</span>(taille,data){</span>
-<span id="cb8-10"><a href="intro.html#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sample</span>(data,taille,<span class="at">replace =</span> F))</span>
-<span id="cb8-11"><a href="intro.html#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-12"><a href="intro.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tirage  simple</span></span>
-<span id="cb8-13"><a href="intro.html#cb8-13" aria-hidden="true" tabindex="-1"></a>samples_hauteur <span class="ot">&lt;-</span> <span class="fu">sapply</span>(samples, myfunction, arbres<span class="sc">$</span>hauteurenm)</span>
-<span id="cb8-14"><a href="intro.html#cb8-14" aria-hidden="true" tabindex="-1"></a>valeurs_moyennes <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(samples_hauteur, mean)</span>
-<span id="cb8-15"><a href="intro.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(valeurs_moyennes) <span class="ot">&lt;-</span>  samples <span class="sc">%&gt;%</span> <span class="fu">as.character</span>()</span>
-<span id="cb8-16"><a href="intro.html#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="intro.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#on répète 50 fois le tirage</span></span>
-<span id="cb8-18"><a href="intro.html#cb8-18" aria-hidden="true" tabindex="-1"></a>spls_sizes <span class="ot">&lt;-</span> <span class="fu">rep</span>(samples, <span class="dv">50</span>)</span>
-<span id="cb8-19"><a href="intro.html#cb8-19" aria-hidden="true" tabindex="-1"></a>spl_h <span class="ot">&lt;-</span> <span class="fu">sapply</span>(spls_sizes, myfunction, arbres<span class="sc">$</span>hauteurenm )</span>
-<span id="cb8-20"><a href="intro.html#cb8-20" aria-hidden="true" tabindex="-1"></a>spl_moy  <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(spl_h, mean)</span>
-<span id="cb8-21"><a href="intro.html#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-22"><a href="intro.html#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># constitution du dataframe</span></span>
-<span id="cb8-23"><a href="intro.html#cb8-23" aria-hidden="true" tabindex="-1"></a>dfhmoy <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(spl_moy, spls_sizes)</span>
-<span id="cb8-24"><a href="intro.html#cb8-24" aria-hidden="true" tabindex="-1"></a>dfhmoy<span class="sc">$</span>spls_sizes <span class="ot">&lt;-</span>  <span class="fu">factor</span>(dfhmoy<span class="sc">$</span>spls_sizes, <span class="at">levels=</span>samples)</span>
-<span id="cb8-25"><a href="intro.html#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dfhmoy) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;h_moy&quot;</span>, <span class="st">&quot;spl_size&quot;</span>)</span>
-<span id="cb8-26"><a href="intro.html#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#graphique </span></span>
-<span id="cb8-27"><a href="intro.html#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dfhmoy ,<span class="fu">aes</span>(h_moy, spl_size))<span class="sc">+</span></span>
-<span id="cb8-28"><a href="intro.html#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb8-29"><a href="intro.html#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb8-30"><a href="intro.html#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb8-31"><a href="intro.html#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;hauteur moyenne en mètre&quot;</span>,</span>
-<span id="cb8-32"><a href="intro.html#cb8-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;taille de l&#39;échantillon&quot;</span>,</span>
-<span id="cb8-33"><a href="intro.html#cb8-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Sensibilité de la moyenne à la taille de l&#39;échantillon&quot;</span>,</span>
-<span id="cb8-34"><a href="intro.html#cb8-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;On tire 50 échantillons de chaque taille.&quot;</span>)</span></code></pre></div>
+<p>Évidemment , la hauteur moyenne des jeunes arbres n’est pas la même que
+la hauteur moyenne des arbres en général!</p>
+<p>Observons maintenant l’effet que peut avoir la taille de l’échantillon
+sur un calcul de moyenne :</p>
+<p>On va prendre des échantillons du dataset des arbres de Paris de plus en
+plus petits (on divise par deux la taille de l’échantillons à chaque
+fois) et on va observer la variation de la hauteur moyenne des arbres en
+fonction de la taille de l’échantillon sur lequel on calcule.</p>
+<p>Pour chaque taille d’échantillon, on réalise plusieurs tirages (50) et
+on observe la dispersion des valeurs moyennes de la hauteur en mètres
+sur 50 tirages , pour montrer la <strong>variabilité de la valeur moyenne</strong></p>
+<p>A titre indicatif, voici un moyen de coder simplement cette expérience
+en R :</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" tabindex="-1"></a>nb_samples <span class="ot">&lt;-</span>  <span class="fu">nrow</span>(arbres)</span>
+<span id="cb8-2"><a href="intro.html#cb8-2" tabindex="-1"></a>samples <span class="ot">&lt;-</span>  <span class="fu">c</span>()</span>
+<span id="cb8-3"><a href="intro.html#cb8-3" tabindex="-1"></a><span class="cf">while</span>(nb_samples <span class="sc">&gt;</span> <span class="dv">1</span>){</span>
+<span id="cb8-4"><a href="intro.html#cb8-4" tabindex="-1"></a>  nb_samples <span class="ot">&lt;-</span>  <span class="fu">floor</span>(nb_samples<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="intro.html#cb8-5" tabindex="-1"></a>  samples <span class="ot">&lt;-</span>  <span class="fu">c</span>(samples, nb_samples) <span class="co"># concaténation des listes</span></span>
+<span id="cb8-6"><a href="intro.html#cb8-6" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="intro.html#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="intro.html#cb8-8" tabindex="-1"></a><span class="co"># fonction qui tire un échantillon d&#39;une certaine taille dans une liste</span></span>
+<span id="cb8-9"><a href="intro.html#cb8-9" tabindex="-1"></a>myfunction<span class="ot">&lt;-</span> <span class="cf">function</span>(taille,data){</span>
+<span id="cb8-10"><a href="intro.html#cb8-10" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sample</span>(data,taille,<span class="at">replace =</span> F))</span>
+<span id="cb8-11"><a href="intro.html#cb8-11" tabindex="-1"></a>}</span>
+<span id="cb8-12"><a href="intro.html#cb8-12" tabindex="-1"></a><span class="co"># tirage  simple</span></span>
+<span id="cb8-13"><a href="intro.html#cb8-13" tabindex="-1"></a>samples_hauteur <span class="ot">&lt;-</span> <span class="fu">sapply</span>(samples, myfunction, arbres<span class="sc">$</span>hauteurenm)</span>
+<span id="cb8-14"><a href="intro.html#cb8-14" tabindex="-1"></a>valeurs_moyennes <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(samples_hauteur, mean)</span>
+<span id="cb8-15"><a href="intro.html#cb8-15" tabindex="-1"></a><span class="fu">names</span>(valeurs_moyennes) <span class="ot">&lt;-</span>  samples <span class="sc">%&gt;%</span> <span class="fu">as.character</span>()</span>
+<span id="cb8-16"><a href="intro.html#cb8-16" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="intro.html#cb8-17" tabindex="-1"></a><span class="co">#on répète 50 fois le tirage</span></span>
+<span id="cb8-18"><a href="intro.html#cb8-18" tabindex="-1"></a>spls_sizes <span class="ot">&lt;-</span> <span class="fu">rep</span>(samples, <span class="dv">50</span>)</span>
+<span id="cb8-19"><a href="intro.html#cb8-19" tabindex="-1"></a>spl_h <span class="ot">&lt;-</span> <span class="fu">sapply</span>(spls_sizes, myfunction, arbres<span class="sc">$</span>hauteurenm )</span>
+<span id="cb8-20"><a href="intro.html#cb8-20" tabindex="-1"></a>spl_moy  <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(spl_h, mean)</span>
+<span id="cb8-21"><a href="intro.html#cb8-21" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="intro.html#cb8-22" tabindex="-1"></a><span class="co"># constitution du dataframe</span></span>
+<span id="cb8-23"><a href="intro.html#cb8-23" tabindex="-1"></a>dfhmoy <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(spl_moy, spls_sizes)</span>
+<span id="cb8-24"><a href="intro.html#cb8-24" tabindex="-1"></a>dfhmoy<span class="sc">$</span>spls_sizes <span class="ot">&lt;-</span>  <span class="fu">factor</span>(dfhmoy<span class="sc">$</span>spls_sizes, <span class="at">levels=</span>samples)</span>
+<span id="cb8-25"><a href="intro.html#cb8-25" tabindex="-1"></a><span class="fu">names</span>(dfhmoy) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;h_moy&quot;</span>, <span class="st">&quot;spl_size&quot;</span>)</span>
+<span id="cb8-26"><a href="intro.html#cb8-26" tabindex="-1"></a><span class="co">#graphique </span></span>
+<span id="cb8-27"><a href="intro.html#cb8-27" tabindex="-1"></a><span class="fu">ggplot</span>(dfhmoy ,<span class="fu">aes</span>(h_moy, spl_size))<span class="sc">+</span></span>
+<span id="cb8-28"><a href="intro.html#cb8-28" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb8-29"><a href="intro.html#cb8-29" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb8-30"><a href="intro.html#cb8-30" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb8-31"><a href="intro.html#cb8-31" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;hauteur moyenne en mètre&quot;</span>,</span>
+<span id="cb8-32"><a href="intro.html#cb8-32" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;taille de l&#39;échantillon&quot;</span>,</span>
+<span id="cb8-33"><a href="intro.html#cb8-33" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Sensibilité de la moyenne à la taille de l&#39;échantillon&quot;</span>,</span>
+<span id="cb8-34"><a href="intro.html#cb8-34" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;On tire 50 échantillons de chaque taille.&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/effetTailleSample%20-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>Ce graphique présente sous la forme d’un boxplot (ou boîte à moustaches), la distribution de la valeur des moyennes des hauteurs, calculées sur des échantillons dont la taille varie de 84508 individus, soit la moitié du dataset des arbres filtrés, à 1 individu.
-Le boxplot montre l’étendue de la variation d’une variable quantitative</p>
-<p>Pour chaque taille d’échantillon, on réalise 50 tirages pour éviter les “coups de chance,” et on calcule la moyenne de chaque échantillon.
-On a donc calculé 50 valeurs de moyenne , pour chaque taille d’échantillon.</p>
-<p>Plus la boîte à moustache est grande (étirée), plus les valeurs de la variable qu’elle représente sont variées. Le trait noir au milieu représente la médiane des valeurs.</p>
-<p>Sur notre graphique, on constate que la médiane des moyennes est très stable et est toujours proche de 10, mais que les tailles des boxplots sont très petites pour les échantillons de grande taille(indiquant que la moyenne des hauteurs varie peu), et qu’au contraire , pour des tailles d’échantillons faibles (moins de 100 individus), la moyenne des hauteurs varie plus fortement.</p>
-<p>Nous aborderons l’interprétation des boxplots dans le chapitre <a href="univariee.html#univariee">2</a> de façon plus précise.</p>
-<p>Sur notre graphique, on constate que la médiane des moyenne est très stable et est toujours proche de 10, mais que les tailles des boxplot sont très petites pour les grandes tailles d’échantillons (indiquant que la moyenne des hauteurs varie peu), et qu’au contraire , pour des tailles d’échantillons faibles (moins de 100 individus), la moyenne des hauteurs varie plus fortement.</p>
-<p>Pour finir de se convaincre de ces variations, voici la représentation alternative des valeurs moyennes en fonction de la taille des échantillons sous la forme d’un nuage de point:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dfhmoy ,<span class="fu">aes</span>(h_moy, spl_size))<span class="sc">+</span></span>
-<span id="cb9-2"><a href="intro.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">&quot;orange&quot;</span>, <span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb9-3"><a href="intro.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb9-4"><a href="intro.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb9-5"><a href="intro.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;hauteur moyenne en mètre&quot;</span>,</span>
-<span id="cb9-6"><a href="intro.html#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;taille de l&#39;échantillon&quot;</span>,</span>
-<span id="cb9-7"><a href="intro.html#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Hauteur moyenne en fonction de la taille d&#39;échantillon&quot;</span>,</span>
-<span id="cb9-8"><a href="intro.html#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;On tire 50 échantillons de chaque taille.&quot;</span>)</span></code></pre></div>
+<p>Ce graphique présente sous la forme d’un boxplot (ou boîte à
+moustaches), la distribution de la valeur des moyennes des hauteurs,
+calculées sur des échantillons dont la taille varie de 84508 individus,
+soit la moitié du dataset des arbres filtrés, à 1 individu. Le boxplot
+montre l’étendue de la variation d’une variable quantitative</p>
+<p>Pour chaque taille d’échantillon, on réalise 50 tirages pour éviter les
+“coups de chance”, et on calcule la moyenne de chaque échantillon. On a
+donc calculé 50 valeurs de moyenne , pour chaque taille d’échantillon.</p>
+<p>Plus la boîte à moustache est grande (étirée), plus les valeurs de la
+variable qu’elle représente sont variées. Le trait noir au milieu
+représente la médiane des valeurs.</p>
+<p>Sur notre graphique, on constate que la médiane des moyennes est très
+stable et est toujours proche de 10, mais que les tailles des boxplots
+sont très petites pour les échantillons de grande taille(indiquant que
+la moyenne des hauteurs varie peu), et qu’au contraire , pour des
+tailles d’échantillons faibles (moins de 100 individus), la moyenne des
+hauteurs varie plus fortement.</p>
+<p>Nous aborderons l’interprétation des boxplots dans le chapitre
+<a href="univariee.html#univariee">2</a> de façon plus précise.</p>
+<p>Sur notre graphique, on constate que la médiane des moyenne est très
+stable et est toujours proche de 10, mais que les tailles des boxplot
+sont très petites pour les grandes tailles d’échantillons (indiquant que
+la moyenne des hauteurs varie peu), et qu’au contraire , pour des
+tailles d’échantillons faibles (moins de 100 individus), la moyenne des
+hauteurs varie plus fortement.</p>
+<p>Pour finir de se convaincre de ces variations, voici la représentation
+alternative des valeurs moyennes en fonction de la taille des
+échantillons sous la forme d’un nuage de point:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1" tabindex="-1"></a><span class="fu">ggplot</span>(dfhmoy ,<span class="fu">aes</span>(h_moy, spl_size))<span class="sc">+</span></span>
+<span id="cb9-2"><a href="intro.html#cb9-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">&quot;orange&quot;</span>, <span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb9-3"><a href="intro.html#cb9-3" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb9-4"><a href="intro.html#cb9-4" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb9-5"><a href="intro.html#cb9-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;hauteur moyenne en mètre&quot;</span>,</span>
+<span id="cb9-6"><a href="intro.html#cb9-6" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;taille de l&#39;échantillon&quot;</span>,</span>
+<span id="cb9-7"><a href="intro.html#cb9-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Hauteur moyenne en fonction de la taille d&#39;échantillon&quot;</span>,</span>
+<span id="cb9-8"><a href="intro.html#cb9-8" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;On tire 50 échantillons de chaque taille.&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/effetTailleSample2%20-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="le-paradoxe-de-simpsons" class="section level3" number="1.6.3">
-<h3><span class="header-section-number">1.6.3</span> Le paradoxe de Simpsons</h3>
-<p>Le paradoxe de Simpsons apparaît lorsqu’une population est structurée en groupes et que deux hypothèses contradictoires peuvent être formulées, suivant qu’on prenne en compte les appartenances des individus à ces groupes ou non.</p>
+<div id="le-paradoxe-de-simpsons" class="section level3 hasAnchor" number="1.6.3">
+<h3><span class="header-section-number">1.6.3</span> Le paradoxe de Simpsons<a href="intro.html#le-paradoxe-de-simpsons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le paradoxe de Simpsons apparaît lorsqu’une population est structurée en
+groupes et que deux hypothèses contradictoires peuvent être formulées,
+suivant qu’on prenne en compte les appartenances des individus à ces
+groupes ou non.</p>
 <div style="text-align:center">
-<p><img src="Simpsons_paradox_-_animation.gif"></p>
+<p><img src="Simpsons_paradox_-_animation.gif"/></p>
 </div>
-<p><small>
-source: wikipedia
-</small></p>
-<p>Par exemple, le nuage de points animé ci-dessus, illustre comment on peut formuler deux hypothèses contradictoire concernant la même population :</p>
+<p><small> source: wikipedia </small></p>
+<p>Par exemple, le nuage de points animé ci-dessus, illustre comment on
+peut formuler deux hypothèses contradictoire concernant la même
+population :</p>
 <ul>
-<li><span class="math inline">\(H_A\)</span> : la variable <span class="math inline">\(x\)</span> est corrélée linéairement et négativement avec la variable <span class="math inline">\(y\)</span></li>
-<li><span class="math inline">\(H_B\)</span> : la variable <span class="math inline">\(x\)</span> est corrélée linéairement positivement avec la variable <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(H_A\)</span> : la variable <span class="math inline">\(x\)</span> est corrélée linéairement et négativement
+avec la variable <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(H_B\)</span> : la variable <span class="math inline">\(x\)</span> est corrélée linéairement positivement avec
+la variable <span class="math inline">\(y\)</span></li>
 </ul>
-<p><span class="math inline">\(H_A\)</span> est valable si l’on considère les valeurs de la population dans son ensemble et <strong>sans</strong> tenir compte des groupes qui la structurent.</p>
+<p><span class="math inline">\(H_A\)</span> est valable si l’on considère les valeurs de la population dans
+son ensemble et <strong>sans</strong> tenir compte des groupes qui la structurent.</p>
 <p>À l’intérieur de chaque groupe, <span class="math inline">\(H_B\)</span> est valable et contredit <span class="math inline">\(H_A\)</span>.</p>
 </div>
-<div id="échelle-individuelle-vs.-échelle-agrégée" class="section level3" number="1.6.4">
-<h3><span class="header-section-number">1.6.4</span> Échelle individuelle vs. Échelle agrégée</h3>
-<p>Lorsqu’on manipule des données spatiales, le territoire sur lequel les données sont disponibles peut être découpé de plusieurs façons. Souvent, ces découpages sont imbriqués : la maille d’un niveau <span class="math inline">\(n\)</span> est partionnée en plusieurs mailles au niveau <span class="math inline">\(n-1\)</span>. Par exemple, la France se découpe en régions, elles-mêmes décomposées en départements, eux-mêmes décomposés en commune.</p>
-<p>Par exemple, la France se découpe en régions, elles-mêmes décomposées en départements, eux-mêmes décomposés en commune.</p>
-<p>Un jeu de données spatial est défini à un certain niveau de découpage spatial. Par exemple, on peut disposer du revenu mensuel moyen des foyers par commune, mais on ne dispose pas des données “brutes” qui y ont conduit: les revenus des personnes qui composent les foyer des communes.</p>
-<p>La difficulté est qu’un jeu de données spatial est défini et disponible à un certain niveau de découpage spatial, et que considérer ces mêmes données à un niveau de découpage plus fin ou plus grossier nécessite une transformation : l’<strong>agrégation</strong> ou la <strong>désagrégation</strong>.<br />
-L’agrégation est relativement directe , la désagrégation l’est beaucoup moins.</p>
-<p>Par exemple, on peut disposer du revenu mensuel moyen des foyers par commune, mais on ne dispose pas des données “brutes” qui y ont conduit: les revenus des personnes qui composent les foyer des communes.
-Si on désire considérer la même variable à un niveau de découpage plus grossier (ici, les régions) ou plus fin (ici, les communes), on devra agréger ou désagréger les données.</p>
-<p>L’agrégation est relativement directe , la désagrégation l’est beaucoup moins</p>
+<div id="échelle-individuelle-vs.-échelle-agrégée" class="section level3 hasAnchor" number="1.6.4">
+<h3><span class="header-section-number">1.6.4</span> Échelle individuelle vs. Échelle agrégée<a href="intro.html#échelle-individuelle-vs.-échelle-agrégée" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lorsqu’on manipule des données spatiales, le territoire sur lequel les
+données sont disponibles peut être découpé de plusieurs façons. Souvent,
+ces découpages sont imbriqués : la maille d’un niveau <span class="math inline">\(n\)</span> est partionnée
+en plusieurs mailles au niveau <span class="math inline">\(n-1\)</span>. Par exemple, la France se découpe
+en régions, elles-mêmes décomposées en départements, eux-mêmes
+décomposés en commune.</p>
+<p>Par exemple, la France se découpe en régions, elles-mêmes décomposées en
+départements, eux-mêmes décomposés en commune.</p>
+<p>Un jeu de données spatial est défini à un certain niveau de découpage
+spatial. Par exemple, on peut disposer du revenu mensuel moyen des
+foyers par commune, mais on ne dispose pas des données “brutes” qui y
+ont conduit: les revenus des personnes qui composent les foyer des
+communes.</p>
+<p>La difficulté est qu’un jeu de données spatial est défini et disponible
+à un certain niveau de découpage spatial, et que considérer ces mêmes
+données à un niveau de découpage plus fin ou plus grossier nécessite une
+transformation : l’<strong>agrégation</strong> ou la <strong>désagrégation</strong>.<br />
+L’agrégation est relativement directe , la désagrégation l’est beaucoup
+moins.</p>
+<p>Par exemple, on peut disposer du revenu mensuel moyen des foyers par
+commune, mais on ne dispose pas des données “brutes” qui y ont conduit:
+les revenus des personnes qui composent les foyer des communes. Si on
+désire considérer la même variable à un niveau de découpage plus
+grossier (ici, les régions) ou plus fin (ici, les communes), on devra
+agréger ou désagréger les données.</p>
+<p>L’agrégation est relativement directe , la désagrégation l’est beaucoup
+moins</p>
 </div>
-<div id="agrégation" class="section level3" number="1.6.5">
-<h3><span class="header-section-number">1.6.5</span> Agrégation</h3>
-<p>On parle d’agrégation lorsqu’on désirer regrouper des données disponibles à un niveau de découpage donné Inférer des caractéristiques concernant les unités agrégées d’après les caractéristiques individuelles</p>
-<p>En fonction des données manipulées, l’agrégation peut se faire par la somme (par exemple pour des stocks) la moyenne (par exemple pour des ratios), ou tout autre combinaison bien choisie.</p>
+<div id="agrégation" class="section level3 hasAnchor" number="1.6.5">
+<h3><span class="header-section-number">1.6.5</span> Agrégation<a href="intro.html#agrégation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On parle d’agrégation lorsqu’on désirer regrouper des données
+disponibles à un niveau de découpage donné Inférer des caractéristiques
+concernant les unités agrégées d’après les caractéristiques
+individuelles</p>
+<p>En fonction des données manipulées, l’agrégation peut se faire par la
+somme (par exemple pour des stocks) la moyenne (par exemple pour des
+ratios), ou tout autre combinaison bien choisie.</p>
 </div>
-<div id="désagrégation-ou-ventilation" class="section level3" number="1.6.6">
-<h3><span class="header-section-number">1.6.6</span> Désagrégation ou Ventilation</h3>
-<p>On parle de désagrégation ou de ventilation de données lorsqu’à partir de données disponibles à un niveau de découpage donné, on cherche à simuler une répartition de données à un niveau de découpage <strong>plus fin</strong>, tout en restant cohérent avec la répartition des données au niveau de découpage originel.</p>
+<div id="désagrégation-ou-ventilation" class="section level3 hasAnchor" number="1.6.6">
+<h3><span class="header-section-number">1.6.6</span> Désagrégation ou Ventilation<a href="intro.html#désagrégation-ou-ventilation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On parle de désagrégation ou de ventilation de données lorsqu’à partir
+de données disponibles à un niveau de découpage donné, on cherche à
+simuler une répartition de données à un niveau de découpage <strong>plus
+fin</strong>, tout en restant cohérent avec la répartition des données au
+niveau de découpage originel.</p>
 <p>Solution triviale donc sans intérêt:</p>
-<p>Pour une variable de <strong>stock</strong> <span class="math inline">\(V_s\)</span> (on dit aussi variable d’effectif) , i.e. mesurant une quantité d’objets, et en l’absence de toute autre données ou contraintes,
-on peut affecter aux <span class="math inline">\(n\)</span> communes du département un nombre constant valant <span class="math inline">\(\frac{V_s}{n}\)</span>.</p>
-<p>Pour une variable de <strong>ratio</strong> <span class="math inline">\(V_r\)</span>, on peut affecter le même ratio <span class="math inline">\(V_r\)</span> à toutes les mailles qui composent la maille à désagréger.</p>
-<p>Si on écarte la solution triviale, la désagrégation de données est une opération complexe, pour lesquels il existe cependant plusieurs méthodes de <em>génération de population synthétique</em> respectant certaines contraintes, comme l’<a href="https://en.wikipedia.org/wiki/Iterative_proportional_fitting">Iterative Proportional Fitting</a></p>
-<p>Les choses se compliquent encore si les découpages ne sont pas imbriqués les uns dans les autres. Généralement, on agrège les valeurs par des sommes pondérées par la surface des entités spatiales concernées. Un bon aperçu des méthodes d’allocation spatiale est donné dans <a href="https://www.tse-fr.eu/sites/default/files/medias/doc/wp/etrie/wp_tse_446.pdf">ce document</a></p>
+<p>Pour une variable de <strong>stock</strong> <span class="math inline">\(V_s\)</span> (on dit aussi variable d’effectif)
+, i.e. mesurant une quantité d’objets, et en l’absence de toute autre
+données ou contraintes, on peut affecter aux <span class="math inline">\(n\)</span> communes du département
+un nombre constant valant <span class="math inline">\(\frac{V_s}{n}\)</span>.</p>
+<p>Pour une variable de <strong>ratio</strong> <span class="math inline">\(V_r\)</span>, on peut affecter le même ratio
+<span class="math inline">\(V_r\)</span> à toutes les mailles qui composent la maille à désagréger.</p>
+<p>Si on écarte la solution triviale, la désagrégation de données est une
+opération complexe, pour lesquels il existe cependant plusieurs méthodes
+de <em>génération de population synthétique</em> respectant certaines
+contraintes, comme l’<a href="https://en.wikipedia.org/wiki/Iterative_proportional_fitting">Iterative Proportional
+Fitting</a></p>
+<p>Les choses se compliquent encore si les découpages ne sont pas imbriqués
+les uns dans les autres. Généralement, on agrège les valeurs par des
+sommes pondérées par la surface des entités spatiales concernées. Un bon
+aperçu des méthodes d’allocation spatiale est donné dans <a href="https://www.tse-fr.eu/sites/default/files/medias/doc/wp/etrie/wp_tse_446.pdf">ce
+document</a></p>
 </div>
 </div>
-<div id="à-quelle-échelle-observer-le-maup" class="section level2" number="1.7">
-<h2><span class="header-section-number">1.7</span> À quelle échelle observer ? le MAUP</h2>
-<p>Puisqu’une même zone peut être découpée de différentes façons, avec des mailles de taille variable, susceptibles d’évoluer dans le temps (par exemple les limites adminsitratives des communes en France), toute question d’analyse spatiale (et donc d’analyse spatiale statistique) comporte une question spécifique à l’échelle d’observation : <strong>À quelle échelle observer nos données ?</strong></p>
+<div id="à-quelle-échelle-observer-le-maup" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> À quelle échelle observer ? le MAUP<a href="intro.html#à-quelle-échelle-observer-le-maup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Puisqu’une même zone peut être découpée de différentes façons, avec des
+mailles de taille variable, susceptibles d’évoluer dans le temps (par
+exemple les limites adminsitratives des communes en France), toute
+question d’analyse spatiale (et donc d’analyse spatiale statistique)
+comporte une question spécifique à l’échelle d’observation : <strong>À quelle
+échelle observer nos données ?</strong></p>
 <p>Cette question peut se décomposer en deux sous-questions, liées :</p>
 <ul>
-<li>quel maillage utiliser ? Par exemple: une maille régulière carrée ou hexagonale, les contours adminsitratifs, les mailles <a href="https://www.insee.fr/fr/metadonnees/definition/c1523">IRIS</a> ?<br />
+<li>quel maillage utiliser ? Par exemple: une maille régulière carrée ou
+hexagonale, les contours adminsitratifs, les mailles
+<a href="https://www.insee.fr/fr/metadonnees/definition/c1523">IRIS</a> ?<br />
 </li>
 <li>quelle taille de maille choisir ?</li>
 </ul>
-<p>Il est très difficile de répondre à ces questions dans l’absolu, c’est même un problème «insoluble» appelé le <strong>MAUP</strong> (Modifiable Areal Unit Problem).</p>
-<p>Les raisons de cette impossibilité de déterminer le découpage idéal pour observer une donnée spatialisée sont nombreuses. En voici quelques unes, qui je pense sont les principales:</p>
+<p>Il est très difficile de répondre à ces questions dans l’absolu, c’est
+même un problème «insoluble» appelé le <strong>MAUP</strong> (Modifiable Areal Unit
+Problem).</p>
+<p>Les raisons de cette impossibilité de déterminer le découpage idéal pour
+observer une donnée spatialisée sont nombreuses. En voici quelques unes,
+qui je pense sont les principales:</p>
 <ul>
-<li>La plupart des phénomènes d’intérêts sont multi-scalaires, c’est-à-dire qu’ils peuvent se produire et/ou s’observer à plusieurs niveaux d’échelle.</li>
-<li>L’agrégation peut faire disparaitre certains détails, certaines spécificités dans la cartographie des données.</li>
-<li>Des effets de la géométrie du découpage (appelés effets de zonage) modifie la représentation cartographique des données</li>
+<li>La plupart des phénomènes d’intérêts sont multi-scalaires,
+c’est-à-dire qu’ils peuvent se produire et/ou s’observer à plusieurs
+niveaux d’échelle.</li>
+<li>L’agrégation peut faire disparaitre certains détails, certaines
+spécificités dans la cartographie des données.</li>
+<li>Des effets de la géométrie du découpage (appelés effets de zonage)
+modifie la représentation cartographique des données</li>
 </ul>
 <p>Voici quelques exemples qui montrent ces difficultés.</p>
-<div id="effet-de-zonage" class="section level3" number="1.7.1">
-<h3><span class="header-section-number">1.7.1</span> Effet de zonage</h3>
-<p>Cette image tirée de la page wikipedia <a href="https://fr.wikipedia.org/wiki/Gerrymandering">gerrymanding</a>, illustre bien comment un découpage d’une même zone peut amener à des résultats de vote différents.</p>
+<div id="effet-de-zonage" class="section level3 hasAnchor" number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> Effet de zonage<a href="intro.html#effet-de-zonage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cette image tirée de la page wikipedia
+<a href="https://fr.wikipedia.org/wiki/Gerrymandering">gerrymanding</a>, illustre
+bien comment un découpage d’une même zone peut amener à des résultats de
+vote différents.</p>
 <div class="figure" style="text-align: center">
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/DifferingApportionment.svg" alt="Différentes manières de découper des circonscriptions électorales."  />
 <p class="caption">
@@ -818,38 +1077,60 @@ on peut affecter aux <span class="math inline">\(n\)</span> communes du départe
 </p>
 </div>
 </div>
-<div id="maup-exemples" class="section level3" number="1.7.2">
-<h3><span class="header-section-number">1.7.2</span> MAUP : exemples</h3>
+<div id="maup-exemples" class="section level3 hasAnchor" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> MAUP : exemples<a href="intro.html#maup-exemples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ces exemples sont tirés du rapport ESPON :</p>
-<p><a href="https://www.espon.eu/sites/default/files/attachments/espon343_maup_final_version2_nov_2006.pdf">https://www.espon.eu/sites/default/files/attachments/espon343_maup_final_version2_nov_2006.pdf</a></p>
+<p><a href="https://www.espon.eu/sites/default/files/attachments/espon343_maup_final_version2_nov_2006.pdf" class="uri">https://www.espon.eu/sites/default/files/attachments/espon343_maup_final_version2_nov_2006.pdf</a></p>
 <div style="text-align:center">
-<p><img src="Maup1.png" width=100% ></p>
+<p><img src="Maup1.png" width="100%"/></p>
 </div>
-<p>Vous pouvez noter comme les zones du Sud en découpage NUTS 2 , sont représentées uniformément rose (valeur max du GDP/hab) alors qu’avec un découpage plus fin (NUTS 3), la situation du sud est loin d’être aussi uniforme : on note par exemple que la moitié Est des mailles du Sud-Est a des teintes plus mélangées dans le découpage NUTS3, avec un mélanges de mailles jaunes et bleues, que dans le découpage NUTS2 .</p>
-<p>De même, les zones frontalières du Luxembourg et de la Belgique apparaissent plus pauvres (teintes jaunes et bleues) dans le découpage NUTS 3 que dans le découpage NUTS2.</p>
-<p>De manière générale : l’agrégation va “lisser” les aspérités des données, certains contrastes ne «survivent pas» à l’agrégation spatiale.</p>
+<p>Vous pouvez noter comme les zones du Sud en découpage NUTS 2 , sont
+représentées uniformément rose (valeur max du GDP/hab) alors qu’avec un
+découpage plus fin (NUTS 3), la situation du sud est loin d’être aussi
+uniforme : on note par exemple que la moitié Est des mailles du Sud-Est
+a des teintes plus mélangées dans le découpage NUTS3, avec un mélanges
+de mailles jaunes et bleues, que dans le découpage NUTS2 .</p>
+<p>De même, les zones frontalières du Luxembourg et de la Belgique
+apparaissent plus pauvres (teintes jaunes et bleues) dans le découpage
+NUTS 3 que dans le découpage NUTS2.</p>
+<p>De manière générale : l’agrégation va “lisser” les aspérités des
+données, certains contrastes ne «survivent pas» à l’agrégation spatiale.</p>
 <div style="text-align:center">
-<p><img src="Maup2.png" width=100%></p>
+<p><img src="Maup2.png" width="100%"/></p>
 </div>
-<p>Dans ce deuxième exemple, on voit la forme et la taille des mailles changer.</p>
-<p>Là aussi, un effet de lissage, indissociable de l’agrégation, fait apparaitre certaines régions comme uniformes et cachent certains singularités: par exemple le fait que les zones les plus lointaines du littoral sont pauvres (teintes oranges à l’arrière du pays, Nord et Nord-Ouest) dans le découpage en mailles carrées de 30km n’apparait pas dans le découpage administratif(les deux vignettes de gauche), tout en longueur.</p>
+<p>Dans ce deuxième exemple, on voit la forme et la taille des mailles
+changer.</p>
+<p>Là aussi, un effet de lissage, indissociable de l’agrégation, fait
+apparaitre certaines régions comme uniformes et cachent certains
+singularités: par exemple le fait que les zones les plus lointaines du
+littoral sont pauvres (teintes oranges à l’arrière du pays, Nord et
+Nord-Ouest) dans le découpage en mailles carrées de 30km n’apparait pas
+dans le découpage administratif(les deux vignettes de gauche), tout en
+longueur.</p>
 </div>
 </div>
-<div id="rappel-la-première-chose-à-faire" class="section level2" number="1.8">
-<h2><span class="header-section-number">1.8</span> Rappel: La première “chose à faire”</h2>
+<div id="rappel-la-première-chose-à-faire" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> Rappel: La première “chose à faire”<a href="intro.html#rappel-la-première-chose-à-faire" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Représenter/Tracer/Cartographier</strong> les variables de la population.</p>
 <p>Cette exploration visuelle permet:</p>
 <ul>
-<li>d’identifier les intervalles de valeurs des variables, ou leur modalités</li>
-<li>de se faire une idée de la répartition des valeurs des variables à l’intérieur de leurs intervalles</li>
+<li>d’identifier les intervalles de valeurs des variables, ou leur
+modalités</li>
+<li>de se faire une idée de la répartition des valeurs des variables à
+l’intérieur de leurs intervalles</li>
 <li>d’identifier des valeurs aberrantes</li>
-<li>d’observer pour les variables spatialisées , leur répartition dans l’espace</li>
+<li>d’observer pour les variables spatialisées , leur répartition dans
+l’espace</li>
 </ul>
-<p>D’autre part, comme le montre l’exemple ci-dessous, les valeurs de statistiques peuvent être trompeuses, et discriminent beaucoup moins bien des situations qualitativement très différentes que notre œil :</p>
+<p>D’autre part, comme le montre l’exemple ci-dessous, les valeurs de
+statistiques peuvent être trompeuses, et discriminent beaucoup moins
+bien des situations qualitativement très différentes que notre œil :</p>
 <div style="text-align:center">
-<p><img src="./DinoSequentialSmaller.gif " width=100%></p>
+<p><img src="./DinoSequentialSmaller.gif " width="100%"/></p>
 </div>
-<p>Les valeurs chiffrées affichées sont la <strong>moyenne</strong>, l’<strong>écart-type</strong> et la <strong>corrélation</strong> des deux séries qui forment le nuage de points. Le chapitre suivant introduira ces notions.</p>
+<p>Les valeurs chiffrées affichées sont la <strong>moyenne</strong>, l’<strong>écart-type</strong> et
+la <strong>corrélation</strong> des deux séries qui forment le nuage de points. Le
+chapitre suivant introduira ces notions.</p>
 
 </div>
 </div>
@@ -863,7 +1144,6 @@ on peut affecter aux <span class="math inline">\(n\)</span> communes du départe
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -903,6 +1183,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdown_cours_stats.pdf", "bookdown_cours_stats.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -916,7 +1200,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

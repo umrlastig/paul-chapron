@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 7 Galerie de graphiques avec ggplot | Analyse Statistique M2 IGAST, et DESIGEO</title>
+  <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
+  <meta name="generator" content="bookdown 0.34.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 7 Galerie de graphiques avec ggplot | Analyse Statistique M2 IGAST, et DESIGEO" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 7 Galerie de graphiques avec ggplot | Analyse Statistique M2 IGAST, et DESIGEO" />
+  
+  <meta name="twitter:description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
+  
+
+<meta name="author" content="PC" />
+
+
+<meta name="date" content="2023-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="anaspat.html"/>
+<link rel="next" href="references.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./index.html"><img src="./logoENSG.jpg"><br>Analyse Statistique<br> M2 IGAST</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préambule</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#programme-du-cours-et-contenu"><i class="fa fa-check"></i>Programme du cours et Contenu</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reférences"><i class="fa fa-check"></i>Reférences</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ressources-pour-lapprentissage-du-langage-r"><i class="fa fa-check"></i>Ressources pour l’apprentissage du langage R</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction générale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#analyse-spatiale-définition"><i class="fa fa-check"></i><b>1.1</b> Analyse spatiale : définition</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#analyse-spatiale-analyse-statistique"><i class="fa fa-check"></i><b>1.2</b> Analyse spatiale &amp; Analyse Statistique</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#deux-approches-en-analyse-spatiale"><i class="fa fa-check"></i><b>1.3</b> Deux approches en analyse spatiale</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#deux-familles-statistiques"><i class="fa fa-check"></i><b>1.4</b> Deux familles statistiques</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#statistiques-inférentielles"><i class="fa fa-check"></i><b>1.4.1</b> Statistiques inférentielles</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#statistiques-inférentielles-lexemple-des-pingouins"><i class="fa fa-check"></i><b>1.4.2</b> Statistiques inférentielles : l’exemple des pingouins</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#statistiques-descriptives"><i class="fa fa-check"></i><b>1.4.3</b> Statistiques descriptives</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#les-formats-de-données-wide-et-long"><i class="fa fa-check"></i><b>1.4.4</b> Les formats de données <em>wide</em> et <em>long</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#vocabulaire"><i class="fa fa-check"></i><b>1.5</b> Vocabulaire</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#variables-quantitatives"><i class="fa fa-check"></i><b>1.5.1</b> Variables quantitatives</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#variables-qualitatives"><i class="fa fa-check"></i><b>1.5.2</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#valeur-et-nature-des-variables"><i class="fa fa-check"></i><b>1.5.3</b> Valeur et Nature des variables</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#types-de-variables-et-représentations"><i class="fa fa-check"></i><b>1.5.4</b> Types de variables et représentations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#difficultés-de-la-statistique"><i class="fa fa-check"></i><b>1.6</b> Difficultés de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#plusieurs-discours-sont-possibles"><i class="fa fa-check"></i><b>1.6.1</b> Plusieurs discours sont possibles</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#taille-et-représentativité-de-léchantillon"><i class="fa fa-check"></i><b>1.6.2</b> Taille et représentativité de l’échantillon</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#le-paradoxe-de-simpsons"><i class="fa fa-check"></i><b>1.6.3</b> Le paradoxe de Simpsons</a></li>
+<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#échelle-individuelle-vs.-échelle-agrégée"><i class="fa fa-check"></i><b>1.6.4</b> Échelle individuelle vs. Échelle agrégée</a></li>
+<li class="chapter" data-level="1.6.5" data-path="intro.html"><a href="intro.html#agrégation"><i class="fa fa-check"></i><b>1.6.5</b> Agrégation</a></li>
+<li class="chapter" data-level="1.6.6" data-path="intro.html"><a href="intro.html#désagrégation-ou-ventilation"><i class="fa fa-check"></i><b>1.6.6</b> Désagrégation ou Ventilation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#à-quelle-échelle-observer-le-maup"><i class="fa fa-check"></i><b>1.7</b> À quelle échelle observer ? le MAUP</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="intro.html"><a href="intro.html#effet-de-zonage"><i class="fa fa-check"></i><b>1.7.1</b> Effet de zonage</a></li>
+<li class="chapter" data-level="1.7.2" data-path="intro.html"><a href="intro.html#maup-exemples"><i class="fa fa-check"></i><b>1.7.2</b> MAUP : exemples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#rappel-la-première-chose-à-faire"><i class="fa fa-check"></i><b>1.8</b> Rappel: La première “chose à faire”</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="univariee.html"><a href="univariee.html"><i class="fa fa-check"></i><b>2</b> Analyse Univariée</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="univariee.html"><a href="univariee.html#densite"><i class="fa fa-check"></i><b>2.1</b> Le concept de distribution</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="univariee.html"><a href="univariee.html#interpretdens"><i class="fa fa-check"></i><b>2.1.1</b> Interpréter la courbe de densité</a></li>
+<li class="chapter" data-level="2.1.2" data-path="univariee.html"><a href="univariee.html#bonus-estimation-la-probabilité-à-partir-de-la-densité-de-probabilité"><i class="fa fa-check"></i><b>2.1.2</b> Bonus: Estimation la probabilité à partir de la densité de probabilité</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="univariee.html"><a href="univariee.html#exemples-de-distributions-de-lois-connues"><i class="fa fa-check"></i><b>2.2</b> Exemples de distributions de lois connues</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="univariee.html"><a href="univariee.html#loi-gaussienne"><i class="fa fa-check"></i><b>2.2.1</b> Loi Gaussienne</a></li>
+<li class="chapter" data-level="2.2.2" data-path="univariee.html"><a href="univariee.html#loi-uniforme"><i class="fa fa-check"></i><b>2.2.2</b> Loi uniforme</a></li>
+<li class="chapter" data-level="2.2.3" data-path="univariee.html"><a href="univariee.html#loi-log-normale"><i class="fa fa-check"></i><b>2.2.3</b> Loi log-normale</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="univariee.html"><a href="univariee.html#histogramme-dune-distribution-réelle"><i class="fa fa-check"></i><b>2.3</b> Histogramme d’une distribution réelle</a></li>
+<li class="chapter" data-level="2.4" data-path="univariee.html"><a href="univariee.html#afficher-histogrammes-et-distributions-en-r"><i class="fa fa-check"></i><b>2.4</b> Afficher histogrammes et distributions en R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="univariee.html"><a href="univariee.html#histogramme-dune-variable-quantitative"><i class="fa fa-check"></i><b>2.4.1</b> Histogramme d’une variable quantitative</a></li>
+<li class="chapter" data-level="2.4.2" data-path="univariee.html"><a href="univariee.html#histogramme-et-variable-qualitative"><i class="fa fa-check"></i><b>2.4.2</b> Histogramme et variable qualitative</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="univariee.html"><a href="univariee.html#tendance"><i class="fa fa-check"></i><b>2.5</b> La Tendance</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="univariee.html"><a href="univariee.html#moyennes"><i class="fa fa-check"></i><b>2.5.1</b> Moyenne(s)</a></li>
+<li class="chapter" data-level="2.5.2" data-path="univariee.html"><a href="univariee.html#mode"><i class="fa fa-check"></i><b>2.5.2</b> Mode</a></li>
+<li class="chapter" data-level="2.5.3" data-path="univariee.html"><a href="univariee.html#mediane"><i class="fa fa-check"></i><b>2.5.3</b> Médiane</a></li>
+<li class="chapter" data-level="2.5.4" data-path="univariee.html"><a href="univariee.html#quelle-mesure-de-tendance-choisir"><i class="fa fa-check"></i><b>2.5.4</b> Quelle mesure de tendance choisir ?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="univariee.html"><a href="univariee.html#dispersion"><i class="fa fa-check"></i><b>2.6</b> La Dispersion</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="univariee.html"><a href="univariee.html#variance"><i class="fa fa-check"></i><b>2.6.1</b> Variance et Écart-type</a></li>
+<li class="chapter" data-level="2.6.2" data-path="univariee.html"><a href="univariee.html#quantiles"><i class="fa fa-check"></i><b>2.6.2</b> Quantiles</a></li>
+<li class="chapter" data-level="2.6.3" data-path="univariee.html"><a href="univariee.html#les-boîtes-à-moustaches-boxplots-avec-r"><i class="fa fa-check"></i><b>2.6.3</b> Les boîtes à moustaches (boxplots) avec R</a></li>
+<li class="chapter" data-level="2.6.4" data-path="univariee.html"><a href="univariee.html#le-coefficient-de-variation"><i class="fa fa-check"></i><b>2.6.4</b> Le coefficient de variation</a></li>
+<li class="chapter" data-level="2.6.5" data-path="univariee.html"><a href="univariee.html#comparer-les-dispersions-de-deux-distributions."><i class="fa fa-check"></i><b>2.6.5</b> Comparer les dispersions de deux distributions.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="univariee.html"><a href="univariee.html#forme"><i class="fa fa-check"></i><b>2.7</b> La Forme</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="univariee.html"><a href="univariee.html#asymétrie"><i class="fa fa-check"></i><b>2.7.1</b> Asymétrie</a></li>
+<li class="chapter" data-level="2.7.2" data-path="univariee.html"><a href="univariee.html#kurtosis"><i class="fa fa-check"></i><b>2.7.2</b> L’Aplatissement (kurtosis)</a></li>
+<li class="chapter" data-level="2.7.3" data-path="univariee.html"><a href="univariee.html#transformations-des-données"><i class="fa fa-check"></i><b>2.7.3</b> Transformations des données</a></li>
+<li class="chapter" data-level="2.7.4" data-path="univariee.html"><a href="univariee.html#fat-tail-distributions-un-exemple"><i class="fa fa-check"></i><b>2.7.4</b> Fat-tail distributions : un exemple</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="carto_discretis.html"><a href="carto_discretis.html"><i class="fa fa-check"></i><b>3</b> Cartographie, Distribution et Échelle de couleurs</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#méthodes-usuelles-de-discrétisation"><i class="fa fa-check"></i><b>3.1</b> Méthodes usuelles de discrétisation</a></li>
+<li class="chapter" data-level="3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#les-données"><i class="fa fa-check"></i><b>3.2</b> Les données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="carto_discretis.html"><a href="carto_discretis.html#géométrie-des-quartiers-de-paris"><i class="fa fa-check"></i><b>3.2.1</b> Géométrie des quartiers de Paris</a></li>
+<li class="chapter" data-level="3.2.2" data-path="carto_discretis.html"><a href="carto_discretis.html#distribution-des-surfaces-des-quartiers"><i class="fa fa-check"></i><b>3.2.2</b> Distribution des surfaces des quartiers</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#résultats-des-méthodes-de-classification"><i class="fa fa-check"></i><b>3.3</b> Résultats des méthodes de classification</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="carto_discretis.html"><a href="carto_discretis.html#classification-par-défaut"><i class="fa fa-check"></i><b>3.3.1</b> Classification par défaut</a></li>
+<li class="chapter" data-level="3.3.2" data-path="carto_discretis.html"><a href="carto_discretis.html#méthode-jenks-à-5-7-et-9-classes"><i class="fa fa-check"></i><b>3.3.2</b> Méthode Jenks à 5 , 7 et 9 classes</a></li>
+<li class="chapter" data-level="3.3.3" data-path="carto_discretis.html"><a href="carto_discretis.html#effectifs-égaux"><i class="fa fa-check"></i><b>3.3.3</b> Effectifs égaux</a></li>
+<li class="chapter" data-level="3.3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#intervalles-égaux"><i class="fa fa-check"></i><b>3.3.4</b> Intervalles égaux</a></li>
+<li class="chapter" data-level="3.3.5" data-path="carto_discretis.html"><a href="carto_discretis.html#écart-types"><i class="fa fa-check"></i><b>3.3.5</b> Écart-types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="carto_discretis.html"><a href="carto_discretis.html#quelle-méthode-de-classification-choisir"><i class="fa fa-check"></i><b>3.4</b> Quelle méthode de classification choisir ?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="visudistrib.html"><a href="visudistrib.html"><i class="fa fa-check"></i><b>4</b> Visualiser une distribution avec R</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="visudistrib.html"><a href="visudistrib.html#histogramme-code-r-ggplot"><i class="fa fa-check"></i><b>4.0.1</b> Histogramme : Code R + ggplot</a></li>
+<li class="chapter" data-level="4.0.2" data-path="visudistrib.html"><a href="visudistrib.html#distributiondensité-code-r-ggplot"><i class="fa fa-check"></i><b>4.0.2</b> Distribution/densité : Code R + ggplot</a></li>
+<li class="chapter" data-level="4.0.3" data-path="visudistrib.html"><a href="visudistrib.html#boxplot-code-r-ggplot"><i class="fa fa-check"></i><b>4.0.3</b> BoxPlot : Code R + ggplot</a></li>
+<li class="chapter" data-level="4.0.4" data-path="visudistrib.html"><a href="visudistrib.html#violin-plot-code-r-ggplot"><i class="fa fa-check"></i><b>4.0.4</b> Violin plot : Code R + ggplot</a></li>
+<li class="chapter" data-level="4.0.5" data-path="visudistrib.html"><a href="visudistrib.html#violin-plot-et-boxplot-code-r-ggplot-2"><i class="fa fa-check"></i><b>4.0.5</b> Violin plot et Boxplot : Code R + ggplot 2</a></li>
+<li class="chapter" data-level="4.0.6" data-path="visudistrib.html"><a href="visudistrib.html#pyramides-histogrammes-juxtaposés"><i class="fa fa-check"></i><b>4.0.6</b> Pyramides (histogrammes juxtaposés)</a></li>
+<li class="chapter" data-level="4.0.7" data-path="visudistrib.html"><a href="visudistrib.html#polygones-de-fréquences"><i class="fa fa-check"></i><b>4.0.7</b> Polygones de fréquences</a></li>
+<li class="chapter" data-level="4.0.8" data-path="visudistrib.html"><a href="visudistrib.html#distribution-cumulée-fonction-de-répartition-cdf"><i class="fa fa-check"></i><b>4.0.8</b> Distribution cumulée, Fonction de répartition, CDF</a></li>
+<li class="chapter" data-level="4.0.9" data-path="visudistrib.html"><a href="visudistrib.html#dot-strip-plot"><i class="fa fa-check"></i><b>4.0.9</b> Dot Strip Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bivariee.html"><a href="bivariee.html"><i class="fa fa-check"></i><b>5</b> Analyse Bivariée</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bivariee.html"><a href="bivariee.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="bivariee.html"><a href="bivariee.html#analyse-bivariée-mais-sans-la-localisation"><i class="fa fa-check"></i><b>5.1.1</b> Analyse bivariée, mais sans la localisation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="bivariee.html"><a href="bivariee.html#ressources-pour-lanalyse-des-localisation-et-des-distances"><i class="fa fa-check"></i><b>5.1.2</b> Ressources pour l’analyse des localisation et des distances</a></li>
+<li class="chapter" data-level="5.1.3" data-path="bivariee.html"><a href="bivariee.html#corrélation-nimplique-pas-causalité"><i class="fa fa-check"></i><b>5.1.3</b> Corrélation n’implique pas causalité</a></li>
+<li class="chapter" data-level="5.1.4" data-path="bivariee.html"><a href="bivariee.html#diverses-formes-de-dépendances"><i class="fa fa-check"></i><b>5.1.4</b> Diverses formes de dépendances</a></li>
+<li class="chapter" data-level="5.1.5" data-path="bivariee.html"><a href="bivariee.html#les-étapes-de-lanalyse-bivariée"><i class="fa fa-check"></i><b>5.1.5</b> Les étapes de l’analyse bivariée</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="bivariee.html"><a href="bivariee.html#contenu-du-chapitre"><i class="fa fa-check"></i><b>5.2</b> Contenu du chapitre</a></li>
+<li class="chapter" data-level="5.3" data-path="bivariee.html"><a href="bivariee.html#reglin"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="bivariee.html"><a href="bivariee.html#avant-toute-chose"><i class="fa fa-check"></i><b>5.3.1</b> Avant toute chose</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bivariee.html"><a href="bivariee.html#principe-et-vocabulaire"><i class="fa fa-check"></i><b>5.3.2</b> Principe et Vocabulaire</a></li>
+<li class="chapter" data-level="5.3.3" data-path="bivariee.html"><a href="bivariee.html#interpréter-la-droite-de-régression"><i class="fa fa-check"></i><b>5.3.3</b> Interpréter la droite de régression</a></li>
+<li class="chapter" data-level="5.3.4" data-path="bivariee.html"><a href="bivariee.html#utiliser-un-modèle-linéaire"><i class="fa fa-check"></i><b>5.3.4</b> Utiliser un modèle linéaire</a></li>
+<li class="chapter" data-level="5.3.5" data-path="bivariee.html"><a href="bivariee.html#évaluer-la-qualité-dune-régression-linaire-le-r2"><i class="fa fa-check"></i><b>5.3.5</b> Évaluer la qualité d’une régression linaire : le <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="5.3.6" data-path="bivariee.html"><a href="bivariee.html#interpval"><i class="fa fa-check"></i><b>5.3.6</b> Évaluer la qualité d’une régression linaire : la p-value</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="bivariee.html"><a href="bivariee.html#correlation"><i class="fa fa-check"></i><b>5.4</b> Corrélation</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="bivariee.html"><a href="bivariee.html#calcul-direct-du-coefficient-de-corrélation-de-pearson"><i class="fa fa-check"></i><b>5.4.1</b> Calcul direct du coefficient de corrélation (de Pearson)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="bivariee.html"><a href="bivariee.html#le-coefficient-de-corrélation-de-spearman"><i class="fa fa-check"></i><b>5.4.2</b> Le coefficient de corrélation de Spearman</a></li>
+<li class="chapter" data-level="5.4.3" data-path="bivariee.html"><a href="bivariee.html#pearson-ou-spearman"><i class="fa fa-check"></i><b>5.4.3</b> Pearson ou Spearman ?</a></li>
+<li class="chapter" data-level="5.4.4" data-path="bivariee.html"><a href="bivariee.html#matrice-de-corrélations"><i class="fa fa-check"></i><b>5.4.4</b> Matrice de corrélations</a></li>
+<li class="chapter" data-level="5.4.5" data-path="bivariee.html"><a href="bivariee.html#sensibilité-aux-valeurs-extrêmes"><i class="fa fa-check"></i><b>5.4.5</b> Sensibilité aux valeurs extrêmes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="bivariee.html"><a href="bivariee.html#manipR"><i class="fa fa-check"></i><b>5.5</b> Régression linéaire et corrélation avec R</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="bivariee.html"><a href="bivariee.html#la-commande-lm"><i class="fa fa-check"></i><b>5.5.1</b> La commande <code>lm</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="bivariee.html"><a href="bivariee.html#format-des-résultats"><i class="fa fa-check"></i><b>5.5.2</b> Format des résultats</a></li>
+<li class="chapter" data-level="5.5.3" data-path="bivariee.html"><a href="bivariee.html#residuslm"><i class="fa fa-check"></i><b>5.5.3</b> Bonus: Critères de significativité du lien linéaire</a></li>
+<li class="chapter" data-level="5.5.4" data-path="bivariee.html"><a href="bivariee.html#tests-de-corrélation-avec-r"><i class="fa fa-check"></i><b>5.5.4</b> Tests de corrélation avec R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="bivariee.html"><a href="bivariee.html#lineariser"><i class="fa fa-check"></i><b>5.6</b> “trucs” pour linéariser des relations non-linéaires</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="bivariee.html"><a href="bivariee.html#relation-log-linéaire"><i class="fa fa-check"></i><b>5.6.1</b> Relation log-linéaire</a></li>
+<li class="chapter" data-level="5.6.2" data-path="bivariee.html"><a href="bivariee.html#relation-géométrique-exponentielle"><i class="fa fa-check"></i><b>5.6.2</b> Relation géométrique (exponentielle)</a></li>
+<li class="chapter" data-level="5.6.3" data-path="bivariee.html"><a href="bivariee.html#relation-logarithmique"><i class="fa fa-check"></i><b>5.6.3</b> Relation logarithmique</a></li>
+<li class="chapter" data-level="5.6.4" data-path="bivariee.html"><a href="bivariee.html#relation-logistique"><i class="fa fa-check"></i><b>5.6.4</b> Relation logistique</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="bivariee.html"><a href="bivariee.html#chi2"><i class="fa fa-check"></i><b>5.7</b> Lien entre deux variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="bivariee.html"><a href="bivariee.html#table-de-contingence"><i class="fa fa-check"></i><b>5.7.1</b> Table de contingence</a></li>
+<li class="chapter" data-level="5.7.2" data-path="bivariee.html"><a href="bivariee.html#test-statistique-du-chi2-ou-khi-carré"><i class="fa fa-check"></i><b>5.7.2</b> Test statistique du <span class="math inline">\(\chi^2\)</span> ou “Khi carré”</a></li>
+<li class="chapter" data-level="5.7.3" data-path="bivariee.html"><a href="bivariee.html#interprétation-de-la-valeur-du-chi2"><i class="fa fa-check"></i><b>5.7.3</b> Interprétation de la valeur du <span class="math inline">\(\chi^2\)</span></a></li>
+<li class="chapter" data-level="5.7.4" data-path="bivariee.html"><a href="bivariee.html#résumé-des-étapes-du-chi-2"><i class="fa fa-check"></i><b>5.7.4</b> Résumé des étapes du <span class="math inline">\(\chi ^2\)</span></a></li>
+<li class="chapter" data-level="5.7.5" data-path="bivariee.html"><a href="bivariee.html#probaproduit"><i class="fa fa-check"></i><b>5.7.5</b> Fréquences théoriques et fréquences marginales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="bivariee.html"><a href="bivariee.html#qualiquanti"><i class="fa fa-check"></i><b>5.8</b> Lien entre une variable qualitative et une variable quantitative.</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="bivariee.html"><a href="bivariee.html#boxplot-par-catégories"><i class="fa fa-check"></i><b>5.8.1</b> Boxplot par catégories</a></li>
+<li class="chapter" data-level="5.8.2" data-path="bivariee.html"><a href="bivariee.html#superpositions-de-distributions"><i class="fa fa-check"></i><b>5.8.2</b> Superpositions de distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="bivariee.html"><a href="bivariee.html#références-supplémentaires"><i class="fa fa-check"></i><b>5.9</b> Références supplémentaires</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="anaspat.html"><a href="anaspat.html"><i class="fa fa-check"></i><b>6</b> Analyse spatiale</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="anaspat.html"><a href="anaspat.html#contenu-du-chapitre-1"><i class="fa fa-check"></i><b>6.1</b> Contenu du chapitre</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="anaspat.html"><a href="anaspat.html#linformation-géographique"><i class="fa fa-check"></i><b>6.1.1</b> L’information géographique</a></li>
+<li class="chapter" data-level="6.1.2" data-path="anaspat.html"><a href="anaspat.html#précautions-dans-lemploi-de-projections"><i class="fa fa-check"></i><b>6.1.2</b> Précautions dans l’emploi de projections</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="anaspat.html"><a href="anaspat.html#semis-de-points"><i class="fa fa-check"></i><b>6.2</b> Semis de points</a></li>
+<li class="chapter" data-level="6.3" data-path="anaspat.html"><a href="anaspat.html#statistiques-simples-sur-un-semis"><i class="fa fa-check"></i><b>6.3</b> Statistiques simples sur un semis</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="anaspat.html"><a href="anaspat.html#point-moyen-et-point-médian"><i class="fa fa-check"></i><b>6.3.1</b> Point moyen et point médian</a></li>
+<li class="chapter" data-level="6.3.2" data-path="anaspat.html"><a href="anaspat.html#dispersion-et-concentration-dun-semis"><i class="fa fa-check"></i><b>6.3.2</b> Dispersion et concentration d’un semis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="anaspat.html"><a href="anaspat.html#autocorrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>6.4</b> Autocorrélation spatiale : Moran et Geary</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="anaspat.html"><a href="anaspat.html#lautocorrélation-spatiale"><i class="fa fa-check"></i><b>6.4.1</b> L’autocorrélation spatiale</a></li>
+<li class="chapter" data-level="6.4.2" data-path="anaspat.html"><a href="anaspat.html#le-modèle-nul-pour-un-semis-de-points"><i class="fa fa-check"></i><b>6.4.2</b> Le modèle nul pour un semis de points</a></li>
+<li class="chapter" data-level="6.4.3" data-path="anaspat.html"><a href="anaspat.html#auto-corrélation-spatiale-moran-et-geary"><i class="fa fa-check"></i><b>6.4.3</b> Auto-corrélation spatiale : Moran et Geary</a></li>
+<li class="chapter" data-level="6.4.4" data-path="anaspat.html"><a href="anaspat.html#lindice-de-moran"><i class="fa fa-check"></i><b>6.4.4</b> L’indice de Moran</a></li>
+<li class="chapter" data-level="6.4.5" data-path="anaspat.html"><a href="anaspat.html#lindice-de-geary"><i class="fa fa-check"></i><b>6.4.5</b> L’indice de Geary</a></li>
+<li class="chapter" data-level="6.4.6" data-path="anaspat.html"><a href="anaspat.html#commandes-r"><i class="fa fa-check"></i><b>6.4.6</b> Commandes R</a></li>
+<li class="chapter" data-level="6.4.7" data-path="anaspat.html"><a href="anaspat.html#interprétation-de-lindice-de-moran"><i class="fa fa-check"></i><b>6.4.7</b> Interprétation de l’indice de Moran</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="anaspat.html"><a href="anaspat.html#les-flux"><i class="fa fa-check"></i><b>6.5</b> Les flux</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="anaspat.html"><a href="anaspat.html#matrice-de-flux"><i class="fa fa-check"></i><b>6.5.1</b> Matrice de flux</a></li>
+<li class="chapter" data-level="6.5.2" data-path="anaspat.html"><a href="anaspat.html#indices"><i class="fa fa-check"></i><b>6.5.2</b> Indices</a></li>
+<li class="chapter" data-level="6.5.3" data-path="anaspat.html"><a href="anaspat.html#cartographie-des-flux"><i class="fa fa-check"></i><b>6.5.3</b> Cartographie des flux</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="anaspat.html"><a href="anaspat.html#exemple"><i class="fa fa-check"></i><b>6.6</b> Exemple</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="anaspat.html"><a href="anaspat.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>6.6.1</b> Pour aller plus loin</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="anaspat.html"><a href="anaspat.html#le-modèle-gravitaire"><i class="fa fa-check"></i><b>6.7</b> Le modèle gravitaire</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="anaspat.html"><a href="anaspat.html#fin-xixe-les-lois-de-ravenstein"><i class="fa fa-check"></i><b>6.7.1</b> Fin XIX<sup>e</sup> : Les lois de Ravenstein</a></li>
+<li class="chapter" data-level="6.7.2" data-path="anaspat.html"><a href="anaspat.html#le-modèle-gravitaire-1"><i class="fa fa-check"></i><b>6.7.2</b> Le modèle gravitaire</a></li>
+<li class="chapter" data-level="6.7.3" data-path="anaspat.html"><a href="anaspat.html#distance-et-interaction"><i class="fa fa-check"></i><b>6.7.3</b> Distance et interaction</a></li>
+<li class="chapter" data-level="6.7.4" data-path="anaspat.html"><a href="anaspat.html#utilisation-du-modèle-gravitaire"><i class="fa fa-check"></i><b>6.7.4</b> Utilisation du modèle gravitaire</a></li>
+<li class="chapter" data-level="6.7.5" data-path="anaspat.html"><a href="anaspat.html#variantes-du-modèles-gravitaires"><i class="fa fa-check"></i><b>6.7.5</b> Variantes du modèles gravitaires</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="anaspat.html"><a href="anaspat.html#létape-daprès-modèles-dynamiques"><i class="fa fa-check"></i><b>6.8</b> L’étape d’après : modèles dynamiques</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="anaspat.html"><a href="anaspat.html#modèles-simples-les-automates-cellulaires"><i class="fa fa-check"></i><b>6.8.1</b> Modèles simples : les automates cellulaires</a></li>
+<li class="chapter" data-level="6.8.2" data-path="anaspat.html"><a href="anaspat.html#principe-dun-modèle-de-mobilité"><i class="fa fa-check"></i><b>6.8.2</b> Principe d’un modèle de mobilité</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html"><i class="fa fa-check"></i><b>7</b> Galerie de graphiques avec ggplot</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#représenter-le-lien-entre-deux-variables"><i class="fa fa-check"></i><b>7.1</b> Représenter le lien entre deux variables</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-simple"><i class="fa fa-check"></i><b>7.1.1</b> Nuage de points simple</a></li>
+<li class="chapter" data-level="7.1.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-un-titre-étiqueter-les-axes"><i class="fa fa-check"></i><b>7.1.2</b> Ajouter un titre , étiqueter les axes</a></li>
+<li class="chapter" data-level="7.1.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-continue-quantitative"><i class="fa fa-check"></i><b>7.1.3</b> Nuage de points colorés par variable continue (quantitative)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-discrète-qualitative"><i class="fa fa-check"></i><b>7.1.4</b> Nuage de points colorés par variable discrète (qualitative)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-et-droite-de-regression-de-lissage"><i class="fa fa-check"></i><b>7.1.5</b> Nuage de points et droite de regression / de lissage</a></li>
+<li class="chapter" data-level="7.1.6" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#à-ne-pas-faire"><i class="fa fa-check"></i><b>7.1.6</b> À ne pas faire</a></li>
+<li class="chapter" data-level="7.1.7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-les-histogrammes-marginaux"><i class="fa fa-check"></i><b>7.1.7</b> Ajouter les histogrammes marginaux</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-plusieurs-variables"><i class="fa fa-check"></i><b>7.2</b> Lien entre plusieurs variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-simple-avec-ggally"><i class="fa fa-check"></i><b>7.2.1</b> Correlogramme simple avec <code>GGally</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-plus-complexe-avec-ggally"><i class="fa fa-check"></i><b>7.2.2</b> Correlogramme plus complexe avec <code>GGally</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
+<ul>
+<li class="chapter" data-level="7.3" data-path="references.html"><a href="references.html#apprendre-r"><i class="fa fa-check"></i><b>7.3</b> Apprendre R</a></li>
+<li class="chapter" data-level="7.4" data-path="references.html"><a href="references.html#visualisation"><i class="fa fa-check"></i><b>7.4</b> Visualisation</a></li>
+<li class="chapter" data-level="7.5" data-path="references.html"><a href="references.html#r-visualisation-et-données-spatiales"><i class="fa fa-check"></i><b>7.5</b> R, visualisation et données spatiales</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank"> Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analyse Statistique M2 IGAST, et DESIGEO</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="galerie-de-graphiques-avec-ggplot" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapitre 7</span> Galerie de graphiques avec ggplot<a href="galerie-de-graphiques-avec-ggplot.html#galerie-de-graphiques-avec-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Cette section contient des exemples de visualisations obtenues avec la librairie <code>ggplot2</code>.
+Elle reprend des exemple de cette page <a href="https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html" class="uri">https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</a> adaptés en français et augmentés d’explications</p>
+<p>Les exemples seront réalisés avec le jeu de données des manchots de la librairie <code>palmerpenguins</code>, dont vous pouvez avoir un aperçu avec la fonction <code>summary()</code>.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb123-1" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># charche le jeu de données &#39;penguins&#39;</span></span>
+<span id="cb123-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb123-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;penguins&quot;</span>)</span>
+<span id="cb123-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb123-3" tabindex="-1"></a><span class="fu">summary</span>(penguins) <span class="co"># résumé des variables du dataframe</span></span></code></pre></div>
+<pre><code>##       species          island    bill_length_mm  bill_depth_mm   flipper_length_mm  body_mass_g       sex           year     
+##  Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10   Min.   :172.0     Min.   :2700   female:165   Min.   :2007  
+##  Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60   1st Qu.:190.0     1st Qu.:3550   male  :168   1st Qu.:2007  
+##  Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30   Median :197.0     Median :4050   NA&#39;s  : 11   Median :2008  
+##                                  Mean   :43.92   Mean   :17.15   Mean   :200.9     Mean   :4202                Mean   :2008  
+##                                  3rd Qu.:48.50   3rd Qu.:18.70   3rd Qu.:213.0     3rd Qu.:4750                3rd Qu.:2009  
+##                                  Max.   :59.60   Max.   :21.50   Max.   :231.0     Max.   :6300                Max.   :2009  
+##                                  NA&#39;s   :2       NA&#39;s   :2       NA&#39;s   :2         NA&#39;s   :2</code></pre>
+<div id="représenter-le-lien-entre-deux-variables" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Représenter le lien entre deux variables<a href="galerie-de-graphiques-avec-ggplot.html#représenter-le-lien-entre-deux-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pour examiner le lien qu’il peut exister entre deux variables d’une population , le plus courrant est de réaliser un nuage de points (scatterplot in english). Sur la base de la forme de ce nuage, on pourra décider de calculer la corrélation, faire une regression etc.</p>
+<div id="nuage-de-points-simple" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Nuage de points simple<a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-simple" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb125-1" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># charche le jeu de données &#39;penguins&#39;</span></span>
+<span id="cb125-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb125-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;penguins&quot;</span>)</span>
+<span id="cb125-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb125-3" tabindex="-1"></a>simpleplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm))<span class="sc">+</span></span>
+<span id="cb125-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb125-4" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
+<span id="cb125-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb125-5" tabindex="-1"></a>simpleplot</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/simplescatter-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Beaucoup de choses sont faites par défaut avec ce code minimal :</p>
+<ul>
+<li>figuré des points (cercles pleins )</li>
+<li>figurés sont de couleurs noire</li>
+<li>thème graphique par défaut : grille blanche sur fond gris clair</li>
+<li>axes étiquetés avec le nom brut des variables (axe X et Y)</li>
+<li>graduations des axes</li>
+<li>pas de titre</li>
+</ul>
+<p>Je préfère utiliser un thème moins marqué, <code>theme_light</code>, qu’on peut ajouter à l’objet <code>simpleplot</code>, pour changer de thème.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb126-1" tabindex="-1"></a>simpleplot_light <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm))<span class="sc">+</span></span>
+<span id="cb126-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb126-2" tabindex="-1"></a>   <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb126-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb126-3" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb126-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb126-4" tabindex="-1"></a>simpleplot_light</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/simplescatter2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Pour modifier la couleur , on utilise les arguments de la fonction <code>geom_point</code>.
+On utilise un nom de la liste des couleurs prédéfinies de R, un entier entre 0 et 25 pour la forme des figurés:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb127-1" tabindex="-1"></a>simpleplot_light <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm))<span class="sc">+</span></span>
+<span id="cb127-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb127-2" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;darkcyan&quot;</span>, <span class="at">shape=</span><span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb127-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb127-3" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb127-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb127-4" tabindex="-1"></a>simpleplot_light</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/simplescatter3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Beaucoup d’autres options sont modifiables, pour en avoir un aperçu, tapez la commandes <code>vignette("ggplot2-specs")</code> dans la console R.</p>
+</div>
+<div id="ajouter-un-titre-étiqueter-les-axes" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Ajouter un titre , étiqueter les axes<a href="galerie-de-graphiques-avec-ggplot.html#ajouter-un-titre-étiqueter-les-axes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On continue de “décorer” l’objet ggplot avec des fonctions spécifiques :</p>
+<ul>
+<li><code>labs()</code> pour le titre, le sous-titre
+-<code>xlab</code> et <code>ylab</code> pour les étiquettes des axes X et Y</li>
+<li>évenutellement, <code>caption</code> , un argument de la fonction <code>labs()</code> pour une sorte de cartouche, idéale pour citer les sources.</li>
+</ul>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb128-1" tabindex="-1"></a>plot_complet <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm))<span class="sc">+</span></span>
+<span id="cb128-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb128-2" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;darkcyan&quot;</span>, <span class="at">shape=</span><span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb128-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb128-3" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb128-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb128-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;titre principal du graphique&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;un sous-titre &quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: dataset palmerpenguins &quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb128-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;étiquette des abscisses&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb128-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;étiquette des ordonnées &quot;</span>)</span>
+<span id="cb128-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb128-7" tabindex="-1"></a>plot_complet</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/simplescatter4-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nuage-de-points-colorés-par-variable-continue-quantitative" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Nuage de points colorés par variable continue (quantitative)<a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-continue-quantitative" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pour colorer les figurés selon une troisième variable, on demande à ggplot de réaliser un <em>mapping</em> (i.e. on “câble” deux variables ensemble) entre une variable du dataframe , et une <strong>variable visuelle</strong>.</p>
+<p>Cela se fait à l’intérieur de la fonction <code>geom_point()</code>, avec l’expression <code>aes(color=bill_length_mm)</code>.
+Cette expression réalise la liaison entre la valeur de la variable <code>bill_length_mm</code> et la couleur du figuré (argument <code>color</code>). L’échelle de couleur par défaut est un gradient de nuances de bleu.</p>
+<p>Ici nous allons lier la variable continue <code>bill_length_mm</code> avec la couleur des figurés.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb129-1" tabindex="-1"></a>plot_color_by_var <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm))<span class="sc">+</span></span>
+<span id="cb129-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb129-2" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>bill_length_mm))<span class="sc">+</span></span>
+<span id="cb129-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb129-3" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb129-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb129-4" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Masse des manchots en fonction de la longueur des nageoires&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;coloré par la longueur du bec (mm)&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: dataset palmerpenguins &quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb129-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;masse du corps (g)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb129-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;longueur des nageoires (mm) &quot;</span>)</span>
+<span id="cb129-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb129-7" tabindex="-1"></a>plot_color_by_var</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/simplescatter4-3-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nuage-de-points-colorés-par-variable-discrète-qualitative" class="section level3 hasAnchor" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Nuage de points colorés par variable discrète (qualitative)<a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-colorés-par-variable-discrète-qualitative" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le principe est similaire au précédent, seule la variable affectée à la couleur va changer, on utilise cette fois la variable qualitative <code>species</code>. GGplot2 se charge du reste et affecte une couleur à chaque espèce dans le nuage de points.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb130-1" tabindex="-1"></a>plot_color_by_var <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm))<span class="sc">+</span></span>
+<span id="cb130-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb130-2" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species))<span class="sc">+</span></span>
+<span id="cb130-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb130-3" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb130-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb130-4" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Masse des manchots en fonction de la longueur des nageoires&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;coloré par espèce&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: dataset palmerpenguins &quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb130-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;masse du corps (g)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb130-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;longueur des nageoires (mm) &quot;</span>)</span>
+<span id="cb130-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb130-7" tabindex="-1"></a>plot_color_by_var</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/simplescatter5-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nuage-de-points-et-droite-de-regression-de-lissage" class="section level3 hasAnchor" number="7.1.5">
+<h3><span class="header-section-number">7.1.5</span> Nuage de points et droite de regression / de lissage<a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-et-droite-de-regression-de-lissage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-1" tabindex="-1"></a>plot_color_by_var <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm))<span class="sc">+</span></span>
+<span id="cb131-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-2" tabindex="-1"></a>   <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb131-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F)<span class="sc">+</span></span>
+<span id="cb131-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb131-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-5" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Masse des manchots en fonction de la longueur des nageoires&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;avec la droite de regression&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: dataset palmerpenguins &quot;</span>)<span class="sc">+</span></span>
+<span id="cb131-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;masse du corps (g)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb131-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;longueur des nageoires (mm) &quot;</span>)</span>
+<span id="cb131-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb131-8" tabindex="-1"></a>plot_color_by_var</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/simplescatter5-4-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>GGplot propose une fonction de lissage, <code>geom_smooth</code>, qui propose des courbes qui <em>généralisent</em> le nuage de points, par différentes méthodes. La plus simple est la droite de <strong>régression linéaire</strong>, mais il est également possible d’utiliser une LOESS ou une régression linéaire multiple.</p>
+<div class="note">
+<p>On peut également afficher “l’intervalle de confiance” de la courbe, avec l’argument <code>se</code> de la fonction <code>geom_smooth()</code> mis à TRUE. C’est l’intervalle autour de la courbe dans lequel se trouveraient les autres droites de régression si on venait à répéter la régression sur un sous-échantillon un grand nombre de fois. Quand cet intervalle est étroit, on peut l’interpréter comme le signe d’une regression robuste , car 95% (la valeur par défaut, que l’on peut forcer avec l’argument <code>level</code> ) des droites se retrouveraient dans cette enveloppe, si on répétait l’opération sur d’autres échantillons de la même population.</p>
+</div>
+</div>
+<div id="à-ne-pas-faire" class="section level3 hasAnchor" number="7.1.6">
+<h3><span class="header-section-number">7.1.6</span> À ne pas faire<a href="galerie-de-graphiques-avec-ggplot.html#à-ne-pas-faire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Il est tentant d’utiliser toutes les variables visuelles et ajouts possibles, en un seul graphique :
+- couleur des figurés
+- forme des figurés
+- taille des figurés
+- transparence
+- étiquettes de certains points
+- droites/courbes de prédictions</p>
+<p>le résultat final perd en lisibilité et le message est complexe : il faut alors tenir compte de plusieurs variables à la fois pour interpréter le graphique.
+Voici un exemple</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-1" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb132-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-2" tabindex="-1"></a>overcomplicated_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>(), <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm, <span class="at">group=</span>species))<span class="sc">+</span></span>
+<span id="cb132-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-3" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species, <span class="at">shape=</span>sex, <span class="at">size=</span>bill_length_mm))<span class="sc">+</span></span>
+<span id="cb132-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>T, <span class="fu">aes</span>(<span class="at">linetype=</span>species), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb132-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-5" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb132-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-6" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Graphique montrant trop de variables&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;Ne faites pas ça &quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: dataset palmerpenguins &quot;</span>)<span class="sc">+</span></span>
+<span id="cb132-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-7" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;masse du corps (g)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb132-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-8" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;longueur des nageoires (mm) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb132-9"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-9" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>()</span>
+<span id="cb132-10"><a href="galerie-de-graphiques-avec-ggplot.html#cb132-10" tabindex="-1"></a>overcomplicated_plot</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/overcomplicated-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ajouter-les-histogrammes-marginaux" class="section level3 hasAnchor" number="7.1.7">
+<h3><span class="header-section-number">7.1.7</span> Ajouter les histogrammes marginaux<a href="galerie-de-graphiques-avec-ggplot.html#ajouter-les-histogrammes-marginaux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Parfois à cause de points superposés par exemple, ou masqués par la taille d’autres points voisins, il est difficile d’estimer visuellement la densité d’individus dans les zones de valeurs des deux variables X et Y. Il est pertinent d’ajouter , sur les côté du graphe, l’histogramme des variables choisies en X et Y.</p>
+<p>On utilise pour ça le package <code>ggExtra</code>. Une fois le graphe ggplot initial constitué (ici <code>margin_hist_plot</code>), il est passé en argument à la fonction <code>ggmarginal</code> qui va le décorer avec les histogrammes des variables qui ont été affectées aux variables visuelles <code>x</code> et <code>y</code> de la fonction <code>aes()</code>.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-1" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
+<span id="cb133-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-2" tabindex="-1"></a>margin_hist_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>(), <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>flipper_length_mm, <span class="at">group=</span>species))<span class="sc">+</span></span>
+<span id="cb133-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species))<span class="sc">+</span></span>
+<span id="cb133-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb133-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-5" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Masse et longueur des nageoires&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;Avec histogrammes marginaux&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: dataset palmerpenguins &quot;</span>)<span class="sc">+</span></span>
+<span id="cb133-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;masse du corps (g)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb133-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;longueur des nageoires (mm) &quot;</span>)</span>
+<span id="cb133-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-8" tabindex="-1"></a></span>
+<span id="cb133-9"><a href="galerie-de-graphiques-avec-ggplot.html#cb133-9" tabindex="-1"></a><span class="fu">ggMarginal</span>(margin_hist_plot, <span class="at">type =</span> <span class="st">&quot;histogram&quot;</span>, <span class="at">fill=</span><span class="st">&quot;transparent&quot;</span> )</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/marginhist-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Attention cependant à ne pas surcharger le graphique inutilement, il faut que l’affichage des histogramme ait un intérêt (par exemple une bi-modalité) en lui même et qu’il puisse être mobilisé dans le discours/l’interprétation du graphique.</p>
+</div>
+</div>
+<div id="lien-entre-plusieurs-variables" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Lien entre plusieurs variables<a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-plusieurs-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>On s’intéresse maintenant à l’affichage simultané du lien qui peut exister entre plusieurs <strong>variables quantitatives</strong>.
+Souvent , ce lien est la <strong>corrélation</strong>, on appel donc ce genre de graphiques des <strong>correlogrammes</strong></p>
+<div id="correlogramme-simple-avec-ggally" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Correlogramme simple avec <code>GGally</code><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-simple-avec-ggally" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le package <code>GGally</code> possède une fonction pour réaliser un corrélogramme, que l’on peut facilement compléter avec d’autres informatiosn utiles : distribution des variables individuellement, affichage du nuages de points etc…</p>
+<p>on commence par filtrer les variables numériques du dataset des manchots à l’aide de la fonction <code>select</code> du package <code>dplyr</code> :</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb134-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb134-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb134-2" tabindex="-1"></a>numeric_var_penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>year)  </span></code></pre></div>
+<p>La fonction <code>ggcorr</code> réalise un corrélogramme simple, où la couleur représente la valeur du coefficient de corrélation sur une échelle de couleur bidirectionnelle.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb135-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb135-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb135-2" tabindex="-1"></a><span class="fu">ggcorr</span>(numeric_var_penguins,</span>
+<span id="cb135-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb135-3" tabindex="-1"></a>       <span class="at">name=</span><span class="st">&quot;corrélation de Pearson&quot;</span>,</span>
+<span id="cb135-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb135-4" tabindex="-1"></a>       <span class="at">label=</span>T,</span>
+<span id="cb135-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb135-5" tabindex="-1"></a>       <span class="at">layout.exp =</span> <span class="fl">1.9</span>)</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/correl1-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="correlogramme-plus-complexe-avec-ggally" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Correlogramme plus complexe avec <code>GGally</code><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-plus-complexe-avec-ggally" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On peut ajouter dans la matrice de corrélation des nuages de points, et sur la diagonale, l’affichage des distributions, à l’aide de la fonction <code>ggpairs()</code>.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb136-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb136-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb136-2" tabindex="-1"></a><span class="fu">ggpairs</span>(numeric_var_penguins)</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/correl2-1.png" width="576" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="anaspat.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_cours_stats.pdf", "bookdown_cours_stats.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

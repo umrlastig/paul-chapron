@@ -29,14 +29,14 @@ Vous pouvez voir avec cet exemple, que la courbe suit les variations de hauteur 
 
 
 :::{.note}
-Plus précisément, la distribution représente des **probabilités** (ou des **densités de probabilité**), et non des effectifs. En toute rigueur , représenter une courbe de distribution de probabilité par dessus un histogramme est impropre : il faudrait deux axes des ordonnées: un pour l'histogramme, représentant un effectif, l'autre  pour la distribution , représentant une probabilité (variable à valeurs discrète) ou une densité de probabilité (variable à valeurs réelles)
+Plus précisément, la distribution représente des **probabilités** (ou des **densités de probabilité**), et non des effectifs. En toute rigueur , représenter une courbe de distribution de probabilité par *dessus* un histogramme est impropre : il faudrait deux axes des ordonnées: un pour l'histogramme, représentant un effectif, l'autre  pour la distribution , représentant une probabilité (variable à valeurs discrète) ou une densité de probabilité (variable à valeurs réelles)
 
 
 
 
-> Formellement, pour une population donnée,  la distribution d'une variable $V$ peut être définie comme une fonction qui donne la probabilité qu'un individu $x$ pris au hasard dans la population ait la valeur $V_x$  pour la variable $V$ : 
+> Formellement, pour une population donnée,  la distribution d'une variable $V$ peut être définie comme une fonction qui donne la probabilité qu'un individu $x$ pris au hasard dans la population ait une certaine valeur pour la variable $V$, , qu'on note  $V_x$  : 
 $$distribution(V) \equiv P(V=V_x), \forall V_x \in \Omega_V$$
-> avec $\Omega_V$ l'ensemble des valeurs que peut prendre $V$ : l'univers de $V$. 
+> avec $\Omega_V$ l'ensemble des valeurs que peut prendre $V$, qu'on appelle l'univers de $V$. 
 >Lorsque la variable prend des valeurs réelles, on parle de **densité** de probabilité, c'est pourquoi on retrouve ce terme "density" sur les axes des ordonnées dans les graphiques de distribution.   
 :::
 
@@ -54,7 +54,7 @@ La forme d'une distribution donne beaucoup d'informations sur les valeurs d'une 
 
 
 
-### Interpréter la courbe de densité  {#interpret_dens}
+### Interpréter la courbe de densité  {#interpretdens}
 
 
 L'**histogramme** représente l'**effectif** de la population en fonction de classes de valeur d'une variable, son interprétation est directe et aisée puisque ce graphique donne une représentation du nombre d'individus par intervalles de valeurs. 
