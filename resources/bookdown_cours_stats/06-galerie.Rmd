@@ -14,10 +14,10 @@ summary(penguins) # résumé des variables du dataframe
 
 
 
-## Représenter le lien entre deux variables
+## Lien entre deux variables quantitatives
 
 
-Pour examiner le lien qu'il peut exister entre deux variables d'une population , le plus courrant est de réaliser un nuage de points (scatterplot in english). Sur la base de la forme de ce nuage, on pourra décider de calculer la corrélation, faire une regression etc.
+Pour examiner le lien qu'il peut exister entre deux variables (quantitatives) d'une population , le plus courant est de réaliser un nuage de points (scatterplot in english). Sur la base de la forme de ce nuage, on pourra décider de calculer la corrélation, faire une régression etc.
 
 
 ### Nuage de points simple
@@ -216,7 +216,7 @@ ggMarginal(margin_hist_plot, type = "histogram", fill="transparent" )
 
 Attention cependant à ne pas surcharger le graphique inutilement, il faut que l'affichage des histogramme ait un intérêt (par exemple une bi-modalité) en lui même  et qu'il puisse être mobilisé dans le discours/l'interprétation du graphique.
 
-## Lien entre plusieurs variables
+## Lien entre plusieurs variables quantitatives 
 
 
 On s'intéresse maintenant à l'affichage simultané du lien qui peut exister entre plusieurs **variables quantitatives**.
@@ -251,10 +251,370 @@ ggcorr(numeric_var_penguins,
 
 ### Correlogramme plus complexe avec `GGally`
 
-On peut ajouter dans la matrice de corrélation des nuages de points, et sur la diagonale, l'affichage des distributions, à l'aide de la fonction `ggpairs()`.
+On peut ajouter plusieurs autres informations utiles au corrélogramme à l'aide de la fonction `ggpairs()`. Voici un exemple avec notre jeu de données quantitatif sur les manchots : 
+
 
 
 ```{r correl2, echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
 library(GGally)
 ggpairs(numeric_var_penguins)
 ```
+
+
+
+Plus généralement, la fonction `ggcor()` accepte des variables quantitatives et qualitatives. Dans le corrélogramme, à l'intersection de la colonne de la variable $V1$ , et de la ligne de la variable $V2$, et suivant leur type, on trouvera : 
+
+- Dans la **matrice triangulaire inférieure** : 
+  - Un nuage de points , si $V1$ et $V2$ sont quantitatives
+  - des histogrammes par catégories si $V1$  est qualitative et $V2$  est quantitative 
+   
+- Sur la **diagonale** :
+  - un histogramme si la variable est qualitative
+  - une densité si la variable est quantitative
+- Dans la **matrice triangulaire supérieure** :
+  - le coefficient de correlation si $V1$ et $V2$ sont quantitatives avec leurs significativtés représentées par des asterisques (cf. la section \@ref(manipR) )
+  - des boxplots par catégorie si $V1$  est qualitative et $V2$  est quantitative 
+  - une matrice de barplots, semblable à un mosaicplot, vu dans la section \@ref(chi2) dédiée au $\chi^2$ ,quand  $V1$ et $V2$ sont qualitatives
+  
+Les options de la fonction permettent de modifier l'affichage de différentes façons.
+Attention aux nombres de variables représentées, car on obtient vite des graphiques trop riches pour être lisibles, comme dans l'exemple ci-dessous 
+
+
+```{r correl3, echo=TRUE, fig.height=8, fig.width=12,message=FALSE, warning=FALSE,  cache=TRUE}
+library(GGally)
+ggpairs(penguins %>% select(-c(year)), 
+        mapping =  ggplot2::aes(color= species),
+        legend= 2,
+        upper = list(continuous = "cor", combo = "box_no_facet", discrete = "count", na =
+    "na"),
+        title ="Un corrélogramme trop riche, ne pas reproduire") +
+  theme_light()
+```
+
+
+
+D'autres packages et exemples sont disponibles sur [https://r-graph-gallery.com/correlogram.html]
+
+
+### Parallel plot 
+
+
+Ce type de graphique est utilisé pour représenter les variables quantitatives comme des axes (souvent verticaux) parallèles, et les individus comme des lignes qui coupent ces axes au niveau des valeurs de leurs variables. On utilise la fonction `ggparcoord` du package `GGally`. Dans cet exemple, nous ne considérons que les variables quantitatives, avec l'argument `columns`.
+
+```{r parallelplot1, echo=TRUE, fig.height=6, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+library(GGally)
+ggparcoord(data=penguins,
+           columns=3:6)    # colonnes des variables quantitatives
+```
+
+
+On peut constater que les variables ont été normalisées (on y a soustrait les moyennes et divisés par l'écart type) pour que les effets d'unité 
+
+
+Pour le moment ce graphique n'est pas satisfaisant , nous allons rendre plus transparentes les lignes des individus, et colorer par une variable qualitative, l'espèce. 
+
+```{r parallelplot2, echo=TRUE, fig.height=6, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+ggparcoord(data=penguins,
+           columns = 3:6 ,# colonnes des variables quantitatives
+           alphaLines = 0.5, #transparence
+           groupColumn = "species",
+           ) # couleur des groupes par espèce
+```
+
+La couleur premet de voir que les valeurs qui décrivent la morphologie des manchots sont bien discriminées par leur espèce : les Gentoo sont de gros manchots à bec court.
+
+
+Pour mettre en évidence un groupe particulier, on pourra par exemple modifier l'échelle de couleur, en mettant en gris le groupe qui ne nous intéresse pas, et en couleur le groupe qui nous intéresse : 
+
+ 
+
+
+```{r parallelplot3, echo=TRUE, fig.height=6, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+ggparcoord(data=penguins,
+           columns = 3:6 ,# colonnes des variables quantitatives
+           alphaLines = 0.21, #transparence
+           groupColumn = "species",# couleur des groupes par espèce
+           )+
+          scale_color_manual(values=c( "purple2", "lightgray", "lightgray") )  # il y a trois espèces, on met en violet la première
+```
+
+
+## Lien entre deux variables qualitatives 
+
+
+Comme vu dans la section dédiée au test d'indépendance du $\chi^2$, le lien entre deux variables qualitatives (ou modales ou factorielles) peut être visualisé au moyen de graphiques qui représentent tous plus ou moins la **table de contingence**  des variables choisies 
+
+
+
+### Mosaic plot simple
+
+
+Un graphique "de base" peut être obtenu avec la fonction `mosaicplot()` qui prend comme argument une formule qui liste les varaibles qualitatives à croiser, sour la forme suivante  : `~Variable1+Varibale2`, comme dans l'exemple ci-dessous :  
+
+```{r mosaic_var , echo=TRUE, fig.height=6, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+mosaicplot(~species+sex, data=penguins,main = "Moisaic plot simple", color=c("darkorange1", "royalblue1"))
+``` 
+
+Les aires étant proportionnelles, cette visualisation met en évidence une proportion d'individus mâles (resp. femelles) invariante selon l'espèce.
+
+### Moisaic plot de ggplot2
+
+A l'aide du package `ggmosaic`, on peut obtenir un graphique un peu plus atreyant, notamment en colorant facilement par une troisième variable, ce qui aura pour effet de diviser à nouveau les rectangles du mosaic plo, comme dans l'exemple ici, l'année.
+
+```{r mosaic_var2 , echo=TRUE, fig.height=4, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+library(ggmosaic)
+library(viridis)
+plot_mosaic <- ggplot(data=penguins %>% mutate(year=as.factor(year)) %>% na.omit) +
+  geom_mosaic(aes(x = product(species,sex), fill=year)) + 
+  theme(panel.background = element_blank(),
+  panel.border = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  plot.background = element_blank(),
+  axis.ticks.y = element_blank(),
+  axis.ticks.x = element_blank()) 
+plot_mosaic
+``` 
+
+
+
+### dot plot 
+
+Le dot plot est un nuage de point «dégénéré» au sens ou les cordonnées des points n'ont pas de signification autre que de les «localiser» dans une des modalités des variables qualitatives dont on représente la (table de) contingence.
+
+
+```{r dot_plot2 , echo=TRUE, fig.height=4, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+ggplot(data = penguins %>% na.omit(), aes(y=species,x=sex))+
+  geom_jitter(width = 0.2, height = 0.2, cex=0.3, color= "darkcyan")+
+  theme_light()
+  
+``` 
+
+
+
+Cette représentation reste peu efficace : il est difficile de saisir d'un coup d'oeil les différences faibles d'effectif au croisement des modalités des variables, sauf en cas d'écarts importants. 
+Il est préférable d'afficher les effectifs des classes pour faciliter la lecture, comme le montre l'exemple ci-dessous.
+Pour obtenir ces labels, il faut calculer "à part" la table de contingence ( object `conting_sex_spec` dans le code ci-dessous) en gardant les noms de colonnes inchangées, pour que ggplot puisque positionner les étiquettes (`geom_label`) aux bons endroits. Une troisième variable peut être utilisée éventuellement pour la couleur des points, ici la variable `island`
+
+```{r dot_plot3 , echo=TRUE, fig.height=4, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+sex_spec_no_NA <- penguins %>%  na.omit()%>% select(species,sex)  # table de contingence
+conting_sex_spec <-  table(sex_spec_no_NA) %>% as.data.frame()
+head(conting_sex_spec)# aperçu de la table de contingence
+
+ggplot(data = penguins %>% na.omit(), aes(y=species,x=sex))+
+  geom_jitter(width = 0.2, height = 0.2, cex=0.5, aes(color=island))+
+  geom_label(data = conting_sex_spec,aes(label=Freq), nudge_y= -0.4 )+
+  theme_light()
+``` 
+
+
+## Lien entre plusieurs variables qualitatives
+
+### Flux sur axes paralllèles 
+
+Je ne sais pas trop comment traduire *«parallel sets»*,   le nom donné à ce genre de graphiques. On trouve parfois également le nom *"alluvial graph"*
+En représentant les axes des variables qualitatives comme des axes parallèles gradués par leur modalités, et les effectifs comme un flux dont la taille est représentée par son épaisseur, on peut représenter plusieurs variables qualitatives les unes à côté des autres.
+On utilise pour les créer le package `ggforce`. 
+
+
+Plusieurs étapes préparatoires sont nécessaires pour obtenir ce graphique : 
+
+- filtrer les valeurs NA
+- ne conserver que les variables qualitatives
+- obtenir la table de contingence. Celle ci est un tableau à $n$ dimensions avec $n$ le nombre de variables qualitatives retenues
+- mettre à plat ce tableau à $n$ dimension avec la fonction `melt` du package `reshape2`
+- transformer le format pour le rendre compatible avec le diagramme de flux du package `ggforce`, à l'aide de la fonction dédiée `gather_set_data`
+
+
+
+```{r fluxdiag , echo=TRUE, fig.height=8, fig.width=8,message=FALSE, warning=FALSE,  cache=TRUE}
+library(ggforce)
+penguins_noNa <- penguins %>% na.omit() # filtrage valeurs NA
+qualiVarspenguins <- penguins_noNa%>% select(c(species, island, sex)) # selection des variables qualitatives
+table_conting_peng <-  table(qualiVarspenguins) # table de contingence , tableau à 3 dimensions
+table_conting_peng2 <-  table_conting_peng %>% melt #rassemble  et "aplatit" la table de contingence 
+flux_data <- gather_set_data(table_conting_peng2, 3:1)  # mise au format pour le diagramme en flux
+
+# constitution du graphique 
+ggplot(flux_data, aes(x, id = id, split = y, value = value)) +
+  geom_parallel_sets(aes(fill = sex), alpha = 0.5, axis.width = 0.1) +
+  geom_parallel_sets_axes(axis.width = 0.1) +
+  geom_parallel_sets_labels(colour = 'white')+
+  labs(title = "Espèce, île et sexe des manchots",
+  subtitle = "représentation en flux sur axes paralleles ")+
+  theme(panel.background = element_blank(),
+  panel.border = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  plot.background = element_blank(),
+  axis.ticks.y = element_blank(),
+  axis.ticks.x = element_blank(),
+  axis.title.x = element_blank(),
+  axis.text = element_blank()) 
+``` 
+
+
+J'ai préféré retirer les axes et graduations , car celles-ci sont trompeuses, sur l'axe des $y$ surtout, il est difficile d'interpréter l'épaisseur d'un flux car celle-ci varie dès qu'elle "sort" de sa variable. Cela dit, les proportions sont respectées, et sur cet exemple on voit bien que la proportions de mâles est toujours d'environ 50%, quelles que soient l'île et l'espèce.
+
+
+## Distributions de variables quantitatives 
+
+Les concepts derrière ces graphiques ont été abordés dans la section  \@ref(densite)
+
+### Distribution
+
+```{r dididi , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+distribution <-  ggplot(penguins, aes(x=body_mass_g))+
+                        geom_density(color="grey12", fill="limegreen")+
+                        labs(title = "Distribution de la masse des manchots")+
+                        theme_light()
+distribution
+```
+
+
+### Histogramme
+
+```{r hihihi , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+histogramme <-  ggplot(penguins, aes(x=body_mass_g))+
+                        geom_histogram(color="grey12", fill="limegreen", bins=25)+
+                        labs(title = "Histogramme de la masse des manchots")+
+                        theme_light()
+histogramme
+```
+
+
+### Distribution et histogramme
+
+
+```{r dihidhi , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+distrib_histo <-  ggplot(penguins, aes(x=body_mass_g))+
+                        geom_histogram(aes(y=..density..),color="grey80", fill="royalblue",)+
+                        geom_density(color="grey12", fill="darkorange1", alpha= 0.4)+
+                        labs(title = "Distribution de la masse des manchots", subtitle = "Histogramme et densité")+
+                        theme_light()
+distrib_histo
+
+```
+
+
+## Distributions de variables qualitatives 
+
+
+Parler de distribution est un peu impropre, on pourrait utiliser le terme "répartition" 
+
+### Bar chart
+
+
+```{r baba , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+bar_chart <-  ggplot(penguins, aes(x=species))+
+                        geom_bar(color="grey80", fill="chartreuse4",)+
+                        labs(title = "«Distribution» des espèces des manchots")+
+                        theme_light()
+bar_chart
+
+```
+
+
+On eut également colorer les colonnes par la variable représentée : 
+
+
+
+```{r babacolor , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+bar_chart <-  ggplot(penguins, aes(x=species))+
+                        geom_bar(aes(fill=species), color="gray50", width= 0.5)+
+                        labs(title = "«Distribution» des espèces des manchots")+
+                        scale_fill_viridis_d()+                        
+                        theme_light()
+bar_chart
+```
+
+
+### bar chart empilé
+
+
+C'est une alternative préférable au diagramme en camembert. Quelques ajustement pour effacer les axes et leurs étiquettes sont nécessaires.
+
+```{r baba2 , echo=TRUE, fig.height=2, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+bar_chart <-  ggplot(penguins, aes(y=""))+
+                        geom_bar(aes(fill=species), orientation = "y")+
+                        labs(title = "«Distribution» des espèces des manchots")+
+                        ylab("")+
+                        theme_light()
+bar_chart
+
+```
+
+
+
+Ce type de graphes devient plus utile lorsqu'on veut représenter plusieurs répartitions à la fois : 
+
+```{r baba3 , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+bar_chart_2var <-  ggplot(penguins, aes(x=island))+
+                        geom_bar(aes(fill=species), orientation = "x", color="gray70", linewidth=0.2, width=0.4 )+
+                        labs(title = "Espèces des manchots par île")+
+                        scale_fill_viridis_d()+
+                        theme_light()
+bar_chart_2var
+
+```
+
+## Graphiques "exotiques"
+
+
+Les graphiques de cette section sont plus «impressionnants» mais pas forcément plus informatifs ni plus à même de transmettre de l'information sans biais. 
+
+
+### Graphiques «en fleur» 
+
+Pour représenter de nombreuses répartitions, un bar chart  classique prendrait trop de place en largeur ou en hauteur. 
+on peut l'enrouler pour obtenir un cercle , plus compact : 
+
+
+On commence par représenter une variable, la masse, comme un bar chart, pour chaque manchot (on crée pour celà un `ID`) et on enlève les garnitures du graphes (labels et graduations de l'axe des X)
+
+```{r baba , echo=TRUE, fig.height=4, fig.width=12,message=FALSE, warning=FALSE,  cache=TRUE}
+penguins_noNA <- penguins %>%  na.omit() %>% sample_n(100) 
+penguins_noNA$ID <- 1:nrow(penguins_noNA)
+
+flower <-  ggplot(penguins_noNA, aes(x=ID, y= body_mass_g))+
+                        geom_bar(aes(fill=species), orientation = "x", linewidth=0.1, stat="identity" )+
+                        labs(title = "150 manchots")+
+                        scale_fill_brewer()+
+                        theme(axis.ticks.x = element_blank(),
+                              axis.title.x = element_blank(),
+                              axis.text.x = element_blank(), 
+                              panel.background = element_blank())
+                        
+flower
+```
+On transforme ensuite les coordonnées du graphes avec une transformation polaire , en on contrôle la taille du cercle avec `ylim`:  
+
+
+
+```{r baba3 , echo=TRUE, fig.height=8, fig.width=12,message=FALSE, warning=FALSE,  cache=TRUE}
+flower <-  flower + coord_polar()+ ylim(-3000,6000)             
+flower
+```
+
+On peut également regroupper les individus, en triant les individus échantillonnés avant de recréer le graphe : 
+
+
+
+```{r bab4 , echo=TRUE, fig.height=4, fig.width=12,message=FALSE, warning=FALSE,  cache=TRUE}
+penguins_noNA <- penguins %>%  na.omit() %>% sample_n(100) %>% arrange(species)
+penguins_noNA$ID <- 1:nrow(penguins_noNA)
+
+flower <-  ggplot(penguins_noNA, aes(x=ID, y= body_mass_g))+
+                        geom_bar(aes(fill=species), orientation = "x", linewidth=0.1, stat="identity" )+
+                        labs(title = "Masse de 100 manchots de diverses espèces ")+
+                        scale_fill_brewer()+
+                        theme(axis.ticks.x = element_blank(),
+                              axis.title.x = element_blank(),
+                              axis.text.x = element_blank(), 
+                              panel.background = element_blank())
+                        
+flower + coord_polar()+ ylim(-3000,6000)  
+```
+
+### Chord diagramm
+

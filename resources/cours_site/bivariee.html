@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST, et DESIGEO</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
-  <meta name="generator" content="bookdown 0.34.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST, et DESIGEO" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2023-07-28" />
+<meta name="date" content="2023-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="bivariee.html"><a href="bivariee.html#chi2"><i class="fa fa-check"></i><b>5.7</b> Lien entre deux variables qualitatives</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="bivariee.html"><a href="bivariee.html#table-de-contingence"><i class="fa fa-check"></i><b>5.7.1</b> Table de contingence</a></li>
+<li class="chapter" data-level="5.7.1" data-path="bivariee.html"><a href="bivariee.html#conting"><i class="fa fa-check"></i><b>5.7.1</b> Table de contingence</a></li>
 <li class="chapter" data-level="5.7.2" data-path="bivariee.html"><a href="bivariee.html#test-statistique-du-chi2-ou-khi-carré"><i class="fa fa-check"></i><b>5.7.2</b> Test statistique du <span class="math inline">\(\chi^2\)</span> ou “Khi carré”</a></li>
 <li class="chapter" data-level="5.7.3" data-path="bivariee.html"><a href="bivariee.html#interprétation-de-la-valeur-du-chi2"><i class="fa fa-check"></i><b>5.7.3</b> Interprétation de la valeur du <span class="math inline">\(\chi^2\)</span></a></li>
 <li class="chapter" data-level="5.7.4" data-path="bivariee.html"><a href="bivariee.html#résumé-des-étapes-du-chi-2"><i class="fa fa-check"></i><b>5.7.4</b> Résumé des étapes du <span class="math inline">\(\chi ^2\)</span></a></li>
@@ -359,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html"><i class="fa fa-check"></i><b>7</b> Galerie de graphiques avec ggplot</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#représenter-le-lien-entre-deux-variables"><i class="fa fa-check"></i><b>7.1</b> Représenter le lien entre deux variables</a>
+<li class="chapter" data-level="7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-deux-variables-quantitatives"><i class="fa fa-check"></i><b>7.1</b> Lien entre deux variables quantitatives</a>
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#nuage-de-points-simple"><i class="fa fa-check"></i><b>7.1.1</b> Nuage de points simple</a></li>
 <li class="chapter" data-level="7.1.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-un-titre-étiqueter-les-axes"><i class="fa fa-check"></i><b>7.1.2</b> Ajouter un titre , étiqueter les axes</a></li>
@@ -369,17 +369,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.6" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#à-ne-pas-faire"><i class="fa fa-check"></i><b>7.1.6</b> À ne pas faire</a></li>
 <li class="chapter" data-level="7.1.7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#ajouter-les-histogrammes-marginaux"><i class="fa fa-check"></i><b>7.1.7</b> Ajouter les histogrammes marginaux</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-plusieurs-variables"><i class="fa fa-check"></i><b>7.2</b> Lien entre plusieurs variables</a>
+<li class="chapter" data-level="7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-plusieurs-variables-quantitatives"><i class="fa fa-check"></i><b>7.2</b> Lien entre plusieurs variables quantitatives</a>
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-simple-avec-ggally"><i class="fa fa-check"></i><b>7.2.1</b> Correlogramme simple avec <code>GGally</code></a></li>
 <li class="chapter" data-level="7.2.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#correlogramme-plus-complexe-avec-ggally"><i class="fa fa-check"></i><b>7.2.2</b> Correlogramme plus complexe avec <code>GGally</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#parallel-plot"><i class="fa fa-check"></i><b>7.2.3</b> Parallel plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-deux-variables-qualitatives"><i class="fa fa-check"></i><b>7.3</b> Lien entre deux variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#mosaic-plot-simple"><i class="fa fa-check"></i><b>7.3.1</b> Mosaic plot simple</a></li>
+<li class="chapter" data-level="7.3.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#moisaic-plot-de-ggplot2"><i class="fa fa-check"></i><b>7.3.2</b> Moisaic plot de ggplot2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#dot-plot"><i class="fa fa-check"></i><b>7.3.3</b> dot plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#lien-entre-plusieurs-variables-qualitatives"><i class="fa fa-check"></i><b>7.4</b> Lien entre plusieurs variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#flux-sur-axes-paralllèles"><i class="fa fa-check"></i><b>7.4.1</b> Flux sur axes paralllèles</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#distributions-de-variables-quantitatives"><i class="fa fa-check"></i><b>7.5</b> Distributions de variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#distribution"><i class="fa fa-check"></i><b>7.5.1</b> Distribution</a></li>
+<li class="chapter" data-level="7.5.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#histogramme"><i class="fa fa-check"></i><b>7.5.2</b> Histogramme</a></li>
+<li class="chapter" data-level="7.5.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#distribution-et-histogramme"><i class="fa fa-check"></i><b>7.5.3</b> Distribution et histogramme</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#distributions-de-variables-qualitatives"><i class="fa fa-check"></i><b>7.6</b> Distributions de variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#bar-chart"><i class="fa fa-check"></i><b>7.6.1</b> Bar chart</a></li>
+<li class="chapter" data-level="7.6.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#bar-chart-empilé"><i class="fa fa-check"></i><b>7.6.2</b> bar chart empilé</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#graphiques-exotiques"><i class="fa fa-check"></i><b>7.7</b> Graphiques “exotiques”</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#graphiques-en-fleur"><i class="fa fa-check"></i><b>7.7.1</b> Graphiques «en fleur»</a></li>
+<li class="chapter" data-level="7.7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#chord-diagramm"><i class="fa fa-check"></i><b>7.7.2</b> Chord diagramm</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
 <ul>
-<li class="chapter" data-level="7.3" data-path="references.html"><a href="references.html#apprendre-r"><i class="fa fa-check"></i><b>7.3</b> Apprendre R</a></li>
-<li class="chapter" data-level="7.4" data-path="references.html"><a href="references.html#visualisation"><i class="fa fa-check"></i><b>7.4</b> Visualisation</a></li>
-<li class="chapter" data-level="7.5" data-path="references.html"><a href="references.html#r-visualisation-et-données-spatiales"><i class="fa fa-check"></i><b>7.5</b> R, visualisation et données spatiales</a></li>
+<li class="chapter" data-level="7.8" data-path="references.html"><a href="references.html#apprendre-r"><i class="fa fa-check"></i><b>7.8</b> Apprendre R</a></li>
+<li class="chapter" data-level="7.9" data-path="references.html"><a href="references.html#visualisation"><i class="fa fa-check"></i><b>7.9</b> Visualisation</a></li>
+<li class="chapter" data-level="7.10" data-path="references.html"><a href="references.html#r-visualisation-et-données-spatiales"><i class="fa fa-check"></i><b>7.10</b> R, visualisation et données spatiales</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank"> Published with bookdown</a></li>
@@ -442,9 +469,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="corrélation-nimplique-pas-causalité" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Corrélation n’implique pas causalité<a href="bivariee.html#corrélation-nimplique-pas-causalité" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Nous allons voir comment quantifier l’intensité du <strong>lien statistique</strong> qui peut exister entre deux variables.</p>
-<center>
-<span style="color:red; font-size:1.5em"> ⚠ Une liaison, même très forte, entre deux variables, n’indique pas la causalité! ⚠</span>
-</center>
+<div class="attention">
+<p>⚠ Une liaison, même très forte, entre deux variables, n’indique pas la causalité! ⚠</p>
+</div>
 <p><br>
 Cette erreur d’amalgame entre corrélation et causalité est très courante, très tentante, justement à cause du fait que l’amalgame «marche» dans de nombreux cas empiriques.</p>
 <p>De nombreux contre-exemples sont heureusement disponibles pour finir de se convaincre que la <strong>corrélation n’implique pas la causalité</strong>:</p>
@@ -498,7 +525,9 @@ la section <a href="bivariee.html#lineariser">5.6</a> montrer quelques astuces p
 <div id="avant-toute-chose" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Avant toute chose<a href="bivariee.html#avant-toute-chose" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Vous devriez commencer à avoir l’habitude de ce mantra, encore plus valable dans le cas d’une analyse bivariée :</p>
-<p><span style="color:red; font-size: 1.5em;">Toujours en premier: Regarder l’aspect des données avec des graphiques </span></p>
+<div class="attention">
+<p>Toujours en premier: Regarder l’aspect des données avec des graphiques</p>
+</div>
 <p>Si le nuage de point n’est pas allongé, si vous “voyez” clairement qu’une droite ne le résulera pas, ou alors très mal, il n’est pas nécessaire d’entreprendre une rregression linéaire, qui sera de toute façon décevante!</p>
 <p>La regression linéaire ne concerne que les <strong>variables quantitatives</strong>.</p>
 </div>
@@ -1048,8 +1077,8 @@ La fonction qui la décrit est par exemple : <span class="math inline">\(y= K \f
 </div>
 <div id="chi2" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Lien entre deux variables qualitatives<a href="bivariee.html#chi2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="table-de-contingence" class="section level3 hasAnchor" number="5.7.1">
-<h3><span class="header-section-number">5.7.1</span> Table de contingence<a href="bivariee.html#table-de-contingence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="conting" class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Table de contingence<a href="bivariee.html#conting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pour deux variables qualitatives, on ne peut pas produire de nuages de points dans un repère <span class="math inline">\((x,y)\)</span>, ni calculer de corrélation, encore moins de droite de régression.</p>
 <p>La seule chose qu’on puisse faire avec deux variables qualitatives décrivant les individus d’une population , c’est <strong>compter le nombre d’individus</strong> pour des combinaisons de modalités des deux variables.</p>
 <p>C’est ce que fait la fonction <code>table()</code> de R, lorsqu’on lui donne deux séries de variables qualitatives (de même taille).</p>

@@ -62,9 +62,10 @@ Nous donnerons à la fin de ce cours quelques éléments à ce sujet dans la sec
 
 Nous allons voir comment quantifier l'intensité du **lien statistique** qui peut exister entre deux variables.
 
-<center>
- <span style="color:red; font-size:1.5em"> &#9888; Une liaison, même très forte, entre deux variables, n'indique pas la causalité! &#9888;</span>
-</center>
+::: attention
+&#9888; Une liaison, même très forte, entre deux variables, n'indique pas la causalité! &#9888;
+:::
+
 
 
 <br>
@@ -169,7 +170,11 @@ la section \@ref(qualiquanti) montre quelques représentations graphique faisant
 
 Vous devriez commencer à avoir l'habitude de ce mantra, encore plus valable dans le cas d'une analyse bivariée : 
 
-<span style="color:red; font-size: 1.5em;">Toujours en premier: Regarder l'aspect des données avec des graphiques </span> 
+
+
+::: attention
+Toujours en premier: Regarder l'aspect des données avec des graphiques
+:::
 
 
 Si le nuage de point n'est pas allongé, si vous "voyez" clairement qu'une droite ne le résulera pas, ou alors très mal, il n'est pas nécessaire d'entreprendre une rregression linéaire, qui sera de toute façon décevante!  
@@ -1104,7 +1109,7 @@ On a donc pu estimer par régression (linéaire) les coefficients $r$ et $ln(a)$
 
 ## Lien entre deux variables qualitatives {#chi2}
 
-### Table de contingence 
+### Table de contingence {#conting}
 
 Pour deux variables qualitatives, on ne peut pas produire de nuages de points dans un repère $(x,y)$, ni calculer de corrélation, encore moins de droite de régression.
 
