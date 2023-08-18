@@ -23,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2023-08-17" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -390,6 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#distribution"><i class="fa fa-check"></i><b>7.5.1</b> Distribution</a></li>
 <li class="chapter" data-level="7.5.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#histogramme"><i class="fa fa-check"></i><b>7.5.2</b> Histogramme</a></li>
 <li class="chapter" data-level="7.5.3" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#distribution-et-histogramme"><i class="fa fa-check"></i><b>7.5.3</b> Distribution et histogramme</a></li>
+<li class="chapter" data-level="7.5.4" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#pyramides-e.g.-des-âges"><i class="fa fa-check"></i><b>7.5.4</b> Pyramides (e.g. des âges)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#distributions-de-variables-qualitatives"><i class="fa fa-check"></i><b>7.6</b> Distributions de variables qualitatives</a>
 <ul>
@@ -401,12 +402,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#graphiques-en-fleur"><i class="fa fa-check"></i><b>7.7.1</b> Graphiques «en fleur»</a></li>
 <li class="chapter" data-level="7.7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#chord-diagramm"><i class="fa fa-check"></i><b>7.7.2</b> Chord diagramm</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations"><i class="fa fa-check"></i><b>7.8</b> Comparaisons d’individus, déviations</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
 <ul>
-<li class="chapter" data-level="7.8" data-path="references.html"><a href="references.html#apprendre-r"><i class="fa fa-check"></i><b>7.8</b> Apprendre R</a></li>
-<li class="chapter" data-level="7.9" data-path="references.html"><a href="references.html#visualisation"><i class="fa fa-check"></i><b>7.9</b> Visualisation</a></li>
-<li class="chapter" data-level="7.10" data-path="references.html"><a href="references.html#r-visualisation-et-données-spatiales"><i class="fa fa-check"></i><b>7.10</b> R, visualisation et données spatiales</a></li>
+<li class="chapter" data-level="7.9" data-path="references.html"><a href="references.html#apprendre-r"><i class="fa fa-check"></i><b>7.9</b> Apprendre R</a></li>
+<li class="chapter" data-level="7.10" data-path="references.html"><a href="references.html#visualisation"><i class="fa fa-check"></i><b>7.10</b> Visualisation</a></li>
+<li class="chapter" data-level="7.11" data-path="references.html"><a href="references.html#r-visualisation-et-données-spatiales"><i class="fa fa-check"></i><b>7.11</b> R, visualisation et données spatiales</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank"> Published with bookdown</a></li>
@@ -788,44 +790,95 @@ On utilise pour les créer le package <code>ggforce</code>.</p>
 <span id="cb150-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb150-6" tabindex="-1"></a>distrib_histo</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/dihidhi%20-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
+<div id="pyramides-e.g.-des-âges" class="section level3 hasAnchor" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Pyramides (e.g. des âges)<a href="galerie-de-graphiques-avec-ggplot.html#pyramides-e.g.-des-âges" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le graphique en pyramide est utile lorsque la population étudiée est décrite par une variable qualitative à deux modalités (binaire), <span class="math inline">\(V_1\)</span> typiquement le sexe de nos manchots, et que nous voulons comparer la distribution d’une variable quantitative <span class="math inline">\(V_2\)</span> dans les deux groupes formés par <span class="math inline">\(V_1\)</span>.</p>
+<p>Obtenir une telle pyramide n’est pas immédiat, il faut ruser.</p>
+<p>On commence par récupérer les données d’un histogramme :
+- les graduations des centre des barres de l’histogramme (attribut <code>mids</code> de l’objet histogramme)
+- les valeurs de rupture des classes
+- les nombre d’individus (attributs <code>counts</code>) de chaque barre d’histogramme , pour chaque modalité de la variable qualitative binaire .</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-1" tabindex="-1"></a>penguins_mass <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(sex,body_mass_g)) <span class="co">#selection des variables</span></span>
+<span id="cb151-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-2" tabindex="-1"></a>nb_class <span class="ot">&lt;-</span>  <span class="dv">10</span>  <span class="co"># nombre de barre de l&#39;histogramme </span></span>
+<span id="cb151-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-3" tabindex="-1"></a>graduations <span class="ot">&lt;-</span> <span class="fu">hist</span>(penguins_mass<span class="sc">$</span>body_mass_g,<span class="at">plot =</span> F,<span class="at">breaks =</span> nb_class)<span class="sc">$</span>mids <span class="co"># centres d&#39;un histogramme à 10 classes</span></span>
+<span id="cb151-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-4" tabindex="-1"></a>global_breaks <span class="ot">&lt;-</span>  <span class="fu">hist</span>(penguins_mass<span class="sc">$</span>body_mass_g,<span class="at">plot =</span> F,<span class="at">breaks =</span> nb_class)<span class="sc">$</span>breaks <span class="co"># rupture des classes de l&#39;histogramme</span></span></code></pre></div>
+<p>Ces classes étant définies pour toute la populations, on va compter le nombre de manchots mâles et femelles dans chacune d’elles, en recalculant un histogramme, mais cette fois pour chacune des sous populations avec les ruptures (<code>global_breaks</code>) définies à l’instant. :</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-1" tabindex="-1"></a><span class="co">#population male et femelle</span></span>
+<span id="cb152-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-2" tabindex="-1"></a>penguins_mass_M <span class="ot">&lt;-</span> penguins_mass <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">&#39;male&#39;</span>)</span>
+<span id="cb152-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-3" tabindex="-1"></a>penguins_mass_F <span class="ot">&lt;-</span> penguins_mass <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">&#39;female&#39;</span>)</span>
+<span id="cb152-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-4" tabindex="-1"></a></span>
+<span id="cb152-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-5" tabindex="-1"></a>counts_M <span class="ot">&lt;-</span>  <span class="fu">hist</span>(penguins_mass_M<span class="sc">$</span>body_mass_g,<span class="at">plot =</span> F,<span class="at">breaks =</span> global_breaks)<span class="sc">$</span>counts</span>
+<span id="cb152-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-6" tabindex="-1"></a>counts_F <span class="ot">&lt;-</span>  <span class="fu">hist</span>(penguins_mass_F<span class="sc">$</span>body_mass_g,<span class="at">plot =</span> F,<span class="at">breaks =</span> global_breaks)<span class="sc">$</span>counts</span></code></pre></div>
+<p>On rassemble ensuite ces comptages dans un dataframe pour chacune des sous-populations.
+Un ligne comporte une classe de mass (<code>mass</code>) , qui est en fait la valeur médiane des colonnes de l’histogramme global, et un nombre d’individus dans cette classe (<code>population</code>).
+La population des mâles est rendu négative , de façon à l’afficher plus tard de l’autre coté de l’histogramme des femelles, en miroir.
+On rassemble les deux sous-populations avec la fonction <code>rbind</code>.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-1" tabindex="-1"></a>df_histo_M <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">population=</span>  <span class="sc">-</span> <span class="dv">1</span> <span class="sc">*</span> counts_M, <span class="at">mass=</span> graduations, <span class="at">sex=</span><span class="st">&quot;male&quot;</span>) <span class="co"># NB : on prend les valeurs en négatif</span></span>
+<span id="cb153-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-2" tabindex="-1"></a>df_histo_F <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">population=</span> counts_F, <span class="at">mass=</span> graduations, <span class="at">sex=</span><span class="st">&quot;female&quot;</span>)</span>
+<span id="cb153-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-3" tabindex="-1"></a>df_histo_MF <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_histo_F,df_histo_M)</span></code></pre></div>
+<p>Nos données sont prètes, on va maintenant représenter ces colonnes avec la géométrie <code>geom_col</code> de <code>ggplot2</code>, qui est une geométrie proche de celle de l’histogramme, mais plus flexible, puisqu’on on définit la position d’une colonne avec la variable <code>x</code> mais également la hauteur de chaque barre avec la variable visuelle <code>y</code></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-1" tabindex="-1"></a>pyramide <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_histo_MF , <span class="fu">aes</span>(<span class="at">x=</span>mass , <span class="at">y=</span>population)) <span class="sc">+</span>   </span>
+<span id="cb154-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>sex),  <span class="at">color=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
+<span id="cb154-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-3" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb154-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-4" tabindex="-1"></a></span>
+<span id="cb154-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-5" tabindex="-1"></a>pyramide</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/pyramide4%20-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Il nous reste à maquiller l’axe des <span class="math inline">\(y\)</span> puis à tourner le graphique.
+Les valeurs des graduations, pour toutes les classes masses , y compris celles des ma^les qui sont négatives, sont obtenur à partir
+de l’étendue (i.e. le segment <span class="math inline">\([min, max]\)</span>) avec la fonction <code>range()</code>, qu’on va découper en quelques graduations régulières avec la fonction <code>pretty</code> , qui choisit des valeurs “rondes”.</p>
+<p>Dans un deuxième temps, pour maquiller les étiquettes on prend la valeur absolue de ces graduations régulières.
+On tourne le graphique avec la fonction <code>coord_flip</code></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-1" tabindex="-1"></a>graduations_regulieres <span class="ot">&lt;-</span>  df_histo_MF<span class="sc">$</span>population <span class="sc">%&gt;%</span>  <span class="fu">range</span>() <span class="sc">%&gt;%</span>  <span class="fu">pretty</span>() <span class="co"># étendue puis découpage puis valeur absolue</span></span>
+<span id="cb155-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-2" tabindex="-1"></a>labels_maquilles <span class="ot">&lt;-</span> graduations_regulieres <span class="sc">%&gt;%</span>  <span class="fu">abs</span>() </span>
+<span id="cb155-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-3" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-4" tabindex="-1"></a></span>
+<span id="cb155-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-5" tabindex="-1"></a>pyramide <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_histo_MF , <span class="fu">aes</span>(<span class="at">x=</span>mass , <span class="at">y=</span>population)) <span class="sc">+</span>   </span>
+<span id="cb155-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-6" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>sex),  <span class="at">color=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
+<span id="cb155-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-7" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb155-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-8" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span> graduations_regulieres, <span class="at">labels=</span> labels_maquilles) <span class="sc">+</span></span>
+<span id="cb155-9"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-9" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb155-10"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-10" tabindex="-1"></a></span>
+<span id="cb155-11"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-11" tabindex="-1"></a>pyramide</span></code></pre></div>
+<p><img src="bookdown_cours_stats_files/figure-html/pyramide5%20-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 <div id="distributions-de-variables-qualitatives" class="section level2 hasAnchor" number="7.6">
 <h2><span class="header-section-number">7.6</span> Distributions de variables qualitatives<a href="galerie-de-graphiques-avec-ggplot.html#distributions-de-variables-qualitatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Parler de distribution est un peu impropre, on pourrait utiliser le terme “répartition”</p>
 <div id="bar-chart" class="section level3 hasAnchor" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> Bar chart<a href="galerie-de-graphiques-avec-ggplot.html#bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-1" tabindex="-1"></a>bar_chart <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>species))<span class="sc">+</span></span>
-<span id="cb151-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="at">color=</span><span class="st">&quot;grey80&quot;</span>, <span class="at">fill=</span><span class="st">&quot;chartreuse4&quot;</span>,)<span class="sc">+</span></span>
-<span id="cb151-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;«Distribution» des espèces des manchots&quot;</span>)<span class="sc">+</span></span>
-<span id="cb151-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-4" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
-<span id="cb151-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb151-5" tabindex="-1"></a>bar_chart</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb156-1" tabindex="-1"></a>bar_chart <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>species))<span class="sc">+</span></span>
+<span id="cb156-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb156-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="at">color=</span><span class="st">&quot;grey80&quot;</span>, <span class="at">fill=</span><span class="st">&quot;chartreuse4&quot;</span>,)<span class="sc">+</span></span>
+<span id="cb156-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb156-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;«Distribution» des espèces des manchots&quot;</span>)<span class="sc">+</span></span>
+<span id="cb156-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb156-4" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
+<span id="cb156-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb156-5" tabindex="-1"></a>bar_chart</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/baba%20-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>On eut également colorer les colonnes par la variable représentée :</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-1" tabindex="-1"></a>bar_chart <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>species))<span class="sc">+</span></span>
-<span id="cb152-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="at">width=</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb152-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;«Distribution» des espèces des manchots&quot;</span>)<span class="sc">+</span></span>
-<span id="cb152-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-4" tabindex="-1"></a>                        <span class="fu">scale_fill_viridis_d</span>()<span class="sc">+</span>                        </span>
-<span id="cb152-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-5" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
-<span id="cb152-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb152-6" tabindex="-1"></a>bar_chart</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-1" tabindex="-1"></a>bar_chart <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>species))<span class="sc">+</span></span>
+<span id="cb157-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="at">width=</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb157-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;«Distribution» des espèces des manchots&quot;</span>)<span class="sc">+</span></span>
+<span id="cb157-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-4" tabindex="-1"></a>                        <span class="fu">scale_fill_viridis_d</span>()<span class="sc">+</span>                        </span>
+<span id="cb157-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-5" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
+<span id="cb157-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-6" tabindex="-1"></a>bar_chart</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/babacolor%20-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="bar-chart-empilé" class="section level3 hasAnchor" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> bar chart empilé<a href="galerie-de-graphiques-avec-ggplot.html#bar-chart-empilé" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>C’est une alternative préférable au diagramme en camembert. Quelques ajustement pour effacer les axes et leurs étiquettes sont nécessaires.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-1" tabindex="-1"></a>bar_chart <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y=</span><span class="st">&quot;&quot;</span>))<span class="sc">+</span></span>
-<span id="cb153-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;y&quot;</span>)<span class="sc">+</span></span>
-<span id="cb153-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;«Distribution» des espèces des manchots&quot;</span>)<span class="sc">+</span></span>
-<span id="cb153-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-4" tabindex="-1"></a>                        <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span></span>
-<span id="cb153-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-5" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
-<span id="cb153-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb153-6" tabindex="-1"></a>bar_chart</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb158-1" tabindex="-1"></a>bar_chart <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y=</span><span class="st">&quot;&quot;</span>))<span class="sc">+</span></span>
+<span id="cb158-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb158-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;y&quot;</span>)<span class="sc">+</span></span>
+<span id="cb158-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb158-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;«Distribution» des espèces des manchots&quot;</span>)<span class="sc">+</span></span>
+<span id="cb158-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb158-4" tabindex="-1"></a>                        <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span></span>
+<span id="cb158-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb158-5" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
+<span id="cb158-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb158-6" tabindex="-1"></a>bar_chart</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/baba2%20-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Ce type de graphes devient plus utile lorsqu’on veut représenter plusieurs répartitions à la fois :</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-1" tabindex="-1"></a>bar_chart_2var <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>island))<span class="sc">+</span></span>
-<span id="cb154-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;x&quot;</span>, <span class="at">color=</span><span class="st">&quot;gray70&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.2</span>, <span class="at">width=</span><span class="fl">0.4</span> )<span class="sc">+</span></span>
-<span id="cb154-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Espèces des manchots par île&quot;</span>)<span class="sc">+</span></span>
-<span id="cb154-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-4" tabindex="-1"></a>                        <span class="fu">scale_fill_viridis_d</span>()<span class="sc">+</span></span>
-<span id="cb154-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-5" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
-<span id="cb154-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb154-6" tabindex="-1"></a>bar_chart_2var</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb159-1" tabindex="-1"></a>bar_chart_2var <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x=</span>island))<span class="sc">+</span></span>
+<span id="cb159-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb159-2" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;x&quot;</span>, <span class="at">color=</span><span class="st">&quot;gray70&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.2</span>, <span class="at">width=</span><span class="fl">0.4</span> )<span class="sc">+</span></span>
+<span id="cb159-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb159-3" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Espèces des manchots par île&quot;</span>)<span class="sc">+</span></span>
+<span id="cb159-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb159-4" tabindex="-1"></a>                        <span class="fu">scale_fill_viridis_d</span>()<span class="sc">+</span></span>
+<span id="cb159-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb159-5" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
+<span id="cb159-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb159-6" tabindex="-1"></a>bar_chart_2var</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/baba3%20-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -837,44 +890,48 @@ On utilise pour les créer le package <code>ggforce</code>.</p>
 <p>Pour représenter de nombreuses répartitions, un bar chart classique prendrait trop de place en largeur ou en hauteur.
 on peut l’enrouler pour obtenir un cercle , plus compact :</p>
 <p>On commence par représenter une variable, la masse, comme un bar chart, pour chaque manchot (on crée pour celà un <code>ID</code>) et on enlève les garnitures du graphes (labels et graduations de l’axe des X)</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-1" tabindex="-1"></a>penguins_noNA <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">100</span>) </span>
-<span id="cb155-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-2" tabindex="-1"></a>penguins_noNA<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(penguins_noNA)</span>
-<span id="cb155-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-3" tabindex="-1"></a></span>
-<span id="cb155-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-4" tabindex="-1"></a>flower <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins_noNA, <span class="fu">aes</span>(<span class="at">x=</span>ID, <span class="at">y=</span> body_mass_g))<span class="sc">+</span></span>
-<span id="cb155-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-5" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;x&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>, <span class="at">stat=</span><span class="st">&quot;identity&quot;</span> )<span class="sc">+</span></span>
-<span id="cb155-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-6" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;150 manchots&quot;</span>)<span class="sc">+</span></span>
-<span id="cb155-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-7" tabindex="-1"></a>                        <span class="fu">scale_fill_brewer</span>()<span class="sc">+</span></span>
-<span id="cb155-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-8" tabindex="-1"></a>                        <span class="fu">theme</span>(<span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb155-9"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-9" tabindex="-1"></a>                              <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb155-10"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-10" tabindex="-1"></a>                              <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb155-11"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-11" tabindex="-1"></a>                              <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb155-12"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-12" tabindex="-1"></a>                        </span>
-<span id="cb155-13"><a href="galerie-de-graphiques-avec-ggplot.html#cb155-13" tabindex="-1"></a>flower</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-1" tabindex="-1"></a>penguins_noNA <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">100</span>) </span>
+<span id="cb160-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-2" tabindex="-1"></a>penguins_noNA<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(penguins_noNA)</span>
+<span id="cb160-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-3" tabindex="-1"></a></span>
+<span id="cb160-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-4" tabindex="-1"></a>flower <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins_noNA, <span class="fu">aes</span>(<span class="at">x=</span>ID, <span class="at">y=</span> body_mass_g))<span class="sc">+</span></span>
+<span id="cb160-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-5" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;x&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>, <span class="at">stat=</span><span class="st">&quot;identity&quot;</span> )<span class="sc">+</span></span>
+<span id="cb160-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-6" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;150 manchots&quot;</span>)<span class="sc">+</span></span>
+<span id="cb160-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-7" tabindex="-1"></a>                        <span class="fu">scale_fill_brewer</span>()<span class="sc">+</span></span>
+<span id="cb160-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-8" tabindex="-1"></a>                        <span class="fu">theme</span>(<span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb160-9"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-9" tabindex="-1"></a>                              <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb160-10"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-10" tabindex="-1"></a>                              <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb160-11"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-11" tabindex="-1"></a>                              <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb160-12"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-12" tabindex="-1"></a>                        </span>
+<span id="cb160-13"><a href="galerie-de-graphiques-avec-ggplot.html#cb160-13" tabindex="-1"></a>flower</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/baba%20-5-1.png" width="1152" style="display: block; margin: auto;" />
 On transforme ensuite les coordonnées du graphes avec une transformation polaire , en on contrôle la taille du cercle avec <code>ylim</code>:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb156-1" tabindex="-1"></a>flower <span class="ot">&lt;-</span>  flower <span class="sc">+</span> <span class="fu">coord_polar</span>()<span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">3000</span>,<span class="dv">6000</span>)             </span>
-<span id="cb156-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb156-2" tabindex="-1"></a>flower</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb161-1" tabindex="-1"></a>flower <span class="ot">&lt;-</span>  flower <span class="sc">+</span> <span class="fu">coord_polar</span>()<span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">3000</span>,<span class="dv">6000</span>)             </span>
+<span id="cb161-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb161-2" tabindex="-1"></a>flower</span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/baba3%20-6-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>On peut également regroupper les individus, en triant les individus échantillonnés avant de recréer le graphe :</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-1" tabindex="-1"></a>penguins_noNA <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(species)</span>
-<span id="cb157-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-2" tabindex="-1"></a>penguins_noNA<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(penguins_noNA)</span>
-<span id="cb157-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-3" tabindex="-1"></a></span>
-<span id="cb157-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-4" tabindex="-1"></a>flower <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins_noNA, <span class="fu">aes</span>(<span class="at">x=</span>ID, <span class="at">y=</span> body_mass_g))<span class="sc">+</span></span>
-<span id="cb157-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-5" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;x&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>, <span class="at">stat=</span><span class="st">&quot;identity&quot;</span> )<span class="sc">+</span></span>
-<span id="cb157-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-6" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Masse de 100 manchots de diverses espèces &quot;</span>)<span class="sc">+</span></span>
-<span id="cb157-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-7" tabindex="-1"></a>                        <span class="fu">scale_fill_brewer</span>()<span class="sc">+</span></span>
-<span id="cb157-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-8" tabindex="-1"></a>                        <span class="fu">theme</span>(<span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb157-9"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-9" tabindex="-1"></a>                              <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb157-10"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-10" tabindex="-1"></a>                              <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb157-11"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-11" tabindex="-1"></a>                              <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb157-12"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-12" tabindex="-1"></a>                        </span>
-<span id="cb157-13"><a href="galerie-de-graphiques-avec-ggplot.html#cb157-13" tabindex="-1"></a>flower <span class="sc">+</span> <span class="fu">coord_polar</span>()<span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">3000</span>,<span class="dv">6000</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-1" tabindex="-1"></a>penguins_noNA <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(species)</span>
+<span id="cb162-2"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-2" tabindex="-1"></a>penguins_noNA<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(penguins_noNA)</span>
+<span id="cb162-3"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-3" tabindex="-1"></a></span>
+<span id="cb162-4"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-4" tabindex="-1"></a>flower <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(penguins_noNA, <span class="fu">aes</span>(<span class="at">x=</span>ID, <span class="at">y=</span> body_mass_g))<span class="sc">+</span></span>
+<span id="cb162-5"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-5" tabindex="-1"></a>                        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species), <span class="at">orientation =</span> <span class="st">&quot;x&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>, <span class="at">stat=</span><span class="st">&quot;identity&quot;</span> )<span class="sc">+</span></span>
+<span id="cb162-6"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-6" tabindex="-1"></a>                        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Masse de 100 manchots de diverses espèces &quot;</span>)<span class="sc">+</span></span>
+<span id="cb162-7"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-7" tabindex="-1"></a>                        <span class="fu">scale_fill_brewer</span>()<span class="sc">+</span></span>
+<span id="cb162-8"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-8" tabindex="-1"></a>                        <span class="fu">theme</span>(<span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb162-9"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-9" tabindex="-1"></a>                              <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb162-10"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-10" tabindex="-1"></a>                              <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb162-11"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-11" tabindex="-1"></a>                              <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb162-12"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-12" tabindex="-1"></a>                        </span>
+<span id="cb162-13"><a href="galerie-de-graphiques-avec-ggplot.html#cb162-13" tabindex="-1"></a>flower <span class="sc">+</span> <span class="fu">coord_polar</span>()<span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">3000</span>,<span class="dv">6000</span>)  </span></code></pre></div>
 <p><img src="bookdown_cours_stats_files/figure-html/bab4%20-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>On remarque à quel point il est difficile de lire facilement les masses des individus. Seul le tri par espèce permet d’établir des relations : Adélie et Chinstrap sont à peu près de la même masse, les Gentoo sont plus lourds.</p>
 </div>
 <div id="chord-diagramm" class="section level3 hasAnchor" number="7.7.2">
 <h3><span class="header-section-number">7.7.2</span> Chord diagramm<a href="galerie-de-graphiques-avec-ggplot.html#chord-diagramm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-
 </div>
+</div>
+<div id="comparaisons-dindividus-déviations" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Comparaisons d’individus, déviations<a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
 </div>
 </div>
             </section>

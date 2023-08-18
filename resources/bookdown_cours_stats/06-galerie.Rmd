@@ -497,6 +497,98 @@ distrib_histo
 ```
 
 
+
+### Pyramides (e.g. des âges)
+
+
+Le graphique en pyramide est utile lorsque la population étudiée est décrite par une variable qualitative à deux modalités (binaire), $V_1$  typiquement le sexe de nos manchots, et que nous voulons comparer la distribution d'une variable quantitative  $V_2$ dans les deux groupes formés par $V_1$.
+
+
+Obtenir une telle pyramide n'est pas immédiat, il faut ruser. 
+
+On commence par récupérer les données d'un histogramme : 
+ - les graduations des centre des barres de l'histogramme (attribut `mids` de l'objet histogramme)
+ - les valeurs de rupture des classes
+ - les  nombre d'individus (attributs `counts`) de chaque barre d'histogramme , pour chaque modalité de la variable qualitative binaire . 
+
+
+
+
+```{r pyramide1 , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+penguins_mass <- penguins %>%  na.omit() %>% select(c(sex,body_mass_g)) #selection des variables
+nb_class <-  10  # nombre de barre de l'histogramme 
+graduations <- hist(penguins_mass$body_mass_g,plot = F,breaks = nb_class)$mids # centres d'un histogramme à 10 classes
+global_breaks <-  hist(penguins_mass$body_mass_g,plot = F,breaks = nb_class)$breaks # rupture des classes de l'histogramme
+```
+
+Ces classes étant définies pour toute la populations, on va compter le nombre de manchots mâles et femelles dans chacune d'elles, en recalculant un histogramme, mais cette fois pour chacune des sous populations avec les ruptures (`global_breaks`) définies à l'instant. : 
+
+
+```{r pyramide2 , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+#population male et femelle
+penguins_mass_M <- penguins_mass %>%  filter(sex=='male')
+penguins_mass_F <- penguins_mass %>%  filter(sex=='female')
+
+counts_M <-  hist(penguins_mass_M$body_mass_g,plot = F,breaks = global_breaks)$counts
+counts_F <-  hist(penguins_mass_F$body_mass_g,plot = F,breaks = global_breaks)$counts
+```
+
+
+On rassemble ensuite ces comptages dans un dataframe pour chacune des sous-populations.
+Un ligne comporte une classe de mass (`mass`) , qui est en fait la valeur médiane des colonnes de l'histogramme global, et un nombre d'individus dans cette classe (`population`).
+La population des mâles est rendu négative , de façon à l'afficher plus tard de l'autre coté de l'histogramme des femelles, en miroir.
+On rassemble les deux sous-populations avec la fonction `rbind`.
+
+```{r pyramide3 , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+df_histo_M <- data.frame(population=  - 1 * counts_M, mass= graduations, sex="male") # NB : on prend les valeurs en négatif
+df_histo_F <- data.frame(population= counts_F, mass= graduations, sex="female")
+df_histo_MF <- rbind(df_histo_F,df_histo_M)
+```
+
+
+Nos données sont prètes, on va maintenant représenter ces colonnes avec la géométrie  `geom_col` de `ggplot2`, qui est une geométrie proche de celle de l'histogramme, mais plus flexible, puisqu'on on définit la position d'une colonne avec la variable `x` mais également la hauteur de chaque barre avec la variable visuelle `y`
+
+
+
+```{r pyramide4 , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+
+pyramide <- ggplot(df_histo_MF , aes(x=mass , y=population)) +   
+  geom_col(aes(fill=sex),  color="white")+
+  theme_light()
+
+pyramide
+
+
+```
+
+Il nous reste à maquiller l'axe des $y$ puis à tourner le graphique.
+Les valeurs des graduations, pour toutes les classes masses , y compris celles des ma^les qui sont négatives, sont obtenur à partir 
+de l'étendue (i.e. le segment $[min, max]$) avec la fonction `range()`, qu'on va découper en quelques graduations régulières avec la fonction `pretty` , qui choisit des valeurs "rondes".
+
+Dans un deuxième temps, pour maquiller les étiquettes on prend la valeur absolue de ces graduations régulières.
+On tourne le graphique avec la fonction `coord_flip`
+
+
+
+```{r pyramide5 , echo=TRUE, fig.height=4, fig.width=6,message=FALSE, warning=FALSE,  cache=TRUE}
+graduations_regulieres <-  df_histo_MF$population %>%  range() %>%  pretty() # étendue puis découpage puis valeur absolue
+labels_maquilles <- graduations_regulieres %>%  abs() 
+
+
+pyramide <- ggplot(df_histo_MF , aes(x=mass , y=population)) +   
+  geom_col(aes(fill=sex),  color="white")+
+  theme_light()+
+scale_y_continuous(breaks= graduations_regulieres, labels= labels_maquilles) +
+  coord_flip()
+
+pyramide
+
+
+```
+
+
+
+
 ## Distributions de variables qualitatives 
 
 
@@ -558,6 +650,10 @@ bar_chart_2var
 
 ```
 
+
+
+
+
 ## Graphiques "exotiques"
 
 
@@ -616,5 +712,16 @@ flower <-  ggplot(penguins_noNA, aes(x=ID, y= body_mass_g))+
 flower + coord_polar()+ ylim(-3000,6000)  
 ```
 
+
+On remarque à quel point il est difficile de lire facilement les masses des individus. Seul le tri par espèce permet d'établir des relations : Adélie et Chinstrap sont à peu près de la même masse, les Gentoo sont plus lourds. 
+
+
 ### Chord diagramm
 
+TODO
+
+## Comparaisons d'individus, déviations 
+
+TODO
+
+### Radar plot

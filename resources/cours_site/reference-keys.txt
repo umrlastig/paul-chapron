@@ -216,12 +216,14 @@ distributions-de-variables-quantitatives
 distribution
 histogramme
 distribution-et-histogramme
+pyramides-e.g.-des-âges
 distributions-de-variables-qualitatives
 bar-chart
 bar-chart-empilé
 graphiques-exotiques
 graphiques-en-fleur
 chord-diagramm
+comparaisons-dindividus-déviations
 apprendre-r
 visualisation
 r-visualisation-et-données-spatiales
