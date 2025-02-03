@@ -31,11 +31,13 @@ output:
 Ce document s'adresse en priorité aux étudiant·e·s du Master 2 IGAST de l'ENSG, dans le cadre du Module intitulé "Analyse Statistique", dirigé par Ana-Maria Olteanu-Raimond, ainsi qu'aux étudiant·e·s  du Master 2 DESIGEO/Data Science, dirigé par Sébastien Mustière et Malika Grimm.
 
 
+Le cours  a été rédigé en 2019-2020 et je ne le donne plus depuis 2024.  
+
 ## Programme du cours et Contenu {-}
 
 
 Ce cours comporte une introduction générale pour situer les statistiques qui y sont abordées. 
-Dans cette introduction, on parle beaucoup d'analyse spatiale, parce que c'est dans ce contexte que les rudiments de statistiques exposés ici vont être utilisé mais aucune technique purement spatiale n'est abordée ici. 
+Dans cette introduction, on parle beaucoup d'analyse spatiale, parce que c'est dans ce contexte que les rudiments de statistiques exposés ici vont être utilisés mais aucune technique purement spatiale n'est abordée ici. 
 
 
 

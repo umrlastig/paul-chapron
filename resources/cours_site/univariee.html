@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 2 Analyse Univariée | Analyse Statistique M2 IGAST, et DESIGEO</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 2 Analyse Univariée | Analyse Statistique M2 IGAST, et DESIGEO" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2023-08-18" />
+<meta name="date" content="2025-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -402,7 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#graphiques-en-fleur"><i class="fa fa-check"></i><b>7.7.1</b> Graphiques «en fleur»</a></li>
 <li class="chapter" data-level="7.7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#chord-diagramm"><i class="fa fa-check"></i><b>7.7.2</b> Chord diagramm</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations"><i class="fa fa-check"></i><b>7.8</b> Comparaisons d’individus, déviations</a></li>
+<li class="chapter" data-level="7.8" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations"><i class="fa fa-check"></i><b>7.8</b> Comparaisons d’individus, déviations</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#radar-plot"><i class="fa fa-check"></i><b>7.8.1</b> Radar plot</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
 <ul>
@@ -464,13 +467,13 @@ En première approximation , vous pouvez l’interpréter comme un histogramme d
 <p>La densité de probabilité comme son nom l’indique, représente des probabilités: celles d’obtenir, pour un individu dans la population, une certaine valeur de la variable.</p>
 <p>Le point délicat est qu’une variable continue (i.e. définie sur un intervalle de <span class="math inline">\(\mathbb{R}\)</span>), peut prendre une <strong>infinité</strong> de valeurs possibles, et que la probabilité d’obtenir <strong>exactement</strong>, c’est à dire avec une précision infinie, une valeur est infinitésimale, en fait carrément <strong>nulle</strong>.</p>
 <p>Il faut alors considérer la probabilité d’obtenir une valeur, non pas de façon exacte , mais dans un <strong>intervalle</strong> de valeur. Par exemple, dans le graphique ci-dessous, de s’interroger sur la probabilité , pour un individu tiré au hasard dans la population , d’avoir une valeur de Variable 1 dans l’intervalle <span class="math inline">\([25;30]\)</span>.</p>
-<p>Cela pourrait s’écrire <span class="math inline">\(P( 25 \leq V_1 \leq 30)\)</span> et serait égal à l’intégrale de la fonction de densité notée <span class="math inline">\(f_{V_1}\)</span> entre les bornes 25 et 30 de l’intervalle de <span class="math inline">\(V_1\)</span> : </p>
+<p>Cela pourrait s’écrire <span class="math inline">\(P( 25  \leq   V_1  \leq 30)\)</span> et serait égal à l’intégrale de la fonction de densité notée <span class="math inline">\(f_{V_1}\)</span> entre les bornes 25 et 30 de l’intervalle de <span class="math inline">\(V_1\)</span> : </p>
 <p><span class="math display">\[P( 25  \leq   V_1  \leq 30) = \int_{25}^{30} f_{V_1}(x)dx\]</span></p>
 <p>En pratique , le graphique d’une densité s’interprète en observant la <strong>quantité d’aire sous la courbe</strong></p>
 <p>L’aire totale sous la courbe vaut 1 (cela revient à considérer la somme de toutes les probabilités d’avoir une valeur particulière <span class="math inline">\(X\)</span> dans l’intervalle de valeur de <span class="math inline">\(V_1\)</span>) et par approximation , la valeur de la probabilité d’obtenir une certaine valeur se lit comme la <strong>proportion d’aire</strong> sous la courbe comprise entre deux bornes proche de la valeur.</p>
 <pre><code>## [1] 0.3126056</code></pre>
 <p><img src="bookdown_cours_stats_files/figure-html/exple_dist-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>Par exemple ici , la valeur de <span class="math inline">\(P( 25 \leq V_1 \leq 30) \approx 0.312\)</span></p>
+<p>Par exemple ici , la valeur de <span class="math inline">\(P( 25  \leq   V_1  \leq 30) \approx 0.312\)</span></p>
 </div>
 <div id="bonus-estimation-la-probabilité-à-partir-de-la-densité-de-probabilité" class="section level3 hasAnchor" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Bonus: Estimation la probabilité à partir de la densité de probabilité<a href="univariee.html#bonus-estimation-la-probabilité-à-partir-de-la-densité-de-probabilité" class="anchor-section" aria-label="Anchor link to header"></a></h3>

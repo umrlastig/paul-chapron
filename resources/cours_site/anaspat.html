@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 6 Analyse spatiale | Analyse Statistique M2 IGAST, et DESIGEO</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 6 Analyse spatiale | Analyse Statistique M2 IGAST, et DESIGEO" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2023-08-18" />
+<meta name="date" content="2025-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -402,7 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#graphiques-en-fleur"><i class="fa fa-check"></i><b>7.7.1</b> Graphiques «en fleur»</a></li>
 <li class="chapter" data-level="7.7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#chord-diagramm"><i class="fa fa-check"></i><b>7.7.2</b> Chord diagramm</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations"><i class="fa fa-check"></i><b>7.8</b> Comparaisons d’individus, déviations</a></li>
+<li class="chapter" data-level="7.8" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations"><i class="fa fa-check"></i><b>7.8</b> Comparaisons d’individus, déviations</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#radar-plot"><i class="fa fa-check"></i><b>7.8.1</b> Radar plot</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
 <ul>
@@ -617,21 +620,19 @@ E.g. (au hasard) Les personnes pauvres et les personnes riches sont-elles regrou
 </div>
 <div id="exemple" class="section level2 hasAnchor" number="6.6">
 <h2><span class="header-section-number">6.6</span> Exemple<a href="anaspat.html#exemple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>## Reading layer `urban_area&#39; from data source `/home/paulchapron/R/x86_64-pc-linux-gnu-library/4.1/flows/gpkg/GE.gpkg&#39; using driver `GPKG&#39;
+<pre><code>## Reading layer `urban_area&#39; from data source `/home/PChapron/R/x86_64-pc-linux-gnu-library/4.4/flows/gpkg/GE.gpkg&#39; using driver `GPKG&#39;
 ## Simple feature collection with 159 features and 2 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 691189 ymin: 6562692 xmax: 1070595 ymax: 7009226
 ## Projected CRS: RGF93 v1 / Lambert-93</code></pre>
-<pre><code>## Reading layer `region&#39; from data source `/home/paulchapron/R/x86_64-pc-linux-gnu-library/4.1/flows/gpkg/GE.gpkg&#39; using driver `GPKG&#39;
+<pre><code>## Reading layer `region&#39; from data source `/home/PChapron/R/x86_64-pc-linux-gnu-library/4.4/flows/gpkg/GE.gpkg&#39; using driver `GPKG&#39;
 ## Simple feature collection with 1 feature and 0 fields
 ## Geometry type: POLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 688355 ymin: 6562692 xmax: 1082671 ymax: 7009226
 ## Projected CRS: RGF93 v1 / Lambert-93</code></pre>
-<p><img src="bookdown_cours_stats_files/figure-html/flow-1.png" width="576" style="display: block; margin: auto;" /></p>
-<pre><code>## 95 &#39;NA&#39; values are not plotted on the map.</code></pre>
-<p><img src="bookdown_cours_stats_files/figure-html/flow-2.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_cours_stats_files/figure-html/flow-1.png" width="576" style="display: block; margin: auto;" /><img src="bookdown_cours_stats_files/figure-html/flow-2.png" width="576" style="display: block; margin: auto;" /></p>
 <div id="pour-aller-plus-loin" class="section level3 hasAnchor" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Pour aller plus loin<a href="anaspat.html#pour-aller-plus-loin" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>les flux sont modélisés par des graphes, une grande partie de la littérature de l’analyse de réseaux et des notions de théories des graphes peuvent être transposées et utilisées pour l’analyse de flux.</p>

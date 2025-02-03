@@ -224,6 +224,7 @@ graphiques-exotiques
 graphiques-en-fleur
 chord-diagramm
 comparaisons-dindividus-déviations
+radar-plot
 apprendre-r
 visualisation
 r-visualisation-et-données-spatiales

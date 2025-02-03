@@ -39,10 +39,10 @@ knitr::opts_template$set(information = list(box.title = "Information",
 
 ```
 
-Commençons par le plus important :
+Le plus important :
 
 ::: attention
-En présence de données, , avant tout calcul, la première chose à faire
+En présence de données, avant tout calcul, la première chose à faire
 est de les **visualiser**.
 :::
 
@@ -343,7 +343,7 @@ Dans ce module, nous ferons majoritairement de la statistique
 \@ref(univariee).
 
 Dans le chapitre d'Analyse Bivariée \@ref(bivariee), nous verrons la
-régression linéaire, qui, lorsque qu'elle est «utile» -- c'est à dire
+régression linéaire, qui, lorsque qu'elle est «utile» -- c'est-à-dire
 que les deux variables présentent effectivement une dépendance
 suffisamment linéaire pour être bien décrite par une droite-- peut être
 considérée comme une technique de statistique **inférentielle** , et
@@ -496,6 +496,8 @@ La table suivante indique les choix de représentations conventionnels.
 [<https://serialmentor.com/dataviz/>] </small>
 
 ## Difficultés de la statistique
+
+«les chiffres c'est pas une science exacte figurez-vous.» rappelait utilement Karadoc ( Kaamelott, Livre V, Le dernier recours) 
 
 Nous donnons ci-dessous quelques exemples de difficultés inhérentes à
 l'analyse statistique.
@@ -735,13 +737,15 @@ moins
 ### Agrégation
 
 On parle d'agrégation lorsqu'on désirer regrouper des données
-disponibles à un niveau de découpage donné Inférer des caractéristiques
-concernant les unités agrégées d'après les caractéristiques
-individuelles
+disponibles à un niveau de découpage donné et résumer ces données en quelques valeurs. 
+
 
 En fonction des données manipulées, l'agrégation peut se faire par la
 somme (par exemple pour des stocks) la moyenne (par exemple pour des
 ratios), ou tout autre combinaison bien choisie.
+
+Le problème de cette réduction de dimensionnalité (résumer N observation par une seule valeur, c'est passer de N à 1 ) est qu'elle va inévitablement appauvrir l'information. 
+Même quand cette concession est faite, les outils habituels ne sont pas toujours adaptés. Par exemple, la moyenne algébrique n'est pas indiquée en cas de distribution très asymétrique. Vous trouverez des exemples qui montrent les limites de la moyenne dans la section \@ref(forme) du chapitre \@ref(univariee)
 
 ### Désagrégation ou Ventilation
 
@@ -799,11 +803,11 @@ qui je pense sont les principales:
 
 -   La plupart des phénomènes d'intérêts sont multi-scalaires,
     c'est-à-dire qu'ils peuvent se produire et/ou s'observer à plusieurs
-    niveaux d'échelle.
+    niveaux d'échelle (et que leurs formes changent...).
 -   L'agrégation peut faire disparaitre certains détails, certaines
     spécificités dans la cartographie des données.
 -   Des effets de la géométrie du découpage (appelés effets de zonage)
-    modifie la représentation cartographique des données
+    modifient la représentation cartographique des données
 
 Voici quelques exemples qui montrent ces difficultés.
 

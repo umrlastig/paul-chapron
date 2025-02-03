@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST, et DESIGEO</title>
   <meta name="description" content="Ce cours collecte le contenu des diapositives des cours d’analyse statistique du M2 IGAST dans une forme plus proche du document. Le contenu est plus «rédigé» que celui des diapositives Une version PDF et une version HTML sont proposées." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 5 Analyse Bivariée | Analyse Statistique M2 IGAST, et DESIGEO" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="PC" />
 
 
-<meta name="date" content="2023-08-18" />
+<meta name="date" content="2025-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -402,7 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#graphiques-en-fleur"><i class="fa fa-check"></i><b>7.7.1</b> Graphiques «en fleur»</a></li>
 <li class="chapter" data-level="7.7.2" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#chord-diagramm"><i class="fa fa-check"></i><b>7.7.2</b> Chord diagramm</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations"><i class="fa fa-check"></i><b>7.8</b> Comparaisons d’individus, déviations</a></li>
+<li class="chapter" data-level="7.8" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#comparaisons-dindividus-déviations"><i class="fa fa-check"></i><b>7.8</b> Comparaisons d’individus, déviations</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="galerie-de-graphiques-avec-ggplot.html"><a href="galerie-de-graphiques-avec-ggplot.html#radar-plot"><i class="fa fa-check"></i><b>7.8.1</b> Radar plot</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
 <ul>
@@ -1022,7 +1025,7 @@ Elle se linéarise par <span class="math inline">\(ln(y)=bln(x) + ln(a)\)</span>
 <span id="cb95-6"><a href="bivariee.html#cb95-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot; x &quot;</span>)<span class="sc">+</span></span>
 <span id="cb95-7"><a href="bivariee.html#cb95-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot; y &quot;</span>)</span>
 <span id="cb95-8"><a href="bivariee.html#cb95-8" tabindex="-1"></a>plo2</span></code></pre></div>
-<pre><code>## Warning: Removed 6 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values or values outside the scale range (`geom_point()`).</code></pre>
 <p><img src="bookdown_cours_stats_files/figure-html/loglin2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Le nuage de points fait un peu peur, mais cette transformation améliorerait la qualité d’une régression linéaire :</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="bivariee.html#cb97-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y1<span class="sc">~</span>x))<span class="sc">$</span>r.squared</span></code></pre></div>
@@ -1057,7 +1060,7 @@ La regression linéaire était déjà de bonne qualité , la transformation l’
 <h3><span class="header-section-number">5.6.4</span> Relation logistique<a href="bivariee.html#relation-logistique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="bookdown_cours_stats_files/figure-html/logistic-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Cette forme en ‘S’ est bien connue : c’est une courbe dite “logistique”
-La fonction qui la décrit est par exemple : <span class="math inline">\(y= K \frac{1}{1+ae^{rx}}\)</span> avec <span class="math inline">\(a&gt;0\)</span> et <span class="math inline">\(r&gt;0\)</span>.</p>
+La fonction qui la décrit est par exemple : <span class="math inline">\(y= K  \frac{1}{1+ae^{rx}}\)</span> avec <span class="math inline">\(a&gt;0\)</span> et <span class="math inline">\(r&gt;0\)</span>.</p>
 <p>Pour estimer <span class="math inline">\(a\)</span> et <span class="math inline">\(r\)</span> , on peut linéariser par l’emploi de la fonction logit : <span class="math inline">\(logit(y)=ln(\frac{y}{1-y})\)</span></p>
 <p>Si on applique cette fonction à <span class="math inline">\(\frac{y}{K}\)</span>, on a :</p>
 <p><span class="math display">\[logit\left(\frac{1}{1+ae^{-rx}}\right)  =  \ln\left(\frac{1}{1+ae^{-rx}} \times \frac{1}{1-\frac{1}{1+ae^{-rx}}}\right)\]</span>
@@ -1244,7 +1247,7 @@ Le degré de liberté est obtenu en calculant la valeur <span class="math inline
 <p>pour générer la population théorique, on se place dans le cas où <span class="math inline">\(H_0\)</span> est vrai, les deux variables sont indépendantes, et donc la probabilité théorique d’avoir un individu caractérisé par une certaine combinaison de modalités est obtenu par le produit des fréquences marginales des modalités concernées.</p>
 <p>Exemple : Si <span class="math inline">\(H_0\)</span> est vraie, la probabilité d’observer un triangle noir est donnée par:</p>
 <p><span class="math inline">\(P(triangle \cap noir) = P(triangle) \times P(noir)\)</span></p>
-<p><span class="math inline">\(P(triangle \cap noir) =0.447619 \times 0.2952381 = 0.1321542\)</span></p>
+<p><span class="math inline">\(P(triangle \cap noir) =0.447619 \times 0.2952381  = 0.1321542\)</span></p>
 <p>La probabilité théorique d’observer un triangle noir est de 13,2%</p>
 </div>
 </div>
